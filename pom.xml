@@ -6,17 +6,17 @@
     <packaging>jar</packaging>
     <name>swagger-java-client</name>
     <version>1.0.0</version>
-    <url>https://github.com/swagger-api/swagger-codegen</url>
-    <description>Swagger Java</description>
+    <url>https://github.com/zeripath/java-gitea-api</url>
+    <description>Swagger Java Client for Gitea</description>
     <scm>
-        <connection>scm:git:git@github.com:swagger-api/swagger-codegen.git</connection>
-        <developerConnection>scm:git:git@github.com:swagger-api/swagger-codegen.git</developerConnection>
-        <url>https://github.com/swagger-api/swagger-codegen</url>
+        <connection>scm:git:git@github.com:zeripath/java-gitea-api.git</connection>
+        <developerConnection>scm:git:git@github.com:zeripath/java-gitea-api.git</developerConnection>
+        <url>https://github.com/zeripath/java-gitea-api</url>
     </scm>
 
     <licenses>
         <license>
-            <name>Unlicense</name>
+            <name>MIT</name>
             <url>http://opensource.org/licenses/MIT</url>
             <distribution>repo</distribution>
         </license>
@@ -24,10 +24,8 @@
 
     <developers>
         <developer>
-            <name>Swagger</name>
-            <email>apiteam@swagger.io</email>
-            <organization>Swagger</organization>
-            <organizationUrl>http://swagger.io</organizationUrl>
+            <name>Andrew Thornton</name>
+            <email>zeripath@gmail.com</email>
         </developer>
     </developers>
 
