@@ -18,7 +18,6 @@ repositories {
     jcenter()
 }
 
-
 if(hasProperty('target') && target == 'android') {
 
     apply plugin: 'com.android.library'
@@ -91,6 +90,22 @@ if(hasProperty('target') && target == 'android') {
        main = System.getProperty('mainClass')
        classpath = sourceSets.main.runtimeClasspath
     }
+
+    javadoc {
+      source = sourceSets.main.allJava
+      classpath = configurations.compileClasspath
+
+      options
+      {
+        setMemberLevel JavadocMemberLevel.PUBLIC
+        setAuthor true
+      }
+      doFirst {
+        options.addStringOption('-module-path',  configurations.compileClasspath.asPath)
+        options.addStringOption('-add-modules', 'java.xml.ws.annotation')
+      }
+    }
+
 }
 
 dependencies {
