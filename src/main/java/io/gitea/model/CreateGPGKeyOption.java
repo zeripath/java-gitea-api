@@ -27,7 +27,7 @@ import java.io.IOException;
  * CreateGPGKeyOption options create user GPG key
  */
 @ApiModel(description = "CreateGPGKeyOption options create user GPG key")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-21T19:43:15.059+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
 public class CreateGPGKeyOption {
   @SerializedName("armored_public_key")
   private String armoredPublicKey = null;

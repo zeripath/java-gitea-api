@@ -50,7 +50,7 @@ import io.gitea.model.Repository;
 import io.gitea.model.SearchResults;
 import io.gitea.model.Status;
 import io.gitea.model.TrackedTime;
-import io.gitea.model.User;
+import io.gitea.model.UserList;
 import io.gitea.model.WatchInfo;
 
 import java.lang.reflect.Type;
@@ -4927,11 +4927,11 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return List&lt;User&gt;
+     * @return UserList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> repoListCollaborators(String owner, String repo) throws ApiException {
-        ApiResponse<List<User>> resp = repoListCollaboratorsWithHttpInfo(owner, repo);
+    public UserList repoListCollaborators(String owner, String repo) throws ApiException {
+        ApiResponse<UserList> resp = repoListCollaboratorsWithHttpInfo(owner, repo);
         return resp.getData();
     }
 
@@ -4940,12 +4940,12 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return ApiResponse&lt;List&lt;User&gt;&gt;
+     * @return ApiResponse&lt;UserList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> repoListCollaboratorsWithHttpInfo(String owner, String repo) throws ApiException {
+    public ApiResponse<UserList> repoListCollaboratorsWithHttpInfo(String owner, String repo) throws ApiException {
         com.squareup.okhttp.Call call = repoListCollaboratorsValidateBeforeCall(owner, repo, null, null);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -4958,7 +4958,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListCollaboratorsAsync(String owner, String repo, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListCollaboratorsAsync(String owner, String repo, final ApiCallback<UserList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4980,7 +4980,7 @@ public class RepositoryApi {
         }
 
         com.squareup.okhttp.Call call = repoListCollaboratorsValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -5735,11 +5735,11 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return List&lt;User&gt;
+     * @return UserList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> repoListStargazers(String owner, String repo) throws ApiException {
-        ApiResponse<List<User>> resp = repoListStargazersWithHttpInfo(owner, repo);
+    public UserList repoListStargazers(String owner, String repo) throws ApiException {
+        ApiResponse<UserList> resp = repoListStargazersWithHttpInfo(owner, repo);
         return resp.getData();
     }
 
@@ -5748,12 +5748,12 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return ApiResponse&lt;List&lt;User&gt;&gt;
+     * @return ApiResponse&lt;UserList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> repoListStargazersWithHttpInfo(String owner, String repo) throws ApiException {
+    public ApiResponse<UserList> repoListStargazersWithHttpInfo(String owner, String repo) throws ApiException {
         com.squareup.okhttp.Call call = repoListStargazersValidateBeforeCall(owner, repo, null, null);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -5766,7 +5766,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListStargazersAsync(String owner, String repo, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListStargazersAsync(String owner, String repo, final ApiCallback<UserList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5788,7 +5788,7 @@ public class RepositoryApi {
         }
 
         com.squareup.okhttp.Call call = repoListStargazersValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -6011,11 +6011,11 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return List&lt;User&gt;
+     * @return UserList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> repoListSubscribers(String owner, String repo) throws ApiException {
-        ApiResponse<List<User>> resp = repoListSubscribersWithHttpInfo(owner, repo);
+    public UserList repoListSubscribers(String owner, String repo) throws ApiException {
+        ApiResponse<UserList> resp = repoListSubscribersWithHttpInfo(owner, repo);
         return resp.getData();
     }
 
@@ -6024,12 +6024,12 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return ApiResponse&lt;List&lt;User&gt;&gt;
+     * @return ApiResponse&lt;UserList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> repoListSubscribersWithHttpInfo(String owner, String repo) throws ApiException {
+    public ApiResponse<UserList> repoListSubscribersWithHttpInfo(String owner, String repo) throws ApiException {
         com.squareup.okhttp.Call call = repoListSubscribersValidateBeforeCall(owner, repo, null, null);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -6042,7 +6042,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListSubscribersAsync(String owner, String repo, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListSubscribersAsync(String owner, String repo, final ApiCallback<UserList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -6064,7 +6064,7 @@ public class RepositoryApi {
         }
 
         com.squareup.okhttp.Call call = repoListSubscribersValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

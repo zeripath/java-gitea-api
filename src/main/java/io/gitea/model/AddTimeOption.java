@@ -27,7 +27,7 @@ import java.io.IOException;
  * AddTimeOption options for adding time to an issue
  */
 @ApiModel(description = "AddTimeOption options for adding time to an issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-21T19:43:15.059+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
 public class AddTimeOption {
   @SerializedName("time")
   private Long time = null;

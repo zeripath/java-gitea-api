@@ -27,7 +27,7 @@ import java.io.IOException;
  * EditOrgOption options for editing an organization
  */
 @ApiModel(description = "EditOrgOption options for editing an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-21T19:43:15.059+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
 public class EditOrgOption {
   @SerializedName("description")
   private String description = null;

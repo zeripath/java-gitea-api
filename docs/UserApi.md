@@ -885,7 +885,7 @@ Name | Type | Description  | Notes
 
 <a name="userCurrentListFollowers"></a>
 # **userCurrentListFollowers**
-> List&lt;User&gt; userCurrentListFollowers()
+> UserList userCurrentListFollowers()
 
 List the authenticated user&#39;s followers
 
@@ -925,7 +925,7 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 try {
-    List<User> result = apiInstance.userCurrentListFollowers();
+    UserList result = apiInstance.userCurrentListFollowers();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCurrentListFollowers");
@@ -938,7 +938,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;User&gt;**](User.md)
+[**UserList**](UserList.md)
 
 ### Authorization
 
@@ -951,7 +951,7 @@ This endpoint does not need any parameter.
 
 <a name="userCurrentListFollowing"></a>
 # **userCurrentListFollowing**
-> List&lt;User&gt; userCurrentListFollowing()
+> UserList userCurrentListFollowing()
 
 List the users that the authenticated user is following
 
@@ -991,7 +991,7 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 try {
-    List<User> result = apiInstance.userCurrentListFollowing();
+    UserList result = apiInstance.userCurrentListFollowing();
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCurrentListFollowing");
@@ -1004,7 +1004,7 @@ This endpoint does not need any parameter.
 
 ### Return type
 
-[**List&lt;User&gt;**](User.md)
+[**UserList**](UserList.md)
 
 ### Authorization
 
@@ -2104,7 +2104,7 @@ This endpoint does not need any parameter.
 
 <a name="userListFollowers"></a>
 # **userListFollowers**
-> List&lt;User&gt; userListFollowers(username)
+> UserList userListFollowers(username)
 
 List the given user&#39;s followers
 
@@ -2145,7 +2145,7 @@ Token.setApiKey("YOUR API KEY");
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
 try {
-    List<User> result = apiInstance.userListFollowers(username);
+    UserList result = apiInstance.userListFollowers(username);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userListFollowers");
@@ -2161,7 +2161,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;User&gt;**](User.md)
+[**UserList**](UserList.md)
 
 ### Authorization
 
@@ -2174,7 +2174,7 @@ Name | Type | Description  | Notes
 
 <a name="userListFollowing"></a>
 # **userListFollowing**
-> List&lt;User&gt; userListFollowing(username)
+> UserList userListFollowing(username)
 
 List the users that the given user is following
 
@@ -2215,7 +2215,7 @@ Token.setApiKey("YOUR API KEY");
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
 try {
-    List<User> result = apiInstance.userListFollowing(username);
+    UserList result = apiInstance.userListFollowing(username);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userListFollowing");
@@ -2231,7 +2231,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;User&gt;**](User.md)
+[**UserList**](UserList.md)
 
 ### Authorization
 
@@ -2594,7 +2594,7 @@ Name | Type | Description  | Notes
 
 <a name="userSearch"></a>
 # **userSearch**
-> List&lt;User&gt; userSearch(q, limit)
+> UserList userSearch(q, limit)
 
 Search for users
 
@@ -2636,7 +2636,7 @@ UserApi apiInstance = new UserApi();
 String q = "q_example"; // String | keyword
 Integer limit = 56; // Integer | maximum number of users to return
 try {
-    List<User> result = apiInstance.userSearch(q, limit);
+    UserList result = apiInstance.userSearch(q, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userSearch");
@@ -2653,7 +2653,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**List&lt;User&gt;**](User.md)
+[**UserList**](UserList.md)
 
 ### Authorization
 

@@ -7554,6 +7554,23 @@
       },
       "x-go-package": "code.gitea.io/gitea/vendor/code.gitea.io/sdk/gitea"
     },
+    "UserList": {
+      "description": "UserList",
+      "type": "object",
+      "properties": {
+        "data": {
+          "type": "array",
+          "items": {
+            "$ref": "#/definitions/User"
+          },
+          "x-go-name": "Data"
+        },
+        "ok": {
+          "type": "boolean",
+          "x-go-name": "Ok"
+        }
+      }
+    },
     "WatchInfo": {
       "description": "WatchInfo represents an API watch status of one repository",
       "type": "object",
@@ -7903,10 +7920,7 @@
     "UserList": {
       "description": "UserList",
       "schema": {
-        "type": "array",
-        "items": {
-          "$ref": "#/definitions/User"
-        }
+        "$ref": "#/definitions/UserList"
       }
     },
     "WatchInfo": {

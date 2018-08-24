@@ -19,36 +19,67 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import org.threeten.bp.OffsetDateTime;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
- * IssueDeadline represents an issue deadline
+ * UserList
  */
-@ApiModel(description = "IssueDeadline represents an issue deadline")
+@ApiModel(description = "UserList")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
-public class IssueDeadline {
-  @SerializedName("due_date")
-  private OffsetDateTime dueDate = null;
+public class UserList {
+  @SerializedName("data")
+  private List<User> data = null;
 
-  public IssueDeadline dueDate(OffsetDateTime dueDate) {
-    this.dueDate = dueDate;
+  @SerializedName("ok")
+  private Boolean ok = null;
+
+  public UserList data(List<User> data) {
+    this.data = data;
+    return this;
+  }
+
+  public UserList addDataItem(User dataItem) {
+    if (this.data == null) {
+      this.data = new ArrayList<User>();
+    }
+    this.data.add(dataItem);
     return this;
   }
 
    /**
-   * Get dueDate
-   * @return dueDate
+   * Get data
+   * @return data
   **/
   @ApiModelProperty(value = "")
-  public OffsetDateTime getDueDate() {
-    return dueDate;
+  public List<User> getData() {
+    return data;
   }
 
-  public void setDueDate(OffsetDateTime dueDate) {
-    this.dueDate = dueDate;
+  public void setData(List<User> data) {
+    this.data = data;
+  }
+
+  public UserList ok(Boolean ok) {
+    this.ok = ok;
+    return this;
+  }
+
+   /**
+   * Get ok
+   * @return ok
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isOk() {
+    return ok;
+  }
+
+  public void setOk(Boolean ok) {
+    this.ok = ok;
   }
 
 
@@ -60,22 +91,24 @@ public class IssueDeadline {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    IssueDeadline issueDeadline = (IssueDeadline) o;
-    return Objects.equals(this.dueDate, issueDeadline.dueDate);
+    UserList userList = (UserList) o;
+    return Objects.equals(this.data, userList.data) &&
+        Objects.equals(this.ok, userList.ok);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(dueDate);
+    return Objects.hash(data, ok);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class IssueDeadline {\n");
+    sb.append("class UserList {\n");
     
-    sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
+    sb.append("    data: ").append(toIndentedString(data)).append("\n");
+    sb.append("    ok: ").append(toIndentedString(ok)).append("\n");
     sb.append("}");
     return sb.toString();
   }
