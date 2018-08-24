@@ -37,7 +37,7 @@ import io.gitea.model.Repository;
 import io.gitea.model.SearchResults;
 import io.gitea.model.Status;
 import io.gitea.model.TrackedTime;
-import io.gitea.model.UserList;
+import io.gitea.model.User;
 import io.gitea.model.WatchInfo;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -683,7 +683,7 @@ public class RepositoryApiTest {
     public void repoListCollaboratorsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        UserList response = api.repoListCollaborators(owner, repo);
+        List<User> response = api.repoListCollaborators(owner, repo);
 
         // TODO: test validations
     }
@@ -786,7 +786,7 @@ public class RepositoryApiTest {
     public void repoListStargazersTest() throws ApiException {
         String owner = null;
         String repo = null;
-        UserList response = api.repoListStargazers(owner, repo);
+        List<User> response = api.repoListStargazers(owner, repo);
 
         // TODO: test validations
     }
@@ -821,7 +821,7 @@ public class RepositoryApiTest {
     public void repoListSubscribersTest() throws ApiException {
         String owner = null;
         String repo = null;
-        UserList response = api.repoListSubscribers(owner, repo);
+        List<User> response = api.repoListSubscribers(owner, repo);
 
         // TODO: test validations
     }

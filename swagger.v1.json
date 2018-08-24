@@ -5190,7 +5190,7 @@
         ],
         "responses": {
           "200": {
-            "$ref": "#/responses/UserList"
+            "$ref": "#/responses/UserSearchList"
           }
         }
       }
@@ -7554,8 +7554,8 @@
       },
       "x-go-package": "code.gitea.io/gitea/vendor/code.gitea.io/sdk/gitea"
     },
-    "UserList": {
-      "description": "UserList",
+    "UserSearchList": {
+      "description": "UserSearchList",
       "type": "object",
       "properties": {
         "data": {
@@ -7920,7 +7920,16 @@
     "UserList": {
       "description": "UserList",
       "schema": {
-        "$ref": "#/definitions/UserList"
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/User"
+        }
+      }
+    },
+    "UserSearchList": {
+      "description": "UserSearchList",
+      "schema": {
+        "$ref": "#/definitions/UserSearchList"
       }
     },
     "WatchInfo": {

@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
  * CreateMilestoneOption options for creating a milestone
  */
 @ApiModel(description = "CreateMilestoneOption options for creating a milestone")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T21:18:13.192+01:00")
 public class CreateMilestoneOption {
   @SerializedName("description")
   private String description = null;

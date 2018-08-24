@@ -1,5 +1,5 @@
 
-# UserList
+# UserSearchList
 
 ## Properties
 Name | Type | Description | Notes

@@ -2573,7 +2573,7 @@ Name | Type | Description  | Notes
 
 <a name="repoListCollaborators"></a>
 # **repoListCollaborators**
-> UserList repoListCollaborators(owner, repo)
+> List&lt;User&gt; repoListCollaborators(owner, repo)
 
 List a repository&#39;s collaborators
 
@@ -2615,7 +2615,7 @@ RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 try {
-    UserList result = apiInstance.repoListCollaborators(owner, repo);
+    List<User> result = apiInstance.repoListCollaborators(owner, repo);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoListCollaborators");
@@ -2632,7 +2632,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 
@@ -3007,7 +3007,7 @@ Name | Type | Description  | Notes
 
 <a name="repoListStargazers"></a>
 # **repoListStargazers**
-> UserList repoListStargazers(owner, repo)
+> List&lt;User&gt; repoListStargazers(owner, repo)
 
 List a repo&#39;s stargazers
 
@@ -3049,7 +3049,7 @@ RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 try {
-    UserList result = apiInstance.repoListStargazers(owner, repo);
+    List<User> result = apiInstance.repoListStargazers(owner, repo);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoListStargazers");
@@ -3066,7 +3066,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 
@@ -3153,7 +3153,7 @@ Name | Type | Description  | Notes
 
 <a name="repoListSubscribers"></a>
 # **repoListSubscribers**
-> UserList repoListSubscribers(owner, repo)
+> List&lt;User&gt; repoListSubscribers(owner, repo)
 
 List a repo&#39;s watchers
 
@@ -3195,7 +3195,7 @@ RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 try {
-    UserList result = apiInstance.repoListSubscribers(owner, repo);
+    List<User> result = apiInstance.repoListSubscribers(owner, repo);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoListSubscribers");
@@ -3212,7 +3212,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 

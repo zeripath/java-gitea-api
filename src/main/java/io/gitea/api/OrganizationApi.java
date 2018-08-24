@@ -35,7 +35,7 @@ import io.gitea.model.EditTeamOption;
 import io.gitea.model.Organization;
 import io.gitea.model.Repository;
 import io.gitea.model.Team;
-import io.gitea.model.UserList;
+import io.gitea.model.User;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -2541,11 +2541,11 @@ public class OrganizationApi {
      * List an organization&#39;s members
      * 
      * @param org name of the organization (required)
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList orgListMembers(String org) throws ApiException {
-        ApiResponse<UserList> resp = orgListMembersWithHttpInfo(org);
+    public List<User> orgListMembers(String org) throws ApiException {
+        ApiResponse<List<User>> resp = orgListMembersWithHttpInfo(org);
         return resp.getData();
     }
 
@@ -2553,12 +2553,12 @@ public class OrganizationApi {
      * List an organization&#39;s members
      * 
      * @param org name of the organization (required)
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> orgListMembersWithHttpInfo(String org) throws ApiException {
+    public ApiResponse<List<User>> orgListMembersWithHttpInfo(String org) throws ApiException {
         com.squareup.okhttp.Call call = orgListMembersValidateBeforeCall(org, null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2570,7 +2570,7 @@ public class OrganizationApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orgListMembersAsync(String org, final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call orgListMembersAsync(String org, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2592,7 +2592,7 @@ public class OrganizationApi {
         }
 
         com.squareup.okhttp.Call call = orgListMembersValidateBeforeCall(org, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2664,11 +2664,11 @@ public class OrganizationApi {
      * List an organization&#39;s public members
      * 
      * @param org name of the organization (required)
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList orgListPublicMembers(String org) throws ApiException {
-        ApiResponse<UserList> resp = orgListPublicMembersWithHttpInfo(org);
+    public List<User> orgListPublicMembers(String org) throws ApiException {
+        ApiResponse<List<User>> resp = orgListPublicMembersWithHttpInfo(org);
         return resp.getData();
     }
 
@@ -2676,12 +2676,12 @@ public class OrganizationApi {
      * List an organization&#39;s public members
      * 
      * @param org name of the organization (required)
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> orgListPublicMembersWithHttpInfo(String org) throws ApiException {
+    public ApiResponse<List<User>> orgListPublicMembersWithHttpInfo(String org) throws ApiException {
         com.squareup.okhttp.Call call = orgListPublicMembersValidateBeforeCall(org, null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2693,7 +2693,7 @@ public class OrganizationApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orgListPublicMembersAsync(String org, final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call orgListPublicMembersAsync(String org, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2715,7 +2715,7 @@ public class OrganizationApi {
         }
 
         com.squareup.okhttp.Call call = orgListPublicMembersValidateBeforeCall(org, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2910,11 +2910,11 @@ public class OrganizationApi {
      * List a team&#39;s members
      * 
      * @param id id of the team (required)
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList orgListTeamMembers(Integer id) throws ApiException {
-        ApiResponse<UserList> resp = orgListTeamMembersWithHttpInfo(id);
+    public List<User> orgListTeamMembers(Integer id) throws ApiException {
+        ApiResponse<List<User>> resp = orgListTeamMembersWithHttpInfo(id);
         return resp.getData();
     }
 
@@ -2922,12 +2922,12 @@ public class OrganizationApi {
      * List a team&#39;s members
      * 
      * @param id id of the team (required)
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> orgListTeamMembersWithHttpInfo(Integer id) throws ApiException {
+    public ApiResponse<List<User>> orgListTeamMembersWithHttpInfo(Integer id) throws ApiException {
         com.squareup.okhttp.Call call = orgListTeamMembersValidateBeforeCall(id, null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2939,7 +2939,7 @@ public class OrganizationApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call orgListTeamMembersAsync(Integer id, final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call orgListTeamMembersAsync(Integer id, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2961,7 +2961,7 @@ public class OrganizationApi {
         }
 
         com.squareup.okhttp.Call call = orgListTeamMembersValidateBeforeCall(id, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

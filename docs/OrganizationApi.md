@@ -1383,7 +1383,7 @@ Name | Type | Description  | Notes
 
 <a name="orgListMembers"></a>
 # **orgListMembers**
-> UserList orgListMembers(org)
+> List&lt;User&gt; orgListMembers(org)
 
 List an organization&#39;s members
 
@@ -1424,7 +1424,7 @@ Token.setApiKey("YOUR API KEY");
 OrganizationApi apiInstance = new OrganizationApi();
 String org = "org_example"; // String | name of the organization
 try {
-    UserList result = apiInstance.orgListMembers(org);
+    List<User> result = apiInstance.orgListMembers(org);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrganizationApi#orgListMembers");
@@ -1440,7 +1440,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 
@@ -1453,7 +1453,7 @@ Name | Type | Description  | Notes
 
 <a name="orgListPublicMembers"></a>
 # **orgListPublicMembers**
-> UserList orgListPublicMembers(org)
+> List&lt;User&gt; orgListPublicMembers(org)
 
 List an organization&#39;s public members
 
@@ -1494,7 +1494,7 @@ Token.setApiKey("YOUR API KEY");
 OrganizationApi apiInstance = new OrganizationApi();
 String org = "org_example"; // String | name of the organization
 try {
-    UserList result = apiInstance.orgListPublicMembers(org);
+    List<User> result = apiInstance.orgListPublicMembers(org);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrganizationApi#orgListPublicMembers");
@@ -1510,7 +1510,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 
@@ -1593,7 +1593,7 @@ Name | Type | Description  | Notes
 
 <a name="orgListTeamMembers"></a>
 # **orgListTeamMembers**
-> UserList orgListTeamMembers(id)
+> List&lt;User&gt; orgListTeamMembers(id)
 
 List a team&#39;s members
 
@@ -1634,7 +1634,7 @@ Token.setApiKey("YOUR API KEY");
 OrganizationApi apiInstance = new OrganizationApi();
 Integer id = 56; // Integer | id of the team
 try {
-    UserList result = apiInstance.orgListTeamMembers(id);
+    List<User> result = apiInstance.orgListTeamMembers(id);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrganizationApi#orgListTeamMembers");
@@ -1650,7 +1650,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserList**](UserList.md)
+[**List&lt;User&gt;**](User.md)
 
 ### Authorization
 

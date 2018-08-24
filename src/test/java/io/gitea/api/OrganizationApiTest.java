@@ -22,7 +22,7 @@ import io.gitea.model.EditTeamOption;
 import io.gitea.model.Organization;
 import io.gitea.model.Repository;
 import io.gitea.model.Team;
-import io.gitea.model.UserList;
+import io.gitea.model.User;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -368,7 +368,7 @@ public class OrganizationApiTest {
     @Test
     public void orgListMembersTest() throws ApiException {
         String org = null;
-        UserList response = api.orgListMembers(org);
+        List<User> response = api.orgListMembers(org);
 
         // TODO: test validations
     }
@@ -384,7 +384,7 @@ public class OrganizationApiTest {
     @Test
     public void orgListPublicMembersTest() throws ApiException {
         String org = null;
-        UserList response = api.orgListPublicMembers(org);
+        List<User> response = api.orgListPublicMembers(org);
 
         // TODO: test validations
     }
@@ -416,7 +416,7 @@ public class OrganizationApiTest {
     @Test
     public void orgListTeamMembersTest() throws ApiException {
         Integer id = null;
-        UserList response = api.orgListTeamMembers(id);
+        List<User> response = api.orgListTeamMembers(id);
 
         // TODO: test validations
     }

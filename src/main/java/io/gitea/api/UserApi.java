@@ -38,7 +38,7 @@ import io.gitea.model.PublicKey;
 import io.gitea.model.Repository;
 import io.gitea.model.TrackedTime;
 import io.gitea.model.User;
-import io.gitea.model.UserList;
+import io.gitea.model.UserSearchList;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -1587,23 +1587,23 @@ public class UserApi {
     /**
      * List the authenticated user&#39;s followers
      * 
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList userCurrentListFollowers() throws ApiException {
-        ApiResponse<UserList> resp = userCurrentListFollowersWithHttpInfo();
+    public List<User> userCurrentListFollowers() throws ApiException {
+        ApiResponse<List<User>> resp = userCurrentListFollowersWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * List the authenticated user&#39;s followers
      * 
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> userCurrentListFollowersWithHttpInfo() throws ApiException {
+    public ApiResponse<List<User>> userCurrentListFollowersWithHttpInfo() throws ApiException {
         com.squareup.okhttp.Call call = userCurrentListFollowersValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1614,7 +1614,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentListFollowersAsync(final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentListFollowersAsync(final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1636,7 +1636,7 @@ public class UserApi {
         }
 
         com.squareup.okhttp.Call call = userCurrentListFollowersValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -1700,23 +1700,23 @@ public class UserApi {
     /**
      * List the users that the authenticated user is following
      * 
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList userCurrentListFollowing() throws ApiException {
-        ApiResponse<UserList> resp = userCurrentListFollowingWithHttpInfo();
+    public List<User> userCurrentListFollowing() throws ApiException {
+        ApiResponse<List<User>> resp = userCurrentListFollowingWithHttpInfo();
         return resp.getData();
     }
 
     /**
      * List the users that the authenticated user is following
      * 
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> userCurrentListFollowingWithHttpInfo() throws ApiException {
+    public ApiResponse<List<User>> userCurrentListFollowingWithHttpInfo() throws ApiException {
         com.squareup.okhttp.Call call = userCurrentListFollowingValidateBeforeCall(null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -1727,7 +1727,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentListFollowingAsync(final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentListFollowingAsync(final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1749,7 +1749,7 @@ public class UserApi {
         }
 
         com.squareup.okhttp.Call call = userCurrentListFollowingValidateBeforeCall(progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -3691,11 +3691,11 @@ public class UserApi {
      * List the given user&#39;s followers
      * 
      * @param username username of user (required)
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList userListFollowers(String username) throws ApiException {
-        ApiResponse<UserList> resp = userListFollowersWithHttpInfo(username);
+    public List<User> userListFollowers(String username) throws ApiException {
+        ApiResponse<List<User>> resp = userListFollowersWithHttpInfo(username);
         return resp.getData();
     }
 
@@ -3703,12 +3703,12 @@ public class UserApi {
      * List the given user&#39;s followers
      * 
      * @param username username of user (required)
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> userListFollowersWithHttpInfo(String username) throws ApiException {
+    public ApiResponse<List<User>> userListFollowersWithHttpInfo(String username) throws ApiException {
         com.squareup.okhttp.Call call = userListFollowersValidateBeforeCall(username, null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -3720,7 +3720,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userListFollowersAsync(String username, final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call userListFollowersAsync(String username, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3742,7 +3742,7 @@ public class UserApi {
         }
 
         com.squareup.okhttp.Call call = userListFollowersValidateBeforeCall(username, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -3814,11 +3814,11 @@ public class UserApi {
      * List the users that the given user is following
      * 
      * @param username username of user (required)
-     * @return UserList
+     * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList userListFollowing(String username) throws ApiException {
-        ApiResponse<UserList> resp = userListFollowingWithHttpInfo(username);
+    public List<User> userListFollowing(String username) throws ApiException {
+        ApiResponse<List<User>> resp = userListFollowingWithHttpInfo(username);
         return resp.getData();
     }
 
@@ -3826,12 +3826,12 @@ public class UserApi {
      * List the users that the given user is following
      * 
      * @param username username of user (required)
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> userListFollowingWithHttpInfo(String username) throws ApiException {
+    public ApiResponse<List<User>> userListFollowingWithHttpInfo(String username) throws ApiException {
         com.squareup.okhttp.Call call = userListFollowingValidateBeforeCall(username, null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -3843,7 +3843,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userListFollowingAsync(String username, final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call userListFollowingAsync(String username, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3865,7 +3865,7 @@ public class UserApi {
         }
 
         com.squareup.okhttp.Call call = userListFollowingValidateBeforeCall(username, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -4552,11 +4552,11 @@ public class UserApi {
      * 
      * @param q keyword (optional)
      * @param limit maximum number of users to return (optional)
-     * @return UserList
+     * @return UserSearchList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserList userSearch(String q, Integer limit) throws ApiException {
-        ApiResponse<UserList> resp = userSearchWithHttpInfo(q, limit);
+    public UserSearchList userSearch(String q, Integer limit) throws ApiException {
+        ApiResponse<UserSearchList> resp = userSearchWithHttpInfo(q, limit);
         return resp.getData();
     }
 
@@ -4565,12 +4565,12 @@ public class UserApi {
      * 
      * @param q keyword (optional)
      * @param limit maximum number of users to return (optional)
-     * @return ApiResponse&lt;UserList&gt;
+     * @return ApiResponse&lt;UserSearchList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserList> userSearchWithHttpInfo(String q, Integer limit) throws ApiException {
+    public ApiResponse<UserSearchList> userSearchWithHttpInfo(String q, Integer limit) throws ApiException {
         com.squareup.okhttp.Call call = userSearchValidateBeforeCall(q, limit, null, null);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserSearchList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -4583,7 +4583,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userSearchAsync(String q, Integer limit, final ApiCallback<UserList> callback) throws ApiException {
+    public com.squareup.okhttp.Call userSearchAsync(String q, Integer limit, final ApiCallback<UserSearchList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4605,7 +4605,7 @@ public class UserApi {
         }
 
         com.squareup.okhttp.Call call = userSearchValidateBeforeCall(q, limit, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<UserList>(){}.getType();
+        Type localVarReturnType = new TypeToken<UserSearchList>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

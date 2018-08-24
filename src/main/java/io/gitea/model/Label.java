@@ -27,7 +27,7 @@ import java.io.IOException;
  * Label a label to an issue or a pr
  */
 @ApiModel(description = "Label a label to an issue or a pr")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T21:18:13.192+01:00")
 public class Label {
   @SerializedName("color")
   private String color = null;

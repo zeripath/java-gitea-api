@@ -27,23 +27,23 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- * UserList
+ * UserSearchList
  */
-@ApiModel(description = "UserList")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
-public class UserList {
+@ApiModel(description = "UserSearchList")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T21:18:13.192+01:00")
+public class UserSearchList {
   @SerializedName("data")
   private List<User> data = null;
 
   @SerializedName("ok")
   private Boolean ok = null;
 
-  public UserList data(List<User> data) {
+  public UserSearchList data(List<User> data) {
     this.data = data;
     return this;
   }
 
-  public UserList addDataItem(User dataItem) {
+  public UserSearchList addDataItem(User dataItem) {
     if (this.data == null) {
       this.data = new ArrayList<User>();
     }
@@ -64,7 +64,7 @@ public class UserList {
     this.data = data;
   }
 
-  public UserList ok(Boolean ok) {
+  public UserSearchList ok(Boolean ok) {
     this.ok = ok;
     return this;
   }
@@ -91,9 +91,9 @@ public class UserList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserList userList = (UserList) o;
-    return Objects.equals(this.data, userList.data) &&
-        Objects.equals(this.ok, userList.ok);
+    UserSearchList userSearchList = (UserSearchList) o;
+    return Objects.equals(this.data, userSearchList.data) &&
+        Objects.equals(this.ok, userSearchList.ok);
   }
 
   @Override
@@ -105,7 +105,7 @@ public class UserList {
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserList {\n");
+    sb.append("class UserSearchList {\n");
     
     sb.append("    data: ").append(toIndentedString(data)).append("\n");
     sb.append("    ok: ").append(toIndentedString(ok)).append("\n");
