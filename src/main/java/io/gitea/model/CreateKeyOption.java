@@ -27,7 +27,7 @@ import java.io.IOException;
  * CreateKeyOption options when creating a key
  */
 @ApiModel(description = "CreateKeyOption options when creating a key")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
 public class CreateKeyOption {
   @SerializedName("key")
   private String key = null;

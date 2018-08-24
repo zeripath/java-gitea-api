@@ -27,7 +27,7 @@ import java.io.IOException;
  * MigrateRepoForm form for migrating repository
  */
 @ApiModel(description = "MigrateRepoForm form for migrating repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
 public class MigrateRepoForm {
   @SerializedName("auth_password")
   private String authPassword = null;

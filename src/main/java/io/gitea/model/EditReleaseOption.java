@@ -27,7 +27,7 @@ import java.io.IOException;
  * EditReleaseOption options when editing a release
  */
 @ApiModel(description = "EditReleaseOption options when editing a release")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
 public class EditReleaseOption {
   @SerializedName("body")
   private String body = null;

@@ -25,6 +25,7 @@ import io.gitea.model.PublicKey;
 import io.gitea.model.Repository;
 import io.gitea.model.TrackedTime;
 import io.gitea.model.User;
+import io.gitea.model.UserList;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -247,7 +248,7 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentListFollowersTest() throws ApiException {
-        List<User> response = api.userCurrentListFollowers();
+        UserList response = api.userCurrentListFollowers();
 
         // TODO: test validations
     }
@@ -262,7 +263,7 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentListFollowingTest() throws ApiException {
-        List<User> response = api.userCurrentListFollowing();
+        UserList response = api.userCurrentListFollowing();
 
         // TODO: test validations
     }
@@ -528,7 +529,7 @@ public class UserApiTest {
     @Test
     public void userListFollowersTest() throws ApiException {
         String username = null;
-        List<User> response = api.userListFollowers(username);
+        UserList response = api.userListFollowers(username);
 
         // TODO: test validations
     }
@@ -544,7 +545,7 @@ public class UserApiTest {
     @Test
     public void userListFollowingTest() throws ApiException {
         String username = null;
-        List<User> response = api.userListFollowing(username);
+        UserList response = api.userListFollowing(username);
 
         // TODO: test validations
     }
@@ -641,7 +642,7 @@ public class UserApiTest {
     public void userSearchTest() throws ApiException {
         String q = null;
         Integer limit = null;
-        List<User> response = api.userSearch(q, limit);
+        UserList response = api.userSearch(q, limit);
 
         // TODO: test validations
     }

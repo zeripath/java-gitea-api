@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
  * TrackedTime worked time for an issue / pr
  */
 @ApiModel(description = "TrackedTime worked time for an issue / pr")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:24:48.590+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T18:29:44.562+01:00")
 public class TrackedTime {
   @SerializedName("created")
   private OffsetDateTime created = null;
