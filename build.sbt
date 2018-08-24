@@ -1,7 +1,7 @@
 lazy val root = (project in file(".")).
   settings(
     organization := "io.gitea",
-    name := "swagger-java-client",
+    name := "java-gitea-api",
     version := "1.0.0",
     scalaVersion := "2.11.4",
     scalacOptions ++= Seq("-feature"),

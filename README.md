@@ -1,4 +1,4 @@
-# swagger-java-client
+# java-gitea-api
 
 ## Requirements
 
@@ -27,7 +27,7 @@ Add this dependency to your project's POM:
 ```xml
 <dependency>
     <groupId>io.gitea</groupId>
-    <artifactId>swagger-java-client</artifactId>
+    <artifactId>java-gitea-api</artifactId>
     <version>1.0.0</version>
     <scope>compile</scope>
 </dependency>
@@ -38,7 +38,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.gitea:swagger-java-client:1.0.0"
+compile "io.gitea:java-gitea-api:1.0.0"
 ```
 
 ### Others
@@ -49,7 +49,7 @@ At first generate the JAR by executing:
 
 Then manually install the following JARs:
 
-* target/swagger-java-client-1.0.0.jar
+* target/java-gitea-api-1.0.0.jar
 * target/lib/*.jar
 
 ## Getting Started

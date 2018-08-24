@@ -2,9 +2,9 @@
          xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>io.gitea</groupId>
-    <artifactId>swagger-java-client</artifactId>
+    <artifactId>java-gitea-api</artifactId>
     <packaging>jar</packaging>
-    <name>swagger-java-client</name>
+    <name>java-gitea-api</name>
     <version>1.0.0</version>
     <url>https://github.com/zeripath/java-gitea-api</url>
     <description>Swagger Java Client for Gitea</description>
@@ -135,7 +135,7 @@
             <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-javadoc-plugin</artifactId>
-                <version>2.10.4</version>
+                <version>3.0.1</version>
                 <executions>
                     <execution>
                         <id>attach-javadocs</id>
@@ -223,6 +223,12 @@
             <version>${junit-version}</version>
             <scope>test</scope>
         </dependency>
+        <!-- Provided (Javadoc on Java 9) -->
+        <dependency>
+            <groupId>javax.annotation</groupId>
+            <artifactId>javax.annotation-api</artifactId>
+            <version>${javax-annotation.version}</version>
+        </dependency>
     </dependencies>
     <properties>
         <java.version>1.7</java.version>
@@ -236,5 +242,6 @@
         <maven-plugin-version>1.0.0</maven-plugin-version>
         <junit-version>4.12</junit-version>
         <project.build.sourceEncoding>UTF-8</project.build.sourceEncoding>
+        <javax-annotation.version>1.3.2</javax-annotation.version>
     </properties>
 </project>
