@@ -1,18 +1,17 @@
-<project xmlns="http://maven.apache.org/POM/4.0.0" 
-    xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
+<project xmlns="http://maven.apache.org/POM/4.0.0" xmlns:xsi="http://www.w3.org/2001/XMLSchema-instance" xsi:schemaLocation="http://maven.apache.org/POM/4.0.0 http://maven.apache.org/maven-v4_0_0.xsd">
     <modelVersion>4.0.0</modelVersion>
     <groupId>com.github.zeripath</groupId>
     <artifactId>java-gitea-api</artifactId>
     <packaging>jar</packaging>
     <name>java-gitea-api</name>
-    <version>1.0.0-SNAPSHOT</version>
+    <version>1.0.0</version>
     <url>https://github.com/zeripath/java-gitea-api</url>
     <description>Swagger Java Client for Gitea</description>
     <scm>
         <connection>scm:git:git@github.com:zeripath/java-gitea-api.git</connection>
         <developerConnection>scm:git:git@github.com:zeripath/java-gitea-api.git</developerConnection>
         <url>https://github.com/zeripath/java-gitea-api</url>
-        <tag>HEAD</tag>
+        <tag>java-gitea-api-1.0.0</tag>
     </scm>
 
     <licenses>
