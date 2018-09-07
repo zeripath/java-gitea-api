@@ -92,6 +92,8 @@ public class ApiClient {
         authentications.put("AccessToken", new ApiKeyAuth("query", "access_token"));
         authentications.put("AuthorizationHeaderToken", new ApiKeyAuth("header", "Authorization"));
         authentications.put("BasicAuth", new HttpBasicAuth());
+        authentications.put("SudoHeader", new ApiKeyAuth("header", "Sudo"));
+        authentications.put("SudoParam", new ApiKeyAuth("query", "sudo"));
         authentications.put("Token", new ApiKeyAuth("query", "token"));
         // Prevent the authentications from being modified.
         authentications = Collections.unmodifiableMap(authentications);

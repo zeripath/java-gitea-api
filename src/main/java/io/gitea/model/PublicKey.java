@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
  * PublicKey publickey is a user key to push code to repository
  */
 @ApiModel(description = "PublicKey publickey is a user key to push code to repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T21:18:13.192+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-09-07T10:45:35.787+01:00")
 public class PublicKey {
   @SerializedName("created_at")
   private OffsetDateTime createdAt = null;

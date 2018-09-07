@@ -27,13 +27,16 @@ import java.io.IOException;
  * EditUserOption edit user options
  */
 @ApiModel(description = "EditUserOption edit user options")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T21:18:13.192+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-09-07T10:45:35.787+01:00")
 public class EditUserOption {
   @SerializedName("active")
   private Boolean active = null;
 
   @SerializedName("admin")
   private Boolean admin = null;
+
+  @SerializedName("allow_create_organization")
+  private Boolean allowCreateOrganization = null;
 
   @SerializedName("allow_git_hook")
   private Boolean allowGitHook = null;
@@ -58,6 +61,9 @@ public class EditUserOption {
 
   @SerializedName("password")
   private String password = null;
+
+  @SerializedName("prohibit_login")
+  private Boolean prohibitLogin = null;
 
   @SerializedName("source_id")
   private Long sourceId = null;
@@ -99,6 +105,24 @@ public class EditUserOption {
 
   public void setAdmin(Boolean admin) {
     this.admin = admin;
+  }
+
+  public EditUserOption allowCreateOrganization(Boolean allowCreateOrganization) {
+    this.allowCreateOrganization = allowCreateOrganization;
+    return this;
+  }
+
+   /**
+   * Get allowCreateOrganization
+   * @return allowCreateOrganization
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isAllowCreateOrganization() {
+    return allowCreateOrganization;
+  }
+
+  public void setAllowCreateOrganization(Boolean allowCreateOrganization) {
+    this.allowCreateOrganization = allowCreateOrganization;
   }
 
   public EditUserOption allowGitHook(Boolean allowGitHook) {
@@ -245,6 +269,24 @@ public class EditUserOption {
     this.password = password;
   }
 
+  public EditUserOption prohibitLogin(Boolean prohibitLogin) {
+    this.prohibitLogin = prohibitLogin;
+    return this;
+  }
+
+   /**
+   * Get prohibitLogin
+   * @return prohibitLogin
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isProhibitLogin() {
+    return prohibitLogin;
+  }
+
+  public void setProhibitLogin(Boolean prohibitLogin) {
+    this.prohibitLogin = prohibitLogin;
+  }
+
   public EditUserOption sourceId(Long sourceId) {
     this.sourceId = sourceId;
     return this;
@@ -293,6 +335,7 @@ public class EditUserOption {
     EditUserOption editUserOption = (EditUserOption) o;
     return Objects.equals(this.active, editUserOption.active) &&
         Objects.equals(this.admin, editUserOption.admin) &&
+        Objects.equals(this.allowCreateOrganization, editUserOption.allowCreateOrganization) &&
         Objects.equals(this.allowGitHook, editUserOption.allowGitHook) &&
         Objects.equals(this.allowImportLocal, editUserOption.allowImportLocal) &&
         Objects.equals(this.email, editUserOption.email) &&
@@ -301,13 +344,14 @@ public class EditUserOption {
         Objects.equals(this.loginName, editUserOption.loginName) &&
         Objects.equals(this.maxRepoCreation, editUserOption.maxRepoCreation) &&
         Objects.equals(this.password, editUserOption.password) &&
+        Objects.equals(this.prohibitLogin, editUserOption.prohibitLogin) &&
         Objects.equals(this.sourceId, editUserOption.sourceId) &&
         Objects.equals(this.website, editUserOption.website);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(active, admin, allowGitHook, allowImportLocal, email, fullName, location, loginName, maxRepoCreation, password, sourceId, website);
+    return Objects.hash(active, admin, allowCreateOrganization, allowGitHook, allowImportLocal, email, fullName, location, loginName, maxRepoCreation, password, prohibitLogin, sourceId, website);
   }
 
 
@@ -318,6 +362,7 @@ public class EditUserOption {
     
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
     sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
+    sb.append("    allowCreateOrganization: ").append(toIndentedString(allowCreateOrganization)).append("\n");
     sb.append("    allowGitHook: ").append(toIndentedString(allowGitHook)).append("\n");
     sb.append("    allowImportLocal: ").append(toIndentedString(allowImportLocal)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
@@ -326,6 +371,7 @@ public class EditUserOption {
     sb.append("    loginName: ").append(toIndentedString(loginName)).append("\n");
     sb.append("    maxRepoCreation: ").append(toIndentedString(maxRepoCreation)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
+    sb.append("    prohibitLogin: ").append(toIndentedString(prohibitLogin)).append("\n");
     sb.append("    sourceId: ").append(toIndentedString(sourceId)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
     sb.append("}");

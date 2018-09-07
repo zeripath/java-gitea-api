@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **Boolean** |  |  [optional]
 **admin** | **Boolean** |  |  [optional]
+**allowCreateOrganization** | **Boolean** |  |  [optional]
 **allowGitHook** | **Boolean** |  |  [optional]
 **allowImportLocal** | **Boolean** |  |  [optional]
 **email** | **String** |  | 
@@ -14,6 +15,7 @@ Name | Type | Description | Notes
 **loginName** | **String** |  |  [optional]
 **maxRepoCreation** | **Long** |  |  [optional]
 **password** | **String** |  |  [optional]
+**prohibitLogin** | **Boolean** |  |  [optional]
 **sourceId** | **Long** |  |  [optional]
 **website** | **String** |  |  [optional]
 

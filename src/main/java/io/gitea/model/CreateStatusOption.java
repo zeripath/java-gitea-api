@@ -27,7 +27,7 @@ import java.io.IOException;
  * CreateStatusOption holds the information needed to create a new Status for a Commit
  */
 @ApiModel(description = "CreateStatusOption holds the information needed to create a new Status for a Commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-08-24T21:18:13.192+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-09-07T10:45:35.787+01:00")
 public class CreateStatusOption {
   @SerializedName("context")
   private String context = null;
