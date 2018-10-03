@@ -294,7 +294,7 @@ null (empty response body)
 
 <a name="userCreateToken"></a>
 # **userCreateToken**
-> userCreateToken(username)
+> AccessToken userCreateToken(username, accessTokenName)
 
 Create an access token
 
@@ -346,8 +346,10 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
+AccessTokenName accessTokenName = new AccessTokenName(); // AccessTokenName | 
 try {
-    apiInstance.userCreateToken(username);
+    AccessToken result = apiInstance.userCreateToken(username, accessTokenName);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCreateToken");
     e.printStackTrace();
@@ -359,10 +361,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
+ **accessTokenName** | [**AccessTokenName**](AccessTokenName.md)|  | [optional]
 
 ### Return type
 
-null (empty response body)
+[**AccessToken**](AccessToken.md)
 
 ### Authorization
 
@@ -2305,7 +2308,7 @@ This endpoint does not need any parameter.
 
 <a name="userGetTokens"></a>
 # **userGetTokens**
-> userGetTokens(username)
+> List&lt;AccessToken&gt; userGetTokens(username)
 
 List the authenticated user&#39;s access tokens
 
@@ -2358,7 +2361,8 @@ Token.setApiKey("YOUR API KEY");
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
 try {
-    apiInstance.userGetTokens(username);
+    List<AccessToken> result = apiInstance.userGetTokens(username);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userGetTokens");
     e.printStackTrace();
@@ -2373,7 +2377,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**List&lt;AccessToken&gt;**](AccessToken.md)
 
 ### Authorization
 

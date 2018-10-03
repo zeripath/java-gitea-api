@@ -19,67 +19,34 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.gitea.model.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * UserSearchList
+ * AccessTokenName
  */
-@ApiModel(description = "UserSearchList")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-03T21:33:54.578+01:00")
-public class UserSearchList {
-  @SerializedName("data")
-  private List<User> data = null;
+public class AccessTokenName {
+  @SerializedName("name")
+  private String name = null;
 
-  @SerializedName("ok")
-  private Boolean ok = null;
-
-  public UserSearchList data(List<User> data) {
-    this.data = data;
-    return this;
-  }
-
-  public UserSearchList addDataItem(User dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<User>();
-    }
-    this.data.add(dataItem);
+  public AccessTokenName name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get name
+   * @return name
   **/
-  @ApiModelProperty(value = "")
-  public List<User> getData() {
-    return data;
+  @ApiModelProperty(required = true, value = "")
+  public String getName() {
+    return name;
   }
 
-  public void setData(List<User> data) {
-    this.data = data;
-  }
-
-  public UserSearchList ok(Boolean ok) {
-    this.ok = ok;
-    return this;
-  }
-
-   /**
-   * Get ok
-   * @return ok
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean isOk() {
-    return ok;
-  }
-
-  public void setOk(Boolean ok) {
-    this.ok = ok;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -91,24 +58,22 @@ public class UserSearchList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserSearchList userSearchList = (UserSearchList) o;
-    return Objects.equals(this.data, userSearchList.data) &&
-        Objects.equals(this.ok, userSearchList.ok);
+    AccessTokenName accessTokenName = (AccessTokenName) o;
+    return Objects.equals(this.name, accessTokenName.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, ok);
+    return Objects.hash(name);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserSearchList {\n");
+    sb.append("class AccessTokenName {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    ok: ").append(toIndentedString(ok)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

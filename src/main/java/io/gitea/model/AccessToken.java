@@ -19,67 +19,77 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
-import io.gitea.model.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
-import java.util.ArrayList;
-import java.util.List;
 
 /**
- * UserSearchList
+ * AccessToken represents a API access token.
  */
-@ApiModel(description = "UserSearchList")
+@ApiModel(description = "AccessToken represents a API access token.")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-03T21:33:54.578+01:00")
-public class UserSearchList {
-  @SerializedName("data")
-  private List<User> data = null;
+public class AccessToken {
+  @SerializedName("id")
+  private Long id = null;
 
-  @SerializedName("ok")
-  private Boolean ok = null;
+  @SerializedName("name")
+  private String name = null;
 
-  public UserSearchList data(List<User> data) {
-    this.data = data;
-    return this;
-  }
+  @SerializedName("sha1")
+  private String sha1 = null;
 
-  public UserSearchList addDataItem(User dataItem) {
-    if (this.data == null) {
-      this.data = new ArrayList<User>();
-    }
-    this.data.add(dataItem);
+  public AccessToken id(Long id) {
+    this.id = id;
     return this;
   }
 
    /**
-   * Get data
-   * @return data
+   * Get id
+   * @return id
   **/
   @ApiModelProperty(value = "")
-  public List<User> getData() {
-    return data;
+  public Long getId() {
+    return id;
   }
 
-  public void setData(List<User> data) {
-    this.data = data;
+  public void setId(Long id) {
+    this.id = id;
   }
 
-  public UserSearchList ok(Boolean ok) {
-    this.ok = ok;
+  public AccessToken name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get ok
-   * @return ok
+   * Get name
+   * @return name
   **/
   @ApiModelProperty(value = "")
-  public Boolean isOk() {
-    return ok;
+  public String getName() {
+    return name;
   }
 
-  public void setOk(Boolean ok) {
-    this.ok = ok;
+  public void setName(String name) {
+    this.name = name;
+  }
+
+  public AccessToken sha1(String sha1) {
+    this.sha1 = sha1;
+    return this;
+  }
+
+   /**
+   * Get sha1
+   * @return sha1
+  **/
+  @ApiModelProperty(value = "")
+  public String getSha1() {
+    return sha1;
+  }
+
+  public void setSha1(String sha1) {
+    this.sha1 = sha1;
   }
 
 
@@ -91,24 +101,26 @@ public class UserSearchList {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    UserSearchList userSearchList = (UserSearchList) o;
-    return Objects.equals(this.data, userSearchList.data) &&
-        Objects.equals(this.ok, userSearchList.ok);
+    AccessToken accessToken = (AccessToken) o;
+    return Objects.equals(this.id, accessToken.id) &&
+        Objects.equals(this.name, accessToken.name) &&
+        Objects.equals(this.sha1, accessToken.sha1);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(data, ok);
+    return Objects.hash(id, name, sha1);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class UserSearchList {\n");
+    sb.append("class AccessToken {\n");
     
-    sb.append("    data: ").append(toIndentedString(data)).append("\n");
-    sb.append("    ok: ").append(toIndentedString(ok)).append("\n");
+    sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    sha1: ").append(toIndentedString(sha1)).append("\n");
     sb.append("}");
     return sb.toString();
   }

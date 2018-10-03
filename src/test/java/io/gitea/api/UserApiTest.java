@@ -14,6 +14,8 @@
 package io.gitea.api;
 
 import io.gitea.ApiException;
+import io.gitea.model.AccessToken;
+import io.gitea.model.AccessTokenName;
 import io.gitea.model.CreateEmailOption;
 import io.gitea.model.CreateGPGKeyOption;
 import io.gitea.model.CreateKeyOption;
@@ -103,7 +105,8 @@ public class UserApiTest {
     @Test
     public void userCreateTokenTest() throws ApiException {
         String username = null;
-        api.userCreateToken(username);
+        AccessTokenName accessTokenName = null;
+        AccessToken response = api.userCreateToken(username, accessTokenName);
 
         // TODO: test validations
     }
@@ -498,7 +501,7 @@ public class UserApiTest {
     @Test
     public void userGetTokensTest() throws ApiException {
         String username = null;
-        api.userGetTokens(username);
+        List<AccessToken> response = api.userGetTokens(username);
 
         // TODO: test validations
     }

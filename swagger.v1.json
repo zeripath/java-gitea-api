@@ -5484,6 +5484,21 @@
             "name": "username",
             "in": "path",
             "required": true
+          },
+          {
+            "name": "accessTokenName",
+            "in": "body",
+            "schema": {
+              "type": "object",
+              "required": [
+                "name"
+              ],
+              "properties": {
+                "name": {
+                  "type": "string"
+                }
+              }
+            }
           }
         ],
         "responses": {
@@ -5545,6 +5560,22 @@
     }
   },
   "definitions": {
+    "AccessToken": {
+      "description": "AccessToken represents a API access token.",
+      "type": "object",
+      "properties": {
+        "id": {
+          "type": "integer",
+          "format": "int64"
+        },
+        "name": {
+          "type": "string"
+        },
+        "sha1": {
+          "type": "string"
+        }
+      }
+    },
     "AddCollaboratorOption": {
       "description": "AddCollaboratorOption options when adding a user as a collaborator of a repository",
       "type": "object",
@@ -7614,22 +7645,19 @@
   },
   "responses": {
     "AccessToken": {
-      "description": "AccessToken represents a API access token.",
-      "headers": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        },
-        "sha1": {
-          "type": "string"
-        }
+      "description": "AccessToken",
+      "schema": {
+        "$ref": "#/definitions/AccessToken"
       }
     },
     "AccessTokenList": {
-      "description": "AccessTokenList represents a list of API access token."
+      "description": "AccessTokenList represents a list of API access token.",
+      "schema": {
+        "type": "array",
+        "items": {
+          "$ref": "#/definitions/AccessToken"
+        }
+      }
     },
     "Attachment": {
       "description": "Attachment",
