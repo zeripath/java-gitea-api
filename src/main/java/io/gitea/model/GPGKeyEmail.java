@@ -27,7 +27,7 @@ import java.io.IOException;
  * GPGKeyEmail an email attached to a GPGKey
  */
 @ApiModel(description = "GPGKeyEmail an email attached to a GPGKey")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-03T21:33:54.578+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
 public class GPGKeyEmail {
   @SerializedName("email")
   private String email = null;

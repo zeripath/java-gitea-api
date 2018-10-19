@@ -29,7 +29,7 @@ import java.util.List;
  * IssueLabelsOption a collection of labels
  */
 @ApiModel(description = "IssueLabelsOption a collection of labels")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-03T21:33:54.578+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
 public class IssueLabelsOption {
   @SerializedName("labels")
   private List<Long> labels = null;

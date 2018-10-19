@@ -3385,7 +3385,7 @@ public class RepositoryApi {
     }
 
     /**
-     * List a repository&#39;s branches
+     * Retrieve a specific branch from a repository
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -3399,7 +3399,7 @@ public class RepositoryApi {
     }
 
     /**
-     * List a repository&#39;s branches
+     * Retrieve a specific branch from a repository
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -3414,7 +3414,7 @@ public class RepositoryApi {
     }
 
     /**
-     * List a repository&#39;s branches (asynchronously)
+     * Retrieve a specific branch from a repository (asynchronously)
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)

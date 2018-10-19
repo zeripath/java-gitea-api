@@ -646,12 +646,10 @@
         ],
         "responses": {
           "204": {
-            "description": "user is a member",
-            "$ref": "#/responses/empty"
+            "description": "user is a member"
           },
           "404": {
-            "description": "user is not a member",
-            "$ref": "#/responses/empty"
+            "description": "user is not a member"
           }
         }
       },
@@ -682,8 +680,7 @@
         ],
         "responses": {
           "204": {
-            "description": "member removed",
-            "$ref": "#/responses/empty"
+            "description": "member removed"
           }
         }
       }
@@ -739,12 +736,10 @@
         ],
         "responses": {
           "204": {
-            "description": "user is a public member",
-            "$ref": "#/responses/empty"
+            "description": "user is a public member"
           },
           "404": {
-            "description": "user is not a public member",
-            "$ref": "#/responses/empty"
+            "description": "user is not a public member"
           }
         }
       },
@@ -775,8 +770,7 @@
         ],
         "responses": {
           "204": {
-            "description": "membership publicized",
-            "$ref": "#/responses/empty"
+            "description": "membership publicized"
           }
         }
       },
@@ -1145,7 +1139,7 @@
         "tags": [
           "repository"
         ],
-        "summary": "List a repository's branches",
+        "summary": "Retrieve a specific branch from a repository",
         "operationId": "repoGetBranch",
         "parameters": [
           {
@@ -2368,12 +2362,10 @@
             "$ref": "#/responses/IssueDeadline"
           },
           "403": {
-            "description": "Not repo writer",
-            "$ref": "#/responses/forbidden"
+            "description": "Not repo writer"
           },
           "404": {
-            "description": "Issue not found",
-            "$ref": "#/responses/empty"
+            "description": "Issue not found"
           }
         }
       }
@@ -3375,12 +3367,10 @@
         ],
         "responses": {
           "204": {
-            "description": "pull request has been merged",
-            "$ref": "#/responses/empty"
+            "description": "pull request has been merged"
           },
           "404": {
-            "description": "pull request has not been merged",
-            "$ref": "#/responses/empty"
+            "description": "pull request has not been merged"
           }
         }
       },
@@ -4282,8 +4272,7 @@
         ],
         "responses": {
           "204": {
-            "description": "team deleted",
-            "$ref": "#/responses/empty"
+            "description": "team deleted"
           }
         }
       },
@@ -5179,6 +5168,12 @@
             "type": "string",
             "description": "keyword",
             "name": "q",
+            "in": "query"
+          },
+          {
+            "type": "integer",
+            "description": "ID of the user to search for",
+            "name": "uid",
             "in": "query"
           },
           {
@@ -7645,7 +7640,7 @@
   },
   "responses": {
     "AccessToken": {
-      "description": "AccessToken",
+      "description": "AccessToken represents a API access token.",
       "schema": {
         "$ref": "#/definitions/AccessToken"
       }

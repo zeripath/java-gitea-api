@@ -3042,7 +3042,7 @@ Name | Type | Description  | Notes
 
 <a name="userSearch"></a>
 # **userSearch**
-> UserSearchList userSearch(q, limit)
+> UserSearchList userSearch(q, uid, limit)
 
 Search for users
 
@@ -3094,9 +3094,10 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String q = "q_example"; // String | keyword
+Integer uid = 56; // Integer | ID of the user to search for
 Integer limit = 56; // Integer | maximum number of users to return
 try {
-    UserSearchList result = apiInstance.userSearch(q, limit);
+    UserSearchList result = apiInstance.userSearch(q, uid, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userSearch");
@@ -3109,6 +3110,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **String**| keyword | [optional]
+ **uid** | **Integer**| ID of the user to search for | [optional]
  **limit** | **Integer**| maximum number of users to return | [optional]
 
 ### Return type

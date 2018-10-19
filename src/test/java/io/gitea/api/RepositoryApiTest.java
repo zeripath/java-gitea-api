@@ -476,7 +476,7 @@ public class RepositoryApiTest {
     }
     
     /**
-     * List a repository&#39;s branches
+     * Retrieve a specific branch from a repository
      *
      * 
      *

@@ -644,8 +644,9 @@ public class UserApiTest {
     @Test
     public void userSearchTest() throws ApiException {
         String q = null;
+        Integer uid = null;
         Integer limit = null;
-        UserSearchList response = api.userSearch(q, limit);
+        UserSearchList response = api.userSearch(q, uid, limit);
 
         // TODO: test validations
     }

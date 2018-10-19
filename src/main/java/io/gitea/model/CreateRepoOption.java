@@ -27,7 +27,7 @@ import java.io.IOException;
  * CreateRepoOption options when creating repository
  */
 @ApiModel(description = "CreateRepoOption options when creating repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-03T21:33:54.578+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
 public class CreateRepoOption {
   @SerializedName("auto_init")
   private Boolean autoInit = null;
