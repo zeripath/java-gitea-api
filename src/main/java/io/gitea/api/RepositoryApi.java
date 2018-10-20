@@ -1307,7 +1307,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoCreateReleaseAttachmentCall(String owner, String repo, Integer id, File attachment, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoCreateReleaseAttachmentCall(String owner, String repo, Long id, File attachment, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1356,7 +1356,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoCreateReleaseAttachmentValidateBeforeCall(String owner, String repo, Integer id, File attachment, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoCreateReleaseAttachmentValidateBeforeCall(String owner, String repo, Long id, File attachment, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -1395,7 +1395,7 @@ public class RepositoryApi {
      * @return Attachment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Attachment repoCreateReleaseAttachment(String owner, String repo, Integer id, File attachment, String name) throws ApiException {
+    public Attachment repoCreateReleaseAttachment(String owner, String repo, Long id, File attachment, String name) throws ApiException {
         ApiResponse<Attachment> resp = repoCreateReleaseAttachmentWithHttpInfo(owner, repo, id, attachment, name);
         return resp.getData();
     }
@@ -1411,7 +1411,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Attachment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Attachment> repoCreateReleaseAttachmentWithHttpInfo(String owner, String repo, Integer id, File attachment, String name) throws ApiException {
+    public ApiResponse<Attachment> repoCreateReleaseAttachmentWithHttpInfo(String owner, String repo, Long id, File attachment, String name) throws ApiException {
         com.squareup.okhttp.Call call = repoCreateReleaseAttachmentValidateBeforeCall(owner, repo, id, attachment, name, null, null);
         Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1429,7 +1429,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoCreateReleaseAttachmentAsync(String owner, String repo, Integer id, File attachment, String name, final ApiCallback<Attachment> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoCreateReleaseAttachmentAsync(String owner, String repo, Long id, File attachment, String name, final ApiCallback<Attachment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1880,7 +1880,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteHookCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteHookCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1925,7 +1925,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoDeleteHookValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoDeleteHookValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -1956,7 +1956,7 @@ public class RepositoryApi {
      * @param id id of the hook to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoDeleteHook(String owner, String repo, Integer id) throws ApiException {
+    public void repoDeleteHook(String owner, String repo, Long id) throws ApiException {
         repoDeleteHookWithHttpInfo(owner, repo, id);
     }
 
@@ -1969,7 +1969,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoDeleteHookWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<Void> repoDeleteHookWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoDeleteHookValidateBeforeCall(owner, repo, id, null, null);
         return apiClient.execute(call);
     }
@@ -1984,7 +1984,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteHookAsync(String owner, String repo, Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteHookAsync(String owner, String repo, Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2019,7 +2019,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteKeyCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteKeyCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2064,7 +2064,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoDeleteKeyValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoDeleteKeyValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2095,7 +2095,7 @@ public class RepositoryApi {
      * @param id id of the key to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoDeleteKey(String owner, String repo, Integer id) throws ApiException {
+    public void repoDeleteKey(String owner, String repo, Long id) throws ApiException {
         repoDeleteKeyWithHttpInfo(owner, repo, id);
     }
 
@@ -2108,7 +2108,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoDeleteKeyWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<Void> repoDeleteKeyWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoDeleteKeyValidateBeforeCall(owner, repo, id, null, null);
         return apiClient.execute(call);
     }
@@ -2123,7 +2123,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteKeyAsync(String owner, String repo, Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteKeyAsync(String owner, String repo, Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2158,7 +2158,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteReleaseCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteReleaseCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2203,7 +2203,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoDeleteReleaseValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoDeleteReleaseValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2234,7 +2234,7 @@ public class RepositoryApi {
      * @param id id of the release to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoDeleteRelease(String owner, String repo, Integer id) throws ApiException {
+    public void repoDeleteRelease(String owner, String repo, Long id) throws ApiException {
         repoDeleteReleaseWithHttpInfo(owner, repo, id);
     }
 
@@ -2247,7 +2247,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoDeleteReleaseWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<Void> repoDeleteReleaseWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoDeleteReleaseValidateBeforeCall(owner, repo, id, null, null);
         return apiClient.execute(call);
     }
@@ -2262,7 +2262,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteReleaseAsync(String owner, String repo, Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteReleaseAsync(String owner, String repo, Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2298,7 +2298,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteReleaseAttachmentCall(String owner, String repo, Integer id, Integer attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteReleaseAttachmentCall(String owner, String repo, Long id, Long attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2344,7 +2344,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoDeleteReleaseAttachmentValidateBeforeCall(String owner, String repo, Integer id, Integer attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoDeleteReleaseAttachmentValidateBeforeCall(String owner, String repo, Long id, Long attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2381,7 +2381,7 @@ public class RepositoryApi {
      * @param attachmentId id of the attachment to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoDeleteReleaseAttachment(String owner, String repo, Integer id, Integer attachmentId) throws ApiException {
+    public void repoDeleteReleaseAttachment(String owner, String repo, Long id, Long attachmentId) throws ApiException {
         repoDeleteReleaseAttachmentWithHttpInfo(owner, repo, id, attachmentId);
     }
 
@@ -2395,7 +2395,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoDeleteReleaseAttachmentWithHttpInfo(String owner, String repo, Integer id, Integer attachmentId) throws ApiException {
+    public ApiResponse<Void> repoDeleteReleaseAttachmentWithHttpInfo(String owner, String repo, Long id, Long attachmentId) throws ApiException {
         com.squareup.okhttp.Call call = repoDeleteReleaseAttachmentValidateBeforeCall(owner, repo, id, attachmentId, null, null);
         return apiClient.execute(call);
     }
@@ -2411,7 +2411,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoDeleteReleaseAttachmentAsync(String owner, String repo, Integer id, Integer attachmentId, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoDeleteReleaseAttachmentAsync(String owner, String repo, Long id, Long attachmentId, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2447,7 +2447,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoEditHookCall(String owner, String repo, Integer id, EditHookOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoEditHookCall(String owner, String repo, Long id, EditHookOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2492,7 +2492,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoEditHookValidateBeforeCall(String owner, String repo, Integer id, EditHookOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoEditHookValidateBeforeCall(String owner, String repo, Long id, EditHookOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2525,7 +2525,7 @@ public class RepositoryApi {
      * @return List&lt;Branch&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Branch> repoEditHook(String owner, String repo, Integer id, EditHookOption body) throws ApiException {
+    public List<Branch> repoEditHook(String owner, String repo, Long id, EditHookOption body) throws ApiException {
         ApiResponse<List<Branch>> resp = repoEditHookWithHttpInfo(owner, repo, id, body);
         return resp.getData();
     }
@@ -2540,7 +2540,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;List&lt;Branch&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Branch>> repoEditHookWithHttpInfo(String owner, String repo, Integer id, EditHookOption body) throws ApiException {
+    public ApiResponse<List<Branch>> repoEditHookWithHttpInfo(String owner, String repo, Long id, EditHookOption body) throws ApiException {
         com.squareup.okhttp.Call call = repoEditHookValidateBeforeCall(owner, repo, id, body, null, null);
         Type localVarReturnType = new TypeToken<List<Branch>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -2557,7 +2557,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoEditHookAsync(String owner, String repo, Integer id, EditHookOption body, final ApiCallback<List<Branch>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoEditHookAsync(String owner, String repo, Long id, EditHookOption body, final ApiCallback<List<Branch>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2594,7 +2594,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoEditPullRequestCall(String owner, String repo, Integer index, EditPullRequestOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoEditPullRequestCall(String owner, String repo, Long index, EditPullRequestOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2639,7 +2639,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoEditPullRequestValidateBeforeCall(String owner, String repo, Integer index, EditPullRequestOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoEditPullRequestValidateBeforeCall(String owner, String repo, Long index, EditPullRequestOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2672,7 +2672,7 @@ public class RepositoryApi {
      * @return PullRequest
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public PullRequest repoEditPullRequest(String owner, String repo, Integer index, EditPullRequestOption body) throws ApiException {
+    public PullRequest repoEditPullRequest(String owner, String repo, Long index, EditPullRequestOption body) throws ApiException {
         ApiResponse<PullRequest> resp = repoEditPullRequestWithHttpInfo(owner, repo, index, body);
         return resp.getData();
     }
@@ -2687,7 +2687,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;PullRequest&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PullRequest> repoEditPullRequestWithHttpInfo(String owner, String repo, Integer index, EditPullRequestOption body) throws ApiException {
+    public ApiResponse<PullRequest> repoEditPullRequestWithHttpInfo(String owner, String repo, Long index, EditPullRequestOption body) throws ApiException {
         com.squareup.okhttp.Call call = repoEditPullRequestValidateBeforeCall(owner, repo, index, body, null, null);
         Type localVarReturnType = new TypeToken<PullRequest>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -2704,7 +2704,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoEditPullRequestAsync(String owner, String repo, Integer index, EditPullRequestOption body, final ApiCallback<PullRequest> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoEditPullRequestAsync(String owner, String repo, Long index, EditPullRequestOption body, final ApiCallback<PullRequest> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2741,7 +2741,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoEditReleaseCall(String owner, String repo, Integer id, EditReleaseOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoEditReleaseCall(String owner, String repo, Long id, EditReleaseOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2786,7 +2786,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoEditReleaseValidateBeforeCall(String owner, String repo, Integer id, EditReleaseOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoEditReleaseValidateBeforeCall(String owner, String repo, Long id, EditReleaseOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2819,7 +2819,7 @@ public class RepositoryApi {
      * @return Release
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Release repoEditRelease(String owner, String repo, Integer id, EditReleaseOption body) throws ApiException {
+    public Release repoEditRelease(String owner, String repo, Long id, EditReleaseOption body) throws ApiException {
         ApiResponse<Release> resp = repoEditReleaseWithHttpInfo(owner, repo, id, body);
         return resp.getData();
     }
@@ -2834,7 +2834,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Release&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Release> repoEditReleaseWithHttpInfo(String owner, String repo, Integer id, EditReleaseOption body) throws ApiException {
+    public ApiResponse<Release> repoEditReleaseWithHttpInfo(String owner, String repo, Long id, EditReleaseOption body) throws ApiException {
         com.squareup.okhttp.Call call = repoEditReleaseValidateBeforeCall(owner, repo, id, body, null, null);
         Type localVarReturnType = new TypeToken<Release>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -2851,7 +2851,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoEditReleaseAsync(String owner, String repo, Integer id, EditReleaseOption body, final ApiCallback<Release> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoEditReleaseAsync(String owner, String repo, Long id, EditReleaseOption body, final ApiCallback<Release> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2889,7 +2889,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoEditReleaseAttachmentCall(String owner, String repo, Integer id, Integer attachmentId, EditAttachmentOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoEditReleaseAttachmentCall(String owner, String repo, Long id, Long attachmentId, EditAttachmentOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2935,7 +2935,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoEditReleaseAttachmentValidateBeforeCall(String owner, String repo, Integer id, Integer attachmentId, EditAttachmentOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoEditReleaseAttachmentValidateBeforeCall(String owner, String repo, Long id, Long attachmentId, EditAttachmentOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2974,7 +2974,7 @@ public class RepositoryApi {
      * @return Attachment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Attachment repoEditReleaseAttachment(String owner, String repo, Integer id, Integer attachmentId, EditAttachmentOptions body) throws ApiException {
+    public Attachment repoEditReleaseAttachment(String owner, String repo, Long id, Long attachmentId, EditAttachmentOptions body) throws ApiException {
         ApiResponse<Attachment> resp = repoEditReleaseAttachmentWithHttpInfo(owner, repo, id, attachmentId, body);
         return resp.getData();
     }
@@ -2990,7 +2990,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Attachment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Attachment> repoEditReleaseAttachmentWithHttpInfo(String owner, String repo, Integer id, Integer attachmentId, EditAttachmentOptions body) throws ApiException {
+    public ApiResponse<Attachment> repoEditReleaseAttachmentWithHttpInfo(String owner, String repo, Long id, Long attachmentId, EditAttachmentOptions body) throws ApiException {
         com.squareup.okhttp.Call call = repoEditReleaseAttachmentValidateBeforeCall(owner, repo, id, attachmentId, body, null, null);
         Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -3008,7 +3008,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoEditReleaseAttachmentAsync(String owner, String repo, Integer id, Integer attachmentId, EditAttachmentOptions body, final ApiCallback<Attachment> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoEditReleaseAttachmentAsync(String owner, String repo, Long id, Long attachmentId, EditAttachmentOptions body, final ApiCallback<Attachment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3457,7 +3457,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetByIDCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetByIDCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3500,7 +3500,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetByIDValidateBeforeCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetByIDValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -3520,7 +3520,7 @@ public class RepositoryApi {
      * @return Repository
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Repository repoGetByID(Integer id) throws ApiException {
+    public Repository repoGetByID(Long id) throws ApiException {
         ApiResponse<Repository> resp = repoGetByIDWithHttpInfo(id);
         return resp.getData();
     }
@@ -3532,7 +3532,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Repository&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Repository> repoGetByIDWithHttpInfo(Integer id) throws ApiException {
+    public ApiResponse<Repository> repoGetByIDWithHttpInfo(Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoGetByIDValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<Repository>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -3546,7 +3546,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetByIDAsync(Integer id, final ApiCallback<Repository> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetByIDAsync(Long id, final ApiCallback<Repository> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3864,7 +3864,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetHookCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetHookCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3909,7 +3909,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetHookValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetHookValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -3941,7 +3941,7 @@ public class RepositoryApi {
      * @return List&lt;Branch&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Branch> repoGetHook(String owner, String repo, Integer id) throws ApiException {
+    public List<Branch> repoGetHook(String owner, String repo, Long id) throws ApiException {
         ApiResponse<List<Branch>> resp = repoGetHookWithHttpInfo(owner, repo, id);
         return resp.getData();
     }
@@ -3955,7 +3955,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;List&lt;Branch&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Branch>> repoGetHookWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<List<Branch>> repoGetHookWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoGetHookValidateBeforeCall(owner, repo, id, null, null);
         Type localVarReturnType = new TypeToken<List<Branch>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -3971,7 +3971,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetHookAsync(String owner, String repo, Integer id, final ApiCallback<List<Branch>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetHookAsync(String owner, String repo, Long id, final ApiCallback<List<Branch>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4007,7 +4007,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetKeyCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetKeyCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4052,7 +4052,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetKeyValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetKeyValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -4084,7 +4084,7 @@ public class RepositoryApi {
      * @return DeployKey
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public DeployKey repoGetKey(String owner, String repo, Integer id) throws ApiException {
+    public DeployKey repoGetKey(String owner, String repo, Long id) throws ApiException {
         ApiResponse<DeployKey> resp = repoGetKeyWithHttpInfo(owner, repo, id);
         return resp.getData();
     }
@@ -4098,7 +4098,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;DeployKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<DeployKey> repoGetKeyWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<DeployKey> repoGetKeyWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoGetKeyValidateBeforeCall(owner, repo, id, null, null);
         Type localVarReturnType = new TypeToken<DeployKey>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -4114,7 +4114,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetKeyAsync(String owner, String repo, Integer id, final ApiCallback<DeployKey> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetKeyAsync(String owner, String repo, Long id, final ApiCallback<DeployKey> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4150,7 +4150,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetPullRequestCall(String owner, String repo, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetPullRequestCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4195,7 +4195,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetPullRequestValidateBeforeCall(String owner, String repo, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetPullRequestValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -4227,7 +4227,7 @@ public class RepositoryApi {
      * @return PullRequest
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public PullRequest repoGetPullRequest(String owner, String repo, Integer index) throws ApiException {
+    public PullRequest repoGetPullRequest(String owner, String repo, Long index) throws ApiException {
         ApiResponse<PullRequest> resp = repoGetPullRequestWithHttpInfo(owner, repo, index);
         return resp.getData();
     }
@@ -4241,7 +4241,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;PullRequest&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PullRequest> repoGetPullRequestWithHttpInfo(String owner, String repo, Integer index) throws ApiException {
+    public ApiResponse<PullRequest> repoGetPullRequestWithHttpInfo(String owner, String repo, Long index) throws ApiException {
         com.squareup.okhttp.Call call = repoGetPullRequestValidateBeforeCall(owner, repo, index, null, null);
         Type localVarReturnType = new TypeToken<PullRequest>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -4257,7 +4257,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetPullRequestAsync(String owner, String repo, Integer index, final ApiCallback<PullRequest> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetPullRequestAsync(String owner, String repo, Long index, final ApiCallback<PullRequest> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4432,7 +4432,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetReleaseCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetReleaseCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4477,7 +4477,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetReleaseValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetReleaseValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -4509,7 +4509,7 @@ public class RepositoryApi {
      * @return Release
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Release repoGetRelease(String owner, String repo, Integer id) throws ApiException {
+    public Release repoGetRelease(String owner, String repo, Long id) throws ApiException {
         ApiResponse<Release> resp = repoGetReleaseWithHttpInfo(owner, repo, id);
         return resp.getData();
     }
@@ -4523,7 +4523,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Release&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Release> repoGetReleaseWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<Release> repoGetReleaseWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoGetReleaseValidateBeforeCall(owner, repo, id, null, null);
         Type localVarReturnType = new TypeToken<Release>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -4539,7 +4539,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetReleaseAsync(String owner, String repo, Integer id, final ApiCallback<Release> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetReleaseAsync(String owner, String repo, Long id, final ApiCallback<Release> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4576,7 +4576,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetReleaseAttachmentCall(String owner, String repo, Integer id, Integer attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetReleaseAttachmentCall(String owner, String repo, Long id, Long attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4622,7 +4622,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetReleaseAttachmentValidateBeforeCall(String owner, String repo, Integer id, Integer attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetReleaseAttachmentValidateBeforeCall(String owner, String repo, Long id, Long attachmentId, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -4660,7 +4660,7 @@ public class RepositoryApi {
      * @return Attachment
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Attachment repoGetReleaseAttachment(String owner, String repo, Integer id, Integer attachmentId) throws ApiException {
+    public Attachment repoGetReleaseAttachment(String owner, String repo, Long id, Long attachmentId) throws ApiException {
         ApiResponse<Attachment> resp = repoGetReleaseAttachmentWithHttpInfo(owner, repo, id, attachmentId);
         return resp.getData();
     }
@@ -4675,7 +4675,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Attachment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Attachment> repoGetReleaseAttachmentWithHttpInfo(String owner, String repo, Integer id, Integer attachmentId) throws ApiException {
+    public ApiResponse<Attachment> repoGetReleaseAttachmentWithHttpInfo(String owner, String repo, Long id, Long attachmentId) throws ApiException {
         com.squareup.okhttp.Call call = repoGetReleaseAttachmentValidateBeforeCall(owner, repo, id, attachmentId, null, null);
         Type localVarReturnType = new TypeToken<Attachment>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -4692,7 +4692,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetReleaseAttachmentAsync(String owner, String repo, Integer id, Integer attachmentId, final ApiCallback<Attachment> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetReleaseAttachmentAsync(String owner, String repo, Long id, Long attachmentId, final ApiCallback<Attachment> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5254,12 +5254,17 @@ public class RepositoryApi {
      * Build call for repoListPullRequests
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page Page number (optional)
+     * @param state State of pull request: open or closed (optional) (optional)
+     * @param sort Type of sort (optional)
+     * @param milestone ID of the milestone (optional)
+     * @param labels Label IDs (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListPullRequestsCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListPullRequestsCall(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -5269,6 +5274,16 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (state != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
+        if (sort != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("sort", sort));
+        if (milestone != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("milestone", milestone));
+        if (labels != null)
+        localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "labels", labels));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -5303,7 +5318,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListPullRequestsValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListPullRequestsValidateBeforeCall(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -5316,7 +5331,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListPullRequestsCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListPullRequestsCall(owner, repo, page, state, sort, milestone, labels, progressListener, progressRequestListener);
         return call;
 
     }
@@ -5326,11 +5341,16 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page Page number (optional)
+     * @param state State of pull request: open or closed (optional) (optional)
+     * @param sort Type of sort (optional)
+     * @param milestone ID of the milestone (optional)
+     * @param labels Label IDs (optional)
      * @return List&lt;PullRequest&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<PullRequest> repoListPullRequests(String owner, String repo) throws ApiException {
-        ApiResponse<List<PullRequest>> resp = repoListPullRequestsWithHttpInfo(owner, repo);
+    public List<PullRequest> repoListPullRequests(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels) throws ApiException {
+        ApiResponse<List<PullRequest>> resp = repoListPullRequestsWithHttpInfo(owner, repo, page, state, sort, milestone, labels);
         return resp.getData();
     }
 
@@ -5339,11 +5359,16 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page Page number (optional)
+     * @param state State of pull request: open or closed (optional) (optional)
+     * @param sort Type of sort (optional)
+     * @param milestone ID of the milestone (optional)
+     * @param labels Label IDs (optional)
      * @return ApiResponse&lt;List&lt;PullRequest&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<PullRequest>> repoListPullRequestsWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<PullRequest>> repoListPullRequestsWithHttpInfo(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels) throws ApiException {
+        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, page, state, sort, milestone, labels, null, null);
         Type localVarReturnType = new TypeToken<List<PullRequest>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -5353,11 +5378,16 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page Page number (optional)
+     * @param state State of pull request: open or closed (optional) (optional)
+     * @param sort Type of sort (optional)
+     * @param milestone ID of the milestone (optional)
+     * @param labels Label IDs (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListPullRequestsAsync(String owner, String repo, final ApiCallback<List<PullRequest>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListPullRequestsAsync(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels, final ApiCallback<List<PullRequest>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5378,7 +5408,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, page, state, sort, milestone, labels, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<PullRequest>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -5393,7 +5423,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListReleaseAttachmentsCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListReleaseAttachmentsCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -5438,7 +5468,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListReleaseAttachmentsValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListReleaseAttachmentsValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -5470,7 +5500,7 @@ public class RepositoryApi {
      * @return List&lt;Attachment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Attachment> repoListReleaseAttachments(String owner, String repo, Integer id) throws ApiException {
+    public List<Attachment> repoListReleaseAttachments(String owner, String repo, Long id) throws ApiException {
         ApiResponse<List<Attachment>> resp = repoListReleaseAttachmentsWithHttpInfo(owner, repo, id);
         return resp.getData();
     }
@@ -5484,7 +5514,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;List&lt;Attachment&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Attachment>> repoListReleaseAttachmentsWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<List<Attachment>> repoListReleaseAttachmentsWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoListReleaseAttachmentsValidateBeforeCall(owner, repo, id, null, null);
         Type localVarReturnType = new TypeToken<List<Attachment>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -5500,7 +5530,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListReleaseAttachmentsAsync(String owner, String repo, Integer id, final ApiCallback<List<Attachment>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListReleaseAttachmentsAsync(String owner, String repo, Long id, final ApiCallback<List<Attachment>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -6078,7 +6108,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoMergePullRequestCall(String owner, String repo, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoMergePullRequestCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -6123,7 +6153,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoMergePullRequestValidateBeforeCall(String owner, String repo, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoMergePullRequestValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -6154,7 +6184,7 @@ public class RepositoryApi {
      * @param index index of the pull request to merge (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoMergePullRequest(String owner, String repo, Integer index) throws ApiException {
+    public void repoMergePullRequest(String owner, String repo, Long index) throws ApiException {
         repoMergePullRequestWithHttpInfo(owner, repo, index);
     }
 
@@ -6167,7 +6197,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoMergePullRequestWithHttpInfo(String owner, String repo, Integer index) throws ApiException {
+    public ApiResponse<Void> repoMergePullRequestWithHttpInfo(String owner, String repo, Long index) throws ApiException {
         com.squareup.okhttp.Call call = repoMergePullRequestValidateBeforeCall(owner, repo, index, null, null);
         return apiClient.execute(call);
     }
@@ -6182,7 +6212,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoMergePullRequestAsync(String owner, String repo, Integer index, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoMergePullRequestAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -6463,7 +6493,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoPullRequestIsMergedCall(String owner, String repo, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoPullRequestIsMergedCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -6508,7 +6538,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoPullRequestIsMergedValidateBeforeCall(String owner, String repo, Integer index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoPullRequestIsMergedValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -6539,7 +6569,7 @@ public class RepositoryApi {
      * @param index index of the pull request (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoPullRequestIsMerged(String owner, String repo, Integer index) throws ApiException {
+    public void repoPullRequestIsMerged(String owner, String repo, Long index) throws ApiException {
         repoPullRequestIsMergedWithHttpInfo(owner, repo, index);
     }
 
@@ -6552,7 +6582,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoPullRequestIsMergedWithHttpInfo(String owner, String repo, Integer index) throws ApiException {
+    public ApiResponse<Void> repoPullRequestIsMergedWithHttpInfo(String owner, String repo, Long index) throws ApiException {
         com.squareup.okhttp.Call call = repoPullRequestIsMergedValidateBeforeCall(owner, repo, index, null, null);
         return apiClient.execute(call);
     }
@@ -6567,7 +6597,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoPullRequestIsMergedAsync(String owner, String repo, Integer index, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoPullRequestIsMergedAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -6607,7 +6637,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoSearchCall(String q, Integer uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoSearchCall(String q, Long uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -6665,7 +6695,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoSearchValidateBeforeCall(String q, Integer uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoSearchValidateBeforeCall(String q, Long uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = repoSearchCall(q, uid, page, limit, mode, exclusive, sort, order, progressListener, progressRequestListener);
@@ -6687,7 +6717,7 @@ public class RepositoryApi {
      * @return SearchResults
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SearchResults repoSearch(String q, Integer uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order) throws ApiException {
+    public SearchResults repoSearch(String q, Long uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order) throws ApiException {
         ApiResponse<SearchResults> resp = repoSearchWithHttpInfo(q, uid, page, limit, mode, exclusive, sort, order);
         return resp.getData();
     }
@@ -6706,7 +6736,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;SearchResults&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SearchResults> repoSearchWithHttpInfo(String q, Integer uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order) throws ApiException {
+    public ApiResponse<SearchResults> repoSearchWithHttpInfo(String q, Long uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order) throws ApiException {
         com.squareup.okhttp.Call call = repoSearchValidateBeforeCall(q, uid, page, limit, mode, exclusive, sort, order, null, null);
         Type localVarReturnType = new TypeToken<SearchResults>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -6727,7 +6757,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoSearchAsync(String q, Integer uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ApiCallback<SearchResults> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoSearchAsync(String q, Long uid, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ApiCallback<SearchResults> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -6763,7 +6793,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoTestHookCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoTestHookCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -6808,7 +6838,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoTestHookValidateBeforeCall(String owner, String repo, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoTestHookValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -6839,7 +6869,7 @@ public class RepositoryApi {
      * @param id id of the hook to test (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void repoTestHook(String owner, String repo, Integer id) throws ApiException {
+    public void repoTestHook(String owner, String repo, Long id) throws ApiException {
         repoTestHookWithHttpInfo(owner, repo, id);
     }
 
@@ -6852,7 +6882,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> repoTestHookWithHttpInfo(String owner, String repo, Integer id) throws ApiException {
+    public ApiResponse<Void> repoTestHookWithHttpInfo(String owner, String repo, Long id) throws ApiException {
         com.squareup.okhttp.Call call = repoTestHookValidateBeforeCall(owner, repo, id, null, null);
         return apiClient.execute(call);
     }
@@ -6867,7 +6897,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoTestHookAsync(String owner, String repo, Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoTestHookAsync(String owner, String repo, Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

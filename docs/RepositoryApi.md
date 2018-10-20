@@ -883,7 +883,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release
+Long id = 789L; // Long | id of the release
 File attachment = new File("/path/to/file.txt"); // File | attachment to upload
 String name = "name_example"; // String | name of the attachment
 try {
@@ -901,7 +901,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release |
+ **id** | **Long**| id of the release |
  **attachment** | **File**| attachment to upload |
  **name** | **String**| name of the attachment | [optional]
 
@@ -1229,7 +1229,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the hook to delete
+Long id = 789L; // Long | id of the hook to delete
 try {
     apiInstance.repoDeleteHook(owner, repo, id);
 } catch (ApiException e) {
@@ -1244,7 +1244,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the hook to delete |
+ **id** | **Long**| id of the hook to delete |
 
 ### Return type
 
@@ -1314,7 +1314,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the key to delete
+Long id = 789L; // Long | id of the key to delete
 try {
     apiInstance.repoDeleteKey(owner, repo, id);
 } catch (ApiException e) {
@@ -1329,7 +1329,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the key to delete |
+ **id** | **Long**| id of the key to delete |
 
 ### Return type
 
@@ -1399,7 +1399,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release to delete
+Long id = 789L; // Long | id of the release to delete
 try {
     apiInstance.repoDeleteRelease(owner, repo, id);
 } catch (ApiException e) {
@@ -1414,7 +1414,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release to delete |
+ **id** | **Long**| id of the release to delete |
 
 ### Return type
 
@@ -1484,8 +1484,8 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release
-Integer attachmentId = 56; // Integer | id of the attachment to delete
+Long id = 789L; // Long | id of the release
+Long attachmentId = 789L; // Long | id of the attachment to delete
 try {
     apiInstance.repoDeleteReleaseAttachment(owner, repo, id, attachmentId);
 } catch (ApiException e) {
@@ -1500,8 +1500,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release |
- **attachmentId** | **Integer**| id of the attachment to delete |
+ **id** | **Long**| id of the release |
+ **attachmentId** | **Long**| id of the attachment to delete |
 
 ### Return type
 
@@ -1571,7 +1571,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | index of the hook
+Long id = 789L; // Long | index of the hook
 EditHookOption body = new EditHookOption(); // EditHookOption | 
 try {
     List<Branch> result = apiInstance.repoEditHook(owner, repo, id, body);
@@ -1588,7 +1588,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| index of the hook |
+ **id** | **Long**| index of the hook |
  **body** | [**EditHookOption**](EditHookOption.md)|  | [optional]
 
 ### Return type
@@ -1659,7 +1659,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the pull request to edit
+Long index = 789L; // Long | index of the pull request to edit
 EditPullRequestOption body = new EditPullRequestOption(); // EditPullRequestOption | 
 try {
     PullRequest result = apiInstance.repoEditPullRequest(owner, repo, index, body);
@@ -1676,7 +1676,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the pull request to edit |
+ **index** | **Long**| index of the pull request to edit |
  **body** | [**EditPullRequestOption**](EditPullRequestOption.md)|  | [optional]
 
 ### Return type
@@ -1747,7 +1747,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release to edit
+Long id = 789L; // Long | id of the release to edit
 EditReleaseOption body = new EditReleaseOption(); // EditReleaseOption | 
 try {
     Release result = apiInstance.repoEditRelease(owner, repo, id, body);
@@ -1764,7 +1764,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release to edit |
+ **id** | **Long**| id of the release to edit |
  **body** | [**EditReleaseOption**](EditReleaseOption.md)|  | [optional]
 
 ### Return type
@@ -1835,8 +1835,8 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release
-Integer attachmentId = 56; // Integer | id of the attachment to edit
+Long id = 789L; // Long | id of the release
+Long attachmentId = 789L; // Long | id of the attachment to edit
 EditAttachmentOptions body = new EditAttachmentOptions(); // EditAttachmentOptions | 
 try {
     Attachment result = apiInstance.repoEditReleaseAttachment(owner, repo, id, attachmentId, body);
@@ -1853,8 +1853,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release |
- **attachmentId** | **Integer**| id of the attachment to edit |
+ **id** | **Long**| id of the release |
+ **attachmentId** | **Long**| id of the attachment to edit |
  **body** | [**EditAttachmentOptions**](EditAttachmentOptions.md)|  | [optional]
 
 ### Return type
@@ -2178,7 +2178,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 RepositoryApi apiInstance = new RepositoryApi();
-Integer id = 56; // Integer | id of the repo to get
+Long id = 789L; // Long | id of the repo to get
 try {
     Repository result = apiInstance.repoGetByID(id);
     System.out.println(result);
@@ -2192,7 +2192,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the repo to get |
+ **id** | **Long**| id of the repo to get |
 
 ### Return type
 
@@ -2433,7 +2433,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the hook to get
+Long id = 789L; // Long | id of the hook to get
 try {
     List<Branch> result = apiInstance.repoGetHook(owner, repo, id);
     System.out.println(result);
@@ -2449,7 +2449,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the hook to get |
+ **id** | **Long**| id of the hook to get |
 
 ### Return type
 
@@ -2519,7 +2519,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the key to get
+Long id = 789L; // Long | id of the key to get
 try {
     DeployKey result = apiInstance.repoGetKey(owner, repo, id);
     System.out.println(result);
@@ -2535,7 +2535,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the key to get |
+ **id** | **Long**| id of the key to get |
 
 ### Return type
 
@@ -2605,7 +2605,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the pull request to get
+Long index = 789L; // Long | index of the pull request to get
 try {
     PullRequest result = apiInstance.repoGetPullRequest(owner, repo, index);
     System.out.println(result);
@@ -2621,7 +2621,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the pull request to get |
+ **index** | **Long**| index of the pull request to get |
 
 ### Return type
 
@@ -2776,7 +2776,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release to get
+Long id = 789L; // Long | id of the release to get
 try {
     Release result = apiInstance.repoGetRelease(owner, repo, id);
     System.out.println(result);
@@ -2792,7 +2792,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release to get |
+ **id** | **Long**| id of the release to get |
 
 ### Return type
 
@@ -2862,8 +2862,8 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release
-Integer attachmentId = 56; // Integer | id of the attachment to get
+Long id = 789L; // Long | id of the release
+Long attachmentId = 789L; // Long | id of the attachment to get
 try {
     Attachment result = apiInstance.repoGetReleaseAttachment(owner, repo, id, attachmentId);
     System.out.println(result);
@@ -2879,8 +2879,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release |
- **attachmentId** | **Integer**| id of the attachment to get |
+ **id** | **Long**| id of the release |
+ **attachmentId** | **Long**| id of the attachment to get |
 
 ### Return type
 
@@ -3233,7 +3233,7 @@ Name | Type | Description  | Notes
 
 <a name="repoListPullRequests"></a>
 # **repoListPullRequests**
-> List&lt;PullRequest&gt; repoListPullRequests(owner, repo)
+> List&lt;PullRequest&gt; repoListPullRequests(owner, repo, page, state, sort, milestone, labels)
 
 List a repo&#39;s pull requests
 
@@ -3286,8 +3286,13 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
+Integer page = 56; // Integer | Page number
+String state = "state_example"; // String | State of pull request: open or closed (optional)
+String sort = "sort_example"; // String | Type of sort
+Long milestone = 789L; // Long | ID of the milestone
+List<Long> labels = Arrays.asList(56L); // List<Long> | Label IDs
 try {
-    List<PullRequest> result = apiInstance.repoListPullRequests(owner, repo);
+    List<PullRequest> result = apiInstance.repoListPullRequests(owner, repo, page, state, sort, milestone, labels);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoListPullRequests");
@@ -3301,6 +3306,11 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
+ **page** | **Integer**| Page number | [optional]
+ **state** | **String**| State of pull request: open or closed (optional) | [optional] [enum: closed, open, all]
+ **sort** | **String**| Type of sort | [optional] [enum: oldest, recentupdate, leastupdate, mostcomment, leastcomment, priority]
+ **milestone** | **Long**| ID of the milestone | [optional]
+ **labels** | [**List&lt;Long&gt;**](Long.md)| Label IDs | [optional]
 
 ### Return type
 
@@ -3370,7 +3380,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the release
+Long id = 789L; // Long | id of the release
 try {
     List<Attachment> result = apiInstance.repoListReleaseAttachments(owner, repo, id);
     System.out.println(result);
@@ -3386,7 +3396,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the release |
+ **id** | **Long**| id of the release |
 
 ### Return type
 
@@ -3794,7 +3804,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the pull request to merge
+Long index = 789L; // Long | index of the pull request to merge
 try {
     apiInstance.repoMergePullRequest(owner, repo, index);
 } catch (ApiException e) {
@@ -3809,7 +3819,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the pull request to merge |
+ **index** | **Long**| index of the pull request to merge |
 
 ### Return type
 
@@ -4044,7 +4054,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the pull request
+Long index = 789L; // Long | index of the pull request
 try {
     apiInstance.repoPullRequestIsMerged(owner, repo, index);
 } catch (ApiException e) {
@@ -4059,7 +4069,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the pull request |
+ **index** | **Long**| index of the pull request |
 
 ### Return type
 
@@ -4128,7 +4138,7 @@ Token.setApiKey("YOUR API KEY");
 
 RepositoryApi apiInstance = new RepositoryApi();
 String q = "q_example"; // String | keyword
-Integer uid = 56; // Integer | search only for repos that the user with the given id owns or contributes to
+Long uid = 789L; // Long | search only for repos that the user with the given id owns or contributes to
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results, maximum page size is 50
 String mode = "mode_example"; // String | type of repository to search for. Supported values are \"fork\", \"source\", \"mirror\" and \"collaborative\"
@@ -4149,7 +4159,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **String**| keyword | [optional]
- **uid** | **Integer**| search only for repos that the user with the given id owns or contributes to | [optional]
+ **uid** | **Long**| search only for repos that the user with the given id owns or contributes to | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]
  **limit** | **Integer**| page size of results, maximum page size is 50 | [optional]
  **mode** | **String**| type of repository to search for. Supported values are \&quot;fork\&quot;, \&quot;source\&quot;, \&quot;mirror\&quot; and \&quot;collaborative\&quot; | [optional]
@@ -4225,7 +4235,7 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the hook to test
+Long id = 789L; // Long | id of the hook to test
 try {
     apiInstance.repoTestHook(owner, repo, id);
 } catch (ApiException e) {
@@ -4240,7 +4250,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the hook to test |
+ **id** | **Long**| id of the hook to test |
 
 ### Return type
 

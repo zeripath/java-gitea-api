@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="adminCreateOrg"></a>
 # **adminCreateOrg**
-> Organization adminCreateOrg(username)
+> Organization adminCreateOrg(username, organization)
 
 Create an organization
 
@@ -67,8 +67,9 @@ Token.setApiKey("YOUR API KEY");
 
 AdminApi apiInstance = new AdminApi();
 String username = "username_example"; // String | username of the user that will own the created organization
+CreateOrgOption organization = new CreateOrgOption(); // CreateOrgOption | 
 try {
-    Organization result = apiInstance.adminCreateOrg(username);
+    Organization result = apiInstance.adminCreateOrg(username, organization);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AdminApi#adminCreateOrg");
@@ -81,6 +82,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of the user that will own the created organization |
+ **organization** | [**CreateOrgOption**](CreateOrgOption.md)|  |
 
 ### Return type
 
@@ -97,7 +99,7 @@ Name | Type | Description  | Notes
 
 <a name="adminCreatePublicKey"></a>
 # **adminCreatePublicKey**
-> PublicKey adminCreatePublicKey(username)
+> PublicKey adminCreatePublicKey(username, key)
 
 Add a public key on behalf of a user
 
@@ -149,8 +151,9 @@ Token.setApiKey("YOUR API KEY");
 
 AdminApi apiInstance = new AdminApi();
 String username = "username_example"; // String | username of the user
+CreateKeyOption key = new CreateKeyOption(); // CreateKeyOption | 
 try {
-    PublicKey result = apiInstance.adminCreatePublicKey(username);
+    PublicKey result = apiInstance.adminCreatePublicKey(username, key);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AdminApi#adminCreatePublicKey");
@@ -163,6 +166,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of the user |
+ **key** | [**CreateKeyOption**](CreateKeyOption.md)|  | [optional]
 
 ### Return type
 
@@ -179,7 +183,7 @@ Name | Type | Description  | Notes
 
 <a name="adminCreateRepo"></a>
 # **adminCreateRepo**
-> Repository adminCreateRepo(username)
+> Repository adminCreateRepo(username, repository)
 
 Create a repository on behalf a user
 
@@ -231,8 +235,9 @@ Token.setApiKey("YOUR API KEY");
 
 AdminApi apiInstance = new AdminApi();
 String username = "username_example"; // String | username of the user. This user will own the created repository
+CreateRepoOption repository = new CreateRepoOption(); // CreateRepoOption | 
 try {
-    Repository result = apiInstance.adminCreateRepo(username);
+    Repository result = apiInstance.adminCreateRepo(username, repository);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling AdminApi#adminCreateRepo");
@@ -245,6 +250,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of the user. This user will own the created repository |
+ **repository** | [**CreateRepoOption**](CreateRepoOption.md)|  |
 
 ### Return type
 
@@ -476,7 +482,7 @@ Token.setApiKey("YOUR API KEY");
 
 AdminApi apiInstance = new AdminApi();
 String username = "username_example"; // String | username of user
-Integer id = 56; // Integer | id of the key to delete
+Long id = 789L; // Long | id of the key to delete
 try {
     apiInstance.adminDeleteUserPublicKey(username, id);
 } catch (ApiException e) {
@@ -490,7 +496,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
- **id** | **Integer**| id of the key to delete |
+ **id** | **Long**| id of the key to delete |
 
 ### Return type
 

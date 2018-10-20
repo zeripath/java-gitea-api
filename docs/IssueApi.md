@@ -90,7 +90,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
+Long index = 789L; // Long | index of the issue
 IssueLabelsOption body = new IssueLabelsOption(); // IssueLabelsOption | 
 try {
     List<Label> result = apiInstance.issueAddLabel(owner, repo, index, body);
@@ -107,7 +107,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
+ **index** | **Long**| index of the issue |
  **body** | [**IssueLabelsOption**](IssueLabelsOption.md)|  | [optional]
 
 ### Return type
@@ -178,7 +178,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | index of the issue to add tracked time to
+Long id = 789L; // Long | index of the issue to add tracked time to
 AddTimeOption body = new AddTimeOption(); // AddTimeOption | 
 try {
     TrackedTime result = apiInstance.issueAddTime(owner, repo, id, body);
@@ -195,7 +195,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| index of the issue to add tracked time to |
+ **id** | **Long**| index of the issue to add tracked time to |
  **body** | [**AddTimeOption**](AddTimeOption.md)|  | [optional]
 
 ### Return type
@@ -266,7 +266,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
+Long index = 789L; // Long | index of the issue
 try {
     apiInstance.issueClearLabels(owner, repo, index);
 } catch (ApiException e) {
@@ -281,7 +281,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
+ **index** | **Long**| index of the issue |
 
 ### Return type
 
@@ -351,7 +351,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
+Long index = 789L; // Long | index of the issue
 CreateIssueCommentOption body = new CreateIssueCommentOption(); // CreateIssueCommentOption | 
 try {
     Comment result = apiInstance.issueCreateComment(owner, repo, index, body);
@@ -368,7 +368,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
+ **index** | **Long**| index of the issue |
  **body** | [**CreateIssueCommentOption**](CreateIssueCommentOption.md)|  | [optional]
 
 ### Return type
@@ -697,7 +697,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of comment to delete
+Long id = 789L; // Long | id of comment to delete
 try {
     apiInstance.issueDeleteComment(owner, repo, id);
 } catch (ApiException e) {
@@ -712,7 +712,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of comment to delete |
+ **id** | **Long**| id of comment to delete |
 
 ### Return type
 
@@ -783,7 +783,7 @@ IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 Integer index = 56; // Integer | this parameter is ignored
-Integer id = 56; // Integer | id of comment to delete
+Long id = 789L; // Long | id of comment to delete
 try {
     apiInstance.issueDeleteCommentDeprecated(owner, repo, index, id);
 } catch (ApiException e) {
@@ -799,7 +799,7 @@ Name | Type | Description  | Notes
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
  **index** | **Integer**| this parameter is ignored |
- **id** | **Integer**| id of comment to delete |
+ **id** | **Long**| id of comment to delete |
 
 ### Return type
 
@@ -869,7 +869,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the label to delete
+Long id = 789L; // Long | id of the label to delete
 try {
     apiInstance.issueDeleteLabel(owner, repo, id);
 } catch (ApiException e) {
@@ -884,7 +884,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the label to delete |
+ **id** | **Long**| id of the label to delete |
 
 ### Return type
 
@@ -954,7 +954,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the milestone to delete
+Long id = 789L; // Long | id of the milestone to delete
 try {
     apiInstance.issueDeleteMilestone(owner, repo, id);
 } catch (ApiException e) {
@@ -969,7 +969,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the milestone to delete |
+ **id** | **Long**| id of the milestone to delete |
 
 ### Return type
 
@@ -1039,7 +1039,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the comment to edit
+Long id = 789L; // Long | id of the comment to edit
 EditIssueCommentOption body = new EditIssueCommentOption(); // EditIssueCommentOption | 
 try {
     Comment result = apiInstance.issueEditComment(owner, repo, id, body);
@@ -1056,7 +1056,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the comment to edit |
+ **id** | **Long**| id of the comment to edit |
  **body** | [**EditIssueCommentOption**](EditIssueCommentOption.md)|  | [optional]
 
 ### Return type
@@ -1128,7 +1128,7 @@ IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 Integer index = 56; // Integer | this parameter is ignored
-Integer id = 56; // Integer | id of the comment to edit
+Long id = 789L; // Long | id of the comment to edit
 EditIssueCommentOption body = new EditIssueCommentOption(); // EditIssueCommentOption | 
 try {
     Comment result = apiInstance.issueEditCommentDeprecated(owner, repo, index, id, body);
@@ -1146,7 +1146,7 @@ Name | Type | Description  | Notes
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
  **index** | **Integer**| this parameter is ignored |
- **id** | **Integer**| id of the comment to edit |
+ **id** | **Long**| id of the comment to edit |
  **body** | [**EditIssueCommentOption**](EditIssueCommentOption.md)|  | [optional]
 
 ### Return type
@@ -1217,7 +1217,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue to edit
+Long index = 789L; // Long | index of the issue to edit
 EditIssueOption body = new EditIssueOption(); // EditIssueOption | 
 try {
     Issue result = apiInstance.issueEditIssue(owner, repo, index, body);
@@ -1234,7 +1234,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue to edit |
+ **index** | **Long**| index of the issue to edit |
  **body** | [**EditIssueOption**](EditIssueOption.md)|  | [optional]
 
 ### Return type
@@ -1305,7 +1305,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue to create or update a deadline on
+Long index = 789L; // Long | index of the issue to create or update a deadline on
 EditDeadlineOption body = new EditDeadlineOption(); // EditDeadlineOption | 
 try {
     IssueDeadline result = apiInstance.issueEditIssueDeadline(owner, repo, index, body);
@@ -1322,7 +1322,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue to create or update a deadline on |
+ **index** | **Long**| index of the issue to create or update a deadline on |
  **body** | [**EditDeadlineOption**](EditDeadlineOption.md)|  | [optional]
 
 ### Return type
@@ -1393,7 +1393,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the label to edit
+Long id = 789L; // Long | id of the label to edit
 EditLabelOption body = new EditLabelOption(); // EditLabelOption | 
 try {
     Label result = apiInstance.issueEditLabel(owner, repo, id, body);
@@ -1410,7 +1410,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the label to edit |
+ **id** | **Long**| id of the label to edit |
  **body** | [**EditLabelOption**](EditLabelOption.md)|  | [optional]
 
 ### Return type
@@ -1481,7 +1481,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the milestone
+Long id = 789L; // Long | id of the milestone
 EditMilestoneOption body = new EditMilestoneOption(); // EditMilestoneOption | 
 try {
     Milestone result = apiInstance.issueEditMilestone(owner, repo, id, body);
@@ -1498,7 +1498,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the milestone |
+ **id** | **Long**| id of the milestone |
  **body** | [**EditMilestoneOption**](EditMilestoneOption.md)|  | [optional]
 
 ### Return type
@@ -1569,7 +1569,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
+Long index = 789L; // Long | index of the issue
 String since = "since_example"; // String | if provided, only comments updated since the specified time are returned.
 try {
     List<Comment> result = apiInstance.issueGetComments(owner, repo, index, since);
@@ -1586,7 +1586,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
+ **index** | **Long**| index of the issue |
  **since** | **String**| if provided, only comments updated since the specified time are returned. | [optional]
 
 ### Return type
@@ -1657,7 +1657,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue to get
+Long index = 789L; // Long | index of the issue to get
 try {
     Issue result = apiInstance.issueGetIssue(owner, repo, index);
     System.out.println(result);
@@ -1673,7 +1673,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue to get |
+ **index** | **Long**| index of the issue to get |
 
 ### Return type
 
@@ -1743,7 +1743,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the label to get
+Long id = 789L; // Long | id of the label to get
 try {
     Label result = apiInstance.issueGetLabel(owner, repo, id);
     System.out.println(result);
@@ -1759,7 +1759,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the label to get |
+ **id** | **Long**| id of the label to get |
 
 ### Return type
 
@@ -1829,7 +1829,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
+Long index = 789L; // Long | index of the issue
 try {
     List<Label> result = apiInstance.issueGetLabels(owner, repo, index);
     System.out.println(result);
@@ -1845,7 +1845,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
+ **index** | **Long**| index of the issue |
 
 ### Return type
 
@@ -1915,7 +1915,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | id of the milestone
+Long id = 789L; // Long | id of the milestone
 try {
     Milestone result = apiInstance.issueGetMilestone(owner, repo, id);
     System.out.println(result);
@@ -1931,7 +1931,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| id of the milestone |
+ **id** | **Long**| id of the milestone |
 
 ### Return type
 
@@ -2345,8 +2345,8 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
-Integer id = 56; // Integer | id of the label to remove
+Long index = 789L; // Long | index of the issue
+Long id = 789L; // Long | id of the label to remove
 try {
     apiInstance.issueRemoveLabel(owner, repo, index, id);
 } catch (ApiException e) {
@@ -2361,8 +2361,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
- **id** | **Integer**| id of the label to remove |
+ **index** | **Long**| index of the issue |
+ **id** | **Long**| id of the label to remove |
 
 ### Return type
 
@@ -2432,7 +2432,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer index = 56; // Integer | index of the issue
+Long index = 789L; // Long | index of the issue
 IssueLabelsOption body = new IssueLabelsOption(); // IssueLabelsOption | 
 try {
     List<Label> result = apiInstance.issueReplaceLabels(owner, repo, index, body);
@@ -2449,7 +2449,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **index** | **Integer**| index of the issue |
+ **index** | **Long**| index of the issue |
  **body** | [**IssueLabelsOption**](IssueLabelsOption.md)|  | [optional]
 
 ### Return type
@@ -2520,7 +2520,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-Integer id = 56; // Integer | index of the issue
+Long id = 789L; // Long | index of the issue
 try {
     List<TrackedTime> result = apiInstance.issueTrackedTimes(owner, repo, id);
     System.out.println(result);
@@ -2536,7 +2536,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **id** | **Integer**| index of the issue |
+ **id** | **Long**| index of the issue |
 
 ### Return type
 

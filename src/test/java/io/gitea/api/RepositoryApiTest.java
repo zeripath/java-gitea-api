@@ -228,7 +228,7 @@ public class RepositoryApiTest {
     public void repoCreateReleaseAttachmentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         File attachment = null;
         String name = null;
         Attachment response = api.repoCreateReleaseAttachment(owner, repo, id, attachment, name);
@@ -302,7 +302,7 @@ public class RepositoryApiTest {
     public void repoDeleteHookTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.repoDeleteHook(owner, repo, id);
 
         // TODO: test validations
@@ -320,7 +320,7 @@ public class RepositoryApiTest {
     public void repoDeleteKeyTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.repoDeleteKey(owner, repo, id);
 
         // TODO: test validations
@@ -338,7 +338,7 @@ public class RepositoryApiTest {
     public void repoDeleteReleaseTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.repoDeleteRelease(owner, repo, id);
 
         // TODO: test validations
@@ -356,8 +356,8 @@ public class RepositoryApiTest {
     public void repoDeleteReleaseAttachmentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
-        Integer attachmentId = null;
+        Long id = null;
+        Long attachmentId = null;
         api.repoDeleteReleaseAttachment(owner, repo, id, attachmentId);
 
         // TODO: test validations
@@ -375,7 +375,7 @@ public class RepositoryApiTest {
     public void repoEditHookTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         EditHookOption body = null;
         List<Branch> response = api.repoEditHook(owner, repo, id, body);
 
@@ -394,7 +394,7 @@ public class RepositoryApiTest {
     public void repoEditPullRequestTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         EditPullRequestOption body = null;
         PullRequest response = api.repoEditPullRequest(owner, repo, index, body);
 
@@ -413,7 +413,7 @@ public class RepositoryApiTest {
     public void repoEditReleaseTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         EditReleaseOption body = null;
         Release response = api.repoEditRelease(owner, repo, id, body);
 
@@ -432,8 +432,8 @@ public class RepositoryApiTest {
     public void repoEditReleaseAttachmentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
-        Integer attachmentId = null;
+        Long id = null;
+        Long attachmentId = null;
         EditAttachmentOptions body = null;
         Attachment response = api.repoEditReleaseAttachment(owner, repo, id, attachmentId, body);
 
@@ -503,7 +503,7 @@ public class RepositoryApiTest {
      */
     @Test
     public void repoGetByIDTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         Repository response = api.repoGetByID(id);
 
         // TODO: test validations
@@ -557,7 +557,7 @@ public class RepositoryApiTest {
     public void repoGetHookTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         List<Branch> response = api.repoGetHook(owner, repo, id);
 
         // TODO: test validations
@@ -575,7 +575,7 @@ public class RepositoryApiTest {
     public void repoGetKeyTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         DeployKey response = api.repoGetKey(owner, repo, id);
 
         // TODO: test validations
@@ -593,7 +593,7 @@ public class RepositoryApiTest {
     public void repoGetPullRequestTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         PullRequest response = api.repoGetPullRequest(owner, repo, index);
 
         // TODO: test validations
@@ -629,7 +629,7 @@ public class RepositoryApiTest {
     public void repoGetReleaseTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         Release response = api.repoGetRelease(owner, repo, id);
 
         // TODO: test validations
@@ -647,8 +647,8 @@ public class RepositoryApiTest {
     public void repoGetReleaseAttachmentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
-        Integer attachmentId = null;
+        Long id = null;
+        Long attachmentId = null;
         Attachment response = api.repoGetReleaseAttachment(owner, repo, id, attachmentId);
 
         // TODO: test validations
@@ -734,7 +734,12 @@ public class RepositoryApiTest {
     public void repoListPullRequestsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        List<PullRequest> response = api.repoListPullRequests(owner, repo);
+        Integer page = null;
+        String state = null;
+        String sort = null;
+        Long milestone = null;
+        List<Long> labels = null;
+        List<PullRequest> response = api.repoListPullRequests(owner, repo, page, state, sort, milestone, labels);
 
         // TODO: test validations
     }
@@ -751,7 +756,7 @@ public class RepositoryApiTest {
     public void repoListReleaseAttachmentsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         List<Attachment> response = api.repoListReleaseAttachments(owner, repo, id);
 
         // TODO: test validations
@@ -838,7 +843,7 @@ public class RepositoryApiTest {
     public void repoMergePullRequestTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         api.repoMergePullRequest(owner, repo, index);
 
         // TODO: test validations
@@ -889,7 +894,7 @@ public class RepositoryApiTest {
     public void repoPullRequestIsMergedTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         api.repoPullRequestIsMerged(owner, repo, index);
 
         // TODO: test validations
@@ -906,7 +911,7 @@ public class RepositoryApiTest {
     @Test
     public void repoSearchTest() throws ApiException {
         String q = null;
-        Integer uid = null;
+        Long uid = null;
         Integer page = null;
         Integer limit = null;
         String mode = null;
@@ -930,7 +935,7 @@ public class RepositoryApiTest {
     public void repoTestHookTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.repoTestHook(owner, repo, id);
 
         // TODO: test validations

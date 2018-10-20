@@ -14,6 +14,9 @@
 package io.gitea.api;
 
 import io.gitea.ApiException;
+import io.gitea.model.CreateKeyOption;
+import io.gitea.model.CreateOrgOption;
+import io.gitea.model.CreateRepoOption;
 import io.gitea.model.CreateUserOption;
 import io.gitea.model.EditUserOption;
 import io.gitea.model.Organization;
@@ -48,7 +51,8 @@ public class AdminApiTest {
     @Test
     public void adminCreateOrgTest() throws ApiException {
         String username = null;
-        Organization response = api.adminCreateOrg(username);
+        CreateOrgOption organization = null;
+        Organization response = api.adminCreateOrg(username, organization);
 
         // TODO: test validations
     }
@@ -64,7 +68,8 @@ public class AdminApiTest {
     @Test
     public void adminCreatePublicKeyTest() throws ApiException {
         String username = null;
-        PublicKey response = api.adminCreatePublicKey(username);
+        CreateKeyOption key = null;
+        PublicKey response = api.adminCreatePublicKey(username, key);
 
         // TODO: test validations
     }
@@ -80,7 +85,8 @@ public class AdminApiTest {
     @Test
     public void adminCreateRepoTest() throws ApiException {
         String username = null;
-        Repository response = api.adminCreateRepo(username);
+        CreateRepoOption repository = null;
+        Repository response = api.adminCreateRepo(username, repository);
 
         // TODO: test validations
     }
@@ -128,7 +134,7 @@ public class AdminApiTest {
     @Test
     public void adminDeleteUserPublicKeyTest() throws ApiException {
         String username = null;
-        Integer id = null;
+        Long id = null;
         api.adminDeleteUserPublicKey(username, id);
 
         // TODO: test validations

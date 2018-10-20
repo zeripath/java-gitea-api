@@ -674,7 +674,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
-Integer id = 56; // Integer | id of key to delete
+Long id = 789L; // Long | id of key to delete
 try {
     apiInstance.userCurrentDeleteGPGKey(id);
 } catch (ApiException e) {
@@ -687,7 +687,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of key to delete |
+ **id** | **Long**| id of key to delete |
 
 ### Return type
 
@@ -755,7 +755,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
-Integer id = 56; // Integer | id of key to delete
+Long id = 789L; // Long | id of key to delete
 try {
     apiInstance.userCurrentDeleteKey(id);
 } catch (ApiException e) {
@@ -768,7 +768,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of key to delete |
+ **id** | **Long**| id of key to delete |
 
 ### Return type
 
@@ -919,7 +919,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
-Integer id = 56; // Integer | id of key to get
+Long id = 789L; // Long | id of key to get
 try {
     GPGKey result = apiInstance.userCurrentGetGPGKey(id);
     System.out.println(result);
@@ -933,7 +933,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of key to get |
+ **id** | **Long**| id of key to get |
 
 ### Return type
 
@@ -1001,7 +1001,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
-Integer id = 56; // Integer | id of key to get
+Long id = 789L; // Long | id of key to get
 try {
     PublicKey result = apiInstance.userCurrentGetKey(id);
     System.out.println(result);
@@ -1015,7 +1015,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of key to get |
+ **id** | **Long**| id of key to get |
 
 ### Return type
 
@@ -2036,7 +2036,7 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
-Integer token = 56; // Integer | token to be deleted
+Long token = 789L; // Long | token to be deleted
 try {
     apiInstance.userDeleteAccessToken(username, token);
 } catch (ApiException e) {
@@ -2050,7 +2050,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
- **token** | **Integer**| token to be deleted |
+ **token** | **Long**| token to be deleted |
 
 ### Return type
 
@@ -3094,7 +3094,7 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String q = "q_example"; // String | keyword
-Integer uid = 56; // Integer | ID of the user to search for
+Long uid = 789L; // Long | ID of the user to search for
 Integer limit = 56; // Integer | maximum number of users to return
 try {
     UserSearchList result = apiInstance.userSearch(q, uid, limit);
@@ -3110,7 +3110,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **q** | **String**| keyword | [optional]
- **uid** | **Integer**| ID of the user to search for | [optional]
+ **uid** | **Long**| ID of the user to search for | [optional]
  **limit** | **Integer**| maximum number of users to return | [optional]
 
 ### Return type

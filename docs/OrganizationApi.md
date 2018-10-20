@@ -172,7 +172,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team
+Long id = 789L; // Long | id of the team
 String username = "username_example"; // String | username of the user to add
 try {
     apiInstance.orgAddTeamMember(id, username);
@@ -186,7 +186,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team |
+ **id** | **Long**| id of the team |
  **username** | **String**| username of the user to add |
 
 ### Return type
@@ -255,7 +255,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team
+Long id = 789L; // Long | id of the team
 String org = "org_example"; // String | organization that owns the repo to add
 String repo = "repo_example"; // String | name of the repo to add
 try {
@@ -270,7 +270,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team |
+ **id** | **Long**| id of the team |
  **org** | **String**| organization that owns the repo to add |
  **repo** | **String**| name of the repo to add |
 
@@ -372,7 +372,7 @@ null (empty response body)
 
 <a name="orgCreateHook"></a>
 # **orgCreateHook**
-> List&lt;Branch&gt; orgCreateHook(org)
+> List&lt;Branch&gt; orgCreateHook(org, body)
 
 Create a hook
 
@@ -424,8 +424,9 @@ Token.setApiKey("YOUR API KEY");
 
 OrganizationApi apiInstance = new OrganizationApi();
 String org = "org_example"; // String | name of the organization
+CreateHookOption body = new CreateHookOption(); // CreateHookOption | 
 try {
-    List<Branch> result = apiInstance.orgCreateHook(org);
+    List<Branch> result = apiInstance.orgCreateHook(org, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrganizationApi#orgCreateHook");
@@ -438,6 +439,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **org** | **String**| name of the organization |
+ **body** | [**CreateHookOption**](CreateHookOption.md)|  |
 
 ### Return type
 
@@ -590,7 +592,7 @@ Token.setApiKey("YOUR API KEY");
 
 OrganizationApi apiInstance = new OrganizationApi();
 String org = "org_example"; // String | name of the organization
-Integer id = 56; // Integer | id of the hook to delete
+Long id = 789L; // Long | id of the hook to delete
 try {
     apiInstance.orgDeleteHook(org, id);
 } catch (ApiException e) {
@@ -604,7 +606,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **org** | **String**| name of the organization |
- **id** | **Integer**| id of the hook to delete |
+ **id** | **Long**| id of the hook to delete |
 
 ### Return type
 
@@ -755,7 +757,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team to delete
+Long id = 789L; // Long | id of the team to delete
 try {
     apiInstance.orgDeleteTeam(id);
 } catch (ApiException e) {
@@ -768,7 +770,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team to delete |
+ **id** | **Long**| id of the team to delete |
 
 ### Return type
 
@@ -869,7 +871,7 @@ Name | Type | Description  | Notes
 
 <a name="orgEditHook"></a>
 # **orgEditHook**
-> List&lt;Branch&gt; orgEditHook(org, id)
+> List&lt;Branch&gt; orgEditHook(org, id, body)
 
 Update a hook
 
@@ -921,9 +923,10 @@ Token.setApiKey("YOUR API KEY");
 
 OrganizationApi apiInstance = new OrganizationApi();
 String org = "org_example"; // String | name of the organization
-Integer id = 56; // Integer | id of the hook to update
+Long id = 789L; // Long | id of the hook to update
+EditHookOption body = new EditHookOption(); // EditHookOption | 
 try {
-    List<Branch> result = apiInstance.orgEditHook(org, id);
+    List<Branch> result = apiInstance.orgEditHook(org, id, body);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling OrganizationApi#orgEditHook");
@@ -936,7 +939,8 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **org** | **String**| name of the organization |
- **id** | **Integer**| id of the hook to update |
+ **id** | **Long**| id of the hook to update |
+ **body** | [**EditHookOption**](EditHookOption.md)|  | [optional]
 
 ### Return type
 
@@ -1171,7 +1175,7 @@ Token.setApiKey("YOUR API KEY");
 
 OrganizationApi apiInstance = new OrganizationApi();
 String org = "org_example"; // String | name of the organization
-Integer id = 56; // Integer | id of the hook to get
+Long id = 789L; // Long | id of the hook to get
 try {
     List<Branch> result = apiInstance.orgGetHook(org, id);
     System.out.println(result);
@@ -1186,7 +1190,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **org** | **String**| name of the organization |
- **id** | **Integer**| id of the hook to get |
+ **id** | **Long**| id of the hook to get |
 
 ### Return type
 
@@ -1254,7 +1258,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team to get
+Long id = 789L; // Long | id of the team to get
 try {
     Team result = apiInstance.orgGetTeam(id);
     System.out.println(result);
@@ -1268,7 +1272,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team to get |
+ **id** | **Long**| id of the team to get |
 
 ### Return type
 
@@ -1908,7 +1912,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team
+Long id = 789L; // Long | id of the team
 try {
     List<User> result = apiInstance.orgListTeamMembers(id);
     System.out.println(result);
@@ -1922,7 +1926,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team |
+ **id** | **Long**| id of the team |
 
 ### Return type
 
@@ -1990,7 +1994,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team
+Long id = 789L; // Long | id of the team
 try {
     List<Repository> result = apiInstance.orgListTeamRepos(id);
     System.out.println(result);
@@ -2004,7 +2008,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team |
+ **id** | **Long**| id of the team |
 
 ### Return type
 
@@ -2319,7 +2323,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team
+Long id = 789L; // Long | id of the team
 String username = "username_example"; // String | username of the user to remove
 try {
     apiInstance.orgRemoveTeamMember(id, username);
@@ -2333,7 +2337,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team |
+ **id** | **Long**| id of the team |
  **username** | **String**| username of the user to remove |
 
 ### Return type
@@ -2404,7 +2408,7 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 OrganizationApi apiInstance = new OrganizationApi();
-Integer id = 56; // Integer | id of the team
+Long id = 789L; // Long | id of the team
 String org = "org_example"; // String | organization that owns the repo to remove
 String repo = "repo_example"; // String | name of the repo to remove
 try {
@@ -2419,7 +2423,7 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **id** | **Integer**| id of the team |
+ **id** | **Long**| id of the team |
  **org** | **String**| organization that owns the repo to remove |
  **repo** | **String**| name of the repo to remove |
 

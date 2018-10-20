@@ -27,7 +27,7 @@ import java.io.IOException;
  * AccessToken represents a API access token.
  */
 @ApiModel(description = "AccessToken represents a API access token.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
 public class AccessToken {
   @SerializedName("id")
   private Long id = null;

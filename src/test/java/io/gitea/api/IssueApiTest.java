@@ -60,7 +60,7 @@ public class IssueApiTest {
     public void issueAddLabelTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         IssueLabelsOption body = null;
         List<Label> response = api.issueAddLabel(owner, repo, index, body);
 
@@ -79,7 +79,7 @@ public class IssueApiTest {
     public void issueAddTimeTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         AddTimeOption body = null;
         TrackedTime response = api.issueAddTime(owner, repo, id, body);
 
@@ -98,7 +98,7 @@ public class IssueApiTest {
     public void issueClearLabelsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         api.issueClearLabels(owner, repo, index);
 
         // TODO: test validations
@@ -116,7 +116,7 @@ public class IssueApiTest {
     public void issueCreateCommentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         CreateIssueCommentOption body = null;
         Comment response = api.issueCreateComment(owner, repo, index, body);
 
@@ -189,7 +189,7 @@ public class IssueApiTest {
     public void issueDeleteCommentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.issueDeleteComment(owner, repo, id);
 
         // TODO: test validations
@@ -208,7 +208,7 @@ public class IssueApiTest {
         String owner = null;
         String repo = null;
         Integer index = null;
-        Integer id = null;
+        Long id = null;
         api.issueDeleteCommentDeprecated(owner, repo, index, id);
 
         // TODO: test validations
@@ -226,7 +226,7 @@ public class IssueApiTest {
     public void issueDeleteLabelTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.issueDeleteLabel(owner, repo, id);
 
         // TODO: test validations
@@ -244,7 +244,7 @@ public class IssueApiTest {
     public void issueDeleteMilestoneTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         api.issueDeleteMilestone(owner, repo, id);
 
         // TODO: test validations
@@ -262,7 +262,7 @@ public class IssueApiTest {
     public void issueEditCommentTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         EditIssueCommentOption body = null;
         Comment response = api.issueEditComment(owner, repo, id, body);
 
@@ -282,7 +282,7 @@ public class IssueApiTest {
         String owner = null;
         String repo = null;
         Integer index = null;
-        Integer id = null;
+        Long id = null;
         EditIssueCommentOption body = null;
         Comment response = api.issueEditCommentDeprecated(owner, repo, index, id, body);
 
@@ -301,7 +301,7 @@ public class IssueApiTest {
     public void issueEditIssueTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         EditIssueOption body = null;
         Issue response = api.issueEditIssue(owner, repo, index, body);
 
@@ -320,7 +320,7 @@ public class IssueApiTest {
     public void issueEditIssueDeadlineTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         EditDeadlineOption body = null;
         IssueDeadline response = api.issueEditIssueDeadline(owner, repo, index, body);
 
@@ -339,7 +339,7 @@ public class IssueApiTest {
     public void issueEditLabelTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         EditLabelOption body = null;
         Label response = api.issueEditLabel(owner, repo, id, body);
 
@@ -358,7 +358,7 @@ public class IssueApiTest {
     public void issueEditMilestoneTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         EditMilestoneOption body = null;
         Milestone response = api.issueEditMilestone(owner, repo, id, body);
 
@@ -377,7 +377,7 @@ public class IssueApiTest {
     public void issueGetCommentsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         String since = null;
         List<Comment> response = api.issueGetComments(owner, repo, index, since);
 
@@ -396,7 +396,7 @@ public class IssueApiTest {
     public void issueGetIssueTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         Issue response = api.issueGetIssue(owner, repo, index);
 
         // TODO: test validations
@@ -414,7 +414,7 @@ public class IssueApiTest {
     public void issueGetLabelTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         Label response = api.issueGetLabel(owner, repo, id);
 
         // TODO: test validations
@@ -432,7 +432,7 @@ public class IssueApiTest {
     public void issueGetLabelsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         List<Label> response = api.issueGetLabels(owner, repo, index);
 
         // TODO: test validations
@@ -450,7 +450,7 @@ public class IssueApiTest {
     public void issueGetMilestoneTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         Milestone response = api.issueGetMilestone(owner, repo, id);
 
         // TODO: test validations
@@ -540,8 +540,8 @@ public class IssueApiTest {
     public void issueRemoveLabelTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
-        Integer id = null;
+        Long index = null;
+        Long id = null;
         api.issueRemoveLabel(owner, repo, index, id);
 
         // TODO: test validations
@@ -559,7 +559,7 @@ public class IssueApiTest {
     public void issueReplaceLabelsTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer index = null;
+        Long index = null;
         IssueLabelsOption body = null;
         List<Label> response = api.issueReplaceLabels(owner, repo, index, body);
 
@@ -578,7 +578,7 @@ public class IssueApiTest {
     public void issueTrackedTimesTest() throws ApiException {
         String owner = null;
         String repo = null;
-        Integer id = null;
+        Long id = null;
         List<TrackedTime> response = api.issueTrackedTimes(owner, repo, id);
 
         // TODO: test validations

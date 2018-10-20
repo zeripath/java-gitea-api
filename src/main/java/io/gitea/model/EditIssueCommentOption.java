@@ -27,7 +27,7 @@ import java.io.IOException;
  * EditIssueCommentOption options for editing a comment
  */
 @ApiModel(description = "EditIssueCommentOption options for editing a comment")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
 public class EditIssueCommentOption {
   @SerializedName("body")
   private String body = null;

@@ -28,7 +28,7 @@ import java.io.IOException;
  * Branch represents a repository branch
  */
 @ApiModel(description = "Branch represents a repository branch")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
 public class Branch {
   @SerializedName("commit")
   private PayloadCommit commit = null;

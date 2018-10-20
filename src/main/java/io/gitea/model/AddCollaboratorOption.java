@@ -27,7 +27,7 @@ import java.io.IOException;
  * AddCollaboratorOption options when adding a user as a collaborator of a repository
  */
 @ApiModel(description = "AddCollaboratorOption options when adding a user as a collaborator of a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
 public class AddCollaboratorOption {
   @SerializedName("permission")
   private String permission = null;

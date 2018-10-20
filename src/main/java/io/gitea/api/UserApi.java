@@ -932,7 +932,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userCurrentDeleteGPGKeyCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentDeleteGPGKeyCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -975,7 +975,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userCurrentDeleteGPGKeyValidateBeforeCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userCurrentDeleteGPGKeyValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -994,7 +994,7 @@ public class UserApi {
      * @param id id of key to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void userCurrentDeleteGPGKey(Integer id) throws ApiException {
+    public void userCurrentDeleteGPGKey(Long id) throws ApiException {
         userCurrentDeleteGPGKeyWithHttpInfo(id);
     }
 
@@ -1005,7 +1005,7 @@ public class UserApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> userCurrentDeleteGPGKeyWithHttpInfo(Integer id) throws ApiException {
+    public ApiResponse<Void> userCurrentDeleteGPGKeyWithHttpInfo(Long id) throws ApiException {
         com.squareup.okhttp.Call call = userCurrentDeleteGPGKeyValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
@@ -1018,7 +1018,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentDeleteGPGKeyAsync(Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentDeleteGPGKeyAsync(Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1051,7 +1051,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userCurrentDeleteKeyCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentDeleteKeyCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1094,7 +1094,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userCurrentDeleteKeyValidateBeforeCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userCurrentDeleteKeyValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1113,7 +1113,7 @@ public class UserApi {
      * @param id id of key to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void userCurrentDeleteKey(Integer id) throws ApiException {
+    public void userCurrentDeleteKey(Long id) throws ApiException {
         userCurrentDeleteKeyWithHttpInfo(id);
     }
 
@@ -1124,7 +1124,7 @@ public class UserApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> userCurrentDeleteKeyWithHttpInfo(Integer id) throws ApiException {
+    public ApiResponse<Void> userCurrentDeleteKeyWithHttpInfo(Long id) throws ApiException {
         com.squareup.okhttp.Call call = userCurrentDeleteKeyValidateBeforeCall(id, null, null);
         return apiClient.execute(call);
     }
@@ -1137,7 +1137,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentDeleteKeyAsync(Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentDeleteKeyAsync(Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1299,7 +1299,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userCurrentGetGPGKeyCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentGetGPGKeyCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1342,7 +1342,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userCurrentGetGPGKeyValidateBeforeCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userCurrentGetGPGKeyValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1362,7 +1362,7 @@ public class UserApi {
      * @return GPGKey
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public GPGKey userCurrentGetGPGKey(Integer id) throws ApiException {
+    public GPGKey userCurrentGetGPGKey(Long id) throws ApiException {
         ApiResponse<GPGKey> resp = userCurrentGetGPGKeyWithHttpInfo(id);
         return resp.getData();
     }
@@ -1374,7 +1374,7 @@ public class UserApi {
      * @return ApiResponse&lt;GPGKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<GPGKey> userCurrentGetGPGKeyWithHttpInfo(Integer id) throws ApiException {
+    public ApiResponse<GPGKey> userCurrentGetGPGKeyWithHttpInfo(Long id) throws ApiException {
         com.squareup.okhttp.Call call = userCurrentGetGPGKeyValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<GPGKey>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1388,7 +1388,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentGetGPGKeyAsync(Integer id, final ApiCallback<GPGKey> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentGetGPGKeyAsync(Long id, final ApiCallback<GPGKey> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1422,7 +1422,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userCurrentGetKeyCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentGetKeyCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1465,7 +1465,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userCurrentGetKeyValidateBeforeCall(Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userCurrentGetKeyValidateBeforeCall(Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'id' is set
         if (id == null) {
@@ -1485,7 +1485,7 @@ public class UserApi {
      * @return PublicKey
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public PublicKey userCurrentGetKey(Integer id) throws ApiException {
+    public PublicKey userCurrentGetKey(Long id) throws ApiException {
         ApiResponse<PublicKey> resp = userCurrentGetKeyWithHttpInfo(id);
         return resp.getData();
     }
@@ -1497,7 +1497,7 @@ public class UserApi {
      * @return ApiResponse&lt;PublicKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PublicKey> userCurrentGetKeyWithHttpInfo(Integer id) throws ApiException {
+    public ApiResponse<PublicKey> userCurrentGetKeyWithHttpInfo(Long id) throws ApiException {
         com.squareup.okhttp.Call call = userCurrentGetKeyValidateBeforeCall(id, null, null);
         Type localVarReturnType = new TypeToken<PublicKey>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -1511,7 +1511,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentGetKeyAsync(Integer id, final ApiCallback<PublicKey> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentGetKeyAsync(Long id, final ApiCallback<PublicKey> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2932,7 +2932,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userDeleteAccessTokenCall(String username, Integer token, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userDeleteAccessTokenCall(String username, Long token, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2976,7 +2976,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userDeleteAccessTokenValidateBeforeCall(String username, Integer token, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userDeleteAccessTokenValidateBeforeCall(String username, Long token, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
@@ -3001,7 +3001,7 @@ public class UserApi {
      * @param token token to be deleted (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void userDeleteAccessToken(String username, Integer token) throws ApiException {
+    public void userDeleteAccessToken(String username, Long token) throws ApiException {
         userDeleteAccessTokenWithHttpInfo(username, token);
     }
 
@@ -3013,7 +3013,7 @@ public class UserApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> userDeleteAccessTokenWithHttpInfo(String username, Integer token) throws ApiException {
+    public ApiResponse<Void> userDeleteAccessTokenWithHttpInfo(String username, Long token) throws ApiException {
         com.squareup.okhttp.Call call = userDeleteAccessTokenValidateBeforeCall(username, token, null, null);
         return apiClient.execute(call);
     }
@@ -3027,7 +3027,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userDeleteAccessTokenAsync(String username, Integer token, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call userDeleteAccessTokenAsync(String username, Long token, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4508,7 +4508,7 @@ public class UserApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userSearchCall(String q, Integer uid, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userSearchCall(String q, Long uid, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4556,7 +4556,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userSearchValidateBeforeCall(String q, Integer uid, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userSearchValidateBeforeCall(String q, Long uid, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = userSearchCall(q, uid, limit, progressListener, progressRequestListener);
@@ -4573,7 +4573,7 @@ public class UserApi {
      * @return UserSearchList
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public UserSearchList userSearch(String q, Integer uid, Integer limit) throws ApiException {
+    public UserSearchList userSearch(String q, Long uid, Integer limit) throws ApiException {
         ApiResponse<UserSearchList> resp = userSearchWithHttpInfo(q, uid, limit);
         return resp.getData();
     }
@@ -4587,7 +4587,7 @@ public class UserApi {
      * @return ApiResponse&lt;UserSearchList&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<UserSearchList> userSearchWithHttpInfo(String q, Integer uid, Integer limit) throws ApiException {
+    public ApiResponse<UserSearchList> userSearchWithHttpInfo(String q, Long uid, Integer limit) throws ApiException {
         com.squareup.okhttp.Call call = userSearchValidateBeforeCall(q, uid, limit, null, null);
         Type localVarReturnType = new TypeToken<UserSearchList>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -4603,7 +4603,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userSearchAsync(String q, Integer uid, Integer limit, final ApiCallback<UserSearchList> callback) throws ApiException {
+    public com.squareup.okhttp.Call userSearchAsync(String q, Long uid, Integer limit, final ApiCallback<UserSearchList> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

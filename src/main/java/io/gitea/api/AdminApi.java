@@ -27,6 +27,9 @@ import com.google.gson.reflect.TypeToken;
 import java.io.IOException;
 
 
+import io.gitea.model.CreateKeyOption;
+import io.gitea.model.CreateOrgOption;
+import io.gitea.model.CreateRepoOption;
 import io.gitea.model.CreateUserOption;
 import io.gitea.model.EditUserOption;
 import io.gitea.model.Organization;
@@ -62,13 +65,14 @@ public class AdminApi {
     /**
      * Build call for adminCreateOrg
      * @param username username of the user that will own the created organization (required)
+     * @param organization  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call adminCreateOrgCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+    public com.squareup.okhttp.Call adminCreateOrgCall(String username, CreateOrgOption organization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = organization;
 
         // create path and map variables
         String localVarPath = "/admin/users/{username}/orgs"
@@ -110,15 +114,20 @@ public class AdminApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call adminCreateOrgValidateBeforeCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call adminCreateOrgValidateBeforeCall(String username, CreateOrgOption organization, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
             throw new ApiException("Missing the required parameter 'username' when calling adminCreateOrg(Async)");
         }
         
+        // verify the required parameter 'organization' is set
+        if (organization == null) {
+            throw new ApiException("Missing the required parameter 'organization' when calling adminCreateOrg(Async)");
+        }
+        
 
-        com.squareup.okhttp.Call call = adminCreateOrgCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = adminCreateOrgCall(username, organization, progressListener, progressRequestListener);
         return call;
 
     }
@@ -127,11 +136,12 @@ public class AdminApi {
      * Create an organization
      * 
      * @param username username of the user that will own the created organization (required)
+     * @param organization  (required)
      * @return Organization
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Organization adminCreateOrg(String username) throws ApiException {
-        ApiResponse<Organization> resp = adminCreateOrgWithHttpInfo(username);
+    public Organization adminCreateOrg(String username, CreateOrgOption organization) throws ApiException {
+        ApiResponse<Organization> resp = adminCreateOrgWithHttpInfo(username, organization);
         return resp.getData();
     }
 
@@ -139,11 +149,12 @@ public class AdminApi {
      * Create an organization
      * 
      * @param username username of the user that will own the created organization (required)
+     * @param organization  (required)
      * @return ApiResponse&lt;Organization&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Organization> adminCreateOrgWithHttpInfo(String username) throws ApiException {
-        com.squareup.okhttp.Call call = adminCreateOrgValidateBeforeCall(username, null, null);
+    public ApiResponse<Organization> adminCreateOrgWithHttpInfo(String username, CreateOrgOption organization) throws ApiException {
+        com.squareup.okhttp.Call call = adminCreateOrgValidateBeforeCall(username, organization, null, null);
         Type localVarReturnType = new TypeToken<Organization>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -152,11 +163,12 @@ public class AdminApi {
      * Create an organization (asynchronously)
      * 
      * @param username username of the user that will own the created organization (required)
+     * @param organization  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call adminCreateOrgAsync(String username, final ApiCallback<Organization> callback) throws ApiException {
+    public com.squareup.okhttp.Call adminCreateOrgAsync(String username, CreateOrgOption organization, final ApiCallback<Organization> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -177,7 +189,7 @@ public class AdminApi {
             };
         }
 
-        com.squareup.okhttp.Call call = adminCreateOrgValidateBeforeCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = adminCreateOrgValidateBeforeCall(username, organization, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Organization>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -185,13 +197,14 @@ public class AdminApi {
     /**
      * Build call for adminCreatePublicKey
      * @param username username of the user (required)
+     * @param key  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call adminCreatePublicKeyCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+    public com.squareup.okhttp.Call adminCreatePublicKeyCall(String username, CreateKeyOption key, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = key;
 
         // create path and map variables
         String localVarPath = "/admin/users/{username}/keys"
@@ -233,7 +246,7 @@ public class AdminApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call adminCreatePublicKeyValidateBeforeCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call adminCreatePublicKeyValidateBeforeCall(String username, CreateKeyOption key, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
@@ -241,7 +254,7 @@ public class AdminApi {
         }
         
 
-        com.squareup.okhttp.Call call = adminCreatePublicKeyCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = adminCreatePublicKeyCall(username, key, progressListener, progressRequestListener);
         return call;
 
     }
@@ -250,11 +263,12 @@ public class AdminApi {
      * Add a public key on behalf of a user
      * 
      * @param username username of the user (required)
+     * @param key  (optional)
      * @return PublicKey
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public PublicKey adminCreatePublicKey(String username) throws ApiException {
-        ApiResponse<PublicKey> resp = adminCreatePublicKeyWithHttpInfo(username);
+    public PublicKey adminCreatePublicKey(String username, CreateKeyOption key) throws ApiException {
+        ApiResponse<PublicKey> resp = adminCreatePublicKeyWithHttpInfo(username, key);
         return resp.getData();
     }
 
@@ -262,11 +276,12 @@ public class AdminApi {
      * Add a public key on behalf of a user
      * 
      * @param username username of the user (required)
+     * @param key  (optional)
      * @return ApiResponse&lt;PublicKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<PublicKey> adminCreatePublicKeyWithHttpInfo(String username) throws ApiException {
-        com.squareup.okhttp.Call call = adminCreatePublicKeyValidateBeforeCall(username, null, null);
+    public ApiResponse<PublicKey> adminCreatePublicKeyWithHttpInfo(String username, CreateKeyOption key) throws ApiException {
+        com.squareup.okhttp.Call call = adminCreatePublicKeyValidateBeforeCall(username, key, null, null);
         Type localVarReturnType = new TypeToken<PublicKey>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -275,11 +290,12 @@ public class AdminApi {
      * Add a public key on behalf of a user (asynchronously)
      * 
      * @param username username of the user (required)
+     * @param key  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call adminCreatePublicKeyAsync(String username, final ApiCallback<PublicKey> callback) throws ApiException {
+    public com.squareup.okhttp.Call adminCreatePublicKeyAsync(String username, CreateKeyOption key, final ApiCallback<PublicKey> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -300,7 +316,7 @@ public class AdminApi {
             };
         }
 
-        com.squareup.okhttp.Call call = adminCreatePublicKeyValidateBeforeCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = adminCreatePublicKeyValidateBeforeCall(username, key, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<PublicKey>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -308,13 +324,14 @@ public class AdminApi {
     /**
      * Build call for adminCreateRepo
      * @param username username of the user. This user will own the created repository (required)
+     * @param repository  (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call adminCreateRepoCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = null;
+    public com.squareup.okhttp.Call adminCreateRepoCall(String username, CreateRepoOption repository, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = repository;
 
         // create path and map variables
         String localVarPath = "/admin/users/{username}/repos"
@@ -356,15 +373,20 @@ public class AdminApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call adminCreateRepoValidateBeforeCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call adminCreateRepoValidateBeforeCall(String username, CreateRepoOption repository, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
             throw new ApiException("Missing the required parameter 'username' when calling adminCreateRepo(Async)");
         }
         
+        // verify the required parameter 'repository' is set
+        if (repository == null) {
+            throw new ApiException("Missing the required parameter 'repository' when calling adminCreateRepo(Async)");
+        }
+        
 
-        com.squareup.okhttp.Call call = adminCreateRepoCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = adminCreateRepoCall(username, repository, progressListener, progressRequestListener);
         return call;
 
     }
@@ -373,11 +395,12 @@ public class AdminApi {
      * Create a repository on behalf a user
      * 
      * @param username username of the user. This user will own the created repository (required)
+     * @param repository  (required)
      * @return Repository
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Repository adminCreateRepo(String username) throws ApiException {
-        ApiResponse<Repository> resp = adminCreateRepoWithHttpInfo(username);
+    public Repository adminCreateRepo(String username, CreateRepoOption repository) throws ApiException {
+        ApiResponse<Repository> resp = adminCreateRepoWithHttpInfo(username, repository);
         return resp.getData();
     }
 
@@ -385,11 +408,12 @@ public class AdminApi {
      * Create a repository on behalf a user
      * 
      * @param username username of the user. This user will own the created repository (required)
+     * @param repository  (required)
      * @return ApiResponse&lt;Repository&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Repository> adminCreateRepoWithHttpInfo(String username) throws ApiException {
-        com.squareup.okhttp.Call call = adminCreateRepoValidateBeforeCall(username, null, null);
+    public ApiResponse<Repository> adminCreateRepoWithHttpInfo(String username, CreateRepoOption repository) throws ApiException {
+        com.squareup.okhttp.Call call = adminCreateRepoValidateBeforeCall(username, repository, null, null);
         Type localVarReturnType = new TypeToken<Repository>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -398,11 +422,12 @@ public class AdminApi {
      * Create a repository on behalf a user (asynchronously)
      * 
      * @param username username of the user. This user will own the created repository (required)
+     * @param repository  (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call adminCreateRepoAsync(String username, final ApiCallback<Repository> callback) throws ApiException {
+    public com.squareup.okhttp.Call adminCreateRepoAsync(String username, CreateRepoOption repository, final ApiCallback<Repository> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -423,7 +448,7 @@ public class AdminApi {
             };
         }
 
-        com.squareup.okhttp.Call call = adminCreateRepoValidateBeforeCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = adminCreateRepoValidateBeforeCall(username, repository, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Repository>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -673,7 +698,7 @@ public class AdminApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call adminDeleteUserPublicKeyCall(String username, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call adminDeleteUserPublicKeyCall(String username, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -717,7 +742,7 @@ public class AdminApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call adminDeleteUserPublicKeyValidateBeforeCall(String username, Integer id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call adminDeleteUserPublicKeyValidateBeforeCall(String username, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
@@ -742,7 +767,7 @@ public class AdminApi {
      * @param id id of the key to delete (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void adminDeleteUserPublicKey(String username, Integer id) throws ApiException {
+    public void adminDeleteUserPublicKey(String username, Long id) throws ApiException {
         adminDeleteUserPublicKeyWithHttpInfo(username, id);
     }
 
@@ -754,7 +779,7 @@ public class AdminApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> adminDeleteUserPublicKeyWithHttpInfo(String username, Integer id) throws ApiException {
+    public ApiResponse<Void> adminDeleteUserPublicKeyWithHttpInfo(String username, Long id) throws ApiException {
         com.squareup.okhttp.Call call = adminDeleteUserPublicKeyValidateBeforeCall(username, id, null, null);
         return apiClient.execute(call);
     }
@@ -768,7 +793,7 @@ public class AdminApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call adminDeleteUserPublicKeyAsync(String username, Integer id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call adminDeleteUserPublicKeyAsync(String username, Long id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;

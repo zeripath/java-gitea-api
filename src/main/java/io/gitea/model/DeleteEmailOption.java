@@ -29,7 +29,7 @@ import java.util.List;
  * DeleteEmailOption options when deleting email addresses
  */
 @ApiModel(description = "DeleteEmailOption options when deleting email addresses")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-19T20:26:09.531+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
 public class DeleteEmailOption {
   @SerializedName("emails")
   private List<String> emails = null;

@@ -170,7 +170,7 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentDeleteGPGKeyTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         api.userCurrentDeleteGPGKey(id);
 
         // TODO: test validations
@@ -186,7 +186,7 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentDeleteKeyTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         api.userCurrentDeleteKey(id);
 
         // TODO: test validations
@@ -219,7 +219,7 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentGetGPGKeyTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         GPGKey response = api.userCurrentGetGPGKey(id);
 
         // TODO: test validations
@@ -235,7 +235,7 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentGetKeyTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         PublicKey response = api.userCurrentGetKey(id);
 
         // TODO: test validations
@@ -437,7 +437,7 @@ public class UserApiTest {
     @Test
     public void userDeleteAccessTokenTest() throws ApiException {
         String username = null;
-        Integer token = null;
+        Long token = null;
         api.userDeleteAccessToken(username, token);
 
         // TODO: test validations
@@ -644,7 +644,7 @@ public class UserApiTest {
     @Test
     public void userSearchTest() throws ApiException {
         String q = null;
-        Integer uid = null;
+        Long uid = null;
         Integer limit = null;
         UserSearchList response = api.userSearch(q, uid, limit);
 

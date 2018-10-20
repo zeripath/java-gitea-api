@@ -15,8 +15,10 @@ package io.gitea.api;
 
 import io.gitea.ApiException;
 import io.gitea.model.Branch;
+import io.gitea.model.CreateHookOption;
 import io.gitea.model.CreateRepoOption;
 import io.gitea.model.CreateTeamOption;
+import io.gitea.model.EditHookOption;
 import io.gitea.model.EditOrgOption;
 import io.gitea.model.EditTeamOption;
 import io.gitea.model.Organization;
@@ -67,7 +69,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgAddTeamMemberTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         String username = null;
         api.orgAddTeamMember(id, username);
 
@@ -84,7 +86,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgAddTeamRepositoryTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         String org = null;
         String repo = null;
         api.orgAddTeamRepository(id, org, repo);
@@ -120,7 +122,8 @@ public class OrganizationApiTest {
     @Test
     public void orgCreateHookTest() throws ApiException {
         String org = null;
-        List<Branch> response = api.orgCreateHook(org);
+        CreateHookOption body = null;
+        List<Branch> response = api.orgCreateHook(org, body);
 
         // TODO: test validations
     }
@@ -153,7 +156,7 @@ public class OrganizationApiTest {
     @Test
     public void orgDeleteHookTest() throws ApiException {
         String org = null;
-        Integer id = null;
+        Long id = null;
         api.orgDeleteHook(org, id);
 
         // TODO: test validations
@@ -186,7 +189,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgDeleteTeamTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         api.orgDeleteTeam(id);
 
         // TODO: test validations
@@ -220,8 +223,9 @@ public class OrganizationApiTest {
     @Test
     public void orgEditHookTest() throws ApiException {
         String org = null;
-        Integer id = null;
-        List<Branch> response = api.orgEditHook(org, id);
+        Long id = null;
+        EditHookOption body = null;
+        List<Branch> response = api.orgEditHook(org, id, body);
 
         // TODO: test validations
     }
@@ -270,7 +274,7 @@ public class OrganizationApiTest {
     @Test
     public void orgGetHookTest() throws ApiException {
         String org = null;
-        Integer id = null;
+        Long id = null;
         List<Branch> response = api.orgGetHook(org, id);
 
         // TODO: test validations
@@ -286,7 +290,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgGetTeamTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         Team response = api.orgGetTeam(id);
 
         // TODO: test validations
@@ -415,7 +419,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgListTeamMembersTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         List<User> response = api.orgListTeamMembers(id);
 
         // TODO: test validations
@@ -431,7 +435,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgListTeamReposTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         List<Repository> response = api.orgListTeamRepos(id);
 
         // TODO: test validations
@@ -496,7 +500,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgRemoveTeamMemberTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         String username = null;
         api.orgRemoveTeamMember(id, username);
 
@@ -513,7 +517,7 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgRemoveTeamRepositoryTest() throws ApiException {
-        Integer id = null;
+        Long id = null;
         String org = null;
         String repo = null;
         api.orgRemoveTeamRepository(id, org, repo);
