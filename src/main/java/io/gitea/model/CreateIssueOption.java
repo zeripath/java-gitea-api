@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * CreateIssueOption options to create one issue
  */
 @ApiModel(description = "CreateIssueOption options to create one issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class CreateIssueOption {
   @SerializedName("assignee")
   private String assignee = null;

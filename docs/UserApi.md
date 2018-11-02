@@ -32,6 +32,7 @@ Method | HTTP request | Description
 [**userDeleteEmail**](UserApi.md#userDeleteEmail) | **DELETE** /user/emails | Delete email addresses
 [**userGet**](UserApi.md#userGet) | **GET** /users/{username} | Get a user
 [**userGetCurrent**](UserApi.md#userGetCurrent) | **GET** /user | Get the authenticated user
+[**userGetHeatmapData**](UserApi.md#userGetHeatmapData) | **GET** /users/{username}/heatmap | Get a user&#39;s heatmap
 [**userGetTokens**](UserApi.md#userGetTokens) | **GET** /users/{username}/tokens | List the authenticated user&#39;s access tokens
 [**userListEmails**](UserApi.md#userListEmails) | **GET** /user/emails | List the authenticated user&#39;s email addresses
 [**userListFollowers**](UserApi.md#userListFollowers) | **GET** /users/{username}/followers | List the given user&#39;s followers
@@ -1266,7 +1267,7 @@ This endpoint does not need any parameter.
 
 <a name="userCurrentListKeys"></a>
 # **userCurrentListKeys**
-> List&lt;PublicKey&gt; userCurrentListKeys()
+> List&lt;PublicKey&gt; userCurrentListKeys(fingerprint)
 
 List the authenticated user&#39;s public keys
 
@@ -1317,8 +1318,9 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
+String fingerprint = "fingerprint_example"; // String | fingerprint of the key
 try {
-    List<PublicKey> result = apiInstance.userCurrentListKeys();
+    List<PublicKey> result = apiInstance.userCurrentListKeys(fingerprint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCurrentListKeys");
@@ -1327,7 +1329,10 @@ try {
 ```
 
 ### Parameters
-This endpoint does not need any parameter.
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **fingerprint** | **String**| fingerprint of the key | [optional]
 
 ### Return type
 
@@ -2306,6 +2311,88 @@ This endpoint does not need any parameter.
  - **Content-Type**: application/json, text/plain
  - **Accept**: application/json
 
+<a name="userGetHeatmapData"></a>
+# **userGetHeatmapData**
+> List&lt;UserHeatmapData&gt; userGetHeatmapData(username)
+
+Get a user&#39;s heatmap
+
+### Example
+```java
+// Import classes:
+//import io.gitea.ApiClient;
+//import io.gitea.ApiException;
+//import io.gitea.Configuration;
+//import io.gitea.auth.*;
+//import io.gitea.api.UserApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: AccessToken
+ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
+AccessToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AccessToken.setApiKeyPrefix("Token");
+
+// Configure API key authorization: AuthorizationHeaderToken
+ApiKeyAuth AuthorizationHeaderToken = (ApiKeyAuth) defaultClient.getAuthentication("AuthorizationHeaderToken");
+AuthorizationHeaderToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AuthorizationHeaderToken.setApiKeyPrefix("Token");
+
+// Configure HTTP basic authorization: BasicAuth
+HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+BasicAuth.setUsername("YOUR USERNAME");
+BasicAuth.setPassword("YOUR PASSWORD");
+
+// Configure API key authorization: SudoHeader
+ApiKeyAuth SudoHeader = (ApiKeyAuth) defaultClient.getAuthentication("SudoHeader");
+SudoHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: SudoParam
+ApiKeyAuth SudoParam = (ApiKeyAuth) defaultClient.getAuthentication("SudoParam");
+SudoParam.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoParam.setApiKeyPrefix("Token");
+
+// Configure API key authorization: Token
+ApiKeyAuth Token = (ApiKeyAuth) defaultClient.getAuthentication("Token");
+Token.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Token.setApiKeyPrefix("Token");
+
+UserApi apiInstance = new UserApi();
+String username = "username_example"; // String | username of user to get
+try {
+    List<UserHeatmapData> result = apiInstance.userGetHeatmapData(username);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userGetHeatmapData");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **username** | **String**| username of user to get |
+
+### Return type
+
+[**List&lt;UserHeatmapData&gt;**](UserHeatmapData.md)
+
+### Authorization
+
+[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/plain
+ - **Accept**: application/json
+
 <a name="userGetTokens"></a>
 # **userGetTokens**
 > List&lt;AccessToken&gt; userGetTokens(username)
@@ -2714,7 +2801,7 @@ Name | Type | Description  | Notes
 
 <a name="userListKeys"></a>
 # **userListKeys**
-> List&lt;PublicKey&gt; userListKeys(username)
+> List&lt;PublicKey&gt; userListKeys(username, fingerprint)
 
 List the given user&#39;s public keys
 
@@ -2766,8 +2853,9 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
+String fingerprint = "fingerprint_example"; // String | fingerprint of the key
 try {
-    List<PublicKey> result = apiInstance.userListKeys(username);
+    List<PublicKey> result = apiInstance.userListKeys(username, fingerprint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userListKeys");
@@ -2780,6 +2868,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
+ **fingerprint** | **String**| fingerprint of the key | [optional]
 
 ### Return type
 

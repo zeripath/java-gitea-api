@@ -27,7 +27,7 @@ import java.io.IOException;
  * CreateLabelOption options for creating a label
  */
 @ApiModel(description = "CreateLabelOption options for creating a label")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class CreateLabelOption {
   @SerializedName("color")
   private String color = null;

@@ -31,8 +31,11 @@ import org.threeten.bp.OffsetDateTime;
  * Repository represents a repository
  */
 @ApiModel(description = "Repository represents a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class Repository {
+  @SerializedName("archived")
+  private Boolean archived = null;
+
   @SerializedName("clone_url")
   private String cloneUrl = null;
 
@@ -101,6 +104,24 @@ public class Repository {
 
   @SerializedName("website")
   private String website = null;
+
+  public Repository archived(Boolean archived) {
+    this.archived = archived;
+    return this;
+  }
+
+   /**
+   * Get archived
+   * @return archived
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isArchived() {
+    return archived;
+  }
+
+  public void setArchived(Boolean archived) {
+    this.archived = archived;
+  }
 
   public Repository cloneUrl(String cloneUrl) {
     this.cloneUrl = cloneUrl;
@@ -526,7 +547,8 @@ public class Repository {
       return false;
     }
     Repository repository = (Repository) o;
-    return Objects.equals(this.cloneUrl, repository.cloneUrl) &&
+    return Objects.equals(this.archived, repository.archived) &&
+        Objects.equals(this.cloneUrl, repository.cloneUrl) &&
         Objects.equals(this.createdAt, repository.createdAt) &&
         Objects.equals(this.defaultBranch, repository.defaultBranch) &&
         Objects.equals(this.description, repository.description) &&
@@ -553,7 +575,7 @@ public class Repository {
 
   @Override
   public int hashCode() {
-    return Objects.hash(cloneUrl, createdAt, defaultBranch, description, empty, fork, forksCount, fullName, htmlUrl, id, mirror, name, openIssuesCount, owner, parent, permissions, _private, size, sshUrl, starsCount, updatedAt, watchersCount, website);
+    return Objects.hash(archived, cloneUrl, createdAt, defaultBranch, description, empty, fork, forksCount, fullName, htmlUrl, id, mirror, name, openIssuesCount, owner, parent, permissions, _private, size, sshUrl, starsCount, updatedAt, watchersCount, website);
   }
 
 
@@ -562,6 +584,7 @@ public class Repository {
     StringBuilder sb = new StringBuilder();
     sb.append("class Repository {\n");
     
+    sb.append("    archived: ").append(toIndentedString(archived)).append("\n");
     sb.append("    cloneUrl: ").append(toIndentedString(cloneUrl)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    defaultBranch: ").append(toIndentedString(defaultBranch)).append("\n");

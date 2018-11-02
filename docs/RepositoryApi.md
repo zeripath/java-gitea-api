@@ -3149,7 +3149,7 @@ Name | Type | Description  | Notes
 
 <a name="repoListKeys"></a>
 # **repoListKeys**
-> List&lt;DeployKey&gt; repoListKeys(owner, repo)
+> List&lt;DeployKey&gt; repoListKeys(owner, repo, keyId, fingerprint)
 
 List a repository&#39;s keys
 
@@ -3202,8 +3202,10 @@ Token.setApiKey("YOUR API KEY");
 RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
+Integer keyId = 56; // Integer | the key_id to search for
+String fingerprint = "fingerprint_example"; // String | fingerprint of the key
 try {
-    List<DeployKey> result = apiInstance.repoListKeys(owner, repo);
+    List<DeployKey> result = apiInstance.repoListKeys(owner, repo, keyId, fingerprint);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoListKeys");
@@ -3217,6 +3219,8 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
+ **keyId** | **Integer**| the key_id to search for | [optional]
+ **fingerprint** | **String**| fingerprint of the key | [optional]
 
 ### Return type
 

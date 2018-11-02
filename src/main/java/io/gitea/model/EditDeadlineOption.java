@@ -28,7 +28,7 @@ import org.threeten.bp.OffsetDateTime;
  * EditDeadlineOption options for creating a deadline
  */
 @ApiModel(description = "EditDeadlineOption options for creating a deadline")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class EditDeadlineOption {
   @SerializedName("due_date")
   private OffsetDateTime dueDate = null;

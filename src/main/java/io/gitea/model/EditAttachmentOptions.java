@@ -27,7 +27,7 @@ import java.io.IOException;
  * EditAttachmentOptions options for editing attachments
  */
 @ApiModel(description = "EditAttachmentOptions options for editing attachments")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class EditAttachmentOptions {
   @SerializedName("name")
   private String name = null;

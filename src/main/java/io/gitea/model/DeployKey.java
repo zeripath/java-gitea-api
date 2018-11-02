@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.Repository;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,10 +29,13 @@ import org.threeten.bp.OffsetDateTime;
  * DeployKey a deploy key
  */
 @ApiModel(description = "DeployKey a deploy key")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class DeployKey {
   @SerializedName("created_at")
   private OffsetDateTime createdAt = null;
+
+  @SerializedName("fingerprint")
+  private String fingerprint = null;
 
   @SerializedName("id")
   private Long id = null;
@@ -39,8 +43,14 @@ public class DeployKey {
   @SerializedName("key")
   private String key = null;
 
+  @SerializedName("key_id")
+  private Long keyId = null;
+
   @SerializedName("read_only")
   private Boolean readOnly = null;
+
+  @SerializedName("repository")
+  private Repository repository = null;
 
   @SerializedName("title")
   private String title = null;
@@ -64,6 +74,24 @@ public class DeployKey {
 
   public void setCreatedAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
+  }
+
+  public DeployKey fingerprint(String fingerprint) {
+    this.fingerprint = fingerprint;
+    return this;
+  }
+
+   /**
+   * Get fingerprint
+   * @return fingerprint
+  **/
+  @ApiModelProperty(value = "")
+  public String getFingerprint() {
+    return fingerprint;
+  }
+
+  public void setFingerprint(String fingerprint) {
+    this.fingerprint = fingerprint;
   }
 
   public DeployKey id(Long id) {
@@ -102,6 +130,24 @@ public class DeployKey {
     this.key = key;
   }
 
+  public DeployKey keyId(Long keyId) {
+    this.keyId = keyId;
+    return this;
+  }
+
+   /**
+   * Get keyId
+   * @return keyId
+  **/
+  @ApiModelProperty(value = "")
+  public Long getKeyId() {
+    return keyId;
+  }
+
+  public void setKeyId(Long keyId) {
+    this.keyId = keyId;
+  }
+
   public DeployKey readOnly(Boolean readOnly) {
     this.readOnly = readOnly;
     return this;
@@ -118,6 +164,24 @@ public class DeployKey {
 
   public void setReadOnly(Boolean readOnly) {
     this.readOnly = readOnly;
+  }
+
+  public DeployKey repository(Repository repository) {
+    this.repository = repository;
+    return this;
+  }
+
+   /**
+   * Get repository
+   * @return repository
+  **/
+  @ApiModelProperty(value = "")
+  public Repository getRepository() {
+    return repository;
+  }
+
+  public void setRepository(Repository repository) {
+    this.repository = repository;
   }
 
   public DeployKey title(String title) {
@@ -167,16 +231,19 @@ public class DeployKey {
     }
     DeployKey deployKey = (DeployKey) o;
     return Objects.equals(this.createdAt, deployKey.createdAt) &&
+        Objects.equals(this.fingerprint, deployKey.fingerprint) &&
         Objects.equals(this.id, deployKey.id) &&
         Objects.equals(this.key, deployKey.key) &&
+        Objects.equals(this.keyId, deployKey.keyId) &&
         Objects.equals(this.readOnly, deployKey.readOnly) &&
+        Objects.equals(this.repository, deployKey.repository) &&
         Objects.equals(this.title, deployKey.title) &&
         Objects.equals(this.url, deployKey.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, id, key, readOnly, title, url);
+    return Objects.hash(createdAt, fingerprint, id, key, keyId, readOnly, repository, title, url);
   }
 
 
@@ -186,9 +253,12 @@ public class DeployKey {
     sb.append("class DeployKey {\n");
     
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
+    sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    keyId: ").append(toIndentedString(keyId)).append("\n");
     sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
+    sb.append("    repository: ").append(toIndentedString(repository)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");

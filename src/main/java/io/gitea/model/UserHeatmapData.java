@@ -24,72 +24,51 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * Permission represents a set of permissions
+ * UserHeatmapData represents the data needed to create a heatmap
  */
-@ApiModel(description = "Permission represents a set of permissions")
+@ApiModel(description = "UserHeatmapData represents the data needed to create a heatmap")
 @javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
-public class Permission {
-  @SerializedName("admin")
-  private Boolean admin = null;
+public class UserHeatmapData {
+  @SerializedName("contributions")
+  private Long contributions = null;
 
-  @SerializedName("pull")
-  private Boolean pull = null;
+  @SerializedName("timestamp")
+  private Integer timestamp = null;
 
-  @SerializedName("push")
-  private Boolean push = null;
-
-  public Permission admin(Boolean admin) {
-    this.admin = admin;
+  public UserHeatmapData contributions(Long contributions) {
+    this.contributions = contributions;
     return this;
   }
 
    /**
-   * Get admin
-   * @return admin
+   * Get contributions
+   * @return contributions
   **/
   @ApiModelProperty(value = "")
-  public Boolean isAdmin() {
-    return admin;
+  public Long getContributions() {
+    return contributions;
   }
 
-  public void setAdmin(Boolean admin) {
-    this.admin = admin;
+  public void setContributions(Long contributions) {
+    this.contributions = contributions;
   }
 
-  public Permission pull(Boolean pull) {
-    this.pull = pull;
+  public UserHeatmapData timestamp(Integer timestamp) {
+    this.timestamp = timestamp;
     return this;
   }
 
    /**
-   * Get pull
-   * @return pull
+   * Get timestamp
+   * @return timestamp
   **/
   @ApiModelProperty(value = "")
-  public Boolean isPull() {
-    return pull;
+  public Integer getTimestamp() {
+    return timestamp;
   }
 
-  public void setPull(Boolean pull) {
-    this.pull = pull;
-  }
-
-  public Permission push(Boolean push) {
-    this.push = push;
-    return this;
-  }
-
-   /**
-   * Get push
-   * @return push
-  **/
-  @ApiModelProperty(value = "")
-  public Boolean isPush() {
-    return push;
-  }
-
-  public void setPush(Boolean push) {
-    this.push = push;
+  public void setTimestamp(Integer timestamp) {
+    this.timestamp = timestamp;
   }
 
 
@@ -101,26 +80,24 @@ public class Permission {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    Permission permission = (Permission) o;
-    return Objects.equals(this.admin, permission.admin) &&
-        Objects.equals(this.pull, permission.pull) &&
-        Objects.equals(this.push, permission.push);
+    UserHeatmapData userHeatmapData = (UserHeatmapData) o;
+    return Objects.equals(this.contributions, userHeatmapData.contributions) &&
+        Objects.equals(this.timestamp, userHeatmapData.timestamp);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(admin, pull, push);
+    return Objects.hash(contributions, timestamp);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class Permission {\n");
+    sb.append("class UserHeatmapData {\n");
     
-    sb.append("    admin: ").append(toIndentedString(admin)).append("\n");
-    sb.append("    pull: ").append(toIndentedString(pull)).append("\n");
-    sb.append("    push: ").append(toIndentedString(push)).append("\n");
+    sb.append("    contributions: ").append(toIndentedString(contributions)).append("\n");
+    sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("}");
     return sb.toString();
   }

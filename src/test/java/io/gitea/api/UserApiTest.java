@@ -27,6 +27,7 @@ import io.gitea.model.PublicKey;
 import io.gitea.model.Repository;
 import io.gitea.model.TrackedTime;
 import io.gitea.model.User;
+import io.gitea.model.UserHeatmapData;
 import io.gitea.model.UserSearchList;
 import org.junit.Test;
 import org.junit.Ignore;
@@ -296,7 +297,8 @@ public class UserApiTest {
      */
     @Test
     public void userCurrentListKeysTest() throws ApiException {
-        List<PublicKey> response = api.userCurrentListKeys();
+        String fingerprint = null;
+        List<PublicKey> response = api.userCurrentListKeys(fingerprint);
 
         // TODO: test validations
     }
@@ -491,6 +493,22 @@ public class UserApiTest {
     }
     
     /**
+     * Get a user&#39;s heatmap
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void userGetHeatmapDataTest() throws ApiException {
+        String username = null;
+        List<UserHeatmapData> response = api.userGetHeatmapData(username);
+
+        // TODO: test validations
+    }
+    
+    /**
      * List the authenticated user&#39;s access tokens
      *
      * 
@@ -580,7 +598,8 @@ public class UserApiTest {
     @Test
     public void userListKeysTest() throws ApiException {
         String username = null;
-        List<PublicKey> response = api.userListKeys(username);
+        String fingerprint = null;
+        List<PublicKey> response = api.userListKeys(username, fingerprint);
 
         // TODO: test validations
     }

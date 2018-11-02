@@ -717,7 +717,9 @@ public class RepositoryApiTest {
     public void repoListKeysTest() throws ApiException {
         String owner = null;
         String repo = null;
-        List<DeployKey> response = api.repoListKeys(owner, repo);
+        Integer keyId = null;
+        String fingerprint = null;
+        List<DeployKey> response = api.repoListKeys(owner, repo, keyId, fingerprint);
 
         // TODO: test validations
     }

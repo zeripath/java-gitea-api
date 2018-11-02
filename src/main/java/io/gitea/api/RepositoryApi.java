@@ -5121,12 +5121,14 @@ public class RepositoryApi {
      * Build call for repoListKeys
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param keyId the key_id to search for (optional)
+     * @param fingerprint fingerprint of the key (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListKeysCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListKeysCall(String owner, String repo, Integer keyId, String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -5136,6 +5138,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (keyId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("key_id", keyId));
+        if (fingerprint != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("fingerprint", fingerprint));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -5170,7 +5176,7 @@ public class RepositoryApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListKeysValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListKeysValidateBeforeCall(String owner, String repo, Integer keyId, String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -5183,7 +5189,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListKeysCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListKeysCall(owner, repo, keyId, fingerprint, progressListener, progressRequestListener);
         return call;
 
     }
@@ -5193,11 +5199,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param keyId the key_id to search for (optional)
+     * @param fingerprint fingerprint of the key (optional)
      * @return List&lt;DeployKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<DeployKey> repoListKeys(String owner, String repo) throws ApiException {
-        ApiResponse<List<DeployKey>> resp = repoListKeysWithHttpInfo(owner, repo);
+    public List<DeployKey> repoListKeys(String owner, String repo, Integer keyId, String fingerprint) throws ApiException {
+        ApiResponse<List<DeployKey>> resp = repoListKeysWithHttpInfo(owner, repo, keyId, fingerprint);
         return resp.getData();
     }
 
@@ -5206,11 +5214,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param keyId the key_id to search for (optional)
+     * @param fingerprint fingerprint of the key (optional)
      * @return ApiResponse&lt;List&lt;DeployKey&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<DeployKey>> repoListKeysWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<DeployKey>> repoListKeysWithHttpInfo(String owner, String repo, Integer keyId, String fingerprint) throws ApiException {
+        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, keyId, fingerprint, null, null);
         Type localVarReturnType = new TypeToken<List<DeployKey>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -5220,11 +5230,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param keyId the key_id to search for (optional)
+     * @param fingerprint fingerprint of the key (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListKeysAsync(String owner, String repo, final ApiCallback<List<DeployKey>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListKeysAsync(String owner, String repo, Integer keyId, String fingerprint, final ApiCallback<List<DeployKey>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5245,7 +5257,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, keyId, fingerprint, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<DeployKey>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

@@ -27,7 +27,7 @@ import java.io.IOException;
  * Team represents a team in an organization
  */
 @ApiModel(description = "Team represents a team in an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class Team {
   @SerializedName("description")
   private String description = null;

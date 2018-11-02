@@ -19,6 +19,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * PublicKey publickey is a user key to push code to repository
  */
 @ApiModel(description = "PublicKey publickey is a user key to push code to repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class PublicKey {
   @SerializedName("created_at")
   private OffsetDateTime createdAt = null;
@@ -42,11 +43,20 @@ public class PublicKey {
   @SerializedName("key")
   private String key = null;
 
+  @SerializedName("key_type")
+  private String keyType = null;
+
+  @SerializedName("read_only")
+  private Boolean readOnly = null;
+
   @SerializedName("title")
   private String title = null;
 
   @SerializedName("url")
   private String url = null;
+
+  @SerializedName("user")
+  private User user = null;
 
   public PublicKey createdAt(OffsetDateTime createdAt) {
     this.createdAt = createdAt;
@@ -120,6 +130,42 @@ public class PublicKey {
     this.key = key;
   }
 
+  public PublicKey keyType(String keyType) {
+    this.keyType = keyType;
+    return this;
+  }
+
+   /**
+   * Get keyType
+   * @return keyType
+  **/
+  @ApiModelProperty(value = "")
+  public String getKeyType() {
+    return keyType;
+  }
+
+  public void setKeyType(String keyType) {
+    this.keyType = keyType;
+  }
+
+  public PublicKey readOnly(Boolean readOnly) {
+    this.readOnly = readOnly;
+    return this;
+  }
+
+   /**
+   * Get readOnly
+   * @return readOnly
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isReadOnly() {
+    return readOnly;
+  }
+
+  public void setReadOnly(Boolean readOnly) {
+    this.readOnly = readOnly;
+  }
+
   public PublicKey title(String title) {
     this.title = title;
     return this;
@@ -156,6 +202,24 @@ public class PublicKey {
     this.url = url;
   }
 
+  public PublicKey user(User user) {
+    this.user = user;
+    return this;
+  }
+
+   /**
+   * Get user
+   * @return user
+  **/
+  @ApiModelProperty(value = "")
+  public User getUser() {
+    return user;
+  }
+
+  public void setUser(User user) {
+    this.user = user;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -170,13 +234,16 @@ public class PublicKey {
         Objects.equals(this.fingerprint, publicKey.fingerprint) &&
         Objects.equals(this.id, publicKey.id) &&
         Objects.equals(this.key, publicKey.key) &&
+        Objects.equals(this.keyType, publicKey.keyType) &&
+        Objects.equals(this.readOnly, publicKey.readOnly) &&
         Objects.equals(this.title, publicKey.title) &&
-        Objects.equals(this.url, publicKey.url);
+        Objects.equals(this.url, publicKey.url) &&
+        Objects.equals(this.user, publicKey.user);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(createdAt, fingerprint, id, key, title, url);
+    return Objects.hash(createdAt, fingerprint, id, key, keyType, readOnly, title, url, user);
   }
 
 
@@ -189,8 +256,11 @@ public class PublicKey {
     sb.append("    fingerprint: ").append(toIndentedString(fingerprint)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    key: ").append(toIndentedString(key)).append("\n");
+    sb.append("    keyType: ").append(toIndentedString(keyType)).append("\n");
+    sb.append("    readOnly: ").append(toIndentedString(readOnly)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
+    sb.append("    user: ").append(toIndentedString(user)).append("\n");
     sb.append("}");
     return sb.toString();
   }

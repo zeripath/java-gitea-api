@@ -31,7 +31,7 @@ import java.util.Map;
  * CreateHookOption options when create a hook
  */
 @ApiModel(description = "CreateHookOption options when create a hook")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-10-20T18:39:27.321+01:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
 public class CreateHookOption {
   @SerializedName("active")
   private Boolean active = false;

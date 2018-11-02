@@ -40,6 +40,7 @@ import io.gitea.model.PublicKey;
 import io.gitea.model.Repository;
 import io.gitea.model.TrackedTime;
 import io.gitea.model.User;
+import io.gitea.model.UserHeatmapData;
 import io.gitea.model.UserSearchList;
 
 import java.lang.reflect.Type;
@@ -1878,12 +1879,13 @@ public class UserApi {
     }
     /**
      * Build call for userCurrentListKeys
+     * @param fingerprint fingerprint of the key (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userCurrentListKeysCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentListKeysCall(String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1891,6 +1893,8 @@ public class UserApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (fingerprint != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("fingerprint", fingerprint));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -1925,10 +1929,10 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userCurrentListKeysValidateBeforeCall(final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userCurrentListKeysValidateBeforeCall(String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = userCurrentListKeysCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userCurrentListKeysCall(fingerprint, progressListener, progressRequestListener);
         return call;
 
     }
@@ -1936,22 +1940,24 @@ public class UserApi {
     /**
      * List the authenticated user&#39;s public keys
      * 
+     * @param fingerprint fingerprint of the key (optional)
      * @return List&lt;PublicKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<PublicKey> userCurrentListKeys() throws ApiException {
-        ApiResponse<List<PublicKey>> resp = userCurrentListKeysWithHttpInfo();
+    public List<PublicKey> userCurrentListKeys(String fingerprint) throws ApiException {
+        ApiResponse<List<PublicKey>> resp = userCurrentListKeysWithHttpInfo(fingerprint);
         return resp.getData();
     }
 
     /**
      * List the authenticated user&#39;s public keys
      * 
+     * @param fingerprint fingerprint of the key (optional)
      * @return ApiResponse&lt;List&lt;PublicKey&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<PublicKey>> userCurrentListKeysWithHttpInfo() throws ApiException {
-        com.squareup.okhttp.Call call = userCurrentListKeysValidateBeforeCall(null, null);
+    public ApiResponse<List<PublicKey>> userCurrentListKeysWithHttpInfo(String fingerprint) throws ApiException {
+        com.squareup.okhttp.Call call = userCurrentListKeysValidateBeforeCall(fingerprint, null, null);
         Type localVarReturnType = new TypeToken<List<PublicKey>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -1959,11 +1965,12 @@ public class UserApi {
     /**
      * List the authenticated user&#39;s public keys (asynchronously)
      * 
+     * @param fingerprint fingerprint of the key (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCurrentListKeysAsync(final ApiCallback<List<PublicKey>> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCurrentListKeysAsync(String fingerprint, final ApiCallback<List<PublicKey>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1984,7 +1991,7 @@ public class UserApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userCurrentListKeysValidateBeforeCall(progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userCurrentListKeysValidateBeforeCall(fingerprint, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<PublicKey>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3402,6 +3409,129 @@ public class UserApi {
         return call;
     }
     /**
+     * Build call for userGetHeatmapData
+     * @param username username of user to get (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call userGetHeatmapDataCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/users/{username}/heatmap"
+            .replaceAll("\\{" + "username" + "\\}", apiClient.escapeString(username.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call userGetHeatmapDataValidateBeforeCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'username' is set
+        if (username == null) {
+            throw new ApiException("Missing the required parameter 'username' when calling userGetHeatmapData(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = userGetHeatmapDataCall(username, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a user&#39;s heatmap
+     * 
+     * @param username username of user to get (required)
+     * @return List&lt;UserHeatmapData&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<UserHeatmapData> userGetHeatmapData(String username) throws ApiException {
+        ApiResponse<List<UserHeatmapData>> resp = userGetHeatmapDataWithHttpInfo(username);
+        return resp.getData();
+    }
+
+    /**
+     * Get a user&#39;s heatmap
+     * 
+     * @param username username of user to get (required)
+     * @return ApiResponse&lt;List&lt;UserHeatmapData&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<UserHeatmapData>> userGetHeatmapDataWithHttpInfo(String username) throws ApiException {
+        com.squareup.okhttp.Call call = userGetHeatmapDataValidateBeforeCall(username, null, null);
+        Type localVarReturnType = new TypeToken<List<UserHeatmapData>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a user&#39;s heatmap (asynchronously)
+     * 
+     * @param username username of user to get (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call userGetHeatmapDataAsync(String username, final ApiCallback<List<UserHeatmapData>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = userGetHeatmapDataValidateBeforeCall(username, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<UserHeatmapData>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for userGetTokens
      * @param username username of user (required)
      * @param progressListener Progress listener
@@ -4009,12 +4139,13 @@ public class UserApi {
     /**
      * Build call for userListKeys
      * @param username username of user (required)
+     * @param fingerprint fingerprint of the key (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call userListKeysCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call userListKeysCall(String username, String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4023,6 +4154,8 @@ public class UserApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (fingerprint != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("fingerprint", fingerprint));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -4057,7 +4190,7 @@ public class UserApi {
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call userListKeysValidateBeforeCall(String username, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call userListKeysValidateBeforeCall(String username, String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'username' is set
         if (username == null) {
@@ -4065,7 +4198,7 @@ public class UserApi {
         }
         
 
-        com.squareup.okhttp.Call call = userListKeysCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userListKeysCall(username, fingerprint, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4074,11 +4207,12 @@ public class UserApi {
      * List the given user&#39;s public keys
      * 
      * @param username username of user (required)
+     * @param fingerprint fingerprint of the key (optional)
      * @return List&lt;PublicKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<PublicKey> userListKeys(String username) throws ApiException {
-        ApiResponse<List<PublicKey>> resp = userListKeysWithHttpInfo(username);
+    public List<PublicKey> userListKeys(String username, String fingerprint) throws ApiException {
+        ApiResponse<List<PublicKey>> resp = userListKeysWithHttpInfo(username, fingerprint);
         return resp.getData();
     }
 
@@ -4086,11 +4220,12 @@ public class UserApi {
      * List the given user&#39;s public keys
      * 
      * @param username username of user (required)
+     * @param fingerprint fingerprint of the key (optional)
      * @return ApiResponse&lt;List&lt;PublicKey&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<PublicKey>> userListKeysWithHttpInfo(String username) throws ApiException {
-        com.squareup.okhttp.Call call = userListKeysValidateBeforeCall(username, null, null);
+    public ApiResponse<List<PublicKey>> userListKeysWithHttpInfo(String username, String fingerprint) throws ApiException {
+        com.squareup.okhttp.Call call = userListKeysValidateBeforeCall(username, fingerprint, null, null);
         Type localVarReturnType = new TypeToken<List<PublicKey>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4099,11 +4234,12 @@ public class UserApi {
      * List the given user&#39;s public keys (asynchronously)
      * 
      * @param username username of user (required)
+     * @param fingerprint fingerprint of the key (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userListKeysAsync(String username, final ApiCallback<List<PublicKey>> callback) throws ApiException {
+    public com.squareup.okhttp.Call userListKeysAsync(String username, String fingerprint, final ApiCallback<List<PublicKey>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4124,7 +4260,7 @@ public class UserApi {
             };
         }
 
-        com.squareup.okhttp.Call call = userListKeysValidateBeforeCall(username, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = userListKeysValidateBeforeCall(username, fingerprint, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<PublicKey>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
