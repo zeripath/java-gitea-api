@@ -14,17 +14,7 @@
 package io.gitea.api;
 
 import io.gitea.ApiException;
-import io.gitea.model.Branch;
-import io.gitea.model.CreateHookOption;
-import io.gitea.model.CreateRepoOption;
-import io.gitea.model.CreateTeamOption;
-import io.gitea.model.EditHookOption;
-import io.gitea.model.EditOrgOption;
-import io.gitea.model.EditTeamOption;
-import io.gitea.model.Organization;
-import io.gitea.model.Repository;
-import io.gitea.model.Team;
-import io.gitea.model.User;
+import io.gitea.model.*;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -123,7 +113,7 @@ public class OrganizationApiTest {
     public void orgCreateHookTest() throws ApiException {
         String org = null;
         CreateHookOption body = null;
-        List<Branch> response = api.orgCreateHook(org, body);
+        Hook response = api.orgCreateHook(org, body);
 
         // TODO: test validations
     }
@@ -225,7 +215,7 @@ public class OrganizationApiTest {
         String org = null;
         Long id = null;
         EditHookOption body = null;
-        List<Branch> response = api.orgEditHook(org, id, body);
+        Hook response = api.orgEditHook(org, id, body);
 
         // TODO: test validations
     }
@@ -275,7 +265,7 @@ public class OrganizationApiTest {
     public void orgGetHookTest() throws ApiException {
         String org = null;
         Long id = null;
-        List<Branch> response = api.orgGetHook(org, id);
+        Hook response = api.orgGetHook(org, id);
 
         // TODO: test validations
     }
@@ -356,7 +346,7 @@ public class OrganizationApiTest {
     @Test
     public void orgListHooksTest() throws ApiException {
         String org = null;
-        List<Branch> response = api.orgListHooks(org);
+        List<Hook> response = api.orgListHooks(org);
 
         // TODO: test validations
     }

@@ -468,7 +468,8 @@ public class IssueApiTest {
     public void issueGetMilestonesListTest() throws ApiException {
         String owner = null;
         String repo = null;
-        List<Milestone> response = api.issueGetMilestonesList(owner, repo);
+        String state = null;
+        List<Milestone> response = api.issueGetMilestonesList(owner, repo, state);
 
         // TODO: test validations
     }
@@ -504,9 +505,10 @@ public class IssueApiTest {
         String owner = null;
         String repo = null;
         String state = null;
+        String labels = null;
         Integer page = null;
         String q = null;
-        List<Issue> response = api.issueListIssues(owner, repo, state, page, q);
+        List<Issue> response = api.issueListIssues(owner, repo, state, labels, page, q);
 
         // TODO: test validations
     }

@@ -14,21 +14,7 @@
 package io.gitea.api;
 
 import io.gitea.ApiException;
-import io.gitea.model.AccessToken;
-import io.gitea.model.AccessTokenName;
-import io.gitea.model.CreateEmailOption;
-import io.gitea.model.CreateGPGKeyOption;
-import io.gitea.model.CreateKeyOption;
-import io.gitea.model.CreateRepoOption;
-import io.gitea.model.DeleteEmailOption;
-import io.gitea.model.Email;
-import io.gitea.model.GPGKey;
-import io.gitea.model.PublicKey;
-import io.gitea.model.Repository;
-import io.gitea.model.TrackedTime;
-import io.gitea.model.User;
-import io.gitea.model.UserHeatmapData;
-import io.gitea.model.UserSearchList;
+import io.gitea.model.*;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -106,8 +92,8 @@ public class UserApiTest {
     @Test
     public void userCreateTokenTest() throws ApiException {
         String username = null;
-        AccessTokenName accessTokenName = null;
-        AccessToken response = api.userCreateToken(username, accessTokenName);
+        AccessToken accessToken = null;
+        api.userCreateToken(username, accessToken);
 
         // TODO: test validations
     }
@@ -665,7 +651,7 @@ public class UserApiTest {
         String q = null;
         Long uid = null;
         Integer limit = null;
-        UserSearchList response = api.userSearch(q, uid, limit);
+        InlineResponse2001 response = api.userSearch(q, uid, limit);
 
         // TODO: test validations
     }
