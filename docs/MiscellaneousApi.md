@@ -89,7 +89,7 @@ This endpoint does not need any parameter.
 
 <a name="renderMarkdown"></a>
 # **renderMarkdown**
-> renderMarkdown(body)
+> String renderMarkdown(body)
 
 Render a markdown document as HTML
 
@@ -142,7 +142,8 @@ Token.setApiKey("YOUR API KEY");
 MiscellaneousApi apiInstance = new MiscellaneousApi();
 MarkdownOption body = new MarkdownOption(); // MarkdownOption | 
 try {
-    apiInstance.renderMarkdown(body);
+    String result = apiInstance.renderMarkdown(body);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling MiscellaneousApi#renderMarkdown");
     e.printStackTrace();
@@ -157,7 +158,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+**String**
 
 ### Authorization
 
@@ -170,7 +171,7 @@ null (empty response body)
 
 <a name="renderMarkdownRaw"></a>
 # **renderMarkdownRaw**
-> renderMarkdownRaw(body)
+> String renderMarkdownRaw(body)
 
 Render raw markdown as HTML
 
@@ -223,7 +224,8 @@ Token.setApiKey("YOUR API KEY");
 MiscellaneousApi apiInstance = new MiscellaneousApi();
 String body = "body_example"; // String | Request body to render
 try {
-    apiInstance.renderMarkdownRaw(body);
+    String result = apiInstance.renderMarkdownRaw(body);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling MiscellaneousApi#renderMarkdownRaw");
     e.printStackTrace();
@@ -238,7 +240,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+**String**
 
 ### Authorization
 

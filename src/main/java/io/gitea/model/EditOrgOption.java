@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +28,7 @@ import java.io.IOException;
  * EditOrgOption options for editing an organization
  */
 @ApiModel(description = "EditOrgOption options for editing an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class EditOrgOption {
   @SerializedName("description")
   private String description = null;
@@ -37,6 +38,61 @@ public class EditOrgOption {
 
   @SerializedName("location")
   private String location = null;
+
+  @SerializedName("repo_admin_change_team_access")
+  private Boolean repoAdminChangeTeamAccess = null;
+
+  /**
+   * possible values are &#x60;public&#x60;, &#x60;limited&#x60; or &#x60;private&#x60;
+   */
+  @JsonAdapter(VisibilityEnum.Adapter.class)
+  public enum VisibilityEnum {
+    PUBLIC("public"),
+    
+    LIMITED("limited"),
+    
+    PRIVATE("private");
+
+    private String value;
+
+    VisibilityEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static VisibilityEnum fromValue(String text) {
+      for (VisibilityEnum b : VisibilityEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<VisibilityEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final VisibilityEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public VisibilityEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return VisibilityEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("visibility")
+  private VisibilityEnum visibility = null;
 
   @SerializedName("website")
   private String website = null;
@@ -95,6 +151,42 @@ public class EditOrgOption {
     this.location = location;
   }
 
+  public EditOrgOption repoAdminChangeTeamAccess(Boolean repoAdminChangeTeamAccess) {
+    this.repoAdminChangeTeamAccess = repoAdminChangeTeamAccess;
+    return this;
+  }
+
+   /**
+   * Get repoAdminChangeTeamAccess
+   * @return repoAdminChangeTeamAccess
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isRepoAdminChangeTeamAccess() {
+    return repoAdminChangeTeamAccess;
+  }
+
+  public void setRepoAdminChangeTeamAccess(Boolean repoAdminChangeTeamAccess) {
+    this.repoAdminChangeTeamAccess = repoAdminChangeTeamAccess;
+  }
+
+  public EditOrgOption visibility(VisibilityEnum visibility) {
+    this.visibility = visibility;
+    return this;
+  }
+
+   /**
+   * possible values are &#x60;public&#x60;, &#x60;limited&#x60; or &#x60;private&#x60;
+   * @return visibility
+  **/
+  @ApiModelProperty(value = "possible values are `public`, `limited` or `private`")
+  public VisibilityEnum getVisibility() {
+    return visibility;
+  }
+
+  public void setVisibility(VisibilityEnum visibility) {
+    this.visibility = visibility;
+  }
+
   public EditOrgOption website(String website) {
     this.website = website;
     return this;
@@ -126,12 +218,14 @@ public class EditOrgOption {
     return Objects.equals(this.description, editOrgOption.description) &&
         Objects.equals(this.fullName, editOrgOption.fullName) &&
         Objects.equals(this.location, editOrgOption.location) &&
+        Objects.equals(this.repoAdminChangeTeamAccess, editOrgOption.repoAdminChangeTeamAccess) &&
+        Objects.equals(this.visibility, editOrgOption.visibility) &&
         Objects.equals(this.website, editOrgOption.website);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, fullName, location, website);
+    return Objects.hash(description, fullName, location, repoAdminChangeTeamAccess, visibility, website);
   }
 
 
@@ -143,6 +237,8 @@ public class EditOrgOption {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    repoAdminChangeTeamAccess: ").append(toIndentedString(repoAdminChangeTeamAccess)).append("\n");
+    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
     sb.append("}");
     return sb.toString();

@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,10 +32,13 @@ import java.util.Map;
  * CreateHookOption options when create a hook
  */
 @ApiModel(description = "CreateHookOption options when create a hook")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class CreateHookOption {
   @SerializedName("active")
   private Boolean active = false;
+
+  @SerializedName("branch_filter")
+  private String branchFilter = null;
 
   @SerializedName("config")
   private Map<String, String> config = new HashMap<String, String>();
@@ -112,6 +116,24 @@ public class CreateHookOption {
 
   public void setActive(Boolean active) {
     this.active = active;
+  }
+
+  public CreateHookOption branchFilter(String branchFilter) {
+    this.branchFilter = branchFilter;
+    return this;
+  }
+
+   /**
+   * Get branchFilter
+   * @return branchFilter
+  **/
+  @ApiModelProperty(value = "")
+  public String getBranchFilter() {
+    return branchFilter;
+  }
+
+  public void setBranchFilter(String branchFilter) {
+    this.branchFilter = branchFilter;
   }
 
   public CreateHookOption config(Map<String, String> config) {
@@ -192,6 +214,7 @@ public class CreateHookOption {
     }
     CreateHookOption createHookOption = (CreateHookOption) o;
     return Objects.equals(this.active, createHookOption.active) &&
+        Objects.equals(this.branchFilter, createHookOption.branchFilter) &&
         Objects.equals(this.config, createHookOption.config) &&
         Objects.equals(this.events, createHookOption.events) &&
         Objects.equals(this.type, createHookOption.type);
@@ -199,7 +222,7 @@ public class CreateHookOption {
 
   @Override
   public int hashCode() {
-    return Objects.hash(active, config, events, type);
+    return Objects.hash(active, branchFilter, config, events, type);
   }
 
 
@@ -209,6 +232,7 @@ public class CreateHookOption {
     sb.append("class CreateHookOption {\n");
     
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    branchFilter: ").append(toIndentedString(branchFilter)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
     sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("    type: ").append(toIndentedString(type)).append("\n");

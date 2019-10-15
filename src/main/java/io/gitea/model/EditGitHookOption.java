@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,29 +25,30 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * AccessTokenName
+ * EditGitHookOption options when modifying one Git hook
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
-public class AccessTokenName {
-  @SerializedName("name")
-  private String name = null;
+@ApiModel(description = "EditGitHookOption options when modifying one Git hook")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+public class EditGitHookOption {
+  @SerializedName("content")
+  private String content = null;
 
-  public AccessTokenName name(String name) {
-    this.name = name;
+  public EditGitHookOption content(String content) {
+    this.content = content;
     return this;
   }
 
    /**
-   * Get name
-   * @return name
+   * Get content
+   * @return content
   **/
-  @ApiModelProperty(required = true, value = "")
-  public String getName() {
-    return name;
+  @ApiModelProperty(value = "")
+  public String getContent() {
+    return content;
   }
 
-  public void setName(String name) {
-    this.name = name;
+  public void setContent(String content) {
+    this.content = content;
   }
 
 
@@ -58,22 +60,22 @@ public class AccessTokenName {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    AccessTokenName accessTokenName = (AccessTokenName) o;
-    return Objects.equals(this.name, accessTokenName.name);
+    EditGitHookOption editGitHookOption = (EditGitHookOption) o;
+    return Objects.equals(this.content, editGitHookOption.content);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(name);
+    return Objects.hash(content);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class AccessTokenName {\n");
+    sb.append("class EditGitHookOption {\n");
     
-    sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    content: ").append(toIndentedString(content)).append("\n");
     sb.append("}");
     return sb.toString();
   }

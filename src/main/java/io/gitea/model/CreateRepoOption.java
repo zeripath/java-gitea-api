@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +28,7 @@ import java.io.IOException;
  * CreateRepoOption options when creating repository
  */
 @ApiModel(description = "CreateRepoOption options when creating repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class CreateRepoOption {
   @SerializedName("auto_init")
   private Boolean autoInit = null;
@@ -37,6 +38,9 @@ public class CreateRepoOption {
 
   @SerializedName("gitignores")
   private String gitignores = null;
+
+  @SerializedName("issue_labels")
+  private String issueLabels = null;
 
   @SerializedName("license")
   private String license = null;
@@ -102,6 +106,24 @@ public class CreateRepoOption {
 
   public void setGitignores(String gitignores) {
     this.gitignores = gitignores;
+  }
+
+  public CreateRepoOption issueLabels(String issueLabels) {
+    this.issueLabels = issueLabels;
+    return this;
+  }
+
+   /**
+   * Issue Label set to use
+   * @return issueLabels
+  **/
+  @ApiModelProperty(value = "Issue Label set to use")
+  public String getIssueLabels() {
+    return issueLabels;
+  }
+
+  public void setIssueLabels(String issueLabels) {
+    this.issueLabels = issueLabels;
   }
 
   public CreateRepoOption license(String license) {
@@ -189,6 +211,7 @@ public class CreateRepoOption {
     return Objects.equals(this.autoInit, createRepoOption.autoInit) &&
         Objects.equals(this.description, createRepoOption.description) &&
         Objects.equals(this.gitignores, createRepoOption.gitignores) &&
+        Objects.equals(this.issueLabels, createRepoOption.issueLabels) &&
         Objects.equals(this.license, createRepoOption.license) &&
         Objects.equals(this.name, createRepoOption.name) &&
         Objects.equals(this._private, createRepoOption._private) &&
@@ -197,7 +220,7 @@ public class CreateRepoOption {
 
   @Override
   public int hashCode() {
-    return Objects.hash(autoInit, description, gitignores, license, name, _private, readme);
+    return Objects.hash(autoInit, description, gitignores, issueLabels, license, name, _private, readme);
   }
 
 
@@ -209,6 +232,7 @@ public class CreateRepoOption {
     sb.append("    autoInit: ").append(toIndentedString(autoInit)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    gitignores: ").append(toIndentedString(gitignores)).append("\n");
+    sb.append("    issueLabels: ").append(toIndentedString(issueLabels)).append("\n");
     sb.append("    license: ").append(toIndentedString(license)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");

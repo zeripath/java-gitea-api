@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -31,10 +32,13 @@ import java.util.Map;
  * EditHookOption options when modify one hook
  */
 @ApiModel(description = "EditHookOption options when modify one hook")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class EditHookOption {
   @SerializedName("active")
   private Boolean active = null;
+
+  @SerializedName("branch_filter")
+  private String branchFilter = null;
 
   @SerializedName("config")
   private Map<String, String> config = null;
@@ -58,6 +62,24 @@ public class EditHookOption {
 
   public void setActive(Boolean active) {
     this.active = active;
+  }
+
+  public EditHookOption branchFilter(String branchFilter) {
+    this.branchFilter = branchFilter;
+    return this;
+  }
+
+   /**
+   * Get branchFilter
+   * @return branchFilter
+  **/
+  @ApiModelProperty(value = "")
+  public String getBranchFilter() {
+    return branchFilter;
+  }
+
+  public void setBranchFilter(String branchFilter) {
+    this.branchFilter = branchFilter;
   }
 
   public EditHookOption config(Map<String, String> config) {
@@ -123,13 +145,14 @@ public class EditHookOption {
     }
     EditHookOption editHookOption = (EditHookOption) o;
     return Objects.equals(this.active, editHookOption.active) &&
+        Objects.equals(this.branchFilter, editHookOption.branchFilter) &&
         Objects.equals(this.config, editHookOption.config) &&
         Objects.equals(this.events, editHookOption.events);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(active, config, events);
+    return Objects.hash(active, branchFilter, config, events);
   }
 
 
@@ -139,6 +162,7 @@ public class EditHookOption {
     sb.append("class EditHookOption {\n");
     
     sb.append("    active: ").append(toIndentedString(active)).append("\n");
+    sb.append("    branchFilter: ").append(toIndentedString(branchFilter)).append("\n");
     sb.append("    config: ").append(toIndentedString(config)).append("\n");
     sb.append("    events: ").append(toIndentedString(events)).append("\n");
     sb.append("}");

@@ -32,6 +32,25 @@
     <build>
         <plugins>
             <plugin>
+                <groupId>io.swagger</groupId>
+                <artifactId>swagger-codegen-maven-plugin</artifactId>
+                <version>2.4.8</version>
+                <executions>
+                    <execution>
+                        <goals>
+                            <goal>generate</goal>
+                        </goals>
+                    </execution>
+                </executions>
+                <configuration>
+                    <output>${project.basedir}</output>
+                    <inputSpec>${project.basedir}/swagger.v1.json</inputSpec>
+                    <language>java</language>
+                    <apiPackage>io.gitea.api</apiPackage>
+                    <modelPackage>io.gitea.model</modelPackage>
+                </configuration>
+            </plugin>
+            <plugin>
                 <groupId>org.apache.maven.plugins</groupId>
                 <artifactId>maven-enforcer-plugin</artifactId>
                 <version>3.0.0-M1</version>
@@ -307,7 +326,7 @@
         </repository>
     </distributionManagement>
     <properties>
-        <java.version>1.7</java.version>
+        <java.version>1.8</java.version>
         <maven.compiler.source>${java.version}</maven.compiler.source>
         <maven.compiler.target>${java.version}</maven.compiler.target>
         <gson-fire-version>1.8.0</gson-fire-version>

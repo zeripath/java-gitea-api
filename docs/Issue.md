@@ -15,6 +15,8 @@ Name | Type | Description | Notes
 **labels** | [**List&lt;Label&gt;**](Label.md) |  |  [optional]
 **milestone** | [**Milestone**](Milestone.md) |  |  [optional]
 **number** | **Long** |  |  [optional]
+**originalAuthor** | **String** |  |  [optional]
+**originalAuthorId** | **Long** |  |  [optional]
 **pullRequest** | [**PullRequestMeta**](PullRequestMeta.md) |  |  [optional]
 **state** | **String** |  |  [optional]
 **title** | **String** |  |  [optional]

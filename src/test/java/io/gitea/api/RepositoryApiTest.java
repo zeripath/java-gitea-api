@@ -14,31 +14,10 @@
 package io.gitea.api;
 
 import io.gitea.ApiException;
-import io.gitea.model.AddCollaboratorOption;
-import io.gitea.model.Attachment;
-import io.gitea.model.Branch;
-import io.gitea.model.CreateForkOption;
-import io.gitea.model.CreateHookOption;
-import io.gitea.model.CreateKeyOption;
-import io.gitea.model.CreatePullRequestOption;
-import io.gitea.model.CreateReleaseOption;
-import io.gitea.model.CreateRepoOption;
-import io.gitea.model.CreateStatusOption;
-import io.gitea.model.DeployKey;
-import io.gitea.model.EditAttachmentOptions;
-import io.gitea.model.EditHookOption;
-import io.gitea.model.EditPullRequestOption;
-import io.gitea.model.EditReleaseOption;
+import io.gitea.model.*;
+
 import java.io.File;
-import io.gitea.model.MigrateRepoForm;
-import io.gitea.model.PullRequest;
-import io.gitea.model.Release;
-import io.gitea.model.Repository;
-import io.gitea.model.SearchResults;
-import io.gitea.model.Status;
-import io.gitea.model.TrackedTime;
-import io.gitea.model.User;
-import io.gitea.model.WatchInfo;
+
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -157,7 +136,7 @@ public class RepositoryApiTest {
         String owner = null;
         String repo = null;
         CreateHookOption body = null;
-        List<Branch> response = api.repoCreateHook(owner, repo, body);
+        Hook response = api.repoCreateHook(owner, repo, body);
 
         // TODO: test validations
     }
@@ -377,7 +356,7 @@ public class RepositoryApiTest {
         String repo = null;
         Long id = null;
         EditHookOption body = null;
-        List<Branch> response = api.repoEditHook(owner, repo, id, body);
+        Hook response = api.repoEditHook(owner, repo, id, body);
 
         // TODO: test validations
     }
@@ -522,7 +501,8 @@ public class RepositoryApiTest {
         String owner = null;
         String repo = null;
         String ref = null;
-        Status response = api.repoGetCombinedStatusByRef(owner, repo, ref);
+        Integer page = null;
+        Status response = api.repoGetCombinedStatusByRef(owner, repo, ref, page);
 
         // TODO: test validations
     }
@@ -558,7 +538,7 @@ public class RepositoryApiTest {
         String owner = null;
         String repo = null;
         Long id = null;
-        List<Branch> response = api.repoGetHook(owner, repo, id);
+        Hook response = api.repoGetHook(owner, repo, id);
 
         // TODO: test validations
     }
@@ -700,7 +680,7 @@ public class RepositoryApiTest {
     public void repoListHooksTest() throws ApiException {
         String owner = null;
         String repo = null;
-        List<Branch> response = api.repoListHooks(owner, repo);
+        List<Hook> response = api.repoListHooks(owner, repo);
 
         // TODO: test validations
     }
@@ -776,7 +756,9 @@ public class RepositoryApiTest {
     public void repoListReleasesTest() throws ApiException {
         String owner = null;
         String repo = null;
-        List<Release> response = api.repoListReleases(owner, repo);
+        Integer page = null;
+        Integer perPage = null;
+        List<Release> response = api.repoListReleases(owner, repo, page, perPage);
 
         // TODO: test validations
     }
@@ -811,7 +793,10 @@ public class RepositoryApiTest {
         String owner = null;
         String repo = null;
         String sha = null;
-        List<Status> response = api.repoListStatuses(owner, repo, sha);
+        Integer page = null;
+        String sort = null;
+        String state = null;
+        List<Status> response = api.repoListStatuses(owner, repo, sha, page, sort, state);
 
         // TODO: test validations
     }
@@ -846,7 +831,8 @@ public class RepositoryApiTest {
         String owner = null;
         String repo = null;
         Long index = null;
-        api.repoMergePullRequest(owner, repo, index);
+        MergePullRequestOption body = null;
+        api.repoMergePullRequest(owner, repo, index, body);
 
         // TODO: test validations
     }
@@ -913,14 +899,18 @@ public class RepositoryApiTest {
     @Test
     public void repoSearchTest() throws ApiException {
         String q = null;
+        Boolean topic = null;
+        Boolean includeDesc = null;
         Long uid = null;
+        Long starredBy = null;
         Integer page = null;
+        Boolean _private = null;
         Integer limit = null;
         String mode = null;
         Boolean exclusive = null;
         String sort = null;
         String order = null;
-        SearchResults response = api.repoSearch(q, uid, page, limit, mode, exclusive, sort, order);
+        SearchResults response = api.repoSearch(q, topic, includeDesc, uid, starredBy, _private, page, limit, mode, exclusive, sort, order);
 
         // TODO: test validations
     }
@@ -971,7 +961,7 @@ public class RepositoryApiTest {
     @Test
     public void topicSearchTest() throws ApiException {
         String q = null;
-        Repository response = api.topicSearch(q);
+        List<TopicResponse> response = api.topicSearch(q);
 
         // TODO: test validations
     }

@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,14 +25,19 @@ import io.gitea.model.PayloadUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 import org.threeten.bp.OffsetDateTime;
 
 /**
  * PayloadCommit represents a commit
  */
 @ApiModel(description = "PayloadCommit represents a commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class PayloadCommit {
+  @SerializedName("added")
+  private List<String> added = null;
+
   @SerializedName("author")
   private PayloadUser author = null;
 
@@ -44,6 +50,12 @@ public class PayloadCommit {
   @SerializedName("message")
   private String message = null;
 
+  @SerializedName("modified")
+  private List<String> modified = null;
+
+  @SerializedName("removed")
+  private List<String> removed = null;
+
   @SerializedName("timestamp")
   private OffsetDateTime timestamp = null;
 
@@ -52,6 +64,32 @@ public class PayloadCommit {
 
   @SerializedName("verification")
   private PayloadCommitVerification verification = null;
+
+  public PayloadCommit added(List<String> added) {
+    this.added = added;
+    return this;
+  }
+
+  public PayloadCommit addAddedItem(String addedItem) {
+    if (this.added == null) {
+      this.added = new ArrayList<String>();
+    }
+    this.added.add(addedItem);
+    return this;
+  }
+
+   /**
+   * Get added
+   * @return added
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getAdded() {
+    return added;
+  }
+
+  public void setAdded(List<String> added) {
+    this.added = added;
+  }
 
   public PayloadCommit author(PayloadUser author) {
     this.author = author;
@@ -125,6 +163,58 @@ public class PayloadCommit {
     this.message = message;
   }
 
+  public PayloadCommit modified(List<String> modified) {
+    this.modified = modified;
+    return this;
+  }
+
+  public PayloadCommit addModifiedItem(String modifiedItem) {
+    if (this.modified == null) {
+      this.modified = new ArrayList<String>();
+    }
+    this.modified.add(modifiedItem);
+    return this;
+  }
+
+   /**
+   * Get modified
+   * @return modified
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getModified() {
+    return modified;
+  }
+
+  public void setModified(List<String> modified) {
+    this.modified = modified;
+  }
+
+  public PayloadCommit removed(List<String> removed) {
+    this.removed = removed;
+    return this;
+  }
+
+  public PayloadCommit addRemovedItem(String removedItem) {
+    if (this.removed == null) {
+      this.removed = new ArrayList<String>();
+    }
+    this.removed.add(removedItem);
+    return this;
+  }
+
+   /**
+   * Get removed
+   * @return removed
+  **/
+  @ApiModelProperty(value = "")
+  public List<String> getRemoved() {
+    return removed;
+  }
+
+  public void setRemoved(List<String> removed) {
+    this.removed = removed;
+  }
+
   public PayloadCommit timestamp(OffsetDateTime timestamp) {
     this.timestamp = timestamp;
     return this;
@@ -189,10 +279,13 @@ public class PayloadCommit {
       return false;
     }
     PayloadCommit payloadCommit = (PayloadCommit) o;
-    return Objects.equals(this.author, payloadCommit.author) &&
+    return Objects.equals(this.added, payloadCommit.added) &&
+        Objects.equals(this.author, payloadCommit.author) &&
         Objects.equals(this.committer, payloadCommit.committer) &&
         Objects.equals(this.id, payloadCommit.id) &&
         Objects.equals(this.message, payloadCommit.message) &&
+        Objects.equals(this.modified, payloadCommit.modified) &&
+        Objects.equals(this.removed, payloadCommit.removed) &&
         Objects.equals(this.timestamp, payloadCommit.timestamp) &&
         Objects.equals(this.url, payloadCommit.url) &&
         Objects.equals(this.verification, payloadCommit.verification);
@@ -200,7 +293,7 @@ public class PayloadCommit {
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, committer, id, message, timestamp, url, verification);
+    return Objects.hash(added, author, committer, id, message, modified, removed, timestamp, url, verification);
   }
 
 
@@ -209,10 +302,13 @@ public class PayloadCommit {
     StringBuilder sb = new StringBuilder();
     sb.append("class PayloadCommit {\n");
     
+    sb.append("    added: ").append(toIndentedString(added)).append("\n");
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    committer: ").append(toIndentedString(committer)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
+    sb.append("    modified: ").append(toIndentedString(modified)).append("\n");
+    sb.append("    removed: ").append(toIndentedString(removed)).append("\n");
     sb.append("    timestamp: ").append(toIndentedString(timestamp)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("    verification: ").append(toIndentedString(verification)).append("\n");

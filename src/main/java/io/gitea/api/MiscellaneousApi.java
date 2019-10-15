@@ -230,22 +230,25 @@ public class MiscellaneousApi {
      * Render a markdown document as HTML
      * 
      * @param body  (optional)
+     * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void renderMarkdown(MarkdownOption body) throws ApiException {
-        renderMarkdownWithHttpInfo(body);
+    public String renderMarkdown(MarkdownOption body) throws ApiException {
+        ApiResponse<String> resp = renderMarkdownWithHttpInfo(body);
+        return resp.getData();
     }
 
     /**
      * Render a markdown document as HTML
      * 
      * @param body  (optional)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> renderMarkdownWithHttpInfo(MarkdownOption body) throws ApiException {
+    public ApiResponse<String> renderMarkdownWithHttpInfo(MarkdownOption body) throws ApiException {
         com.squareup.okhttp.Call call = renderMarkdownValidateBeforeCall(body, null, null);
-        return apiClient.execute(call);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -256,7 +259,7 @@ public class MiscellaneousApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call renderMarkdownAsync(MarkdownOption body, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call renderMarkdownAsync(MarkdownOption body, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -278,7 +281,8 @@ public class MiscellaneousApi {
         }
 
         com.squareup.okhttp.Call call = renderMarkdownValidateBeforeCall(body, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
@@ -348,22 +352,25 @@ public class MiscellaneousApi {
      * Render raw markdown as HTML
      * 
      * @param body Request body to render (required)
+     * @return String
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void renderMarkdownRaw(String body) throws ApiException {
-        renderMarkdownRawWithHttpInfo(body);
+    public String renderMarkdownRaw(String body) throws ApiException {
+        ApiResponse<String> resp = renderMarkdownRawWithHttpInfo(body);
+        return resp.getData();
     }
 
     /**
      * Render raw markdown as HTML
      * 
      * @param body Request body to render (required)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;String&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> renderMarkdownRawWithHttpInfo(String body) throws ApiException {
+    public ApiResponse<String> renderMarkdownRawWithHttpInfo(String body) throws ApiException {
         com.squareup.okhttp.Call call = renderMarkdownRawValidateBeforeCall(body, null, null);
-        return apiClient.execute(call);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -374,7 +381,7 @@ public class MiscellaneousApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call renderMarkdownRawAsync(String body, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call renderMarkdownRawAsync(String body, final ApiCallback<String> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -396,7 +403,8 @@ public class MiscellaneousApi {
         }
 
         com.squareup.okhttp.Call call = renderMarkdownRawValidateBeforeCall(body, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
 }

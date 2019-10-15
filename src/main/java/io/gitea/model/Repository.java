@@ -14,11 +14,15 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.ExternalTracker;
+import io.gitea.model.ExternalWiki;
+import io.gitea.model.InternalTracker;
 import io.gitea.model.Permission;
 import io.gitea.model.Repository;
 import io.gitea.model.User;
@@ -31,10 +35,25 @@ import org.threeten.bp.OffsetDateTime;
  * Repository represents a repository
  */
 @ApiModel(description = "Repository represents a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Repository {
+  @SerializedName("allow_merge_commits")
+  private Boolean allowMergeCommits = null;
+
+  @SerializedName("allow_rebase")
+  private Boolean allowRebase = null;
+
+  @SerializedName("allow_rebase_explicit")
+  private Boolean allowRebaseExplicit = null;
+
+  @SerializedName("allow_squash_merge")
+  private Boolean allowSquashMerge = null;
+
   @SerializedName("archived")
   private Boolean archived = null;
+
+  @SerializedName("avatar_url")
+  private String avatarUrl = null;
 
   @SerializedName("clone_url")
   private String cloneUrl = null;
@@ -51,6 +70,12 @@ public class Repository {
   @SerializedName("empty")
   private Boolean empty = null;
 
+  @SerializedName("external_tracker")
+  private ExternalTracker externalTracker = null;
+
+  @SerializedName("external_wiki")
+  private ExternalWiki externalWiki = null;
+
   @SerializedName("fork")
   private Boolean fork = null;
 
@@ -60,11 +85,26 @@ public class Repository {
   @SerializedName("full_name")
   private String fullName = null;
 
+  @SerializedName("has_issues")
+  private Boolean hasIssues = null;
+
+  @SerializedName("has_pull_requests")
+  private Boolean hasPullRequests = null;
+
+  @SerializedName("has_wiki")
+  private Boolean hasWiki = null;
+
   @SerializedName("html_url")
   private String htmlUrl = null;
 
   @SerializedName("id")
   private Long id = null;
+
+  @SerializedName("ignore_whitespace_conflicts")
+  private Boolean ignoreWhitespaceConflicts = null;
+
+  @SerializedName("internal_tracker")
+  private InternalTracker internalTracker = null;
 
   @SerializedName("mirror")
   private Boolean mirror = null;
@@ -74,6 +114,9 @@ public class Repository {
 
   @SerializedName("open_issues_count")
   private Long openIssuesCount = null;
+
+  @SerializedName("original_url")
+  private String originalUrl = null;
 
   @SerializedName("owner")
   private User owner = null;
@@ -105,6 +148,78 @@ public class Repository {
   @SerializedName("website")
   private String website = null;
 
+  public Repository allowMergeCommits(Boolean allowMergeCommits) {
+    this.allowMergeCommits = allowMergeCommits;
+    return this;
+  }
+
+   /**
+   * Get allowMergeCommits
+   * @return allowMergeCommits
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isAllowMergeCommits() {
+    return allowMergeCommits;
+  }
+
+  public void setAllowMergeCommits(Boolean allowMergeCommits) {
+    this.allowMergeCommits = allowMergeCommits;
+  }
+
+  public Repository allowRebase(Boolean allowRebase) {
+    this.allowRebase = allowRebase;
+    return this;
+  }
+
+   /**
+   * Get allowRebase
+   * @return allowRebase
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isAllowRebase() {
+    return allowRebase;
+  }
+
+  public void setAllowRebase(Boolean allowRebase) {
+    this.allowRebase = allowRebase;
+  }
+
+  public Repository allowRebaseExplicit(Boolean allowRebaseExplicit) {
+    this.allowRebaseExplicit = allowRebaseExplicit;
+    return this;
+  }
+
+   /**
+   * Get allowRebaseExplicit
+   * @return allowRebaseExplicit
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isAllowRebaseExplicit() {
+    return allowRebaseExplicit;
+  }
+
+  public void setAllowRebaseExplicit(Boolean allowRebaseExplicit) {
+    this.allowRebaseExplicit = allowRebaseExplicit;
+  }
+
+  public Repository allowSquashMerge(Boolean allowSquashMerge) {
+    this.allowSquashMerge = allowSquashMerge;
+    return this;
+  }
+
+   /**
+   * Get allowSquashMerge
+   * @return allowSquashMerge
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isAllowSquashMerge() {
+    return allowSquashMerge;
+  }
+
+  public void setAllowSquashMerge(Boolean allowSquashMerge) {
+    this.allowSquashMerge = allowSquashMerge;
+  }
+
   public Repository archived(Boolean archived) {
     this.archived = archived;
     return this;
@@ -121,6 +236,24 @@ public class Repository {
 
   public void setArchived(Boolean archived) {
     this.archived = archived;
+  }
+
+  public Repository avatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
+    return this;
+  }
+
+   /**
+   * Get avatarUrl
+   * @return avatarUrl
+  **/
+  @ApiModelProperty(value = "")
+  public String getAvatarUrl() {
+    return avatarUrl;
+  }
+
+  public void setAvatarUrl(String avatarUrl) {
+    this.avatarUrl = avatarUrl;
   }
 
   public Repository cloneUrl(String cloneUrl) {
@@ -213,6 +346,42 @@ public class Repository {
     this.empty = empty;
   }
 
+  public Repository externalTracker(ExternalTracker externalTracker) {
+    this.externalTracker = externalTracker;
+    return this;
+  }
+
+   /**
+   * Get externalTracker
+   * @return externalTracker
+  **/
+  @ApiModelProperty(value = "")
+  public ExternalTracker getExternalTracker() {
+    return externalTracker;
+  }
+
+  public void setExternalTracker(ExternalTracker externalTracker) {
+    this.externalTracker = externalTracker;
+  }
+
+  public Repository externalWiki(ExternalWiki externalWiki) {
+    this.externalWiki = externalWiki;
+    return this;
+  }
+
+   /**
+   * Get externalWiki
+   * @return externalWiki
+  **/
+  @ApiModelProperty(value = "")
+  public ExternalWiki getExternalWiki() {
+    return externalWiki;
+  }
+
+  public void setExternalWiki(ExternalWiki externalWiki) {
+    this.externalWiki = externalWiki;
+  }
+
   public Repository fork(Boolean fork) {
     this.fork = fork;
     return this;
@@ -267,6 +436,60 @@ public class Repository {
     this.fullName = fullName;
   }
 
+  public Repository hasIssues(Boolean hasIssues) {
+    this.hasIssues = hasIssues;
+    return this;
+  }
+
+   /**
+   * Get hasIssues
+   * @return hasIssues
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHasIssues() {
+    return hasIssues;
+  }
+
+  public void setHasIssues(Boolean hasIssues) {
+    this.hasIssues = hasIssues;
+  }
+
+  public Repository hasPullRequests(Boolean hasPullRequests) {
+    this.hasPullRequests = hasPullRequests;
+    return this;
+  }
+
+   /**
+   * Get hasPullRequests
+   * @return hasPullRequests
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHasPullRequests() {
+    return hasPullRequests;
+  }
+
+  public void setHasPullRequests(Boolean hasPullRequests) {
+    this.hasPullRequests = hasPullRequests;
+  }
+
+  public Repository hasWiki(Boolean hasWiki) {
+    this.hasWiki = hasWiki;
+    return this;
+  }
+
+   /**
+   * Get hasWiki
+   * @return hasWiki
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHasWiki() {
+    return hasWiki;
+  }
+
+  public void setHasWiki(Boolean hasWiki) {
+    this.hasWiki = hasWiki;
+  }
+
   public Repository htmlUrl(String htmlUrl) {
     this.htmlUrl = htmlUrl;
     return this;
@@ -301,6 +524,42 @@ public class Repository {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Repository ignoreWhitespaceConflicts(Boolean ignoreWhitespaceConflicts) {
+    this.ignoreWhitespaceConflicts = ignoreWhitespaceConflicts;
+    return this;
+  }
+
+   /**
+   * Get ignoreWhitespaceConflicts
+   * @return ignoreWhitespaceConflicts
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIgnoreWhitespaceConflicts() {
+    return ignoreWhitespaceConflicts;
+  }
+
+  public void setIgnoreWhitespaceConflicts(Boolean ignoreWhitespaceConflicts) {
+    this.ignoreWhitespaceConflicts = ignoreWhitespaceConflicts;
+  }
+
+  public Repository internalTracker(InternalTracker internalTracker) {
+    this.internalTracker = internalTracker;
+    return this;
+  }
+
+   /**
+   * Get internalTracker
+   * @return internalTracker
+  **/
+  @ApiModelProperty(value = "")
+  public InternalTracker getInternalTracker() {
+    return internalTracker;
+  }
+
+  public void setInternalTracker(InternalTracker internalTracker) {
+    this.internalTracker = internalTracker;
   }
 
   public Repository mirror(Boolean mirror) {
@@ -355,6 +614,24 @@ public class Repository {
 
   public void setOpenIssuesCount(Long openIssuesCount) {
     this.openIssuesCount = openIssuesCount;
+  }
+
+  public Repository originalUrl(String originalUrl) {
+    this.originalUrl = originalUrl;
+    return this;
+  }
+
+   /**
+   * Get originalUrl
+   * @return originalUrl
+  **/
+  @ApiModelProperty(value = "")
+  public String getOriginalUrl() {
+    return originalUrl;
+  }
+
+  public void setOriginalUrl(String originalUrl) {
+    this.originalUrl = originalUrl;
   }
 
   public Repository owner(User owner) {
@@ -547,20 +824,33 @@ public class Repository {
       return false;
     }
     Repository repository = (Repository) o;
-    return Objects.equals(this.archived, repository.archived) &&
+    return Objects.equals(this.allowMergeCommits, repository.allowMergeCommits) &&
+        Objects.equals(this.allowRebase, repository.allowRebase) &&
+        Objects.equals(this.allowRebaseExplicit, repository.allowRebaseExplicit) &&
+        Objects.equals(this.allowSquashMerge, repository.allowSquashMerge) &&
+        Objects.equals(this.archived, repository.archived) &&
+        Objects.equals(this.avatarUrl, repository.avatarUrl) &&
         Objects.equals(this.cloneUrl, repository.cloneUrl) &&
         Objects.equals(this.createdAt, repository.createdAt) &&
         Objects.equals(this.defaultBranch, repository.defaultBranch) &&
         Objects.equals(this.description, repository.description) &&
         Objects.equals(this.empty, repository.empty) &&
+        Objects.equals(this.externalTracker, repository.externalTracker) &&
+        Objects.equals(this.externalWiki, repository.externalWiki) &&
         Objects.equals(this.fork, repository.fork) &&
         Objects.equals(this.forksCount, repository.forksCount) &&
         Objects.equals(this.fullName, repository.fullName) &&
+        Objects.equals(this.hasIssues, repository.hasIssues) &&
+        Objects.equals(this.hasPullRequests, repository.hasPullRequests) &&
+        Objects.equals(this.hasWiki, repository.hasWiki) &&
         Objects.equals(this.htmlUrl, repository.htmlUrl) &&
         Objects.equals(this.id, repository.id) &&
+        Objects.equals(this.ignoreWhitespaceConflicts, repository.ignoreWhitespaceConflicts) &&
+        Objects.equals(this.internalTracker, repository.internalTracker) &&
         Objects.equals(this.mirror, repository.mirror) &&
         Objects.equals(this.name, repository.name) &&
         Objects.equals(this.openIssuesCount, repository.openIssuesCount) &&
+        Objects.equals(this.originalUrl, repository.originalUrl) &&
         Objects.equals(this.owner, repository.owner) &&
         Objects.equals(this.parent, repository.parent) &&
         Objects.equals(this.permissions, repository.permissions) &&
@@ -575,7 +865,7 @@ public class Repository {
 
   @Override
   public int hashCode() {
-    return Objects.hash(archived, cloneUrl, createdAt, defaultBranch, description, empty, fork, forksCount, fullName, htmlUrl, id, mirror, name, openIssuesCount, owner, parent, permissions, _private, size, sshUrl, starsCount, updatedAt, watchersCount, website);
+    return Objects.hash(allowMergeCommits, allowRebase, allowRebaseExplicit, allowSquashMerge, archived, avatarUrl, cloneUrl, createdAt, defaultBranch, description, empty, externalTracker, externalWiki, fork, forksCount, fullName, hasIssues, hasPullRequests, hasWiki, htmlUrl, id, ignoreWhitespaceConflicts, internalTracker, mirror, name, openIssuesCount, originalUrl, owner, parent, permissions, _private, size, sshUrl, starsCount, updatedAt, watchersCount, website);
   }
 
 
@@ -584,20 +874,33 @@ public class Repository {
     StringBuilder sb = new StringBuilder();
     sb.append("class Repository {\n");
     
+    sb.append("    allowMergeCommits: ").append(toIndentedString(allowMergeCommits)).append("\n");
+    sb.append("    allowRebase: ").append(toIndentedString(allowRebase)).append("\n");
+    sb.append("    allowRebaseExplicit: ").append(toIndentedString(allowRebaseExplicit)).append("\n");
+    sb.append("    allowSquashMerge: ").append(toIndentedString(allowSquashMerge)).append("\n");
     sb.append("    archived: ").append(toIndentedString(archived)).append("\n");
+    sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
     sb.append("    cloneUrl: ").append(toIndentedString(cloneUrl)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    defaultBranch: ").append(toIndentedString(defaultBranch)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    empty: ").append(toIndentedString(empty)).append("\n");
+    sb.append("    externalTracker: ").append(toIndentedString(externalTracker)).append("\n");
+    sb.append("    externalWiki: ").append(toIndentedString(externalWiki)).append("\n");
     sb.append("    fork: ").append(toIndentedString(fork)).append("\n");
     sb.append("    forksCount: ").append(toIndentedString(forksCount)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
+    sb.append("    hasIssues: ").append(toIndentedString(hasIssues)).append("\n");
+    sb.append("    hasPullRequests: ").append(toIndentedString(hasPullRequests)).append("\n");
+    sb.append("    hasWiki: ").append(toIndentedString(hasWiki)).append("\n");
     sb.append("    htmlUrl: ").append(toIndentedString(htmlUrl)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    ignoreWhitespaceConflicts: ").append(toIndentedString(ignoreWhitespaceConflicts)).append("\n");
+    sb.append("    internalTracker: ").append(toIndentedString(internalTracker)).append("\n");
     sb.append("    mirror: ").append(toIndentedString(mirror)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    openIssuesCount: ").append(toIndentedString(openIssuesCount)).append("\n");
+    sb.append("    originalUrl: ").append(toIndentedString(originalUrl)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");

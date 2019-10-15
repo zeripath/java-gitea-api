@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -24,37 +25,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * AccessToken represents a API access token.
+ * AccessToken
  */
-@ApiModel(description = "AccessToken represents a API access token.")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class AccessToken {
-  @SerializedName("id")
-  private Long id = null;
-
   @SerializedName("name")
   private String name = null;
-
-  @SerializedName("sha1")
-  private String sha1 = null;
-
-  public AccessToken id(Long id) {
-    this.id = id;
-    return this;
-  }
-
-   /**
-   * Get id
-   * @return id
-  **/
-  @ApiModelProperty(value = "")
-  public Long getId() {
-    return id;
-  }
-
-  public void setId(Long id) {
-    this.id = id;
-  }
 
   public AccessToken name(String name) {
     this.name = name;
@@ -65,31 +41,13 @@ public class AccessToken {
    * Get name
    * @return name
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(required = true, value = "")
   public String getName() {
     return name;
   }
 
   public void setName(String name) {
     this.name = name;
-  }
-
-  public AccessToken sha1(String sha1) {
-    this.sha1 = sha1;
-    return this;
-  }
-
-   /**
-   * Get sha1
-   * @return sha1
-  **/
-  @ApiModelProperty(value = "")
-  public String getSha1() {
-    return sha1;
-  }
-
-  public void setSha1(String sha1) {
-    this.sha1 = sha1;
   }
 
 
@@ -102,14 +60,12 @@ public class AccessToken {
       return false;
     }
     AccessToken accessToken = (AccessToken) o;
-    return Objects.equals(this.id, accessToken.id) &&
-        Objects.equals(this.name, accessToken.name) &&
-        Objects.equals(this.sha1, accessToken.sha1);
+    return Objects.equals(this.name, accessToken.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(id, name, sha1);
+    return Objects.hash(name);
   }
 
 
@@ -118,9 +74,7 @@ public class AccessToken {
     StringBuilder sb = new StringBuilder();
     sb.append("class AccessToken {\n");
     
-    sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
-    sb.append("    sha1: ").append(toIndentedString(sha1)).append("\n");
     sb.append("}");
     return sb.toString();
   }

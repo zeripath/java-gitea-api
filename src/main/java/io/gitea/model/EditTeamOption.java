@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,12 +23,14 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * EditTeamOption options for editing a team
  */
 @ApiModel(description = "EditTeamOption options for editing a team")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class EditTeamOption {
   @SerializedName("description")
   private String description = null;
@@ -87,6 +90,9 @@ public class EditTeamOption {
   @SerializedName("permission")
   private PermissionEnum permission = null;
 
+  @SerializedName("units")
+  private List<String> units = null;
+
   public EditTeamOption description(String description) {
     this.description = description;
     return this;
@@ -141,6 +147,32 @@ public class EditTeamOption {
     this.permission = permission;
   }
 
+  public EditTeamOption units(List<String> units) {
+    this.units = units;
+    return this;
+  }
+
+  public EditTeamOption addUnitsItem(String unitsItem) {
+    if (this.units == null) {
+      this.units = new ArrayList<String>();
+    }
+    this.units.add(unitsItem);
+    return this;
+  }
+
+   /**
+   * Get units
+   * @return units
+  **/
+  @ApiModelProperty(example = "[\"repo.code\",\"repo.issues\",\"repo.ext_issues\",\"repo.wiki\",\"repo.pulls\",\"repo.releases\",\"repo.ext_wiki\"]", value = "")
+  public List<String> getUnits() {
+    return units;
+  }
+
+  public void setUnits(List<String> units) {
+    this.units = units;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -153,12 +185,13 @@ public class EditTeamOption {
     EditTeamOption editTeamOption = (EditTeamOption) o;
     return Objects.equals(this.description, editTeamOption.description) &&
         Objects.equals(this.name, editTeamOption.name) &&
-        Objects.equals(this.permission, editTeamOption.permission);
+        Objects.equals(this.permission, editTeamOption.permission) &&
+        Objects.equals(this.units, editTeamOption.units);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, permission);
+    return Objects.hash(description, name, permission, units);
   }
 
 
@@ -170,6 +203,7 @@ public class EditTeamOption {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    units: ").append(toIndentedString(units)).append("\n");
     sb.append("}");
     return sb.toString();
   }

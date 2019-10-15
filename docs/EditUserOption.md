@@ -14,6 +14,7 @@ Name | Type | Description | Notes
 **location** | **String** |  |  [optional]
 **loginName** | **String** |  |  [optional]
 **maxRepoCreation** | **Long** |  |  [optional]
+**mustChangePassword** | **Boolean** |  |  [optional]
 **password** | **String** |  |  [optional]
 **prohibitLogin** | **Boolean** |  |  [optional]
 **sourceId** | **Long** |  |  [optional]
