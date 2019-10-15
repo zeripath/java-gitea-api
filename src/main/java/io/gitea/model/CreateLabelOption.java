@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,10 +28,13 @@ import java.io.IOException;
  * CreateLabelOption options for creating a label
  */
 @ApiModel(description = "CreateLabelOption options for creating a label")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class CreateLabelOption {
   @SerializedName("color")
   private String color = null;
+
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("name")
   private String name = null;
@@ -51,6 +55,24 @@ public class CreateLabelOption {
 
   public void setColor(String color) {
     this.color = color;
+  }
+
+  public CreateLabelOption description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public CreateLabelOption name(String name) {
@@ -82,12 +104,13 @@ public class CreateLabelOption {
     }
     CreateLabelOption createLabelOption = (CreateLabelOption) o;
     return Objects.equals(this.color, createLabelOption.color) &&
+        Objects.equals(this.description, createLabelOption.description) &&
         Objects.equals(this.name, createLabelOption.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(color, name);
+    return Objects.hash(color, description, name);
   }
 
 
@@ -97,6 +120,7 @@ public class CreateLabelOption {
     sb.append("class CreateLabelOption {\n");
     
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();

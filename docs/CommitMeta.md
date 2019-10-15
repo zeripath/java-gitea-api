@@ -1,10 +1,11 @@
 
-# AccessTokenName
+# CommitMeta
 
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  | 
+**sha** | **String** |  |  [optional]
+**url** | **String** |  |  [optional]
 
 
 

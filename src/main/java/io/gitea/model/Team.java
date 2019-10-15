@@ -14,20 +14,24 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.Organization;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import java.util.ArrayList;
+import java.util.List;
 
 /**
  * Team represents a team in an organization
  */
 @ApiModel(description = "Team represents a team in an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Team {
   @SerializedName("description")
   private String description = null;
@@ -37,6 +41,9 @@ public class Team {
 
   @SerializedName("name")
   private String name = null;
+
+  @SerializedName("organization")
+  private Organization organization = null;
 
   /**
    * Gets or Sets permission
@@ -94,6 +101,9 @@ public class Team {
   @SerializedName("permission")
   private PermissionEnum permission = null;
 
+  @SerializedName("units")
+  private List<String> units = null;
+
   public Team description(String description) {
     this.description = description;
     return this;
@@ -148,6 +158,24 @@ public class Team {
     this.name = name;
   }
 
+  public Team organization(Organization organization) {
+    this.organization = organization;
+    return this;
+  }
+
+   /**
+   * Get organization
+   * @return organization
+  **/
+  @ApiModelProperty(value = "")
+  public Organization getOrganization() {
+    return organization;
+  }
+
+  public void setOrganization(Organization organization) {
+    this.organization = organization;
+  }
+
   public Team permission(PermissionEnum permission) {
     this.permission = permission;
     return this;
@@ -166,6 +194,32 @@ public class Team {
     this.permission = permission;
   }
 
+  public Team units(List<String> units) {
+    this.units = units;
+    return this;
+  }
+
+  public Team addUnitsItem(String unitsItem) {
+    if (this.units == null) {
+      this.units = new ArrayList<String>();
+    }
+    this.units.add(unitsItem);
+    return this;
+  }
+
+   /**
+   * Get units
+   * @return units
+  **/
+  @ApiModelProperty(example = "[\"repo.code\",\"repo.issues\",\"repo.ext_issues\",\"repo.wiki\",\"repo.pulls\",\"repo.releases\",\"repo.ext_wiki\"]", value = "")
+  public List<String> getUnits() {
+    return units;
+  }
+
+  public void setUnits(List<String> units) {
+    this.units = units;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -179,12 +233,14 @@ public class Team {
     return Objects.equals(this.description, team.description) &&
         Objects.equals(this.id, team.id) &&
         Objects.equals(this.name, team.name) &&
-        Objects.equals(this.permission, team.permission);
+        Objects.equals(this.organization, team.organization) &&
+        Objects.equals(this.permission, team.permission) &&
+        Objects.equals(this.units, team.units);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, id, name, permission);
+    return Objects.hash(description, id, name, organization, permission, units);
   }
 
 
@@ -196,7 +252,9 @@ public class Team {
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
+    sb.append("    organization: ").append(toIndentedString(organization)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
+    sb.append("    units: ").append(toIndentedString(units)).append("\n");
     sb.append("}");
     return sb.toString();
   }

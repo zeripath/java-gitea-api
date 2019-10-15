@@ -9,6 +9,8 @@ Name | Type | Description | Notes
 **htmlUrl** | **String** |  |  [optional]
 **id** | **Long** |  |  [optional]
 **issueUrl** | **String** |  |  [optional]
+**originalAuthor** | **String** |  |  [optional]
+**originalAuthorId** | **Long** |  |  [optional]
 **pullRequestUrl** | **String** |  |  [optional]
 **updatedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **user** | [**User**](User.md) |  |  [optional]

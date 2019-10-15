@@ -7,6 +7,7 @@ Name | Type | Description | Notes
 **description** | **String** |  |  [optional]
 **name** | **String** |  | 
 **permission** | [**PermissionEnum**](#PermissionEnum) |  |  [optional]
+**units** | **List&lt;String&gt;** |  |  [optional]
 
 
 <a name="PermissionEnum"></a>

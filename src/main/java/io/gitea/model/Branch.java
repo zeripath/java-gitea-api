@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -28,7 +29,7 @@ import java.io.IOException;
  * Branch represents a repository branch
  */
 @ApiModel(description = "Branch represents a repository branch")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Branch {
   @SerializedName("commit")
   private PayloadCommit commit = null;

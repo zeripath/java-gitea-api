@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +28,7 @@ import java.io.IOException;
  * EditUserOption edit user options
  */
 @ApiModel(description = "EditUserOption edit user options")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class EditUserOption {
   @SerializedName("active")
   private Boolean active = null;
@@ -58,6 +59,9 @@ public class EditUserOption {
 
   @SerializedName("max_repo_creation")
   private Long maxRepoCreation = null;
+
+  @SerializedName("must_change_password")
+  private Boolean mustChangePassword = null;
 
   @SerializedName("password")
   private String password = null;
@@ -251,6 +255,24 @@ public class EditUserOption {
     this.maxRepoCreation = maxRepoCreation;
   }
 
+  public EditUserOption mustChangePassword(Boolean mustChangePassword) {
+    this.mustChangePassword = mustChangePassword;
+    return this;
+  }
+
+   /**
+   * Get mustChangePassword
+   * @return mustChangePassword
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isMustChangePassword() {
+    return mustChangePassword;
+  }
+
+  public void setMustChangePassword(Boolean mustChangePassword) {
+    this.mustChangePassword = mustChangePassword;
+  }
+
   public EditUserOption password(String password) {
     this.password = password;
     return this;
@@ -343,6 +365,7 @@ public class EditUserOption {
         Objects.equals(this.location, editUserOption.location) &&
         Objects.equals(this.loginName, editUserOption.loginName) &&
         Objects.equals(this.maxRepoCreation, editUserOption.maxRepoCreation) &&
+        Objects.equals(this.mustChangePassword, editUserOption.mustChangePassword) &&
         Objects.equals(this.password, editUserOption.password) &&
         Objects.equals(this.prohibitLogin, editUserOption.prohibitLogin) &&
         Objects.equals(this.sourceId, editUserOption.sourceId) &&
@@ -351,7 +374,7 @@ public class EditUserOption {
 
   @Override
   public int hashCode() {
-    return Objects.hash(active, admin, allowCreateOrganization, allowGitHook, allowImportLocal, email, fullName, location, loginName, maxRepoCreation, password, prohibitLogin, sourceId, website);
+    return Objects.hash(active, admin, allowCreateOrganization, allowGitHook, allowImportLocal, email, fullName, location, loginName, maxRepoCreation, mustChangePassword, password, prohibitLogin, sourceId, website);
   }
 
 
@@ -370,6 +393,7 @@ public class EditUserOption {
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
     sb.append("    loginName: ").append(toIndentedString(loginName)).append("\n");
     sb.append("    maxRepoCreation: ").append(toIndentedString(maxRepoCreation)).append("\n");
+    sb.append("    mustChangePassword: ").append(toIndentedString(mustChangePassword)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    prohibitLogin: ").append(toIndentedString(prohibitLogin)).append("\n");
     sb.append("    sourceId: ").append(toIndentedString(sourceId)).append("\n");

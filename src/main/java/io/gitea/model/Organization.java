@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +28,7 @@ import java.io.IOException;
  * Organization represents an organization
  */
 @ApiModel(description = "Organization represents an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Organization {
   @SerializedName("avatar_url")
   private String avatarUrl = null;
@@ -44,8 +45,14 @@ public class Organization {
   @SerializedName("location")
   private String location = null;
 
+  @SerializedName("repo_admin_change_team_access")
+  private Boolean repoAdminChangeTeamAccess = null;
+
   @SerializedName("username")
   private String username = null;
+
+  @SerializedName("visibility")
+  private String visibility = null;
 
   @SerializedName("website")
   private String website = null;
@@ -140,6 +147,24 @@ public class Organization {
     this.location = location;
   }
 
+  public Organization repoAdminChangeTeamAccess(Boolean repoAdminChangeTeamAccess) {
+    this.repoAdminChangeTeamAccess = repoAdminChangeTeamAccess;
+    return this;
+  }
+
+   /**
+   * Get repoAdminChangeTeamAccess
+   * @return repoAdminChangeTeamAccess
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isRepoAdminChangeTeamAccess() {
+    return repoAdminChangeTeamAccess;
+  }
+
+  public void setRepoAdminChangeTeamAccess(Boolean repoAdminChangeTeamAccess) {
+    this.repoAdminChangeTeamAccess = repoAdminChangeTeamAccess;
+  }
+
   public Organization username(String username) {
     this.username = username;
     return this;
@@ -156,6 +181,24 @@ public class Organization {
 
   public void setUsername(String username) {
     this.username = username;
+  }
+
+  public Organization visibility(String visibility) {
+    this.visibility = visibility;
+    return this;
+  }
+
+   /**
+   * Get visibility
+   * @return visibility
+  **/
+  @ApiModelProperty(value = "")
+  public String getVisibility() {
+    return visibility;
+  }
+
+  public void setVisibility(String visibility) {
+    this.visibility = visibility;
   }
 
   public Organization website(String website) {
@@ -191,13 +234,15 @@ public class Organization {
         Objects.equals(this.fullName, organization.fullName) &&
         Objects.equals(this.id, organization.id) &&
         Objects.equals(this.location, organization.location) &&
+        Objects.equals(this.repoAdminChangeTeamAccess, organization.repoAdminChangeTeamAccess) &&
         Objects.equals(this.username, organization.username) &&
+        Objects.equals(this.visibility, organization.visibility) &&
         Objects.equals(this.website, organization.website);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(avatarUrl, description, fullName, id, location, username, website);
+    return Objects.hash(avatarUrl, description, fullName, id, location, repoAdminChangeTeamAccess, username, visibility, website);
   }
 
 
@@ -211,7 +256,9 @@ public class Organization {
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    location: ").append(toIndentedString(location)).append("\n");
+    sb.append("    repoAdminChangeTeamAccess: ").append(toIndentedString(repoAdminChangeTeamAccess)).append("\n");
     sb.append("    username: ").append(toIndentedString(username)).append("\n");
+    sb.append("    visibility: ").append(toIndentedString(visibility)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
     sb.append("}");
     return sb.toString();

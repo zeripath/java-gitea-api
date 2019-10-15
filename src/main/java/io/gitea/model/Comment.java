@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -29,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Comment represents a comment on a commit or issue
  */
 @ApiModel(description = "Comment represents a comment on a commit or issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Comment {
   @SerializedName("body")
   private String body = null;
@@ -45,6 +46,12 @@ public class Comment {
 
   @SerializedName("issue_url")
   private String issueUrl = null;
+
+  @SerializedName("original_author")
+  private String originalAuthor = null;
+
+  @SerializedName("original_author_id")
+  private Long originalAuthorId = null;
 
   @SerializedName("pull_request_url")
   private String pullRequestUrl = null;
@@ -145,6 +152,42 @@ public class Comment {
     this.issueUrl = issueUrl;
   }
 
+  public Comment originalAuthor(String originalAuthor) {
+    this.originalAuthor = originalAuthor;
+    return this;
+  }
+
+   /**
+   * Get originalAuthor
+   * @return originalAuthor
+  **/
+  @ApiModelProperty(value = "")
+  public String getOriginalAuthor() {
+    return originalAuthor;
+  }
+
+  public void setOriginalAuthor(String originalAuthor) {
+    this.originalAuthor = originalAuthor;
+  }
+
+  public Comment originalAuthorId(Long originalAuthorId) {
+    this.originalAuthorId = originalAuthorId;
+    return this;
+  }
+
+   /**
+   * Get originalAuthorId
+   * @return originalAuthorId
+  **/
+  @ApiModelProperty(value = "")
+  public Long getOriginalAuthorId() {
+    return originalAuthorId;
+  }
+
+  public void setOriginalAuthorId(Long originalAuthorId) {
+    this.originalAuthorId = originalAuthorId;
+  }
+
   public Comment pullRequestUrl(String pullRequestUrl) {
     this.pullRequestUrl = pullRequestUrl;
     return this;
@@ -214,6 +257,8 @@ public class Comment {
         Objects.equals(this.htmlUrl, comment.htmlUrl) &&
         Objects.equals(this.id, comment.id) &&
         Objects.equals(this.issueUrl, comment.issueUrl) &&
+        Objects.equals(this.originalAuthor, comment.originalAuthor) &&
+        Objects.equals(this.originalAuthorId, comment.originalAuthorId) &&
         Objects.equals(this.pullRequestUrl, comment.pullRequestUrl) &&
         Objects.equals(this.updatedAt, comment.updatedAt) &&
         Objects.equals(this.user, comment.user);
@@ -221,7 +266,7 @@ public class Comment {
 
   @Override
   public int hashCode() {
-    return Objects.hash(body, createdAt, htmlUrl, id, issueUrl, pullRequestUrl, updatedAt, user);
+    return Objects.hash(body, createdAt, htmlUrl, id, issueUrl, originalAuthor, originalAuthorId, pullRequestUrl, updatedAt, user);
   }
 
 
@@ -235,6 +280,8 @@ public class Comment {
     sb.append("    htmlUrl: ").append(toIndentedString(htmlUrl)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    issueUrl: ").append(toIndentedString(issueUrl)).append("\n");
+    sb.append("    originalAuthor: ").append(toIndentedString(originalAuthor)).append("\n");
+    sb.append("    originalAuthorId: ").append(toIndentedString(originalAuthorId)).append("\n");
     sb.append("    pullRequestUrl: ").append(toIndentedString(pullRequestUrl)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    user: ").append(toIndentedString(user)).append("\n");

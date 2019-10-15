@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,10 +28,13 @@ import java.io.IOException;
  * Label a label to an issue or a pr
  */
 @ApiModel(description = "Label a label to an issue or a pr")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Label {
   @SerializedName("color")
   private String color = null;
+
+  @SerializedName("description")
+  private String description = null;
 
   @SerializedName("id")
   private Long id = null;
@@ -57,6 +61,24 @@ public class Label {
 
   public void setColor(String color) {
     this.color = color;
+  }
+
+  public Label description(String description) {
+    this.description = description;
+    return this;
+  }
+
+   /**
+   * Get description
+   * @return description
+  **/
+  @ApiModelProperty(value = "")
+  public String getDescription() {
+    return description;
+  }
+
+  public void setDescription(String description) {
+    this.description = description;
   }
 
   public Label id(Long id) {
@@ -124,6 +146,7 @@ public class Label {
     }
     Label label = (Label) o;
     return Objects.equals(this.color, label.color) &&
+        Objects.equals(this.description, label.description) &&
         Objects.equals(this.id, label.id) &&
         Objects.equals(this.name, label.name) &&
         Objects.equals(this.url, label.url);
@@ -131,7 +154,7 @@ public class Label {
 
   @Override
   public int hashCode() {
-    return Objects.hash(color, id, name, url);
+    return Objects.hash(color, description, id, name, url);
   }
 
 
@@ -141,6 +164,7 @@ public class Label {
     sb.append("class Label {\n");
     
     sb.append("    color: ").append(toIndentedString(color)).append("\n");
+    sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");

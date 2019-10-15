@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -22,15 +23,19 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * User represents a user
  */
 @ApiModel(description = "User represents a user")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class User {
   @SerializedName("avatar_url")
   private String avatarUrl = null;
+
+  @SerializedName("created")
+  private OffsetDateTime created = null;
 
   @SerializedName("email")
   private String email = null;
@@ -41,8 +46,14 @@ public class User {
   @SerializedName("id")
   private Long id = null;
 
+  @SerializedName("is_admin")
+  private Boolean isAdmin = null;
+
   @SerializedName("language")
   private String language = null;
+
+  @SerializedName("last_login")
+  private OffsetDateTime lastLogin = null;
 
   @SerializedName("login")
   private String login = null;
@@ -63,6 +74,24 @@ public class User {
 
   public void setAvatarUrl(String avatarUrl) {
     this.avatarUrl = avatarUrl;
+  }
+
+  public User created(OffsetDateTime created) {
+    this.created = created;
+    return this;
+  }
+
+   /**
+   * Get created
+   * @return created
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getCreated() {
+    return created;
+  }
+
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
   }
 
   public User email(String email) {
@@ -119,6 +148,24 @@ public class User {
     this.id = id;
   }
 
+  public User isAdmin(Boolean isAdmin) {
+    this.isAdmin = isAdmin;
+    return this;
+  }
+
+   /**
+   * Is the user an administrator
+   * @return isAdmin
+  **/
+  @ApiModelProperty(value = "Is the user an administrator")
+  public Boolean isIsAdmin() {
+    return isAdmin;
+  }
+
+  public void setIsAdmin(Boolean isAdmin) {
+    this.isAdmin = isAdmin;
+  }
+
   public User language(String language) {
     this.language = language;
     return this;
@@ -135,6 +182,24 @@ public class User {
 
   public void setLanguage(String language) {
     this.language = language;
+  }
+
+  public User lastLogin(OffsetDateTime lastLogin) {
+    this.lastLogin = lastLogin;
+    return this;
+  }
+
+   /**
+   * Get lastLogin
+   * @return lastLogin
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getLastLogin() {
+    return lastLogin;
+  }
+
+  public void setLastLogin(OffsetDateTime lastLogin) {
+    this.lastLogin = lastLogin;
   }
 
   public User login(String login) {
@@ -166,16 +231,19 @@ public class User {
     }
     User user = (User) o;
     return Objects.equals(this.avatarUrl, user.avatarUrl) &&
+        Objects.equals(this.created, user.created) &&
         Objects.equals(this.email, user.email) &&
         Objects.equals(this.fullName, user.fullName) &&
         Objects.equals(this.id, user.id) &&
+        Objects.equals(this.isAdmin, user.isAdmin) &&
         Objects.equals(this.language, user.language) &&
+        Objects.equals(this.lastLogin, user.lastLogin) &&
         Objects.equals(this.login, user.login);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(avatarUrl, email, fullName, id, language, login);
+    return Objects.hash(avatarUrl, created, email, fullName, id, isAdmin, language, lastLogin, login);
   }
 
 
@@ -185,10 +253,13 @@ public class User {
     sb.append("class User {\n");
     
     sb.append("    avatarUrl: ").append(toIndentedString(avatarUrl)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isAdmin: ").append(toIndentedString(isAdmin)).append("\n");
     sb.append("    language: ").append(toIndentedString(language)).append("\n");
+    sb.append("    lastLogin: ").append(toIndentedString(lastLogin)).append("\n");
     sb.append("    login: ").append(toIndentedString(login)).append("\n");
     sb.append("}");
     return sb.toString();

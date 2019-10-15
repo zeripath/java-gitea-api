@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +28,7 @@ import java.io.IOException;
  * CreateUserOption create user options
  */
 @ApiModel(description = "CreateUserOption create user options")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class CreateUserOption {
   @SerializedName("email")
   private String email = null;
@@ -37,6 +38,9 @@ public class CreateUserOption {
 
   @SerializedName("login_name")
   private String loginName = null;
+
+  @SerializedName("must_change_password")
+  private Boolean mustChangePassword = null;
 
   @SerializedName("password")
   private String password = null;
@@ -102,6 +106,24 @@ public class CreateUserOption {
 
   public void setLoginName(String loginName) {
     this.loginName = loginName;
+  }
+
+  public CreateUserOption mustChangePassword(Boolean mustChangePassword) {
+    this.mustChangePassword = mustChangePassword;
+    return this;
+  }
+
+   /**
+   * Get mustChangePassword
+   * @return mustChangePassword
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isMustChangePassword() {
+    return mustChangePassword;
+  }
+
+  public void setMustChangePassword(Boolean mustChangePassword) {
+    this.mustChangePassword = mustChangePassword;
   }
 
   public CreateUserOption password(String password) {
@@ -189,6 +211,7 @@ public class CreateUserOption {
     return Objects.equals(this.email, createUserOption.email) &&
         Objects.equals(this.fullName, createUserOption.fullName) &&
         Objects.equals(this.loginName, createUserOption.loginName) &&
+        Objects.equals(this.mustChangePassword, createUserOption.mustChangePassword) &&
         Objects.equals(this.password, createUserOption.password) &&
         Objects.equals(this.sendNotify, createUserOption.sendNotify) &&
         Objects.equals(this.sourceId, createUserOption.sourceId) &&
@@ -197,7 +220,7 @@ public class CreateUserOption {
 
   @Override
   public int hashCode() {
-    return Objects.hash(email, fullName, loginName, password, sendNotify, sourceId, username);
+    return Objects.hash(email, fullName, loginName, mustChangePassword, password, sendNotify, sourceId, username);
   }
 
 
@@ -209,6 +232,7 @@ public class CreateUserOption {
     sb.append("    email: ").append(toIndentedString(email)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    loginName: ").append(toIndentedString(loginName)).append("\n");
+    sb.append("    mustChangePassword: ").append(toIndentedString(mustChangePassword)).append("\n");
     sb.append("    password: ").append(toIndentedString(password)).append("\n");
     sb.append("    sendNotify: ").append(toIndentedString(sendNotify)).append("\n");
     sb.append("    sourceId: ").append(toIndentedString(sourceId)).append("\n");

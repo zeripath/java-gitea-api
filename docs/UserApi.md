@@ -42,6 +42,7 @@ Method | HTTP request | Description
 [**userListRepos**](UserApi.md#userListRepos) | **GET** /users/{username}/repos | List the repos owned by the given user
 [**userListStarred**](UserApi.md#userListStarred) | **GET** /users/{username}/starred | The repos that the given user has starred
 [**userListSubscriptions**](UserApi.md#userListSubscriptions) | **GET** /users/{username}/subscriptions | List the repositories watched by a user
+[**userListTeams**](UserApi.md#userListTeams) | **GET** /user/teams | List all the teams a user belongs to
 [**userSearch**](UserApi.md#userSearch) | **GET** /users/search | Search for users
 [**userTrackedTimes**](UserApi.md#userTrackedTimes) | **GET** /repos/{owner}/{repo}/times/{user} | List a user&#39;s tracked times in a repo
 
@@ -295,7 +296,7 @@ null (empty response body)
 
 <a name="userCreateToken"></a>
 # **userCreateToken**
-> AccessToken userCreateToken(username, accessTokenName)
+> userCreateToken(username, accessToken)
 
 Create an access token
 
@@ -347,10 +348,9 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
-AccessTokenName accessTokenName = new AccessTokenName(); // AccessTokenName | 
+AccessToken accessToken = new AccessToken(); // AccessToken | 
 try {
-    AccessToken result = apiInstance.userCreateToken(username, accessTokenName);
-    System.out.println(result);
+    apiInstance.userCreateToken(username, accessToken);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCreateToken");
     e.printStackTrace();
@@ -362,11 +362,11 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
- **accessTokenName** | [**AccessTokenName**](AccessTokenName.md)|  | [optional]
+ **accessToken** | [**AccessToken**](AccessToken.md)|  | [optional]
 
 ### Return type
 
-[**AccessToken**](AccessToken.md)
+null (empty response body)
 
 ### Authorization
 
@@ -3129,9 +3129,87 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, text/plain
  - **Accept**: application/json
 
+<a name="userListTeams"></a>
+# **userListTeams**
+> List&lt;Team&gt; userListTeams()
+
+List all the teams a user belongs to
+
+### Example
+```java
+// Import classes:
+//import io.gitea.ApiClient;
+//import io.gitea.ApiException;
+//import io.gitea.Configuration;
+//import io.gitea.auth.*;
+//import io.gitea.api.UserApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: AccessToken
+ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
+AccessToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AccessToken.setApiKeyPrefix("Token");
+
+// Configure API key authorization: AuthorizationHeaderToken
+ApiKeyAuth AuthorizationHeaderToken = (ApiKeyAuth) defaultClient.getAuthentication("AuthorizationHeaderToken");
+AuthorizationHeaderToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AuthorizationHeaderToken.setApiKeyPrefix("Token");
+
+// Configure HTTP basic authorization: BasicAuth
+HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+BasicAuth.setUsername("YOUR USERNAME");
+BasicAuth.setPassword("YOUR PASSWORD");
+
+// Configure API key authorization: SudoHeader
+ApiKeyAuth SudoHeader = (ApiKeyAuth) defaultClient.getAuthentication("SudoHeader");
+SudoHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: SudoParam
+ApiKeyAuth SudoParam = (ApiKeyAuth) defaultClient.getAuthentication("SudoParam");
+SudoParam.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoParam.setApiKeyPrefix("Token");
+
+// Configure API key authorization: Token
+ApiKeyAuth Token = (ApiKeyAuth) defaultClient.getAuthentication("Token");
+Token.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Token.setApiKeyPrefix("Token");
+
+UserApi apiInstance = new UserApi();
+try {
+    List<Team> result = apiInstance.userListTeams();
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling UserApi#userListTeams");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+This endpoint does not need any parameter.
+
+### Return type
+
+[**List&lt;Team&gt;**](Team.md)
+
+### Authorization
+
+[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/plain
+ - **Accept**: application/json
+
 <a name="userSearch"></a>
 # **userSearch**
-> UserSearchList userSearch(q, uid, limit)
+> InlineResponse2001 userSearch(q, uid, limit)
 
 Search for users
 
@@ -3186,7 +3264,7 @@ String q = "q_example"; // String | keyword
 Long uid = 789L; // Long | ID of the user to search for
 Integer limit = 56; // Integer | maximum number of users to return
 try {
-    UserSearchList result = apiInstance.userSearch(q, uid, limit);
+    InlineResponse2001 result = apiInstance.userSearch(q, uid, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userSearch");
@@ -3204,7 +3282,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-[**UserSearchList**](UserSearchList.md)
+[**InlineResponse2001**](InlineResponse2001.md)
 
 ### Authorization
 

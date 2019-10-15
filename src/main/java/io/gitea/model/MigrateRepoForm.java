@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -27,7 +28,7 @@ import java.io.IOException;
  * MigrateRepoForm form for migrating repository
  */
 @ApiModel(description = "MigrateRepoForm form for migrating repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class MigrateRepoForm {
   @SerializedName("auth_password")
   private String authPassword = null;
@@ -41,17 +42,35 @@ public class MigrateRepoForm {
   @SerializedName("description")
   private String description = null;
 
+  @SerializedName("issues")
+  private Boolean issues = null;
+
+  @SerializedName("labels")
+  private Boolean labels = null;
+
+  @SerializedName("milestones")
+  private Boolean milestones = null;
+
   @SerializedName("mirror")
   private Boolean mirror = null;
 
   @SerializedName("private")
   private Boolean _private = null;
 
+  @SerializedName("pull_requests")
+  private Boolean pullRequests = null;
+
+  @SerializedName("releases")
+  private Boolean releases = null;
+
   @SerializedName("repo_name")
   private String repoName = null;
 
   @SerializedName("uid")
   private Long uid = null;
+
+  @SerializedName("wiki")
+  private Boolean wiki = null;
 
   public MigrateRepoForm authPassword(String authPassword) {
     this.authPassword = authPassword;
@@ -125,6 +144,60 @@ public class MigrateRepoForm {
     this.description = description;
   }
 
+  public MigrateRepoForm issues(Boolean issues) {
+    this.issues = issues;
+    return this;
+  }
+
+   /**
+   * Get issues
+   * @return issues
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIssues() {
+    return issues;
+  }
+
+  public void setIssues(Boolean issues) {
+    this.issues = issues;
+  }
+
+  public MigrateRepoForm labels(Boolean labels) {
+    this.labels = labels;
+    return this;
+  }
+
+   /**
+   * Get labels
+   * @return labels
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isLabels() {
+    return labels;
+  }
+
+  public void setLabels(Boolean labels) {
+    this.labels = labels;
+  }
+
+  public MigrateRepoForm milestones(Boolean milestones) {
+    this.milestones = milestones;
+    return this;
+  }
+
+   /**
+   * Get milestones
+   * @return milestones
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isMilestones() {
+    return milestones;
+  }
+
+  public void setMilestones(Boolean milestones) {
+    this.milestones = milestones;
+  }
+
   public MigrateRepoForm mirror(Boolean mirror) {
     this.mirror = mirror;
     return this;
@@ -159,6 +232,42 @@ public class MigrateRepoForm {
 
   public void setPrivate(Boolean _private) {
     this._private = _private;
+  }
+
+  public MigrateRepoForm pullRequests(Boolean pullRequests) {
+    this.pullRequests = pullRequests;
+    return this;
+  }
+
+   /**
+   * Get pullRequests
+   * @return pullRequests
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isPullRequests() {
+    return pullRequests;
+  }
+
+  public void setPullRequests(Boolean pullRequests) {
+    this.pullRequests = pullRequests;
+  }
+
+  public MigrateRepoForm releases(Boolean releases) {
+    this.releases = releases;
+    return this;
+  }
+
+   /**
+   * Get releases
+   * @return releases
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isReleases() {
+    return releases;
+  }
+
+  public void setReleases(Boolean releases) {
+    this.releases = releases;
   }
 
   public MigrateRepoForm repoName(String repoName) {
@@ -197,6 +306,24 @@ public class MigrateRepoForm {
     this.uid = uid;
   }
 
+  public MigrateRepoForm wiki(Boolean wiki) {
+    this.wiki = wiki;
+    return this;
+  }
+
+   /**
+   * Get wiki
+   * @return wiki
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isWiki() {
+    return wiki;
+  }
+
+  public void setWiki(Boolean wiki) {
+    this.wiki = wiki;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -211,15 +338,21 @@ public class MigrateRepoForm {
         Objects.equals(this.authUsername, migrateRepoForm.authUsername) &&
         Objects.equals(this.cloneAddr, migrateRepoForm.cloneAddr) &&
         Objects.equals(this.description, migrateRepoForm.description) &&
+        Objects.equals(this.issues, migrateRepoForm.issues) &&
+        Objects.equals(this.labels, migrateRepoForm.labels) &&
+        Objects.equals(this.milestones, migrateRepoForm.milestones) &&
         Objects.equals(this.mirror, migrateRepoForm.mirror) &&
         Objects.equals(this._private, migrateRepoForm._private) &&
+        Objects.equals(this.pullRequests, migrateRepoForm.pullRequests) &&
+        Objects.equals(this.releases, migrateRepoForm.releases) &&
         Objects.equals(this.repoName, migrateRepoForm.repoName) &&
-        Objects.equals(this.uid, migrateRepoForm.uid);
+        Objects.equals(this.uid, migrateRepoForm.uid) &&
+        Objects.equals(this.wiki, migrateRepoForm.wiki);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authPassword, authUsername, cloneAddr, description, mirror, _private, repoName, uid);
+    return Objects.hash(authPassword, authUsername, cloneAddr, description, issues, labels, milestones, mirror, _private, pullRequests, releases, repoName, uid, wiki);
   }
 
 
@@ -232,10 +365,16 @@ public class MigrateRepoForm {
     sb.append("    authUsername: ").append(toIndentedString(authUsername)).append("\n");
     sb.append("    cloneAddr: ").append(toIndentedString(cloneAddr)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    issues: ").append(toIndentedString(issues)).append("\n");
+    sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
+    sb.append("    milestones: ").append(toIndentedString(milestones)).append("\n");
     sb.append("    mirror: ").append(toIndentedString(mirror)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");
+    sb.append("    pullRequests: ").append(toIndentedString(pullRequests)).append("\n");
+    sb.append("    releases: ").append(toIndentedString(releases)).append("\n");
     sb.append("    repoName: ").append(toIndentedString(repoName)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
+    sb.append("    wiki: ").append(toIndentedString(wiki)).append("\n");
     sb.append("}");
     return sb.toString();
   }

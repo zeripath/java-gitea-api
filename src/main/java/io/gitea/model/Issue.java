@@ -14,6 +14,7 @@
 package io.gitea.model;
 
 import java.util.Objects;
+import java.util.Arrays;
 import com.google.gson.TypeAdapter;
 import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
@@ -34,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * Issue represents an issue in a repository
  */
 @ApiModel(description = "Issue represents an issue in a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2018-11-02T17:53:11.028Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
 public class Issue {
   @SerializedName("assignee")
   private User assignee = null;
@@ -68,6 +69,12 @@ public class Issue {
 
   @SerializedName("number")
   private Long number = null;
+
+  @SerializedName("original_author")
+  private String originalAuthor = null;
+
+  @SerializedName("original_author_id")
+  private Long originalAuthorId = null;
 
   @SerializedName("pull_request")
   private PullRequestMeta pullRequest = null;
@@ -301,6 +308,42 @@ public class Issue {
     this.number = number;
   }
 
+  public Issue originalAuthor(String originalAuthor) {
+    this.originalAuthor = originalAuthor;
+    return this;
+  }
+
+   /**
+   * Get originalAuthor
+   * @return originalAuthor
+  **/
+  @ApiModelProperty(value = "")
+  public String getOriginalAuthor() {
+    return originalAuthor;
+  }
+
+  public void setOriginalAuthor(String originalAuthor) {
+    this.originalAuthor = originalAuthor;
+  }
+
+  public Issue originalAuthorId(Long originalAuthorId) {
+    this.originalAuthorId = originalAuthorId;
+    return this;
+  }
+
+   /**
+   * Get originalAuthorId
+   * @return originalAuthorId
+  **/
+  @ApiModelProperty(value = "")
+  public Long getOriginalAuthorId() {
+    return originalAuthorId;
+  }
+
+  public void setOriginalAuthorId(Long originalAuthorId) {
+    this.originalAuthorId = originalAuthorId;
+  }
+
   public Issue pullRequest(PullRequestMeta pullRequest) {
     this.pullRequest = pullRequest;
     return this;
@@ -430,6 +473,8 @@ public class Issue {
         Objects.equals(this.labels, issue.labels) &&
         Objects.equals(this.milestone, issue.milestone) &&
         Objects.equals(this.number, issue.number) &&
+        Objects.equals(this.originalAuthor, issue.originalAuthor) &&
+        Objects.equals(this.originalAuthorId, issue.originalAuthorId) &&
         Objects.equals(this.pullRequest, issue.pullRequest) &&
         Objects.equals(this.state, issue.state) &&
         Objects.equals(this.title, issue.title) &&
@@ -440,7 +485,7 @@ public class Issue {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assignee, assignees, body, closedAt, comments, createdAt, dueDate, id, labels, milestone, number, pullRequest, state, title, updatedAt, url, user);
+    return Objects.hash(assignee, assignees, body, closedAt, comments, createdAt, dueDate, id, labels, milestone, number, originalAuthor, originalAuthorId, pullRequest, state, title, updatedAt, url, user);
   }
 
 
@@ -460,6 +505,8 @@ public class Issue {
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    milestone: ").append(toIndentedString(milestone)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
+    sb.append("    originalAuthor: ").append(toIndentedString(originalAuthor)).append("\n");
+    sb.append("    originalAuthorId: ").append(toIndentedString(originalAuthorId)).append("\n");
     sb.append("    pullRequest: ").append(toIndentedString(pullRequest)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
