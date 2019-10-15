@@ -93,7 +93,7 @@ if(hasProperty('target') && target == 'android') {
 
     javadoc {
       source = sourceSets.main.allJava
-      classpath = configurations.compileClasspath
+      classpath = sourceSets.main.compileClasspath
 
       options
       {
