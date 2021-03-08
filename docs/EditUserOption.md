@@ -9,15 +9,16 @@ Name | Type | Description | Notes
 **allowCreateOrganization** | **Boolean** |  |  [optional]
 **allowGitHook** | **Boolean** |  |  [optional]
 **allowImportLocal** | **Boolean** |  |  [optional]
-**email** | **String** |  | 
+**email** | **String** |  |  [optional]
 **fullName** | **String** |  |  [optional]
 **location** | **String** |  |  [optional]
-**loginName** | **String** |  |  [optional]
+**loginName** | **String** |  | 
 **maxRepoCreation** | **Long** |  |  [optional]
 **mustChangePassword** | **Boolean** |  |  [optional]
 **password** | **String** |  |  [optional]
 **prohibitLogin** | **Boolean** |  |  [optional]
-**sourceId** | **Long** |  |  [optional]
+**restricted** | **Boolean** |  |  [optional]
+**sourceId** | **Long** |  | 
 **website** | **String** |  |  [optional]
 
 

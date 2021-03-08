@@ -4,8 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**canCreateOrgRepo** | **Boolean** |  |  [optional]
 **description** | **String** |  |  [optional]
 **id** | **Long** |  |  [optional]
+**includesAllRepositories** | **Boolean** |  |  [optional]
 **name** | **String** |  |  [optional]
 **organization** | [**Organization**](Organization.md) |  |  [optional]
 **permission** | [**PermissionEnum**](#PermissionEnum) |  |  [optional]
