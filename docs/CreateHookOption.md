@@ -6,7 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **active** | **Boolean** |  |  [optional]
 **branchFilter** | **String** |  |  [optional]
-**config** | **Map&lt;String, String&gt;** |  | 
+**config** | [**CreateHookOptionConfig**](CreateHookOptionConfig.md) |  | 
 **events** | **List&lt;String&gt;** |  |  [optional]
 **type** | [**TypeEnum**](#TypeEnum) |  | 
 
@@ -15,10 +15,14 @@ Name | Type | Description | Notes
 ## Enum: TypeEnum
 Name | Value
 ---- | -----
+DINGTALK | &quot;dingtalk&quot;
+DISCORD | &quot;discord&quot;
 GITEA | &quot;gitea&quot;
 GOGS | &quot;gogs&quot;
+MSTEAMS | &quot;msteams&quot;
 SLACK | &quot;slack&quot;
-DISCORD | &quot;discord&quot;
+TELEGRAM | &quot;telegram&quot;
+FEISHU | &quot;feishu&quot;
 
 
 

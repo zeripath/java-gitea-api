@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **language** | **String** | User locale |  [optional]
 **lastLogin** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **login** | **String** | the user&#39;s username |  [optional]
+**restricted** | **Boolean** | Is user restricted |  [optional]
 
 
 
