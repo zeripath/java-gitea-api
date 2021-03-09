@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * PayloadCommit represents a commit
  */
 @ApiModel(description = "PayloadCommit represents a commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class PayloadCommit {
   @SerializedName("added")
   private List<String> added = null;

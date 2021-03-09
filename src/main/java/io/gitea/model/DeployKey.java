@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * DeployKey a deploy key
  */
 @ApiModel(description = "DeployKey a deploy key")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class DeployKey {
   @SerializedName("created_at")
   private OffsetDateTime createdAt = null;

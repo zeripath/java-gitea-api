@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * GPGKey a user GPG key to sign commit and tag in repository
  */
 @ApiModel(description = "GPGKey a user GPG key to sign commit and tag in repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class GPGKey {
   @SerializedName("can_certify")
   private Boolean canCertify = null;

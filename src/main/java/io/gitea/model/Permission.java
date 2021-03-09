@@ -28,7 +28,7 @@ import java.io.IOException;
  * Permission represents a set of permissions
  */
 @ApiModel(description = "Permission represents a set of permissions")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class Permission {
   @SerializedName("admin")
   private Boolean admin = null;

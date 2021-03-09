@@ -28,7 +28,7 @@ import java.io.IOException;
  * AnnotatedTagObject contains meta information of the tag object
  */
 @ApiModel(description = "AnnotatedTagObject contains meta information of the tag object")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class AnnotatedTagObject {
   @SerializedName("sha")
   private String sha = null;

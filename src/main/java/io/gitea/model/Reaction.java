@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Reaction contain one reaction
  */
 @ApiModel(description = "Reaction contain one reaction")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class Reaction {
   @SerializedName("content")
   private String content = null;

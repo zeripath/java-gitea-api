@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * CommitDateOptions store dates for GIT_AUTHOR_DATE and GIT_COMMITTER_DATE
  */
 @ApiModel(description = "CommitDateOptions store dates for GIT_AUTHOR_DATE and GIT_COMMITTER_DATE")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class CommitDateOptions {
   @SerializedName("author")
   private OffsetDateTime author = null;

@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * EditIssueOption options for editing an issue
  */
 @ApiModel(description = "EditIssueOption options for editing an issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class EditIssueOption {
   @SerializedName("assignee")
   private String assignee = null;

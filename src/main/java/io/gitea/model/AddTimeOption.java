@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * AddTimeOption options for adding time to an issue
  */
 @ApiModel(description = "AddTimeOption options for adding time to an issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class AddTimeOption {
   @SerializedName("created")
   private OffsetDateTime created = null;

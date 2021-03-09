@@ -31,7 +31,7 @@ import java.io.IOException;
  * EditRepoOption options when editing a repository&#39;s properties
  */
 @ApiModel(description = "EditRepoOption options when editing a repository's properties")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class EditRepoOption {
   @SerializedName("allow_merge_commits")
   private Boolean allowMergeCommits = null;

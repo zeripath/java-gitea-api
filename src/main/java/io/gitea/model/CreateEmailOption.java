@@ -30,7 +30,7 @@ import java.util.List;
  * CreateEmailOption options when creating email addresses
  */
 @ApiModel(description = "CreateEmailOption options when creating email addresses")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:45:04.520Z")
 public class CreateEmailOption {
   @SerializedName("emails")
   private List<String> emails = null;
