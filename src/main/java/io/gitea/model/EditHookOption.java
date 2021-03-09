@@ -32,7 +32,7 @@ import java.util.Map;
  * EditHookOption options when modify one hook
  */
 @ApiModel(description = "EditHookOption options when modify one hook")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class EditHookOption {
   @SerializedName("active")
   private Boolean active = null;

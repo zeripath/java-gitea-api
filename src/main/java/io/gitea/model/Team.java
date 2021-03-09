@@ -31,7 +31,7 @@ import java.util.List;
  * Team represents a team in an organization
  */
 @ApiModel(description = "Team represents a team in an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Team {
   @SerializedName("can_create_org_repo")
   private Boolean canCreateOrgRepo = null;

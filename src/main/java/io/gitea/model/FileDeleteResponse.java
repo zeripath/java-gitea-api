@@ -30,7 +30,7 @@ import java.io.IOException;
  * FileDeleteResponse contains information about a repo&#39;s file that was deleted
  */
 @ApiModel(description = "FileDeleteResponse contains information about a repo's file that was deleted")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class FileDeleteResponse {
   @SerializedName("commit")
   private FileCommitResponse commit = null;

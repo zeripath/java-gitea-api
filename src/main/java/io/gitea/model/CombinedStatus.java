@@ -32,7 +32,7 @@ import java.util.List;
  * CombinedStatus holds the combined state of several statuses for a single commit
  */
 @ApiModel(description = "CombinedStatus holds the combined state of several statuses for a single commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CombinedStatus {
   @SerializedName("commit_url")
   private String commitUrl = null;

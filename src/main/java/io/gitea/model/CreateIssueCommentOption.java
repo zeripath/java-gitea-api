@@ -28,7 +28,7 @@ import java.io.IOException;
  * CreateIssueCommentOption options for creating a comment on an issue
  */
 @ApiModel(description = "CreateIssueCommentOption options for creating a comment on an issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateIssueCommentOption {
   @SerializedName("body")
   private String body = null;

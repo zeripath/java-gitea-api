@@ -28,7 +28,7 @@ import java.io.IOException;
  * EditReactionOption contain the reaction type
  */
 @ApiModel(description = "EditReactionOption contain the reaction type")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class EditReactionOption {
   @SerializedName("content")
   private String content = null;

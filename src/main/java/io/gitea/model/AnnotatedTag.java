@@ -31,7 +31,7 @@ import java.io.IOException;
  * AnnotatedTag represents an annotated tag
  */
 @ApiModel(description = "AnnotatedTag represents an annotated tag")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class AnnotatedTag {
   @SerializedName("message")
   private String message = null;

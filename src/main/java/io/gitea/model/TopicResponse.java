@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * TopicResponse for returning topics
  */
 @ApiModel(description = "TopicResponse for returning topics")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class TopicResponse {
   @SerializedName("created")
   private OffsetDateTime created = null;

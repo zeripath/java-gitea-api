@@ -28,7 +28,7 @@ import java.io.IOException;
  * NotificationCount number of unread notifications
  */
 @ApiModel(description = "NotificationCount number of unread notifications")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class NotificationCount {
   @SerializedName("new")
   private Long _new = null;

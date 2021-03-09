@@ -28,7 +28,7 @@ import java.io.IOException;
  * DismissPullReviewOptions are options to dismiss a pull review
  */
 @ApiModel(description = "DismissPullReviewOptions are options to dismiss a pull review")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class DismissPullReviewOptions {
   @SerializedName("message")
   private String message = null;

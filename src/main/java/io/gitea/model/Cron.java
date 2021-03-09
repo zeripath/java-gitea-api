@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * Cron represents a Cron task
  */
 @ApiModel(description = "Cron represents a Cron task")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Cron {
   @SerializedName("exec_times")
   private Long execTimes = null;

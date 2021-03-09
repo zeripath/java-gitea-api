@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * Comment represents a comment on a commit or issue
  */
 @ApiModel(description = "Comment represents a comment on a commit or issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Comment {
   @SerializedName("body")
   private String body = null;

@@ -29,7 +29,7 @@ import java.io.IOException;
  * PayloadCommitVerification represents the GPG verification of a commit
  */
 @ApiModel(description = "PayloadCommitVerification represents the GPG verification of a commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class PayloadCommitVerification {
   @SerializedName("payload")
   private String payload = null;

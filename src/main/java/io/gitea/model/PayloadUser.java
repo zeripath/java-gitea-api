@@ -28,7 +28,7 @@ import java.io.IOException;
  * PayloadUser represents the author or committer of a commit
  */
 @ApiModel(description = "PayloadUser represents the author or committer of a commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class PayloadUser {
   @SerializedName("email")
   private String email = null;

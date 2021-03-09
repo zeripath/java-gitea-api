@@ -28,7 +28,7 @@ import java.io.IOException;
  * CreateForkOption options for creating a fork
  */
 @ApiModel(description = "CreateForkOption options for creating a fork")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateForkOption {
   @SerializedName("organization")
   private String organization = null;

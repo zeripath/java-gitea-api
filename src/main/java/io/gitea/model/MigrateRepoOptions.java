@@ -28,7 +28,7 @@ import java.io.IOException;
  * MigrateRepoOptions options for migrating repository&#39;s this is used to interact with api v1
  */
 @ApiModel(description = "MigrateRepoOptions options for migrating repository's this is used to interact with api v1")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class MigrateRepoOptions {
   @SerializedName("auth_password")
   private String authPassword = null;

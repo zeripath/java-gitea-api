@@ -28,7 +28,7 @@ import java.io.IOException;
  * NotificationSubject contains the notification subject (Issue/Pull/Commit)
  */
 @ApiModel(description = "NotificationSubject contains the notification subject (Issue/Pull/Commit)")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class NotificationSubject {
   @SerializedName("latest_comment_url")
   private String latestCommentUrl = null;

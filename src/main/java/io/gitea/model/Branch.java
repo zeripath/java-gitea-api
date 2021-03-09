@@ -31,7 +31,7 @@ import java.util.List;
  * Branch represents a repository branch
  */
 @ApiModel(description = "Branch represents a repository branch")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Branch {
   @SerializedName("commit")
   private PayloadCommit commit = null;

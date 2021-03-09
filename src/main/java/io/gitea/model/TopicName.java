@@ -30,7 +30,7 @@ import java.util.List;
  * TopicName a list of repo topic names
  */
 @ApiModel(description = "TopicName a list of repo topic names")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class TopicName {
   @SerializedName("topics")
   private List<String> topics = null;

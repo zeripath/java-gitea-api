@@ -28,7 +28,7 @@ import java.io.IOException;
  * CreateOrgOption options for creating an organization
  */
 @ApiModel(description = "CreateOrgOption options for creating an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateOrgOption {
   @SerializedName("description")
   private String description = null;

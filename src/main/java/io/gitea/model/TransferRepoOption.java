@@ -30,7 +30,7 @@ import java.util.List;
  * TransferRepoOption options when transfer a repository&#39;s ownership
  */
 @ApiModel(description = "TransferRepoOption options when transfer a repository's ownership")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class TransferRepoOption {
   @SerializedName("new_owner")
   private String newOwner = null;

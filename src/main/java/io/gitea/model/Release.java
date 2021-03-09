@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * Release represents a repository release
  */
 @ApiModel(description = "Release represents a repository release")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Release {
   @SerializedName("assets")
   private List<Attachment> assets = null;

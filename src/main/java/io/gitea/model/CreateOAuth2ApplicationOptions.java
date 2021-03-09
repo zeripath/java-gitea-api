@@ -30,7 +30,7 @@ import java.util.List;
  * CreateOAuth2ApplicationOptions holds options to create an oauth2 application
  */
 @ApiModel(description = "CreateOAuth2ApplicationOptions holds options to create an oauth2 application")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateOAuth2ApplicationOptions {
   @SerializedName("name")
   private String name = null;

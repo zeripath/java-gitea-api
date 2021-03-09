@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * BranchProtection represents a branch protection for a repository
  */
 @ApiModel(description = "BranchProtection represents a branch protection for a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class BranchProtection {
   @SerializedName("approvals_whitelist_teams")
   private List<String> approvalsWhitelistTeams = null;

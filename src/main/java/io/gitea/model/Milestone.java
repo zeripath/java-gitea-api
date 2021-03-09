@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * Milestone milestone is a collection of issues on one repository
  */
 @ApiModel(description = "Milestone milestone is a collection of issues on one repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Milestone {
   @SerializedName("closed_at")
   private OffsetDateTime closedAt = null;

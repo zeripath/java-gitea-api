@@ -36,7 +36,7 @@ import org.threeten.bp.OffsetDateTime;
  * Issue represents an issue in a repository
  */
 @ApiModel(description = "Issue represents an issue in a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Issue {
   @SerializedName("assignee")
   private User assignee = null;

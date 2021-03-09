@@ -33,7 +33,7 @@ import org.threeten.bp.OffsetDateTime;
  * Hook a hook is a web hook when one repository changed
  */
 @ApiModel(description = "Hook a hook is a web hook when one repository changed")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Hook {
   @SerializedName("active")
   private Boolean active = null;

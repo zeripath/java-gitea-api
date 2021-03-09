@@ -28,7 +28,7 @@ import java.io.IOException;
  * Identity for a person&#39;s identity like an author or committer
  */
 @ApiModel(description = "Identity for a person's identity like an author or committer")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Identity {
   @SerializedName("email")
   private String email = null;

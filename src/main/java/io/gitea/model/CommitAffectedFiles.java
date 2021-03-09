@@ -28,7 +28,7 @@ import java.io.IOException;
  * CommitAffectedFiles store information about files affected by the commit
  */
 @ApiModel(description = "CommitAffectedFiles store information about files affected by the commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CommitAffectedFiles {
   @SerializedName("filename")
   private String filename = null;

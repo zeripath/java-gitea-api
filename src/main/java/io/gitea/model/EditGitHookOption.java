@@ -28,7 +28,7 @@ import java.io.IOException;
  * EditGitHookOption options when modifying one Git hook
  */
 @ApiModel(description = "EditGitHookOption options when modifying one Git hook")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class EditGitHookOption {
   @SerializedName("content")
   private String content = null;

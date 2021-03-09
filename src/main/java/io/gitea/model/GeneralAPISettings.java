@@ -28,7 +28,7 @@ import java.io.IOException;
  * GeneralAPISettings contains global api settings exposed by it
  */
 @ApiModel(description = "GeneralAPISettings contains global api settings exposed by it")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class GeneralAPISettings {
   @SerializedName("default_git_trees_per_page")
   private Long defaultGitTreesPerPage = null;

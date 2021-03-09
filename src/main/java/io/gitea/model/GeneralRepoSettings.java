@@ -28,7 +28,7 @@ import java.io.IOException;
  * GeneralRepoSettings contains global repository settings exposed by API
  */
 @ApiModel(description = "GeneralRepoSettings contains global repository settings exposed by API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class GeneralRepoSettings {
   @SerializedName("http_git_disabled")
   private Boolean httpGitDisabled = null;

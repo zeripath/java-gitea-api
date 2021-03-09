@@ -29,7 +29,7 @@ import java.io.IOException;
  * Tag represents a repository tag
  */
 @ApiModel(description = "Tag represents a repository tag")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Tag {
   @SerializedName("commit")
   private CommitMeta commit = null;

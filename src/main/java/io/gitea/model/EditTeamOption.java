@@ -30,7 +30,7 @@ import java.util.List;
  * EditTeamOption options for editing a team
  */
 @ApiModel(description = "EditTeamOption options for editing a team")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class EditTeamOption {
   @SerializedName("can_create_org_repo")
   private Boolean canCreateOrgRepo = null;

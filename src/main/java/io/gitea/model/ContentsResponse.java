@@ -29,7 +29,7 @@ import java.io.IOException;
  * ContentsResponse contains information about a repo&#39;s entry&#39;s (dir, file, symlink, submodule) metadata and content
  */
 @ApiModel(description = "ContentsResponse contains information about a repo's entry's (dir, file, symlink, submodule) metadata and content")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class ContentsResponse {
   @SerializedName("_links")
   private FileLinksResponse links = null;

@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * EditMilestoneOption options for editing a milestone
  */
 @ApiModel(description = "EditMilestoneOption options for editing a milestone")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class EditMilestoneOption {
   @SerializedName("description")
   private String description = null;

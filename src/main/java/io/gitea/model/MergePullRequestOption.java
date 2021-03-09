@@ -28,7 +28,7 @@ import java.io.IOException;
  * MergePullRequestForm form for merging Pull Request
  */
 @ApiModel(description = "MergePullRequestForm form for merging Pull Request")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class MergePullRequestOption {
   /**
    * Gets or Sets _do

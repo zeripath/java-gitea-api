@@ -30,7 +30,7 @@ import java.util.List;
 /**
  * InlineResponse2001
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class InlineResponse2001 {
   @SerializedName("data")
   private List<User> data = null;

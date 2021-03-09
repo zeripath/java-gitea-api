@@ -29,7 +29,7 @@ import java.io.IOException;
  * PRBranchInfo information about a branch
  */
 @ApiModel(description = "PRBranchInfo information about a branch")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class PRBranchInfo {
   @SerializedName("label")
   private String label = null;

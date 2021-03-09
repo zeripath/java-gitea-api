@@ -28,7 +28,7 @@ import java.io.IOException;
  * MigrateRepoForm form for migrating repository this is used to interact with web ui
  */
 @ApiModel(description = "MigrateRepoForm form for migrating repository this is used to interact with web ui")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class MigrateRepoForm {
   @SerializedName("auth_password")
   private String authPassword = null;

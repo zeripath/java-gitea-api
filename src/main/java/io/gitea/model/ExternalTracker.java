@@ -28,7 +28,7 @@ import java.io.IOException;
  * ExternalTracker represents settings for external tracker
  */
 @ApiModel(description = "ExternalTracker represents settings for external tracker")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class ExternalTracker {
   @SerializedName("external_tracker_format")
   private String externalTrackerFormat = null;

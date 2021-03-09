@@ -28,7 +28,7 @@ import java.io.IOException;
  * CreateBranchRepoOption options when creating a branch in a repository
  */
 @ApiModel(description = "CreateBranchRepoOption options when creating a branch in a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateBranchRepoOption {
   @SerializedName("new_branch_name")
   private String newBranchName = null;

@@ -30,7 +30,7 @@ import java.util.List;
  * PullReviewRequestOptions are options to add or remove pull review requests
  */
 @ApiModel(description = "PullReviewRequestOptions are options to add or remove pull review requests")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class PullReviewRequestOptions {
   @SerializedName("reviewers")
   private List<String> reviewers = null;

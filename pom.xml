@@ -48,6 +48,16 @@
                     <language>java</language>
                     <apiPackage>io.gitea.api</apiPackage>
                     <modelPackage>io.gitea.model</modelPackage>
+                    <generateApis>true</generateApis>
+                    <generateApiTests>true</generateApiTests>
+                    <generateApiDocumentation>true</generateApiDocumentation>
+                    <generateModels>true</generateModels>
+                    <generateModelTests>true</generateModelTests>
+                    <generateModelDocumentation>true</generateModelDocumentation>
+                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <configOptions>
+                        <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                    </configOptions>
                 </configuration>
             </plugin>
             <plugin>

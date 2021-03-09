@@ -23,7 +23,7 @@ import java.util.Map;
  * CreateHookOptionConfig has all config options in it required are \&quot;content_type\&quot; and \&quot;url\&quot; Required
  */
 @ApiModel(description = "CreateHookOptionConfig has all config options in it required are \"content_type\" and \"url\" Required")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateHookOptionConfig extends HashMap<String, String> {
 
   @Override

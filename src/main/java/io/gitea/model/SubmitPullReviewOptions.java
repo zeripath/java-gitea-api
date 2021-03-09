@@ -28,7 +28,7 @@ import java.io.IOException;
  * SubmitPullReviewOptions are options to submit a pending pull review
  */
 @ApiModel(description = "SubmitPullReviewOptions are options to submit a pending pull review")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class SubmitPullReviewOptions {
   @SerializedName("body")
   private String body = null;

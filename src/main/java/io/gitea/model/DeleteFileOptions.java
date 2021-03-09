@@ -30,7 +30,7 @@ import java.io.IOException;
  * DeleteFileOptions options for deleting files (used for other File structs below) Note: &#x60;author&#x60; and &#x60;committer&#x60; are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)
  */
 @ApiModel(description = "DeleteFileOptions options for deleting files (used for other File structs below) Note: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class DeleteFileOptions {
   @SerializedName("author")
   private Identity author = null;

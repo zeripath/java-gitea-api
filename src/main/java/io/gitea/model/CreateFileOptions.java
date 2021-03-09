@@ -30,7 +30,7 @@ import java.io.IOException;
  * CreateFileOptions options for creating files Note: &#x60;author&#x60; and &#x60;committer&#x60; are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)
  */
 @ApiModel(description = "CreateFileOptions options for creating files Note: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateFileOptions {
   @SerializedName("author")
   private Identity author = null;

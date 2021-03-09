@@ -28,7 +28,7 @@ import java.io.IOException;
  * GeneralAttachmentSettings contains global Attachment settings exposed by API
  */
 @ApiModel(description = "GeneralAttachmentSettings contains global Attachment settings exposed by API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class GeneralAttachmentSettings {
   @SerializedName("allowed_types")
   private String allowedTypes = null;

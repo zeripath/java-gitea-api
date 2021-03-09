@@ -28,7 +28,7 @@ import java.io.IOException;
  * Email an email address belonging to a user
  */
 @ApiModel(description = "Email an email address belonging to a user")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class Email {
   @SerializedName("email")
   private String email = null;

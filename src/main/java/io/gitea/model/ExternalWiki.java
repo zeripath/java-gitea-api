@@ -28,7 +28,7 @@ import java.io.IOException;
  * ExternalWiki represents setting for external wiki
  */
 @ApiModel(description = "ExternalWiki represents setting for external wiki")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class ExternalWiki {
   @SerializedName("external_wiki_url")
   private String externalWikiUrl = null;

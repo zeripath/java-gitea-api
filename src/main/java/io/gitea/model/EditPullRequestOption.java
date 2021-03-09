@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * EditPullRequestOption options when modify pull request
  */
 @ApiModel(description = "EditPullRequestOption options when modify pull request")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class EditPullRequestOption {
   @SerializedName("assignee")
   private String assignee = null;

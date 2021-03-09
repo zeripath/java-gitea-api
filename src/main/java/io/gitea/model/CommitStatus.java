@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
  * CommitStatus holds a single status of a single Commit
  */
 @ApiModel(description = "CommitStatus holds a single status of a single Commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CommitStatus {
   @SerializedName("context")
   private String context = null;

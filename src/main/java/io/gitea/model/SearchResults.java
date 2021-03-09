@@ -31,7 +31,7 @@ import java.util.List;
  * SearchResults results of a successful search
  */
 @ApiModel(description = "SearchResults results of a successful search")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class SearchResults {
   @SerializedName("data")
   private List<Repository> data = null;

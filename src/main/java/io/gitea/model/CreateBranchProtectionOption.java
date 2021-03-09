@@ -30,7 +30,7 @@ import java.util.List;
  * CreateBranchProtectionOption options for creating a branch protection
  */
 @ApiModel(description = "CreateBranchProtectionOption options for creating a branch protection")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class CreateBranchProtectionOption {
   @SerializedName("approvals_whitelist_teams")
   private List<String> approvalsWhitelistTeams = null;

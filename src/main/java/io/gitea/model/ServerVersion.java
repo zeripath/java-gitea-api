@@ -28,7 +28,7 @@ import java.io.IOException;
  * ServerVersion wraps the version of the server
  */
 @ApiModel(description = "ServerVersion wraps the version of the server")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class ServerVersion {
   @SerializedName("version")
   private String version = null;

@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * WatchInfo represents an API watch status of one repository
  */
 @ApiModel(description = "WatchInfo represents an API watch status of one repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class WatchInfo {
   @SerializedName("created_at")
   private OffsetDateTime createdAt = null;

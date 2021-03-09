@@ -30,7 +30,7 @@ import org.threeten.bp.OffsetDateTime;
 /**
  * OAuth2Application
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class OAuth2Application {
   @SerializedName("client_id")
   private String clientId = null;

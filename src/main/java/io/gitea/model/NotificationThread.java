@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * NotificationThread expose Notification on API
  */
 @ApiModel(description = "NotificationThread expose Notification on API")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T00:25:51.647+03:00")
+
 public class NotificationThread {
   @SerializedName("id")
   private Long id = null;
