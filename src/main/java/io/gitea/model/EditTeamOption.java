@@ -30,10 +30,16 @@ import java.util.List;
  * EditTeamOption options for editing a team
  */
 @ApiModel(description = "EditTeamOption options for editing a team")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class EditTeamOption {
+  @SerializedName("can_create_org_repo")
+  private Boolean canCreateOrgRepo = null;
+
   @SerializedName("description")
   private String description = null;
+
+  @SerializedName("includes_all_repositories")
+  private Boolean includesAllRepositories = null;
 
   @SerializedName("name")
   private String name = null;
@@ -93,6 +99,24 @@ public class EditTeamOption {
   @SerializedName("units")
   private List<String> units = null;
 
+  public EditTeamOption canCreateOrgRepo(Boolean canCreateOrgRepo) {
+    this.canCreateOrgRepo = canCreateOrgRepo;
+    return this;
+  }
+
+   /**
+   * Get canCreateOrgRepo
+   * @return canCreateOrgRepo
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isCanCreateOrgRepo() {
+    return canCreateOrgRepo;
+  }
+
+  public void setCanCreateOrgRepo(Boolean canCreateOrgRepo) {
+    this.canCreateOrgRepo = canCreateOrgRepo;
+  }
+
   public EditTeamOption description(String description) {
     this.description = description;
     return this;
@@ -109,6 +133,24 @@ public class EditTeamOption {
 
   public void setDescription(String description) {
     this.description = description;
+  }
+
+  public EditTeamOption includesAllRepositories(Boolean includesAllRepositories) {
+    this.includesAllRepositories = includesAllRepositories;
+    return this;
+  }
+
+   /**
+   * Get includesAllRepositories
+   * @return includesAllRepositories
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIncludesAllRepositories() {
+    return includesAllRepositories;
+  }
+
+  public void setIncludesAllRepositories(Boolean includesAllRepositories) {
+    this.includesAllRepositories = includesAllRepositories;
   }
 
   public EditTeamOption name(String name) {
@@ -183,7 +225,9 @@ public class EditTeamOption {
       return false;
     }
     EditTeamOption editTeamOption = (EditTeamOption) o;
-    return Objects.equals(this.description, editTeamOption.description) &&
+    return Objects.equals(this.canCreateOrgRepo, editTeamOption.canCreateOrgRepo) &&
+        Objects.equals(this.description, editTeamOption.description) &&
+        Objects.equals(this.includesAllRepositories, editTeamOption.includesAllRepositories) &&
         Objects.equals(this.name, editTeamOption.name) &&
         Objects.equals(this.permission, editTeamOption.permission) &&
         Objects.equals(this.units, editTeamOption.units);
@@ -191,7 +235,7 @@ public class EditTeamOption {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, name, permission, units);
+    return Objects.hash(canCreateOrgRepo, description, includesAllRepositories, name, permission, units);
   }
 
 
@@ -200,7 +244,9 @@ public class EditTeamOption {
     StringBuilder sb = new StringBuilder();
     sb.append("class EditTeamOption {\n");
     
+    sb.append("    canCreateOrgRepo: ").append(toIndentedString(canCreateOrgRepo)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
+    sb.append("    includesAllRepositories: ").append(toIndentedString(includesAllRepositories)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");
     sb.append("    units: ").append(toIndentedString(units)).append("\n");

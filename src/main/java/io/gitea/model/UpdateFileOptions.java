@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.CommitDateOptions;
 import io.gitea.model.Identity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +30,7 @@ import java.io.IOException;
  * UpdateFileOptions options for updating files Note: &#x60;author&#x60; and &#x60;committer&#x60; are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)
  */
 @ApiModel(description = "UpdateFileOptions options for updating files Note: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class UpdateFileOptions {
   @SerializedName("author")
   private Identity author = null;
@@ -42,6 +43,9 @@ public class UpdateFileOptions {
 
   @SerializedName("content")
   private String content = null;
+
+  @SerializedName("dates")
+  private CommitDateOptions dates = null;
 
   @SerializedName("from_path")
   private String fromPath = null;
@@ -125,6 +129,24 @@ public class UpdateFileOptions {
 
   public void setContent(String content) {
     this.content = content;
+  }
+
+  public UpdateFileOptions dates(CommitDateOptions dates) {
+    this.dates = dates;
+    return this;
+  }
+
+   /**
+   * Get dates
+   * @return dates
+  **/
+  @ApiModelProperty(value = "")
+  public CommitDateOptions getDates() {
+    return dates;
+  }
+
+  public void setDates(CommitDateOptions dates) {
+    this.dates = dates;
   }
 
   public UpdateFileOptions fromPath(String fromPath) {
@@ -213,6 +235,7 @@ public class UpdateFileOptions {
         Objects.equals(this.branch, updateFileOptions.branch) &&
         Objects.equals(this.committer, updateFileOptions.committer) &&
         Objects.equals(this.content, updateFileOptions.content) &&
+        Objects.equals(this.dates, updateFileOptions.dates) &&
         Objects.equals(this.fromPath, updateFileOptions.fromPath) &&
         Objects.equals(this.message, updateFileOptions.message) &&
         Objects.equals(this.newBranch, updateFileOptions.newBranch) &&
@@ -221,7 +244,7 @@ public class UpdateFileOptions {
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, branch, committer, content, fromPath, message, newBranch, sha);
+    return Objects.hash(author, branch, committer, content, dates, fromPath, message, newBranch, sha);
   }
 
 
@@ -234,6 +257,7 @@ public class UpdateFileOptions {
     sb.append("    branch: ").append(toIndentedString(branch)).append("\n");
     sb.append("    committer: ").append(toIndentedString(committer)).append("\n");
     sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    fromPath: ").append(toIndentedString(fromPath)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    newBranch: ").append(toIndentedString(newBranch)).append("\n");

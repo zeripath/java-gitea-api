@@ -34,6 +34,21 @@ public class MiscellaneousApiTest {
 
     
     /**
+     * Get default signing-key.gpg
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void getSigningKeyTest() throws ApiException {
+        String response = api.getSigningKey();
+
+        // TODO: test validations
+    }
+    
+    /**
      * Returns the version of the Gitea application
      *
      * 
@@ -59,7 +74,7 @@ public class MiscellaneousApiTest {
     @Test
     public void renderMarkdownTest() throws ApiException {
         MarkdownOption body = null;
-        api.renderMarkdown(body);
+        String response = api.renderMarkdown(body);
 
         // TODO: test validations
     }
@@ -75,7 +90,7 @@ public class MiscellaneousApiTest {
     @Test
     public void renderMarkdownRawTest() throws ApiException {
         String body = null;
-        api.renderMarkdownRaw(body);
+        String response = api.renderMarkdownRaw(body);
 
         // TODO: test validations
     }

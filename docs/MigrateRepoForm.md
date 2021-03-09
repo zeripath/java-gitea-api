@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **authPassword** | **String** |  |  [optional]
+**authToken** | **String** |  |  [optional]
 **authUsername** | **String** |  |  [optional]
 **cloneAddr** | **String** |  | 
 **description** | **String** |  |  [optional]
@@ -16,6 +17,7 @@ Name | Type | Description | Notes
 **pullRequests** | **Boolean** |  |  [optional]
 **releases** | **Boolean** |  |  [optional]
 **repoName** | **String** |  | 
+**service** | **Integer** |  |  [optional]
 **uid** | **Long** |  | 
 **wiki** | **Boolean** |  |  [optional]
 

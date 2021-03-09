@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * Attachment a generic attachment
  */
 @ApiModel(description = "Attachment a generic attachment")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class Attachment {
   @SerializedName("browser_download_url")
   private String browserDownloadUrl = null;

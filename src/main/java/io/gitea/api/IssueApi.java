@@ -38,12 +38,17 @@ import io.gitea.model.EditIssueCommentOption;
 import io.gitea.model.EditIssueOption;
 import io.gitea.model.EditLabelOption;
 import io.gitea.model.EditMilestoneOption;
+import io.gitea.model.EditReactionOption;
 import io.gitea.model.Issue;
 import io.gitea.model.IssueDeadline;
 import io.gitea.model.IssueLabelsOption;
 import io.gitea.model.Label;
 import io.gitea.model.Milestone;
+import org.threeten.bp.OffsetDateTime;
+import io.gitea.model.Reaction;
 import io.gitea.model.TrackedTime;
+import io.gitea.model.User;
+import io.gitea.model.WatchInfo;
 
 import java.lang.reflect.Type;
 import java.util.ArrayList;
@@ -121,7 +126,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -218,24 +223,25 @@ public class IssueApi {
         return call;
     }
     /**
-     * Build call for issueAddTime
+     * Build call for issueAddSubscription
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue to add tracked time to (required)
-     * @param body  (optional)
+     * @param index index of the issue (required)
+     * @param user user to subscribe (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueAddTimeCall(String owner, String repo, Long id, AddTimeOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
-        Object localVarPostBody = body;
+    public com.squareup.okhttp.Call issueAddSubscriptionCall(String owner, String repo, Long index, String user, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/repos/{owner}/{repo}/issues/{id}/times"
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/subscriptions/{user}"
             .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
             .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
-            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "user" + "\\}", apiClient.escapeString(user.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -268,77 +274,79 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
-        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueAddTimeValidateBeforeCall(String owner, String repo, Long id, AddTimeOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueAddSubscriptionValidateBeforeCall(String owner, String repo, Long index, String user, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
-            throw new ApiException("Missing the required parameter 'owner' when calling issueAddTime(Async)");
+            throw new ApiException("Missing the required parameter 'owner' when calling issueAddSubscription(Async)");
         }
         
         // verify the required parameter 'repo' is set
         if (repo == null) {
-            throw new ApiException("Missing the required parameter 'repo' when calling issueAddTime(Async)");
+            throw new ApiException("Missing the required parameter 'repo' when calling issueAddSubscription(Async)");
         }
         
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling issueAddTime(Async)");
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueAddSubscription(Async)");
+        }
+        
+        // verify the required parameter 'user' is set
+        if (user == null) {
+            throw new ApiException("Missing the required parameter 'user' when calling issueAddSubscription(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = issueAddTimeCall(owner, repo, id, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueAddSubscriptionCall(owner, repo, index, user, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Add a tracked time to a issue
+     * Subscribe user to issue
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue to add tracked time to (required)
-     * @param body  (optional)
-     * @return TrackedTime
+     * @param index index of the issue (required)
+     * @param user user to subscribe (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TrackedTime issueAddTime(String owner, String repo, Long id, AddTimeOption body) throws ApiException {
-        ApiResponse<TrackedTime> resp = issueAddTimeWithHttpInfo(owner, repo, id, body);
-        return resp.getData();
+    public void issueAddSubscription(String owner, String repo, Long index, String user) throws ApiException {
+        issueAddSubscriptionWithHttpInfo(owner, repo, index, user);
     }
 
     /**
-     * Add a tracked time to a issue
+     * Subscribe user to issue
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue to add tracked time to (required)
-     * @param body  (optional)
-     * @return ApiResponse&lt;TrackedTime&gt;
+     * @param index index of the issue (required)
+     * @param user user to subscribe (required)
+     * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TrackedTime> issueAddTimeWithHttpInfo(String owner, String repo, Long id, AddTimeOption body) throws ApiException {
-        com.squareup.okhttp.Call call = issueAddTimeValidateBeforeCall(owner, repo, id, body, null, null);
-        Type localVarReturnType = new TypeToken<TrackedTime>(){}.getType();
-        return apiClient.execute(call, localVarReturnType);
+    public ApiResponse<Void> issueAddSubscriptionWithHttpInfo(String owner, String repo, Long index, String user) throws ApiException {
+        com.squareup.okhttp.Call call = issueAddSubscriptionValidateBeforeCall(owner, repo, index, user, null, null);
+        return apiClient.execute(call);
     }
 
     /**
-     * Add a tracked time to a issue (asynchronously)
+     * Subscribe user to issue (asynchronously)
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue to add tracked time to (required)
-     * @param body  (optional)
+     * @param index index of the issue (required)
+     * @param user user to subscribe (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueAddTimeAsync(String owner, String repo, Long id, AddTimeOption body, final ApiCallback<TrackedTime> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueAddSubscriptionAsync(String owner, String repo, Long index, String user, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -359,8 +367,297 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueAddTimeValidateBeforeCall(owner, repo, id, body, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueAddSubscriptionValidateBeforeCall(owner, repo, index, user, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueAddTime
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueAddTimeCall(String owner, String repo, Long index, AddTimeOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/times"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueAddTimeValidateBeforeCall(String owner, String repo, Long index, AddTimeOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueAddTime(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueAddTime(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueAddTime(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueAddTimeCall(owner, repo, index, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Add tracked time to a issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param body  (optional)
+     * @return TrackedTime
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public TrackedTime issueAddTime(String owner, String repo, Long index, AddTimeOption body) throws ApiException {
+        ApiResponse<TrackedTime> resp = issueAddTimeWithHttpInfo(owner, repo, index, body);
+        return resp.getData();
+    }
+
+    /**
+     * Add tracked time to a issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;TrackedTime&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<TrackedTime> issueAddTimeWithHttpInfo(String owner, String repo, Long index, AddTimeOption body) throws ApiException {
+        com.squareup.okhttp.Call call = issueAddTimeValidateBeforeCall(owner, repo, index, body, null, null);
         Type localVarReturnType = new TypeToken<TrackedTime>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Add tracked time to a issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueAddTimeAsync(String owner, String repo, Long index, AddTimeOption body, final ApiCallback<TrackedTime> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueAddTimeValidateBeforeCall(owner, repo, index, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<TrackedTime>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for issueCheckSubscription
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueCheckSubscriptionCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/subscriptions/check"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueCheckSubscriptionValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueCheckSubscription(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueCheckSubscription(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueCheckSubscription(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueCheckSubscriptionCall(owner, repo, index, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Check if user is subscribed to an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @return WatchInfo
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public WatchInfo issueCheckSubscription(String owner, String repo, Long index) throws ApiException {
+        ApiResponse<WatchInfo> resp = issueCheckSubscriptionWithHttpInfo(owner, repo, index);
+        return resp.getData();
+    }
+
+    /**
+     * Check if user is subscribed to an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @return ApiResponse&lt;WatchInfo&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<WatchInfo> issueCheckSubscriptionWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = issueCheckSubscriptionValidateBeforeCall(owner, repo, index, null, null);
+        Type localVarReturnType = new TypeToken<WatchInfo>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Check if user is subscribed to an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueCheckSubscriptionAsync(String owner, String repo, Long index, final ApiCallback<WatchInfo> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueCheckSubscriptionValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<WatchInfo>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -414,7 +711,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -554,7 +851,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -699,7 +996,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -836,7 +1133,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -973,7 +1270,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1111,7 +1408,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1254,7 +1551,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1359,6 +1656,292 @@ public class IssueApi {
         return call;
     }
     /**
+     * Build call for issueDeleteCommentReaction
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteCommentReactionCall(String owner, String repo, Long id, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = content;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/comments/{id}/reactions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueDeleteCommentReactionValidateBeforeCall(String owner, String repo, Long id, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueDeleteCommentReaction(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueDeleteCommentReaction(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling issueDeleteCommentReaction(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueDeleteCommentReactionCall(owner, repo, id, content, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Remove a reaction from a comment of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void issueDeleteCommentReaction(String owner, String repo, Long id, EditReactionOption content) throws ApiException {
+        issueDeleteCommentReactionWithHttpInfo(owner, repo, id, content);
+    }
+
+    /**
+     * Remove a reaction from a comment of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> issueDeleteCommentReactionWithHttpInfo(String owner, String repo, Long id, EditReactionOption content) throws ApiException {
+        com.squareup.okhttp.Call call = issueDeleteCommentReactionValidateBeforeCall(owner, repo, id, content, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Remove a reaction from a comment of an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteCommentReactionAsync(String owner, String repo, Long id, EditReactionOption content, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueDeleteCommentReactionValidateBeforeCall(owner, repo, id, content, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueDeleteIssueReaction
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteIssueReactionCall(String owner, String repo, Long index, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = content;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/reactions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueDeleteIssueReactionValidateBeforeCall(String owner, String repo, Long index, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueDeleteIssueReaction(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueDeleteIssueReaction(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueDeleteIssueReaction(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueDeleteIssueReactionCall(owner, repo, index, content, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Remove a reaction from an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void issueDeleteIssueReaction(String owner, String repo, Long index, EditReactionOption content) throws ApiException {
+        issueDeleteIssueReactionWithHttpInfo(owner, repo, index, content);
+    }
+
+    /**
+     * Remove a reaction from an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> issueDeleteIssueReactionWithHttpInfo(String owner, String repo, Long index, EditReactionOption content) throws ApiException {
+        com.squareup.okhttp.Call call = issueDeleteIssueReactionValidateBeforeCall(owner, repo, index, content, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Remove a reaction from an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteIssueReactionAsync(String owner, String repo, Long index, EditReactionOption content, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueDeleteIssueReactionValidateBeforeCall(owner, repo, index, content, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for issueDeleteLabel
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -1408,7 +1991,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1501,13 +2084,13 @@ public class IssueApi {
      * Build call for issueDeleteMilestone
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone to delete (required)
+     * @param id the milestone to delete, identified by ID and if not available by name (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueDeleteMilestoneCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueDeleteMilestoneCall(String owner, String repo, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -1547,12 +2130,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueDeleteMilestoneValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueDeleteMilestoneValidateBeforeCall(String owner, String repo, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -1580,10 +2163,10 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone to delete (required)
+     * @param id the milestone to delete, identified by ID and if not available by name (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void issueDeleteMilestone(String owner, String repo, Long id) throws ApiException {
+    public void issueDeleteMilestone(String owner, String repo, String id) throws ApiException {
         issueDeleteMilestoneWithHttpInfo(owner, repo, id);
     }
 
@@ -1592,11 +2175,11 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone to delete (required)
+     * @param id the milestone to delete, identified by ID and if not available by name (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> issueDeleteMilestoneWithHttpInfo(String owner, String repo, Long id) throws ApiException {
+    public ApiResponse<Void> issueDeleteMilestoneWithHttpInfo(String owner, String repo, String id) throws ApiException {
         com.squareup.okhttp.Call call = issueDeleteMilestoneValidateBeforeCall(owner, repo, id, null, null);
         return apiClient.execute(call);
     }
@@ -1606,12 +2189,12 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone to delete (required)
+     * @param id the milestone to delete, identified by ID and if not available by name (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueDeleteMilestoneAsync(String owner, String repo, Long id, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueDeleteMilestoneAsync(String owner, String repo, String id, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -1633,6 +2216,443 @@ public class IssueApi {
         }
 
         com.squareup.okhttp.Call call = issueDeleteMilestoneValidateBeforeCall(owner, repo, id, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueDeleteStopWatch
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to stop the stopwatch on (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteStopWatchCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/stopwatch/delete"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueDeleteStopWatchValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueDeleteStopWatch(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueDeleteStopWatch(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueDeleteStopWatch(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueDeleteStopWatchCall(owner, repo, index, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete an issue&#39;s existing stopwatch.
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to stop the stopwatch on (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void issueDeleteStopWatch(String owner, String repo, Long index) throws ApiException {
+        issueDeleteStopWatchWithHttpInfo(owner, repo, index);
+    }
+
+    /**
+     * Delete an issue&#39;s existing stopwatch.
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to stop the stopwatch on (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> issueDeleteStopWatchWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = issueDeleteStopWatchValidateBeforeCall(owner, repo, index, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete an issue&#39;s existing stopwatch. (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to stop the stopwatch on (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteStopWatchAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueDeleteStopWatchValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueDeleteSubscription
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param user user witch unsubscribe (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteSubscriptionCall(String owner, String repo, Long index, String user, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/subscriptions/{user}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "user" + "\\}", apiClient.escapeString(user.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueDeleteSubscriptionValidateBeforeCall(String owner, String repo, Long index, String user, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueDeleteSubscription(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueDeleteSubscription(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueDeleteSubscription(Async)");
+        }
+        
+        // verify the required parameter 'user' is set
+        if (user == null) {
+            throw new ApiException("Missing the required parameter 'user' when calling issueDeleteSubscription(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueDeleteSubscriptionCall(owner, repo, index, user, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Unsubscribe user from issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param user user witch unsubscribe (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void issueDeleteSubscription(String owner, String repo, Long index, String user) throws ApiException {
+        issueDeleteSubscriptionWithHttpInfo(owner, repo, index, user);
+    }
+
+    /**
+     * Unsubscribe user from issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param user user witch unsubscribe (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> issueDeleteSubscriptionWithHttpInfo(String owner, String repo, Long index, String user) throws ApiException {
+        com.squareup.okhttp.Call call = issueDeleteSubscriptionValidateBeforeCall(owner, repo, index, user, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Unsubscribe user from issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param user user witch unsubscribe (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteSubscriptionAsync(String owner, String repo, Long index, String user, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueDeleteSubscriptionValidateBeforeCall(owner, repo, index, user, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueDeleteTime
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param id id of time to delete (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteTimeCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/times/{id}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueDeleteTimeValidateBeforeCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueDeleteTime(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueDeleteTime(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueDeleteTime(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling issueDeleteTime(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueDeleteTimeCall(owner, repo, index, id, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete specific tracked time
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param id id of time to delete (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void issueDeleteTime(String owner, String repo, Long index, Long id) throws ApiException {
+        issueDeleteTimeWithHttpInfo(owner, repo, index, id);
+    }
+
+    /**
+     * Delete specific tracked time
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param id id of time to delete (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> issueDeleteTimeWithHttpInfo(String owner, String repo, Long index, Long id) throws ApiException {
+        com.squareup.okhttp.Call call = issueDeleteTimeValidateBeforeCall(owner, repo, index, id, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete specific tracked time (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param id id of time to delete (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueDeleteTimeAsync(String owner, String repo, Long index, Long id, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueDeleteTimeValidateBeforeCall(owner, repo, index, id, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
         return call;
     }
@@ -1687,7 +2707,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1838,7 +2858,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2000,7 +3020,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2147,7 +3167,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2294,7 +3314,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2394,14 +3414,14 @@ public class IssueApi {
      * Build call for issueEditMilestone
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to edit, identified by ID and if not available by name (required)
      * @param body  (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueEditMilestoneCall(String owner, String repo, Long id, EditMilestoneOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueEditMilestoneCall(String owner, String repo, String id, EditMilestoneOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -2441,12 +3461,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueEditMilestoneValidateBeforeCall(String owner, String repo, Long id, EditMilestoneOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueEditMilestoneValidateBeforeCall(String owner, String repo, String id, EditMilestoneOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2474,12 +3494,12 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to edit, identified by ID and if not available by name (required)
      * @param body  (optional)
      * @return Milestone
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Milestone issueEditMilestone(String owner, String repo, Long id, EditMilestoneOption body) throws ApiException {
+    public Milestone issueEditMilestone(String owner, String repo, String id, EditMilestoneOption body) throws ApiException {
         ApiResponse<Milestone> resp = issueEditMilestoneWithHttpInfo(owner, repo, id, body);
         return resp.getData();
     }
@@ -2489,12 +3509,12 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to edit, identified by ID and if not available by name (required)
      * @param body  (optional)
      * @return ApiResponse&lt;Milestone&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Milestone> issueEditMilestoneWithHttpInfo(String owner, String repo, Long id, EditMilestoneOption body) throws ApiException {
+    public ApiResponse<Milestone> issueEditMilestoneWithHttpInfo(String owner, String repo, String id, EditMilestoneOption body) throws ApiException {
         com.squareup.okhttp.Call call = issueEditMilestoneValidateBeforeCall(owner, repo, id, body, null, null);
         Type localVarReturnType = new TypeToken<Milestone>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -2505,13 +3525,13 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to edit, identified by ID and if not available by name (required)
      * @param body  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueEditMilestoneAsync(String owner, String repo, Long id, EditMilestoneOption body, final ApiCallback<Milestone> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueEditMilestoneAsync(String owner, String repo, String id, EditMilestoneOption body, final ApiCallback<Milestone> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2538,17 +3558,304 @@ public class IssueApi {
         return call;
     }
     /**
-     * Build call for issueGetComments
+     * Build call for issueGetComment
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param index index of the issue (required)
-     * @param since if provided, only comments updated since the specified time are returned. (optional)
+     * @param id id of the comment (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueGetCommentsCall(String owner, String repo, Long index, String since, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueGetCommentCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/comments/{id}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueGetCommentValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueGetComment(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueGetComment(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling issueGetComment(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueGetCommentCall(owner, repo, id, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a comment
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment (required)
+     * @return Comment
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Comment issueGetComment(String owner, String repo, Long id) throws ApiException {
+        ApiResponse<Comment> resp = issueGetCommentWithHttpInfo(owner, repo, id);
+        return resp.getData();
+    }
+
+    /**
+     * Get a comment
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment (required)
+     * @return ApiResponse&lt;Comment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Comment> issueGetCommentWithHttpInfo(String owner, String repo, Long id) throws ApiException {
+        com.squareup.okhttp.Call call = issueGetCommentValidateBeforeCall(owner, repo, id, null, null);
+        Type localVarReturnType = new TypeToken<Comment>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a comment (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueGetCommentAsync(String owner, String repo, Long id, final ApiCallback<Comment> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueGetCommentValidateBeforeCall(owner, repo, id, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Comment>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for issueGetCommentReactions
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueGetCommentReactionsCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/comments/{id}/reactions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueGetCommentReactionsValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueGetCommentReactions(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueGetCommentReactions(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling issueGetCommentReactions(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueGetCommentReactionsCall(owner, repo, id, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a list of reactions from a comment of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @return List&lt;Reaction&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<Reaction> issueGetCommentReactions(String owner, String repo, Long id) throws ApiException {
+        ApiResponse<List<Reaction>> resp = issueGetCommentReactionsWithHttpInfo(owner, repo, id);
+        return resp.getData();
+    }
+
+    /**
+     * Get a list of reactions from a comment of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @return ApiResponse&lt;List&lt;Reaction&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<Reaction>> issueGetCommentReactionsWithHttpInfo(String owner, String repo, Long id) throws ApiException {
+        com.squareup.okhttp.Call call = issueGetCommentReactionsValidateBeforeCall(owner, repo, id, null, null);
+        Type localVarReturnType = new TypeToken<List<Reaction>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a list of reactions from a comment of an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueGetCommentReactionsAsync(String owner, String repo, Long id, final ApiCallback<List<Reaction>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueGetCommentReactionsValidateBeforeCall(owner, repo, id, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Reaction>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for issueGetComments
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param since if provided, only comments updated since the specified time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueGetCommentsCall(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -2561,6 +3868,8 @@ public class IssueApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (since != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("since", since));
+        if (before != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("before", before));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -2590,12 +3899,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueGetCommentsValidateBeforeCall(String owner, String repo, Long index, String since, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueGetCommentsValidateBeforeCall(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -2613,7 +3922,7 @@ public class IssueApi {
         }
         
 
-        com.squareup.okhttp.Call call = issueGetCommentsCall(owner, repo, index, since, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueGetCommentsCall(owner, repo, index, since, before, progressListener, progressRequestListener);
         return call;
 
     }
@@ -2625,11 +3934,12 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param index index of the issue (required)
      * @param since if provided, only comments updated since the specified time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
      * @return List&lt;Comment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Comment> issueGetComments(String owner, String repo, Long index, String since) throws ApiException {
-        ApiResponse<List<Comment>> resp = issueGetCommentsWithHttpInfo(owner, repo, index, since);
+    public List<Comment> issueGetComments(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before) throws ApiException {
+        ApiResponse<List<Comment>> resp = issueGetCommentsWithHttpInfo(owner, repo, index, since, before);
         return resp.getData();
     }
 
@@ -2640,11 +3950,12 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param index index of the issue (required)
      * @param since if provided, only comments updated since the specified time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
      * @return ApiResponse&lt;List&lt;Comment&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Comment>> issueGetCommentsWithHttpInfo(String owner, String repo, Long index, String since) throws ApiException {
-        com.squareup.okhttp.Call call = issueGetCommentsValidateBeforeCall(owner, repo, index, since, null, null);
+    public ApiResponse<List<Comment>> issueGetCommentsWithHttpInfo(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before) throws ApiException {
+        com.squareup.okhttp.Call call = issueGetCommentsValidateBeforeCall(owner, repo, index, since, before, null, null);
         Type localVarReturnType = new TypeToken<List<Comment>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -2656,11 +3967,12 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param index index of the issue (required)
      * @param since if provided, only comments updated since the specified time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueGetCommentsAsync(String owner, String repo, Long index, String since, final ApiCallback<List<Comment>> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueGetCommentsAsync(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, final ApiCallback<List<Comment>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2681,7 +3993,7 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueGetCommentsValidateBeforeCall(owner, repo, index, since, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueGetCommentsValidateBeforeCall(owner, repo, index, since, before, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Comment>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -2736,7 +4048,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2830,6 +4142,161 @@ public class IssueApi {
         return call;
     }
     /**
+     * Build call for issueGetIssueReactions
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueGetIssueReactionsCall(String owner, String repo, Long index, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/reactions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueGetIssueReactionsValidateBeforeCall(String owner, String repo, Long index, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueGetIssueReactions(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueGetIssueReactions(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueGetIssueReactions(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueGetIssueReactionsCall(owner, repo, index, page, limit, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a list reactions of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return List&lt;Reaction&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<Reaction> issueGetIssueReactions(String owner, String repo, Long index, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Reaction>> resp = issueGetIssueReactionsWithHttpInfo(owner, repo, index, page, limit);
+        return resp.getData();
+    }
+
+    /**
+     * Get a list reactions of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return ApiResponse&lt;List&lt;Reaction&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<Reaction>> issueGetIssueReactionsWithHttpInfo(String owner, String repo, Long index, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueGetIssueReactionsValidateBeforeCall(owner, repo, index, page, limit, null, null);
+        Type localVarReturnType = new TypeToken<List<Reaction>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a list reactions of an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueGetIssueReactionsAsync(String owner, String repo, Long index, Integer page, Integer limit, final ApiCallback<List<Reaction>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueGetIssueReactionsValidateBeforeCall(owner, repo, index, page, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Reaction>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for issueGetLabel
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -2879,7 +4346,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3022,7 +4489,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3119,13 +4586,13 @@ public class IssueApi {
      * Build call for issueGetMilestone
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to get, identified by ID and if not available by name (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueGetMilestoneCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueGetMilestoneCall(String owner, String repo, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3165,12 +4632,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueGetMilestoneValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueGetMilestoneValidateBeforeCall(String owner, String repo, String id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -3198,11 +4665,11 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to get, identified by ID and if not available by name (required)
      * @return Milestone
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Milestone issueGetMilestone(String owner, String repo, Long id) throws ApiException {
+    public Milestone issueGetMilestone(String owner, String repo, String id) throws ApiException {
         ApiResponse<Milestone> resp = issueGetMilestoneWithHttpInfo(owner, repo, id);
         return resp.getData();
     }
@@ -3212,11 +4679,11 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to get, identified by ID and if not available by name (required)
      * @return ApiResponse&lt;Milestone&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Milestone> issueGetMilestoneWithHttpInfo(String owner, String repo, Long id) throws ApiException {
+    public ApiResponse<Milestone> issueGetMilestoneWithHttpInfo(String owner, String repo, String id) throws ApiException {
         com.squareup.okhttp.Call call = issueGetMilestoneValidateBeforeCall(owner, repo, id, null, null);
         Type localVarReturnType = new TypeToken<Milestone>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -3227,12 +4694,12 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id id of the milestone (required)
+     * @param id the milestone to get, identified by ID and if not available by name (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueGetMilestoneAsync(String owner, String repo, Long id, final ApiCallback<Milestone> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueGetMilestoneAsync(String owner, String repo, String id, final ApiCallback<Milestone> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3263,12 +4730,15 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param state Milestone state, Recognised values are open, closed and all. Defaults to \&quot;open\&quot; (optional)
+     * @param name filter by milestone name (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueGetMilestonesListCall(String owner, String repo, String state, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueGetMilestonesListCall(String owner, String repo, String state, String name, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3280,6 +4750,12 @@ public class IssueApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (state != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
+        if (name != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("name", name));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -3309,12 +4785,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueGetMilestonesListValidateBeforeCall(String owner, String repo, String state, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueGetMilestonesListValidateBeforeCall(String owner, String repo, String state, String name, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -3327,7 +4803,7 @@ public class IssueApi {
         }
         
 
-        com.squareup.okhttp.Call call = issueGetMilestonesListCall(owner, repo, state, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueGetMilestonesListCall(owner, repo, state, name, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3338,11 +4814,14 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param state Milestone state, Recognised values are open, closed and all. Defaults to \&quot;open\&quot; (optional)
+     * @param name filter by milestone name (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Milestone&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Milestone> issueGetMilestonesList(String owner, String repo, String state) throws ApiException {
-        ApiResponse<List<Milestone>> resp = issueGetMilestonesListWithHttpInfo(owner, repo, state);
+    public List<Milestone> issueGetMilestonesList(String owner, String repo, String state, String name, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Milestone>> resp = issueGetMilestonesListWithHttpInfo(owner, repo, state, name, page, limit);
         return resp.getData();
     }
 
@@ -3352,11 +4831,14 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param state Milestone state, Recognised values are open, closed and all. Defaults to \&quot;open\&quot; (optional)
+     * @param name filter by milestone name (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Milestone&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Milestone>> issueGetMilestonesListWithHttpInfo(String owner, String repo, String state) throws ApiException {
-        com.squareup.okhttp.Call call = issueGetMilestonesListValidateBeforeCall(owner, repo, state, null, null);
+    public ApiResponse<List<Milestone>> issueGetMilestonesListWithHttpInfo(String owner, String repo, String state, String name, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueGetMilestonesListValidateBeforeCall(owner, repo, state, name, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Milestone>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3367,11 +4849,14 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param state Milestone state, Recognised values are open, closed and all. Defaults to \&quot;open\&quot; (optional)
+     * @param name filter by milestone name (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueGetMilestonesListAsync(String owner, String repo, String state, final ApiCallback<List<Milestone>> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueGetMilestonesListAsync(String owner, String repo, String state, String name, Integer page, Integer limit, final ApiCallback<List<Milestone>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3392,7 +4877,7 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueGetMilestonesListValidateBeforeCall(owner, repo, state, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueGetMilestonesListValidateBeforeCall(owner, repo, state, name, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Milestone>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3402,12 +4887,15 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param since if provided, only comments updated since the provided time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueGetRepoCommentsCall(String owner, String repo, String since, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueGetRepoCommentsCall(String owner, String repo, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3419,6 +4907,12 @@ public class IssueApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (since != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("since", since));
+        if (before != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("before", before));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -3448,12 +4942,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueGetRepoCommentsValidateBeforeCall(String owner, String repo, String since, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueGetRepoCommentsValidateBeforeCall(String owner, String repo, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -3466,7 +4960,7 @@ public class IssueApi {
         }
         
 
-        com.squareup.okhttp.Call call = issueGetRepoCommentsCall(owner, repo, since, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueGetRepoCommentsCall(owner, repo, since, before, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3477,11 +4971,14 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param since if provided, only comments updated since the provided time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Comment&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Comment> issueGetRepoComments(String owner, String repo, String since) throws ApiException {
-        ApiResponse<List<Comment>> resp = issueGetRepoCommentsWithHttpInfo(owner, repo, since);
+    public List<Comment> issueGetRepoComments(String owner, String repo, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Comment>> resp = issueGetRepoCommentsWithHttpInfo(owner, repo, since, before, page, limit);
         return resp.getData();
     }
 
@@ -3491,11 +4988,14 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param since if provided, only comments updated since the provided time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Comment&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Comment>> issueGetRepoCommentsWithHttpInfo(String owner, String repo, String since) throws ApiException {
-        com.squareup.okhttp.Call call = issueGetRepoCommentsValidateBeforeCall(owner, repo, since, null, null);
+    public ApiResponse<List<Comment>> issueGetRepoCommentsWithHttpInfo(String owner, String repo, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueGetRepoCommentsValidateBeforeCall(owner, repo, since, before, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Comment>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3506,11 +5006,14 @@ public class IssueApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param since if provided, only comments updated since the provided time are returned. (optional)
+     * @param before if provided, only comments updated before the provided time are returned. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueGetRepoCommentsAsync(String owner, String repo, String since, final ApiCallback<List<Comment>> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueGetRepoCommentsAsync(String owner, String repo, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ApiCallback<List<Comment>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3531,7 +5034,7 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueGetRepoCommentsValidateBeforeCall(owner, repo, since, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueGetRepoCommentsValidateBeforeCall(owner, repo, since, before, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Comment>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3542,14 +5045,17 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param state whether issue is open or closed (optional)
      * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
-     * @param page page number of requested issues (optional)
      * @param q search string (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param milestones comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueListIssuesCall(String owner, String repo, String state, String labels, Integer page, String q, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueListIssuesCall(String owner, String repo, String state, String labels, String q, String type, String milestones, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -3563,10 +5069,16 @@ public class IssueApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
         if (labels != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("labels", labels));
-        if (page != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (q != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("q", q));
+        if (type != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("type", type));
+        if (milestones != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("milestones", milestones));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -3596,12 +5108,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueListIssuesValidateBeforeCall(String owner, String repo, String state, String labels, Integer page, String q, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueListIssuesValidateBeforeCall(String owner, String repo, String state, String labels, String q, String type, String milestones, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -3614,7 +5126,7 @@ public class IssueApi {
         }
         
 
-        com.squareup.okhttp.Call call = issueListIssuesCall(owner, repo, state, labels, page, q, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueListIssuesCall(owner, repo, state, labels, q, type, milestones, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -3626,13 +5138,16 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param state whether issue is open or closed (optional)
      * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
-     * @param page page number of requested issues (optional)
      * @param q search string (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param milestones comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Issue&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Issue> issueListIssues(String owner, String repo, String state, String labels, Integer page, String q) throws ApiException {
-        ApiResponse<List<Issue>> resp = issueListIssuesWithHttpInfo(owner, repo, state, labels, page, q);
+    public List<Issue> issueListIssues(String owner, String repo, String state, String labels, String q, String type, String milestones, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Issue>> resp = issueListIssuesWithHttpInfo(owner, repo, state, labels, q, type, milestones, page, limit);
         return resp.getData();
     }
 
@@ -3643,13 +5158,16 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param state whether issue is open or closed (optional)
      * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
-     * @param page page number of requested issues (optional)
      * @param q search string (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param milestones comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Issue&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Issue>> issueListIssuesWithHttpInfo(String owner, String repo, String state, String labels, Integer page, String q) throws ApiException {
-        com.squareup.okhttp.Call call = issueListIssuesValidateBeforeCall(owner, repo, state, labels, page, q, null, null);
+    public ApiResponse<List<Issue>> issueListIssuesWithHttpInfo(String owner, String repo, String state, String labels, String q, String type, String milestones, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueListIssuesValidateBeforeCall(owner, repo, state, labels, q, type, milestones, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Issue>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -3661,13 +5179,16 @@ public class IssueApi {
      * @param repo name of the repo (required)
      * @param state whether issue is open or closed (optional)
      * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
-     * @param page page number of requested issues (optional)
      * @param q search string (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param milestones comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueListIssuesAsync(String owner, String repo, String state, String labels, Integer page, String q, final ApiCallback<List<Issue>> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueListIssuesAsync(String owner, String repo, String state, String labels, String q, String type, String milestones, Integer page, Integer limit, final ApiCallback<List<Issue>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3688,7 +5209,7 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueListIssuesValidateBeforeCall(owner, repo, state, labels, page, q, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueListIssuesValidateBeforeCall(owner, repo, state, labels, q, type, milestones, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Issue>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -3697,18 +5218,166 @@ public class IssueApi {
      * Build call for issueListLabels
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueListLabelsCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueListLabelsCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/repos/{owner}/{repo}/labels"
             .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
             .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueListLabelsValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueListLabels(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueListLabels(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueListLabelsCall(owner, repo, page, limit, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get all of a repository&#39;s labels
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return List&lt;Label&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<Label> issueListLabels(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Label>> resp = issueListLabelsWithHttpInfo(owner, repo, page, limit);
+        return resp.getData();
+    }
+
+    /**
+     * Get all of a repository&#39;s labels
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return ApiResponse&lt;List&lt;Label&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<Label>> issueListLabelsWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueListLabelsValidateBeforeCall(owner, repo, page, limit, null, null);
+        Type localVarReturnType = new TypeToken<List<Label>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get all of a repository&#39;s labels (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueListLabelsAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<Label>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueListLabelsValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Label>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for issuePostCommentReaction
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issuePostCommentReactionCall(String owner, String repo, Long id, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = content;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/comments/{id}/reactions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
@@ -3724,7 +5393,7 @@ public class IssueApi {
         if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
 
         final String[] localVarContentTypes = {
-            "application/json", "text/plain"
+            "application/json"
         };
         final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
         localVarHeaderParams.put("Content-Type", localVarContentType);
@@ -3741,66 +5410,77 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueListLabelsValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issuePostCommentReactionValidateBeforeCall(String owner, String repo, Long id, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
-            throw new ApiException("Missing the required parameter 'owner' when calling issueListLabels(Async)");
+            throw new ApiException("Missing the required parameter 'owner' when calling issuePostCommentReaction(Async)");
         }
         
         // verify the required parameter 'repo' is set
         if (repo == null) {
-            throw new ApiException("Missing the required parameter 'repo' when calling issueListLabels(Async)");
+            throw new ApiException("Missing the required parameter 'repo' when calling issuePostCommentReaction(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling issuePostCommentReaction(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = issueListLabelsCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issuePostCommentReactionCall(owner, repo, id, content, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * Get all of a repository&#39;s labels
+     * Add a reaction to a comment of an issue
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return List&lt;Label&gt;
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @return Reaction
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Label> issueListLabels(String owner, String repo) throws ApiException {
-        ApiResponse<List<Label>> resp = issueListLabelsWithHttpInfo(owner, repo);
+    public Reaction issuePostCommentReaction(String owner, String repo, Long id, EditReactionOption content) throws ApiException {
+        ApiResponse<Reaction> resp = issuePostCommentReactionWithHttpInfo(owner, repo, id, content);
         return resp.getData();
     }
 
     /**
-     * Get all of a repository&#39;s labels
+     * Add a reaction to a comment of an issue
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @return ApiResponse&lt;List&lt;Label&gt;&gt;
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
+     * @return ApiResponse&lt;Reaction&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Label>> issueListLabelsWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = issueListLabelsValidateBeforeCall(owner, repo, null, null);
-        Type localVarReturnType = new TypeToken<List<Label>>(){}.getType();
+    public ApiResponse<Reaction> issuePostCommentReactionWithHttpInfo(String owner, String repo, Long id, EditReactionOption content) throws ApiException {
+        com.squareup.okhttp.Call call = issuePostCommentReactionValidateBeforeCall(owner, repo, id, content, null, null);
+        Type localVarReturnType = new TypeToken<Reaction>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * Get all of a repository&#39;s labels (asynchronously)
+     * Add a reaction to a comment of an issue (asynchronously)
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param id id of the comment to edit (required)
+     * @param content  (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueListLabelsAsync(String owner, String repo, final ApiCallback<List<Label>> callback) throws ApiException {
+    public com.squareup.okhttp.Call issuePostCommentReactionAsync(String owner, String repo, Long id, EditReactionOption content, final ApiCallback<Reaction> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -3821,8 +5501,155 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueListLabelsValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Label>>(){}.getType();
+        com.squareup.okhttp.Call call = issuePostCommentReactionValidateBeforeCall(owner, repo, id, content, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Reaction>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for issuePostIssueReaction
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issuePostIssueReactionCall(String owner, String repo, Long index, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = content;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/reactions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issuePostIssueReactionValidateBeforeCall(String owner, String repo, Long index, EditReactionOption content, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issuePostIssueReaction(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issuePostIssueReaction(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issuePostIssueReaction(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issuePostIssueReactionCall(owner, repo, index, content, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Add a reaction to an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @return Reaction
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Reaction issuePostIssueReaction(String owner, String repo, Long index, EditReactionOption content) throws ApiException {
+        ApiResponse<Reaction> resp = issuePostIssueReactionWithHttpInfo(owner, repo, index, content);
+        return resp.getData();
+    }
+
+    /**
+     * Add a reaction to an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @return ApiResponse&lt;Reaction&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Reaction> issuePostIssueReactionWithHttpInfo(String owner, String repo, Long index, EditReactionOption content) throws ApiException {
+        com.squareup.okhttp.Call call = issuePostIssueReactionValidateBeforeCall(owner, repo, index, content, null, null);
+        Type localVarReturnType = new TypeToken<Reaction>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Add a reaction to an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param content  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issuePostIssueReactionAsync(String owner, String repo, Long index, EditReactionOption content, final ApiCallback<Reaction> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issuePostIssueReactionValidateBeforeCall(owner, repo, index, content, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Reaction>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -3878,7 +5705,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4026,7 +5853,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4123,6 +5950,294 @@ public class IssueApi {
         return call;
     }
     /**
+     * Build call for issueResetTime
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to add tracked time to (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueResetTimeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/times"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueResetTimeValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueResetTime(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueResetTime(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueResetTime(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueResetTimeCall(owner, repo, index, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Reset a tracked time of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to add tracked time to (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void issueResetTime(String owner, String repo, Long index) throws ApiException {
+        issueResetTimeWithHttpInfo(owner, repo, index);
+    }
+
+    /**
+     * Reset a tracked time of an issue
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to add tracked time to (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> issueResetTimeWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = issueResetTimeValidateBeforeCall(owner, repo, index, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Reset a tracked time of an issue (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue to add tracked time to (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueResetTimeAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueResetTimeValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueSearchIssues
+     * @param state whether issue is open or closed (optional)
+     * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
+     * @param q search string (optional)
+     * @param priorityRepoId repository to prioritize in the results (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param page page number of requested issues (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueSearchIssuesCall(String state, String labels, String q, Long priorityRepoId, String type, Integer page, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/issues/search";
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (state != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
+        if (labels != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("labels", labels));
+        if (q != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("q", q));
+        if (priorityRepoId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("priority_repo_id", priorityRepoId));
+        if (type != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("type", type));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueSearchIssuesValidateBeforeCall(String state, String labels, String q, Long priorityRepoId, String type, Integer page, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+
+        com.squareup.okhttp.Call call = issueSearchIssuesCall(state, labels, q, priorityRepoId, type, page, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Search for issues across the repositories that the user has access to
+     * 
+     * @param state whether issue is open or closed (optional)
+     * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
+     * @param q search string (optional)
+     * @param priorityRepoId repository to prioritize in the results (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param page page number of requested issues (optional)
+     * @return List&lt;Issue&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<Issue> issueSearchIssues(String state, String labels, String q, Long priorityRepoId, String type, Integer page) throws ApiException {
+        ApiResponse<List<Issue>> resp = issueSearchIssuesWithHttpInfo(state, labels, q, priorityRepoId, type, page);
+        return resp.getData();
+    }
+
+    /**
+     * Search for issues across the repositories that the user has access to
+     * 
+     * @param state whether issue is open or closed (optional)
+     * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
+     * @param q search string (optional)
+     * @param priorityRepoId repository to prioritize in the results (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param page page number of requested issues (optional)
+     * @return ApiResponse&lt;List&lt;Issue&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<Issue>> issueSearchIssuesWithHttpInfo(String state, String labels, String q, Long priorityRepoId, String type, Integer page) throws ApiException {
+        com.squareup.okhttp.Call call = issueSearchIssuesValidateBeforeCall(state, labels, q, priorityRepoId, type, page, null, null);
+        Type localVarReturnType = new TypeToken<List<Issue>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Search for issues across the repositories that the user has access to (asynchronously)
+     * 
+     * @param state whether issue is open or closed (optional)
+     * @param labels comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded (optional)
+     * @param q search string (optional)
+     * @param priorityRepoId repository to prioritize in the results (optional)
+     * @param type filter by type (issues / pulls) if set (optional)
+     * @param page page number of requested issues (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueSearchIssuesAsync(String state, String labels, String q, Long priorityRepoId, String type, Integer page, final ApiCallback<List<Issue>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueSearchIssuesValidateBeforeCall(state, labels, q, priorityRepoId, type, page, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Issue>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for issueStartStopWatch
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -4172,7 +6287,7 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4262,7 +6377,7 @@ public class IssueApi {
         return call;
     }
     /**
-     * Build call for issueStopWatch
+     * Build call for issueStopStopWatch
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param index index of the issue to stop the stopwatch on (required)
@@ -4271,7 +6386,7 @@ public class IssueApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueStopWatchCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueStopStopWatchCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4311,30 +6426,30 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueStopWatchValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueStopStopWatchValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
-            throw new ApiException("Missing the required parameter 'owner' when calling issueStopWatch(Async)");
+            throw new ApiException("Missing the required parameter 'owner' when calling issueStopStopWatch(Async)");
         }
         
         // verify the required parameter 'repo' is set
         if (repo == null) {
-            throw new ApiException("Missing the required parameter 'repo' when calling issueStopWatch(Async)");
+            throw new ApiException("Missing the required parameter 'repo' when calling issueStopStopWatch(Async)");
         }
         
         // verify the required parameter 'index' is set
         if (index == null) {
-            throw new ApiException("Missing the required parameter 'index' when calling issueStopWatch(Async)");
+            throw new ApiException("Missing the required parameter 'index' when calling issueStopStopWatch(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = issueStopWatchCall(owner, repo, index, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueStopStopWatchCall(owner, repo, index, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4347,8 +6462,8 @@ public class IssueApi {
      * @param index index of the issue to stop the stopwatch on (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void issueStopWatch(String owner, String repo, Long index) throws ApiException {
-        issueStopWatchWithHttpInfo(owner, repo, index);
+    public void issueStopStopWatch(String owner, String repo, Long index) throws ApiException {
+        issueStopStopWatchWithHttpInfo(owner, repo, index);
     }
 
     /**
@@ -4360,8 +6475,8 @@ public class IssueApi {
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> issueStopWatchWithHttpInfo(String owner, String repo, Long index) throws ApiException {
-        com.squareup.okhttp.Call call = issueStopWatchValidateBeforeCall(owner, repo, index, null, null);
+    public ApiResponse<Void> issueStopStopWatchWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = issueStopStopWatchValidateBeforeCall(owner, repo, index, null, null);
         return apiClient.execute(call);
     }
 
@@ -4375,7 +6490,7 @@ public class IssueApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueStopWatchAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueStopStopWatchAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4396,31 +6511,198 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueStopWatchValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueStopStopWatchValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
         apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for issueSubscriptions
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call issueSubscriptionsCall(String owner, String repo, Long index, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/subscriptions"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call issueSubscriptionsValidateBeforeCall(String owner, String repo, Long index, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling issueSubscriptions(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling issueSubscriptions(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueSubscriptions(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = issueSubscriptionsCall(owner, repo, index, page, limit, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get users who subscribed on an issue.
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return List&lt;User&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<User> issueSubscriptions(String owner, String repo, Long index, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<User>> resp = issueSubscriptionsWithHttpInfo(owner, repo, index, page, limit);
+        return resp.getData();
+    }
+
+    /**
+     * Get users who subscribed on an issue.
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return ApiResponse&lt;List&lt;User&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<User>> issueSubscriptionsWithHttpInfo(String owner, String repo, Long index, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueSubscriptionsValidateBeforeCall(owner, repo, index, page, limit, null, null);
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get users who subscribed on an issue. (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the issue (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call issueSubscriptionsAsync(String owner, String repo, Long index, Integer page, Integer limit, final ApiCallback<List<User>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = issueSubscriptionsValidateBeforeCall(owner, repo, index, page, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
      * Build call for issueTrackedTimes
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue (required)
+     * @param index index of the issue (required)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call issueTrackedTimesCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call issueTrackedTimesCall(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/repos/{owner}/{repo}/issues/{id}/times"
+        String localVarPath = "/repos/{owner}/{repo}/issues/{index}/times"
             .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
             .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
-            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (since != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("since", since));
+        if (before != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("before", before));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -4450,12 +6732,12 @@ public class IssueApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call issueTrackedTimesValidateBeforeCall(String owner, String repo, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call issueTrackedTimesValidateBeforeCall(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -4467,13 +6749,13 @@ public class IssueApi {
             throw new ApiException("Missing the required parameter 'repo' when calling issueTrackedTimes(Async)");
         }
         
-        // verify the required parameter 'id' is set
-        if (id == null) {
-            throw new ApiException("Missing the required parameter 'id' when calling issueTrackedTimes(Async)");
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling issueTrackedTimes(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = issueTrackedTimesCall(owner, repo, id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueTrackedTimesCall(owner, repo, index, since, before, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4483,12 +6765,16 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue (required)
+     * @param index index of the issue (required)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;TrackedTime&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<TrackedTime> issueTrackedTimes(String owner, String repo, Long id) throws ApiException {
-        ApiResponse<List<TrackedTime>> resp = issueTrackedTimesWithHttpInfo(owner, repo, id);
+    public List<TrackedTime> issueTrackedTimes(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<TrackedTime>> resp = issueTrackedTimesWithHttpInfo(owner, repo, index, since, before, page, limit);
         return resp.getData();
     }
 
@@ -4497,12 +6783,16 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue (required)
+     * @param index index of the issue (required)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;TrackedTime&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<TrackedTime>> issueTrackedTimesWithHttpInfo(String owner, String repo, Long id) throws ApiException {
-        com.squareup.okhttp.Call call = issueTrackedTimesValidateBeforeCall(owner, repo, id, null, null);
+    public ApiResponse<List<TrackedTime>> issueTrackedTimesWithHttpInfo(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = issueTrackedTimesValidateBeforeCall(owner, repo, index, since, before, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4512,12 +6802,16 @@ public class IssueApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param id index of the issue (required)
+     * @param index index of the issue (required)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call issueTrackedTimesAsync(String owner, String repo, Long id, final ApiCallback<List<TrackedTime>> callback) throws ApiException {
+    public com.squareup.okhttp.Call issueTrackedTimesAsync(String owner, String repo, Long index, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ApiCallback<List<TrackedTime>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4538,7 +6832,7 @@ public class IssueApi {
             };
         }
 
-        com.squareup.okhttp.Call call = issueTrackedTimesValidateBeforeCall(owner, repo, id, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = issueTrackedTimesValidateBeforeCall(owner, repo, index, since, before, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;

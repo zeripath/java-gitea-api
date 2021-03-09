@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **milestone** | **Long** |  |  [optional]
 **state** | **String** |  |  [optional]
 **title** | **String** |  |  [optional]
+**unsetDueDate** | **Boolean** |  |  [optional]
 
 
 

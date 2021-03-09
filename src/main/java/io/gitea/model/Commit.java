@@ -28,11 +28,12 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
 import java.util.List;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * Commit
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class Commit {
   @SerializedName("author")
   private User author = null;
@@ -42,6 +43,9 @@ public class Commit {
 
   @SerializedName("committer")
   private User committer = null;
+
+  @SerializedName("created")
+  private OffsetDateTime created = null;
 
   @SerializedName("html_url")
   private String htmlUrl = null;
@@ -107,6 +111,24 @@ public class Commit {
 
   public void setCommitter(User committer) {
     this.committer = committer;
+  }
+
+  public Commit created(OffsetDateTime created) {
+    this.created = created;
+    return this;
+  }
+
+   /**
+   * Get created
+   * @return created
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getCreated() {
+    return created;
+  }
+
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
   }
 
   public Commit htmlUrl(String htmlUrl) {
@@ -202,6 +224,7 @@ public class Commit {
     return Objects.equals(this.author, commit.author) &&
         Objects.equals(this.commit, commit.commit) &&
         Objects.equals(this.committer, commit.committer) &&
+        Objects.equals(this.created, commit.created) &&
         Objects.equals(this.htmlUrl, commit.htmlUrl) &&
         Objects.equals(this.parents, commit.parents) &&
         Objects.equals(this.sha, commit.sha) &&
@@ -210,7 +233,7 @@ public class Commit {
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, commit, committer, htmlUrl, parents, sha, url);
+    return Objects.hash(author, commit, committer, created, htmlUrl, parents, sha, url);
   }
 
 
@@ -222,6 +245,7 @@ public class Commit {
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    commit: ").append(toIndentedString(commit)).append("\n");
     sb.append("    committer: ").append(toIndentedString(committer)).append("\n");
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    htmlUrl: ").append(toIndentedString(htmlUrl)).append("\n");
     sb.append("    parents: ").append(toIndentedString(parents)).append("\n");
     sb.append("    sha: ").append(toIndentedString(sha)).append("\n");

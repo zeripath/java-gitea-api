@@ -28,7 +28,7 @@ import java.io.IOException;
  * MergePullRequestForm form for merging Pull Request
  */
 @ApiModel(description = "MergePullRequestForm form for merging Pull Request")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class MergePullRequestOption {
   /**
    * Gets or Sets _do
@@ -90,6 +90,9 @@ public class MergePullRequestOption {
   @SerializedName("MergeTitleField")
   private String mergeTitleField = null;
 
+  @SerializedName("force_merge")
+  private Boolean forceMerge = null;
+
   public MergePullRequestOption _do(DoEnum _do) {
     this._do = _do;
     return this;
@@ -144,6 +147,24 @@ public class MergePullRequestOption {
     this.mergeTitleField = mergeTitleField;
   }
 
+  public MergePullRequestOption forceMerge(Boolean forceMerge) {
+    this.forceMerge = forceMerge;
+    return this;
+  }
+
+   /**
+   * Get forceMerge
+   * @return forceMerge
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isForceMerge() {
+    return forceMerge;
+  }
+
+  public void setForceMerge(Boolean forceMerge) {
+    this.forceMerge = forceMerge;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -156,12 +177,13 @@ public class MergePullRequestOption {
     MergePullRequestOption mergePullRequestOption = (MergePullRequestOption) o;
     return Objects.equals(this._do, mergePullRequestOption._do) &&
         Objects.equals(this.mergeMessageField, mergePullRequestOption.mergeMessageField) &&
-        Objects.equals(this.mergeTitleField, mergePullRequestOption.mergeTitleField);
+        Objects.equals(this.mergeTitleField, mergePullRequestOption.mergeTitleField) &&
+        Objects.equals(this.forceMerge, mergePullRequestOption.forceMerge);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(_do, mergeMessageField, mergeTitleField);
+    return Objects.hash(_do, mergeMessageField, mergeTitleField, forceMerge);
   }
 
 
@@ -173,6 +195,7 @@ public class MergePullRequestOption {
     sb.append("    _do: ").append(toIndentedString(_do)).append("\n");
     sb.append("    mergeMessageField: ").append(toIndentedString(mergeMessageField)).append("\n");
     sb.append("    mergeTitleField: ").append(toIndentedString(mergeTitleField)).append("\n");
+    sb.append("    forceMerge: ").append(toIndentedString(forceMerge)).append("\n");
     sb.append("}");
     return sb.toString();
   }

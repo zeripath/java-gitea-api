@@ -14,7 +14,22 @@
 package io.gitea.api;
 
 import io.gitea.ApiException;
-import io.gitea.model.*;
+import io.gitea.model.CreateHookOption;
+import io.gitea.model.CreateLabelOption;
+import io.gitea.model.CreateOrgOption;
+import io.gitea.model.CreateRepoOption;
+import io.gitea.model.CreateTeamOption;
+import io.gitea.model.EditHookOption;
+import io.gitea.model.EditLabelOption;
+import io.gitea.model.EditOrgOption;
+import io.gitea.model.EditTeamOption;
+import io.gitea.model.Hook;
+import io.gitea.model.InlineResponse200;
+import io.gitea.model.Label;
+import io.gitea.model.Organization;
+import io.gitea.model.Repository;
+import io.gitea.model.Team;
+import io.gitea.model.User;
 import org.junit.Test;
 import org.junit.Ignore;
 
@@ -45,6 +60,23 @@ public class OrganizationApiTest {
         String org = null;
         CreateRepoOption body = null;
         Repository response = api.createOrgRepo(org, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Create a repository in an organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void createOrgRepoDeprecatedTest() throws ApiException {
+        String org = null;
+        CreateRepoOption body = null;
+        Repository response = api.createOrgRepoDeprecated(org, body);
 
         // TODO: test validations
     }
@@ -102,6 +134,22 @@ public class OrganizationApiTest {
     }
     
     /**
+     * Create an organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgCreateTest() throws ApiException {
+        CreateOrgOption organization = null;
+        Organization response = api.orgCreate(organization);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Create a hook
      *
      * 
@@ -114,6 +162,23 @@ public class OrganizationApiTest {
         String org = null;
         CreateHookOption body = null;
         Hook response = api.orgCreateHook(org, body);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Create a label for an organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgCreateLabelTest() throws ApiException {
+        String org = null;
+        CreateLabelOption body = null;
+        Label response = api.orgCreateLabel(org, body);
 
         // TODO: test validations
     }
@@ -136,6 +201,22 @@ public class OrganizationApiTest {
     }
     
     /**
+     * Delete an organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgDeleteTest() throws ApiException {
+        String org = null;
+        api.orgDelete(org);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Delete a hook
      *
      * 
@@ -148,6 +229,23 @@ public class OrganizationApiTest {
         String org = null;
         Long id = null;
         api.orgDeleteHook(org, id);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Delete a label
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgDeleteLabelTest() throws ApiException {
+        String org = null;
+        Long id = null;
+        api.orgDeleteLabel(org, id);
 
         // TODO: test validations
     }
@@ -221,6 +319,24 @@ public class OrganizationApiTest {
     }
     
     /**
+     * Update a label
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgEditLabelTest() throws ApiException {
+        String org = null;
+        Long id = null;
+        EditLabelOption body = null;
+        Label response = api.orgEditLabel(org, id, body);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Edit a team
      *
      * 
@@ -254,6 +370,23 @@ public class OrganizationApiTest {
     }
     
     /**
+     * Get list of organizations
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgGetAllTest() throws ApiException {
+        Integer page = null;
+        Integer limit = null;
+        List<Organization> response = api.orgGetAll(page, limit);
+
+        // TODO: test validations
+    }
+    
+    /**
      * Get a hook
      *
      * 
@@ -266,6 +399,23 @@ public class OrganizationApiTest {
         String org = null;
         Long id = null;
         Hook response = api.orgGetHook(org, id);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Get a single label
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgGetLabelTest() throws ApiException {
+        String org = null;
+        Long id = null;
+        Label response = api.orgGetLabel(org, id);
 
         // TODO: test validations
     }
@@ -330,7 +480,9 @@ public class OrganizationApiTest {
      */
     @Test
     public void orgListCurrentUserOrgsTest() throws ApiException {
-        List<Organization> response = api.orgListCurrentUserOrgs();
+        Integer page = null;
+        Integer limit = null;
+        List<Organization> response = api.orgListCurrentUserOrgs(page, limit);
 
         // TODO: test validations
     }
@@ -346,7 +498,27 @@ public class OrganizationApiTest {
     @Test
     public void orgListHooksTest() throws ApiException {
         String org = null;
-        List<Hook> response = api.orgListHooks(org);
+        Integer page = null;
+        Integer limit = null;
+        List<Hook> response = api.orgListHooks(org, page, limit);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * List an organization&#39;s labels
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgListLabelsTest() throws ApiException {
+        String org = null;
+        Integer page = null;
+        Integer limit = null;
+        List<Label> response = api.orgListLabels(org, page, limit);
 
         // TODO: test validations
     }
@@ -362,7 +534,9 @@ public class OrganizationApiTest {
     @Test
     public void orgListMembersTest() throws ApiException {
         String org = null;
-        List<User> response = api.orgListMembers(org);
+        Integer page = null;
+        Integer limit = null;
+        List<User> response = api.orgListMembers(org, page, limit);
 
         // TODO: test validations
     }
@@ -378,7 +552,9 @@ public class OrganizationApiTest {
     @Test
     public void orgListPublicMembersTest() throws ApiException {
         String org = null;
-        List<User> response = api.orgListPublicMembers(org);
+        Integer page = null;
+        Integer limit = null;
+        List<User> response = api.orgListPublicMembers(org, page, limit);
 
         // TODO: test validations
     }
@@ -394,7 +570,26 @@ public class OrganizationApiTest {
     @Test
     public void orgListReposTest() throws ApiException {
         String org = null;
-        List<Repository> response = api.orgListRepos(org);
+        Integer page = null;
+        Integer limit = null;
+        List<Repository> response = api.orgListRepos(org, page, limit);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * List a particular member of team
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void orgListTeamMemberTest() throws ApiException {
+        Long id = null;
+        String username = null;
+        User response = api.orgListTeamMember(id, username);
 
         // TODO: test validations
     }
@@ -410,7 +605,9 @@ public class OrganizationApiTest {
     @Test
     public void orgListTeamMembersTest() throws ApiException {
         Long id = null;
-        List<User> response = api.orgListTeamMembers(id);
+        Integer page = null;
+        Integer limit = null;
+        List<User> response = api.orgListTeamMembers(id, page, limit);
 
         // TODO: test validations
     }
@@ -426,7 +623,9 @@ public class OrganizationApiTest {
     @Test
     public void orgListTeamReposTest() throws ApiException {
         Long id = null;
-        List<Repository> response = api.orgListTeamRepos(id);
+        Integer page = null;
+        Integer limit = null;
+        List<Repository> response = api.orgListTeamRepos(id, page, limit);
 
         // TODO: test validations
     }
@@ -442,7 +641,9 @@ public class OrganizationApiTest {
     @Test
     public void orgListTeamsTest() throws ApiException {
         String org = null;
-        List<Team> response = api.orgListTeams(org);
+        Integer page = null;
+        Integer limit = null;
+        List<Team> response = api.orgListTeams(org, page, limit);
 
         // TODO: test validations
     }
@@ -458,7 +659,9 @@ public class OrganizationApiTest {
     @Test
     public void orgListUserOrgsTest() throws ApiException {
         String username = null;
-        List<Organization> response = api.orgListUserOrgs(username);
+        Integer page = null;
+        Integer limit = null;
+        List<Organization> response = api.orgListUserOrgs(username, page, limit);
 
         // TODO: test validations
     }
@@ -511,6 +714,26 @@ public class OrganizationApiTest {
         String org = null;
         String repo = null;
         api.orgRemoveTeamRepository(id, org, repo);
+
+        // TODO: test validations
+    }
+    
+    /**
+     * Search for teams within an organization
+     *
+     * 
+     *
+     * @throws ApiException
+     *          if the Api call fails
+     */
+    @Test
+    public void teamSearchTest() throws ApiException {
+        String org = null;
+        String q = null;
+        Boolean includeDesc = null;
+        Integer page = null;
+        Integer limit = null;
+        InlineResponse200 response = api.teamSearch(org, q, includeDesc, page, limit);
 
         // TODO: test validations
     }

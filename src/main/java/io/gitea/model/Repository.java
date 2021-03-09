@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * Repository represents a repository
  */
 @ApiModel(description = "Repository represents a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class Repository {
   @SerializedName("allow_merge_commits")
   private Boolean allowMergeCommits = null;
@@ -88,6 +88,9 @@ public class Repository {
   @SerializedName("has_issues")
   private Boolean hasIssues = null;
 
+  @SerializedName("has_projects")
+  private Boolean hasProjects = null;
+
   @SerializedName("has_pull_requests")
   private Boolean hasPullRequests = null;
 
@@ -103,6 +106,9 @@ public class Repository {
   @SerializedName("ignore_whitespace_conflicts")
   private Boolean ignoreWhitespaceConflicts = null;
 
+  @SerializedName("internal")
+  private Boolean internal = null;
+
   @SerializedName("internal_tracker")
   private InternalTracker internalTracker = null;
 
@@ -114,6 +120,9 @@ public class Repository {
 
   @SerializedName("open_issues_count")
   private Long openIssuesCount = null;
+
+  @SerializedName("open_pr_counter")
+  private Long openPrCounter = null;
 
   @SerializedName("original_url")
   private String originalUrl = null;
@@ -130,6 +139,9 @@ public class Repository {
   @SerializedName("private")
   private Boolean _private = null;
 
+  @SerializedName("release_counter")
+  private Long releaseCounter = null;
+
   @SerializedName("size")
   private Long size = null;
 
@@ -138,6 +150,9 @@ public class Repository {
 
   @SerializedName("stars_count")
   private Long starsCount = null;
+
+  @SerializedName("template")
+  private Boolean template = null;
 
   @SerializedName("updated_at")
   private OffsetDateTime updatedAt = null;
@@ -454,6 +469,24 @@ public class Repository {
     this.hasIssues = hasIssues;
   }
 
+  public Repository hasProjects(Boolean hasProjects) {
+    this.hasProjects = hasProjects;
+    return this;
+  }
+
+   /**
+   * Get hasProjects
+   * @return hasProjects
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isHasProjects() {
+    return hasProjects;
+  }
+
+  public void setHasProjects(Boolean hasProjects) {
+    this.hasProjects = hasProjects;
+  }
+
   public Repository hasPullRequests(Boolean hasPullRequests) {
     this.hasPullRequests = hasPullRequests;
     return this;
@@ -544,6 +577,24 @@ public class Repository {
     this.ignoreWhitespaceConflicts = ignoreWhitespaceConflicts;
   }
 
+  public Repository internal(Boolean internal) {
+    this.internal = internal;
+    return this;
+  }
+
+   /**
+   * Get internal
+   * @return internal
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isInternal() {
+    return internal;
+  }
+
+  public void setInternal(Boolean internal) {
+    this.internal = internal;
+  }
+
   public Repository internalTracker(InternalTracker internalTracker) {
     this.internalTracker = internalTracker;
     return this;
@@ -614,6 +665,24 @@ public class Repository {
 
   public void setOpenIssuesCount(Long openIssuesCount) {
     this.openIssuesCount = openIssuesCount;
+  }
+
+  public Repository openPrCounter(Long openPrCounter) {
+    this.openPrCounter = openPrCounter;
+    return this;
+  }
+
+   /**
+   * Get openPrCounter
+   * @return openPrCounter
+  **/
+  @ApiModelProperty(value = "")
+  public Long getOpenPrCounter() {
+    return openPrCounter;
+  }
+
+  public void setOpenPrCounter(Long openPrCounter) {
+    this.openPrCounter = openPrCounter;
   }
 
   public Repository originalUrl(String originalUrl) {
@@ -706,6 +775,24 @@ public class Repository {
     this._private = _private;
   }
 
+  public Repository releaseCounter(Long releaseCounter) {
+    this.releaseCounter = releaseCounter;
+    return this;
+  }
+
+   /**
+   * Get releaseCounter
+   * @return releaseCounter
+  **/
+  @ApiModelProperty(value = "")
+  public Long getReleaseCounter() {
+    return releaseCounter;
+  }
+
+  public void setReleaseCounter(Long releaseCounter) {
+    this.releaseCounter = releaseCounter;
+  }
+
   public Repository size(Long size) {
     this.size = size;
     return this;
@@ -758,6 +845,24 @@ public class Repository {
 
   public void setStarsCount(Long starsCount) {
     this.starsCount = starsCount;
+  }
+
+  public Repository template(Boolean template) {
+    this.template = template;
+    return this;
+  }
+
+   /**
+   * Get template
+   * @return template
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isTemplate() {
+    return template;
+  }
+
+  public void setTemplate(Boolean template) {
+    this.template = template;
   }
 
   public Repository updatedAt(OffsetDateTime updatedAt) {
@@ -841,23 +946,28 @@ public class Repository {
         Objects.equals(this.forksCount, repository.forksCount) &&
         Objects.equals(this.fullName, repository.fullName) &&
         Objects.equals(this.hasIssues, repository.hasIssues) &&
+        Objects.equals(this.hasProjects, repository.hasProjects) &&
         Objects.equals(this.hasPullRequests, repository.hasPullRequests) &&
         Objects.equals(this.hasWiki, repository.hasWiki) &&
         Objects.equals(this.htmlUrl, repository.htmlUrl) &&
         Objects.equals(this.id, repository.id) &&
         Objects.equals(this.ignoreWhitespaceConflicts, repository.ignoreWhitespaceConflicts) &&
+        Objects.equals(this.internal, repository.internal) &&
         Objects.equals(this.internalTracker, repository.internalTracker) &&
         Objects.equals(this.mirror, repository.mirror) &&
         Objects.equals(this.name, repository.name) &&
         Objects.equals(this.openIssuesCount, repository.openIssuesCount) &&
+        Objects.equals(this.openPrCounter, repository.openPrCounter) &&
         Objects.equals(this.originalUrl, repository.originalUrl) &&
         Objects.equals(this.owner, repository.owner) &&
         Objects.equals(this.parent, repository.parent) &&
         Objects.equals(this.permissions, repository.permissions) &&
         Objects.equals(this._private, repository._private) &&
+        Objects.equals(this.releaseCounter, repository.releaseCounter) &&
         Objects.equals(this.size, repository.size) &&
         Objects.equals(this.sshUrl, repository.sshUrl) &&
         Objects.equals(this.starsCount, repository.starsCount) &&
+        Objects.equals(this.template, repository.template) &&
         Objects.equals(this.updatedAt, repository.updatedAt) &&
         Objects.equals(this.watchersCount, repository.watchersCount) &&
         Objects.equals(this.website, repository.website);
@@ -865,7 +975,7 @@ public class Repository {
 
   @Override
   public int hashCode() {
-    return Objects.hash(allowMergeCommits, allowRebase, allowRebaseExplicit, allowSquashMerge, archived, avatarUrl, cloneUrl, createdAt, defaultBranch, description, empty, externalTracker, externalWiki, fork, forksCount, fullName, hasIssues, hasPullRequests, hasWiki, htmlUrl, id, ignoreWhitespaceConflicts, internalTracker, mirror, name, openIssuesCount, originalUrl, owner, parent, permissions, _private, size, sshUrl, starsCount, updatedAt, watchersCount, website);
+    return Objects.hash(allowMergeCommits, allowRebase, allowRebaseExplicit, allowSquashMerge, archived, avatarUrl, cloneUrl, createdAt, defaultBranch, description, empty, externalTracker, externalWiki, fork, forksCount, fullName, hasIssues, hasProjects, hasPullRequests, hasWiki, htmlUrl, id, ignoreWhitespaceConflicts, internal, internalTracker, mirror, name, openIssuesCount, openPrCounter, originalUrl, owner, parent, permissions, _private, releaseCounter, size, sshUrl, starsCount, template, updatedAt, watchersCount, website);
   }
 
 
@@ -891,23 +1001,28 @@ public class Repository {
     sb.append("    forksCount: ").append(toIndentedString(forksCount)).append("\n");
     sb.append("    fullName: ").append(toIndentedString(fullName)).append("\n");
     sb.append("    hasIssues: ").append(toIndentedString(hasIssues)).append("\n");
+    sb.append("    hasProjects: ").append(toIndentedString(hasProjects)).append("\n");
     sb.append("    hasPullRequests: ").append(toIndentedString(hasPullRequests)).append("\n");
     sb.append("    hasWiki: ").append(toIndentedString(hasWiki)).append("\n");
     sb.append("    htmlUrl: ").append(toIndentedString(htmlUrl)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    ignoreWhitespaceConflicts: ").append(toIndentedString(ignoreWhitespaceConflicts)).append("\n");
+    sb.append("    internal: ").append(toIndentedString(internal)).append("\n");
     sb.append("    internalTracker: ").append(toIndentedString(internalTracker)).append("\n");
     sb.append("    mirror: ").append(toIndentedString(mirror)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    openIssuesCount: ").append(toIndentedString(openIssuesCount)).append("\n");
+    sb.append("    openPrCounter: ").append(toIndentedString(openPrCounter)).append("\n");
     sb.append("    originalUrl: ").append(toIndentedString(originalUrl)).append("\n");
     sb.append("    owner: ").append(toIndentedString(owner)).append("\n");
     sb.append("    parent: ").append(toIndentedString(parent)).append("\n");
     sb.append("    permissions: ").append(toIndentedString(permissions)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");
+    sb.append("    releaseCounter: ").append(toIndentedString(releaseCounter)).append("\n");
     sb.append("    size: ").append(toIndentedString(size)).append("\n");
     sb.append("    sshUrl: ").append(toIndentedString(sshUrl)).append("\n");
     sb.append("    starsCount: ").append(toIndentedString(starsCount)).append("\n");
+    sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("    watchersCount: ").append(toIndentedString(watchersCount)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");

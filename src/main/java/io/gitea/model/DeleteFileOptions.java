@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.CommitDateOptions;
 import io.gitea.model.Identity;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -29,7 +30,7 @@ import java.io.IOException;
  * DeleteFileOptions options for deleting files (used for other File structs below) Note: &#x60;author&#x60; and &#x60;committer&#x60; are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)
  */
 @ApiModel(description = "DeleteFileOptions options for deleting files (used for other File structs below) Note: `author` and `committer` are optional (if only one is given, it will be used for the other, otherwise the authenticated user will be used)")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class DeleteFileOptions {
   @SerializedName("author")
   private Identity author = null;
@@ -39,6 +40,9 @@ public class DeleteFileOptions {
 
   @SerializedName("committer")
   private Identity committer = null;
+
+  @SerializedName("dates")
+  private CommitDateOptions dates = null;
 
   @SerializedName("message")
   private String message = null;
@@ -101,6 +105,24 @@ public class DeleteFileOptions {
 
   public void setCommitter(Identity committer) {
     this.committer = committer;
+  }
+
+  public DeleteFileOptions dates(CommitDateOptions dates) {
+    this.dates = dates;
+    return this;
+  }
+
+   /**
+   * Get dates
+   * @return dates
+  **/
+  @ApiModelProperty(value = "")
+  public CommitDateOptions getDates() {
+    return dates;
+  }
+
+  public void setDates(CommitDateOptions dates) {
+    this.dates = dates;
   }
 
   public DeleteFileOptions message(String message) {
@@ -170,6 +192,7 @@ public class DeleteFileOptions {
     return Objects.equals(this.author, deleteFileOptions.author) &&
         Objects.equals(this.branch, deleteFileOptions.branch) &&
         Objects.equals(this.committer, deleteFileOptions.committer) &&
+        Objects.equals(this.dates, deleteFileOptions.dates) &&
         Objects.equals(this.message, deleteFileOptions.message) &&
         Objects.equals(this.newBranch, deleteFileOptions.newBranch) &&
         Objects.equals(this.sha, deleteFileOptions.sha);
@@ -177,7 +200,7 @@ public class DeleteFileOptions {
 
   @Override
   public int hashCode() {
-    return Objects.hash(author, branch, committer, message, newBranch, sha);
+    return Objects.hash(author, branch, committer, dates, message, newBranch, sha);
   }
 
 
@@ -189,6 +212,7 @@ public class DeleteFileOptions {
     sb.append("    author: ").append(toIndentedString(author)).append("\n");
     sb.append("    branch: ").append(toIndentedString(branch)).append("\n");
     sb.append("    committer: ").append(toIndentedString(committer)).append("\n");
+    sb.append("    dates: ").append(toIndentedString(dates)).append("\n");
     sb.append("    message: ").append(toIndentedString(message)).append("\n");
     sb.append("    newBranch: ").append(toIndentedString(newBranch)).append("\n");
     sb.append("    sha: ").append(toIndentedString(sha)).append("\n");

@@ -28,10 +28,13 @@ import java.io.IOException;
  * CreateRepoOption options when creating repository
  */
 @ApiModel(description = "CreateRepoOption options when creating repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class CreateRepoOption {
   @SerializedName("auto_init")
   private Boolean autoInit = null;
+
+  @SerializedName("default_branch")
+  private String defaultBranch = null;
 
   @SerializedName("description")
   private String description = null;
@@ -54,6 +57,63 @@ public class CreateRepoOption {
   @SerializedName("readme")
   private String readme = null;
 
+  @SerializedName("template")
+  private Boolean template = null;
+
+  /**
+   * TrustModel of the repository
+   */
+  @JsonAdapter(TrustModelEnum.Adapter.class)
+  public enum TrustModelEnum {
+    DEFAULT("default"),
+    
+    COLLABORATOR("collaborator"),
+    
+    COMMITTER("committer"),
+    
+    COLLABORATORCOMMITTER("collaboratorcommitter");
+
+    private String value;
+
+    TrustModelEnum(String value) {
+      this.value = value;
+    }
+
+    public String getValue() {
+      return value;
+    }
+
+    @Override
+    public String toString() {
+      return String.valueOf(value);
+    }
+
+    public static TrustModelEnum fromValue(String text) {
+      for (TrustModelEnum b : TrustModelEnum.values()) {
+        if (String.valueOf(b.value).equals(text)) {
+          return b;
+        }
+      }
+      return null;
+    }
+
+    public static class Adapter extends TypeAdapter<TrustModelEnum> {
+      @Override
+      public void write(final JsonWriter jsonWriter, final TrustModelEnum enumeration) throws IOException {
+        jsonWriter.value(enumeration.getValue());
+      }
+
+      @Override
+      public TrustModelEnum read(final JsonReader jsonReader) throws IOException {
+        String value = jsonReader.nextString();
+        return TrustModelEnum.fromValue(String.valueOf(value));
+      }
+    }
+  }
+
+  @SerializedName("trust_model")
+  private TrustModelEnum trustModel = null;
+
   public CreateRepoOption autoInit(Boolean autoInit) {
     this.autoInit = autoInit;
     return this;
@@ -70,6 +130,24 @@ public class CreateRepoOption {
 
   public void setAutoInit(Boolean autoInit) {
     this.autoInit = autoInit;
+  }
+
+  public CreateRepoOption defaultBranch(String defaultBranch) {
+    this.defaultBranch = defaultBranch;
+    return this;
+  }
+
+   /**
+   * DefaultBranch of the repository (used when initializes and in template)
+   * @return defaultBranch
+  **/
+  @ApiModelProperty(value = "DefaultBranch of the repository (used when initializes and in template)")
+  public String getDefaultBranch() {
+    return defaultBranch;
+  }
+
+  public void setDefaultBranch(String defaultBranch) {
+    this.defaultBranch = defaultBranch;
   }
 
   public CreateRepoOption description(String description) {
@@ -114,10 +192,10 @@ public class CreateRepoOption {
   }
 
    /**
-   * Issue Label set to use
+   * Label-Set to use
    * @return issueLabels
   **/
-  @ApiModelProperty(value = "Issue Label set to use")
+  @ApiModelProperty(value = "Label-Set to use")
   public String getIssueLabels() {
     return issueLabels;
   }
@@ -198,6 +276,42 @@ public class CreateRepoOption {
     this.readme = readme;
   }
 
+  public CreateRepoOption template(Boolean template) {
+    this.template = template;
+    return this;
+  }
+
+   /**
+   * Whether the repository is template
+   * @return template
+  **/
+  @ApiModelProperty(value = "Whether the repository is template")
+  public Boolean isTemplate() {
+    return template;
+  }
+
+  public void setTemplate(Boolean template) {
+    this.template = template;
+  }
+
+  public CreateRepoOption trustModel(TrustModelEnum trustModel) {
+    this.trustModel = trustModel;
+    return this;
+  }
+
+   /**
+   * TrustModel of the repository
+   * @return trustModel
+  **/
+  @ApiModelProperty(value = "TrustModel of the repository")
+  public TrustModelEnum getTrustModel() {
+    return trustModel;
+  }
+
+  public void setTrustModel(TrustModelEnum trustModel) {
+    this.trustModel = trustModel;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -209,18 +323,21 @@ public class CreateRepoOption {
     }
     CreateRepoOption createRepoOption = (CreateRepoOption) o;
     return Objects.equals(this.autoInit, createRepoOption.autoInit) &&
+        Objects.equals(this.defaultBranch, createRepoOption.defaultBranch) &&
         Objects.equals(this.description, createRepoOption.description) &&
         Objects.equals(this.gitignores, createRepoOption.gitignores) &&
         Objects.equals(this.issueLabels, createRepoOption.issueLabels) &&
         Objects.equals(this.license, createRepoOption.license) &&
         Objects.equals(this.name, createRepoOption.name) &&
         Objects.equals(this._private, createRepoOption._private) &&
-        Objects.equals(this.readme, createRepoOption.readme);
+        Objects.equals(this.readme, createRepoOption.readme) &&
+        Objects.equals(this.template, createRepoOption.template) &&
+        Objects.equals(this.trustModel, createRepoOption.trustModel);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(autoInit, description, gitignores, issueLabels, license, name, _private, readme);
+    return Objects.hash(autoInit, defaultBranch, description, gitignores, issueLabels, license, name, _private, readme, template, trustModel);
   }
 
 
@@ -230,6 +347,7 @@ public class CreateRepoOption {
     sb.append("class CreateRepoOption {\n");
     
     sb.append("    autoInit: ").append(toIndentedString(autoInit)).append("\n");
+    sb.append("    defaultBranch: ").append(toIndentedString(defaultBranch)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    gitignores: ").append(toIndentedString(gitignores)).append("\n");
     sb.append("    issueLabels: ").append(toIndentedString(issueLabels)).append("\n");
@@ -237,6 +355,8 @@ public class CreateRepoOption {
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");
     sb.append("    readme: ").append(toIndentedString(readme)).append("\n");
+    sb.append("    template: ").append(toIndentedString(template)).append("\n");
+    sb.append("    trustModel: ").append(toIndentedString(trustModel)).append("\n");
     sb.append("}");
     return sb.toString();
   }

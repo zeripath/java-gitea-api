@@ -31,13 +31,16 @@ import org.threeten.bp.OffsetDateTime;
  * EditPullRequestOption options when modify pull request
  */
 @ApiModel(description = "EditPullRequestOption options when modify pull request")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class EditPullRequestOption {
   @SerializedName("assignee")
   private String assignee = null;
 
   @SerializedName("assignees")
   private List<String> assignees = null;
+
+  @SerializedName("base")
+  private String base = null;
 
   @SerializedName("body")
   private String body = null;
@@ -56,6 +59,9 @@ public class EditPullRequestOption {
 
   @SerializedName("title")
   private String title = null;
+
+  @SerializedName("unset_due_date")
+  private Boolean unsetDueDate = null;
 
   public EditPullRequestOption assignee(String assignee) {
     this.assignee = assignee;
@@ -99,6 +105,24 @@ public class EditPullRequestOption {
 
   public void setAssignees(List<String> assignees) {
     this.assignees = assignees;
+  }
+
+  public EditPullRequestOption base(String base) {
+    this.base = base;
+    return this;
+  }
+
+   /**
+   * Get base
+   * @return base
+  **/
+  @ApiModelProperty(value = "")
+  public String getBase() {
+    return base;
+  }
+
+  public void setBase(String base) {
+    this.base = base;
   }
 
   public EditPullRequestOption body(String body) {
@@ -217,6 +241,24 @@ public class EditPullRequestOption {
     this.title = title;
   }
 
+  public EditPullRequestOption unsetDueDate(Boolean unsetDueDate) {
+    this.unsetDueDate = unsetDueDate;
+    return this;
+  }
+
+   /**
+   * Get unsetDueDate
+   * @return unsetDueDate
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isUnsetDueDate() {
+    return unsetDueDate;
+  }
+
+  public void setUnsetDueDate(Boolean unsetDueDate) {
+    this.unsetDueDate = unsetDueDate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -229,17 +271,19 @@ public class EditPullRequestOption {
     EditPullRequestOption editPullRequestOption = (EditPullRequestOption) o;
     return Objects.equals(this.assignee, editPullRequestOption.assignee) &&
         Objects.equals(this.assignees, editPullRequestOption.assignees) &&
+        Objects.equals(this.base, editPullRequestOption.base) &&
         Objects.equals(this.body, editPullRequestOption.body) &&
         Objects.equals(this.dueDate, editPullRequestOption.dueDate) &&
         Objects.equals(this.labels, editPullRequestOption.labels) &&
         Objects.equals(this.milestone, editPullRequestOption.milestone) &&
         Objects.equals(this.state, editPullRequestOption.state) &&
-        Objects.equals(this.title, editPullRequestOption.title);
+        Objects.equals(this.title, editPullRequestOption.title) &&
+        Objects.equals(this.unsetDueDate, editPullRequestOption.unsetDueDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assignee, assignees, body, dueDate, labels, milestone, state, title);
+    return Objects.hash(assignee, assignees, base, body, dueDate, labels, milestone, state, title, unsetDueDate);
   }
 
 
@@ -250,12 +294,14 @@ public class EditPullRequestOption {
     
     sb.append("    assignee: ").append(toIndentedString(assignee)).append("\n");
     sb.append("    assignees: ").append(toIndentedString(assignees)).append("\n");
+    sb.append("    base: ").append(toIndentedString(base)).append("\n");
     sb.append("    body: ").append(toIndentedString(body)).append("\n");
     sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    milestone: ").append(toIndentedString(milestone)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    unsetDueDate: ").append(toIndentedString(unsetDueDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

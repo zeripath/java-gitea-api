@@ -23,17 +23,39 @@ import com.google.gson.stream.JsonWriter;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
+import org.threeten.bp.OffsetDateTime;
 
 /**
  * CommitMeta
  */
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class CommitMeta {
+  @SerializedName("created")
+  private OffsetDateTime created = null;
+
   @SerializedName("sha")
   private String sha = null;
 
   @SerializedName("url")
   private String url = null;
+
+  public CommitMeta created(OffsetDateTime created) {
+    this.created = created;
+    return this;
+  }
+
+   /**
+   * Get created
+   * @return created
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getCreated() {
+    return created;
+  }
+
+  public void setCreated(OffsetDateTime created) {
+    this.created = created;
+  }
 
   public CommitMeta sha(String sha) {
     this.sha = sha;
@@ -81,13 +103,14 @@ public class CommitMeta {
       return false;
     }
     CommitMeta commitMeta = (CommitMeta) o;
-    return Objects.equals(this.sha, commitMeta.sha) &&
+    return Objects.equals(this.created, commitMeta.created) &&
+        Objects.equals(this.sha, commitMeta.sha) &&
         Objects.equals(this.url, commitMeta.url);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(sha, url);
+    return Objects.hash(created, sha, url);
   }
 
 
@@ -96,6 +119,7 @@ public class CommitMeta {
     StringBuilder sb = new StringBuilder();
     sb.append("class CommitMeta {\n");
     
+    sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    sha: ").append(toIndentedString(sha)).append("\n");
     sb.append("    url: ").append(toIndentedString(url)).append("\n");
     sb.append("}");

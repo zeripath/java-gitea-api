@@ -23,6 +23,7 @@ import com.google.gson.stream.JsonWriter;
 import io.gitea.model.Label;
 import io.gitea.model.Milestone;
 import io.gitea.model.PullRequestMeta;
+import io.gitea.model.RepositoryMeta;
 import io.gitea.model.User;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
@@ -35,7 +36,7 @@ import org.threeten.bp.OffsetDateTime;
  * Issue represents an issue in a repository
  */
 @ApiModel(description = "Issue represents an issue in a repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class Issue {
   @SerializedName("assignee")
   private User assignee = null;
@@ -58,8 +59,14 @@ public class Issue {
   @SerializedName("due_date")
   private OffsetDateTime dueDate = null;
 
+  @SerializedName("html_url")
+  private String htmlUrl = null;
+
   @SerializedName("id")
   private Long id = null;
+
+  @SerializedName("is_locked")
+  private Boolean isLocked = null;
 
   @SerializedName("labels")
   private List<Label> labels = null;
@@ -78,6 +85,9 @@ public class Issue {
 
   @SerializedName("pull_request")
   private PullRequestMeta pullRequest = null;
+
+  @SerializedName("repository")
+  private RepositoryMeta repository = null;
 
   @SerializedName("state")
   private String state = null;
@@ -228,6 +238,24 @@ public class Issue {
     this.dueDate = dueDate;
   }
 
+  public Issue htmlUrl(String htmlUrl) {
+    this.htmlUrl = htmlUrl;
+    return this;
+  }
+
+   /**
+   * Get htmlUrl
+   * @return htmlUrl
+  **/
+  @ApiModelProperty(value = "")
+  public String getHtmlUrl() {
+    return htmlUrl;
+  }
+
+  public void setHtmlUrl(String htmlUrl) {
+    this.htmlUrl = htmlUrl;
+  }
+
   public Issue id(Long id) {
     this.id = id;
     return this;
@@ -244,6 +272,24 @@ public class Issue {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Issue isLocked(Boolean isLocked) {
+    this.isLocked = isLocked;
+    return this;
+  }
+
+   /**
+   * Get isLocked
+   * @return isLocked
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIsLocked() {
+    return isLocked;
+  }
+
+  public void setIsLocked(Boolean isLocked) {
+    this.isLocked = isLocked;
   }
 
   public Issue labels(List<Label> labels) {
@@ -362,6 +408,24 @@ public class Issue {
     this.pullRequest = pullRequest;
   }
 
+  public Issue repository(RepositoryMeta repository) {
+    this.repository = repository;
+    return this;
+  }
+
+   /**
+   * Get repository
+   * @return repository
+  **/
+  @ApiModelProperty(value = "")
+  public RepositoryMeta getRepository() {
+    return repository;
+  }
+
+  public void setRepository(RepositoryMeta repository) {
+    this.repository = repository;
+  }
+
   public Issue state(String state) {
     this.state = state;
     return this;
@@ -469,13 +533,16 @@ public class Issue {
         Objects.equals(this.comments, issue.comments) &&
         Objects.equals(this.createdAt, issue.createdAt) &&
         Objects.equals(this.dueDate, issue.dueDate) &&
+        Objects.equals(this.htmlUrl, issue.htmlUrl) &&
         Objects.equals(this.id, issue.id) &&
+        Objects.equals(this.isLocked, issue.isLocked) &&
         Objects.equals(this.labels, issue.labels) &&
         Objects.equals(this.milestone, issue.milestone) &&
         Objects.equals(this.number, issue.number) &&
         Objects.equals(this.originalAuthor, issue.originalAuthor) &&
         Objects.equals(this.originalAuthorId, issue.originalAuthorId) &&
         Objects.equals(this.pullRequest, issue.pullRequest) &&
+        Objects.equals(this.repository, issue.repository) &&
         Objects.equals(this.state, issue.state) &&
         Objects.equals(this.title, issue.title) &&
         Objects.equals(this.updatedAt, issue.updatedAt) &&
@@ -485,7 +552,7 @@ public class Issue {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assignee, assignees, body, closedAt, comments, createdAt, dueDate, id, labels, milestone, number, originalAuthor, originalAuthorId, pullRequest, state, title, updatedAt, url, user);
+    return Objects.hash(assignee, assignees, body, closedAt, comments, createdAt, dueDate, htmlUrl, id, isLocked, labels, milestone, number, originalAuthor, originalAuthorId, pullRequest, repository, state, title, updatedAt, url, user);
   }
 
 
@@ -501,13 +568,16 @@ public class Issue {
     sb.append("    comments: ").append(toIndentedString(comments)).append("\n");
     sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    dueDate: ").append(toIndentedString(dueDate)).append("\n");
+    sb.append("    htmlUrl: ").append(toIndentedString(htmlUrl)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isLocked: ").append(toIndentedString(isLocked)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    milestone: ").append(toIndentedString(milestone)).append("\n");
     sb.append("    number: ").append(toIndentedString(number)).append("\n");
     sb.append("    originalAuthor: ").append(toIndentedString(originalAuthor)).append("\n");
     sb.append("    originalAuthorId: ").append(toIndentedString(originalAuthorId)).append("\n");
     sb.append("    pullRequest: ").append(toIndentedString(pullRequest)).append("\n");
+    sb.append("    repository: ").append(toIndentedString(repository)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
     sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");

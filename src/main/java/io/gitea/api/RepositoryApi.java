@@ -32,19 +32,25 @@ import io.gitea.model.AddCollaboratorOption;
 import io.gitea.model.AnnotatedTag;
 import io.gitea.model.Attachment;
 import io.gitea.model.Branch;
+import io.gitea.model.BranchProtection;
+import io.gitea.model.CombinedStatus;
 import io.gitea.model.Commit;
 import io.gitea.model.ContentsResponse;
+import io.gitea.model.CreateBranchProtectionOption;
+import io.gitea.model.CreateBranchRepoOption;
 import io.gitea.model.CreateFileOptions;
 import io.gitea.model.CreateForkOption;
 import io.gitea.model.CreateHookOption;
 import io.gitea.model.CreateKeyOption;
 import io.gitea.model.CreatePullRequestOption;
+import io.gitea.model.CreatePullReviewOptions;
 import io.gitea.model.CreateReleaseOption;
 import io.gitea.model.CreateRepoOption;
 import io.gitea.model.CreateStatusOption;
 import io.gitea.model.DeleteFileOptions;
 import io.gitea.model.DeployKey;
 import io.gitea.model.EditAttachmentOptions;
+import io.gitea.model.EditBranchProtectionOption;
 import io.gitea.model.EditGitHookOption;
 import io.gitea.model.EditHookOption;
 import io.gitea.model.EditPullRequestOption;
@@ -57,19 +63,25 @@ import io.gitea.model.GitBlobResponse;
 import io.gitea.model.GitHook;
 import io.gitea.model.GitTreeResponse;
 import io.gitea.model.Hook;
+import io.gitea.model.IssueTemplate;
 import io.gitea.model.MergePullRequestOption;
-import io.gitea.model.MigrateRepoForm;
+import io.gitea.model.MigrateRepoOptions;
+import org.threeten.bp.OffsetDateTime;
 import io.gitea.model.PullRequest;
+import io.gitea.model.PullReview;
+import io.gitea.model.PullReviewComment;
 import io.gitea.model.Reference;
 import io.gitea.model.Release;
 import io.gitea.model.RepoTopicOptions;
 import io.gitea.model.Repository;
 import io.gitea.model.SearchResults;
 import io.gitea.model.Status;
+import io.gitea.model.SubmitPullReviewOptions;
 import io.gitea.model.Tag;
 import io.gitea.model.TopicName;
 import io.gitea.model.TopicResponse;
 import io.gitea.model.TrackedTime;
+import io.gitea.model.TransferRepoOption;
 import io.gitea.model.UpdateFileOptions;
 import io.gitea.model.User;
 import io.gitea.model.WatchInfo;
@@ -144,7 +156,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -265,7 +277,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -403,7 +415,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -546,7 +558,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -646,7 +658,7 @@ public class RepositoryApi {
      * @param sha sha of the commit (required)
      * @param recursive show all directories and files (optional)
      * @param page page number; the &#39;truncated&#39; field in the response will be true if there are still more items after this page, false if the last page (optional)
-     * @param perPage number of items per page; default is 1000 or what is set in app.ini as DEFAULT_GIT_TREES_PER_PAGE (optional)
+     * @param perPage number of items per page (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -698,7 +710,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -734,7 +746,7 @@ public class RepositoryApi {
      * @param sha sha of the commit (required)
      * @param recursive show all directories and files (optional)
      * @param page page number; the &#39;truncated&#39; field in the response will be true if there are still more items after this page, false if the last page (optional)
-     * @param perPage number of items per page; default is 1000 or what is set in app.ini as DEFAULT_GIT_TREES_PER_PAGE (optional)
+     * @param perPage number of items per page (optional)
      * @return GitTreeResponse
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -751,7 +763,7 @@ public class RepositoryApi {
      * @param sha sha of the commit (required)
      * @param recursive show all directories and files (optional)
      * @param page page number; the &#39;truncated&#39; field in the response will be true if there are still more items after this page, false if the last page (optional)
-     * @param perPage number of items per page; default is 1000 or what is set in app.ini as DEFAULT_GIT_TREES_PER_PAGE (optional)
+     * @param perPage number of items per page (optional)
      * @return ApiResponse&lt;GitTreeResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -769,7 +781,7 @@ public class RepositoryApi {
      * @param sha sha of the commit (required)
      * @param recursive show all directories and files (optional)
      * @param page page number; the &#39;truncated&#39; field in the response will be true if there are still more items after this page, false if the last page (optional)
-     * @param perPage number of items per page; default is 1000 or what is set in app.ini as DEFAULT_GIT_TREES_PER_PAGE (optional)
+     * @param perPage number of items per page (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -804,12 +816,14 @@ public class RepositoryApi {
      * Build call for listForks
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call listForksCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call listForksCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -819,6 +833,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -848,12 +866,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call listForksValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call listForksValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -866,7 +884,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = listForksCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listForksCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -876,11 +894,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Repository&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Repository> listForks(String owner, String repo) throws ApiException {
-        ApiResponse<List<Repository>> resp = listForksWithHttpInfo(owner, repo);
+    public List<Repository> listForks(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Repository>> resp = listForksWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -889,11 +909,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Repository&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Repository>> listForksWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = listForksValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<Repository>> listForksWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = listForksValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Repository>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -903,11 +925,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call listForksAsync(String owner, String repo, final ApiCallback<List<Repository>> callback) throws ApiException {
+    public com.squareup.okhttp.Call listForksAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<Repository>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -928,7 +952,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = listForksValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = listForksValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Repository>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -984,7 +1008,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1126,7 +1150,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1265,7 +1289,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1355,6 +1379,280 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoCreateBranch
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoCreateBranchCall(String owner, String repo, CreateBranchRepoOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branches"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoCreateBranchValidateBeforeCall(String owner, String repo, CreateBranchRepoOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoCreateBranch(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoCreateBranch(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoCreateBranchCall(owner, repo, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Create a branch
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @return Branch
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Branch repoCreateBranch(String owner, String repo, CreateBranchRepoOption body) throws ApiException {
+        ApiResponse<Branch> resp = repoCreateBranchWithHttpInfo(owner, repo, body);
+        return resp.getData();
+    }
+
+    /**
+     * Create a branch
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;Branch&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Branch> repoCreateBranchWithHttpInfo(String owner, String repo, CreateBranchRepoOption body) throws ApiException {
+        com.squareup.okhttp.Call call = repoCreateBranchValidateBeforeCall(owner, repo, body, null, null);
+        Type localVarReturnType = new TypeToken<Branch>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Create a branch (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoCreateBranchAsync(String owner, String repo, CreateBranchRepoOption body, final ApiCallback<Branch> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoCreateBranchValidateBeforeCall(owner, repo, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Branch>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoCreateBranchProtection
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoCreateBranchProtectionCall(String owner, String repo, CreateBranchProtectionOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branch_protections"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoCreateBranchProtectionValidateBeforeCall(String owner, String repo, CreateBranchProtectionOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoCreateBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoCreateBranchProtection(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoCreateBranchProtectionCall(owner, repo, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Create a branch protections for a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @return BranchProtection
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BranchProtection repoCreateBranchProtection(String owner, String repo, CreateBranchProtectionOption body) throws ApiException {
+        ApiResponse<BranchProtection> resp = repoCreateBranchProtectionWithHttpInfo(owner, repo, body);
+        return resp.getData();
+    }
+
+    /**
+     * Create a branch protections for a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;BranchProtection&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BranchProtection> repoCreateBranchProtectionWithHttpInfo(String owner, String repo, CreateBranchProtectionOption body) throws ApiException {
+        com.squareup.okhttp.Call call = repoCreateBranchProtectionValidateBeforeCall(owner, repo, body, null, null);
+        Type localVarReturnType = new TypeToken<BranchProtection>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Create a branch protections for a repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoCreateBranchProtectionAsync(String owner, String repo, CreateBranchProtectionOption body, final ApiCallback<BranchProtection> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoCreateBranchProtectionValidateBeforeCall(owner, repo, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BranchProtection>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoCreateFile
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -1405,7 +1703,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1555,7 +1853,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1692,7 +1990,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1829,7 +2127,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -1918,6 +2216,158 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoCreatePullReview
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param body  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoCreatePullReviewCall(String owner, String repo, Long index, CreatePullReviewOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/reviews"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoCreatePullReviewValidateBeforeCall(String owner, String repo, Long index, CreatePullReviewOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoCreatePullReview(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoCreatePullReview(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoCreatePullReview(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling repoCreatePullReview(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoCreatePullReviewCall(owner, repo, index, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Create a review to an pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param body  (required)
+     * @return PullReview
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PullReview repoCreatePullReview(String owner, String repo, Long index, CreatePullReviewOptions body) throws ApiException {
+        ApiResponse<PullReview> resp = repoCreatePullReviewWithHttpInfo(owner, repo, index, body);
+        return resp.getData();
+    }
+
+    /**
+     * Create a review to an pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param body  (required)
+     * @return ApiResponse&lt;PullReview&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PullReview> repoCreatePullReviewWithHttpInfo(String owner, String repo, Long index, CreatePullReviewOptions body) throws ApiException {
+        com.squareup.okhttp.Call call = repoCreatePullReviewValidateBeforeCall(owner, repo, index, body, null, null);
+        Type localVarReturnType = new TypeToken<PullReview>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Create a review to an pull request (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param body  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoCreatePullReviewAsync(String owner, String repo, Long index, CreatePullReviewOptions body, final ApiCallback<PullReview> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoCreatePullReviewValidateBeforeCall(owner, repo, index, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PullReview>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoCreateRelease
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -1966,7 +2416,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2110,7 +2560,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2265,7 +2715,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2300,11 +2750,11 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param sha sha of the commit (required)
      * @param body  (optional)
-     * @return List&lt;Status&gt;
+     * @return Status
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Status> repoCreateStatus(String owner, String repo, String sha, CreateStatusOption body) throws ApiException {
-        ApiResponse<List<Status>> resp = repoCreateStatusWithHttpInfo(owner, repo, sha, body);
+    public Status repoCreateStatus(String owner, String repo, String sha, CreateStatusOption body) throws ApiException {
+        ApiResponse<Status> resp = repoCreateStatusWithHttpInfo(owner, repo, sha, body);
         return resp.getData();
     }
 
@@ -2315,12 +2765,12 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param sha sha of the commit (required)
      * @param body  (optional)
-     * @return ApiResponse&lt;List&lt;Status&gt;&gt;
+     * @return ApiResponse&lt;Status&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Status>> repoCreateStatusWithHttpInfo(String owner, String repo, String sha, CreateStatusOption body) throws ApiException {
+    public ApiResponse<Status> repoCreateStatusWithHttpInfo(String owner, String repo, String sha, CreateStatusOption body) throws ApiException {
         com.squareup.okhttp.Call call = repoCreateStatusValidateBeforeCall(owner, repo, sha, body, null, null);
-        Type localVarReturnType = new TypeToken<List<Status>>(){}.getType();
+        Type localVarReturnType = new TypeToken<Status>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -2335,7 +2785,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoCreateStatusAsync(String owner, String repo, String sha, CreateStatusOption body, final ApiCallback<List<Status>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoCreateStatusAsync(String owner, String repo, String sha, CreateStatusOption body, final ApiCallback<Status> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -2357,7 +2807,7 @@ public class RepositoryApi {
         }
 
         com.squareup.okhttp.Call call = repoCreateStatusValidateBeforeCall(owner, repo, sha, body, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<Status>>(){}.getType();
+        Type localVarReturnType = new TypeToken<Status>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -2409,7 +2859,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2491,6 +2941,284 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoDeleteBranch
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param branch branch to delete (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoDeleteBranchCall(String owner, String repo, String branch, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branches/{branch}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "branch" + "\\}", apiClient.escapeString(branch.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoDeleteBranchValidateBeforeCall(String owner, String repo, String branch, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoDeleteBranch(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoDeleteBranch(Async)");
+        }
+        
+        // verify the required parameter 'branch' is set
+        if (branch == null) {
+            throw new ApiException("Missing the required parameter 'branch' when calling repoDeleteBranch(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoDeleteBranchCall(owner, repo, branch, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete a specific branch from a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param branch branch to delete (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void repoDeleteBranch(String owner, String repo, String branch) throws ApiException {
+        repoDeleteBranchWithHttpInfo(owner, repo, branch);
+    }
+
+    /**
+     * Delete a specific branch from a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param branch branch to delete (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> repoDeleteBranchWithHttpInfo(String owner, String repo, String branch) throws ApiException {
+        com.squareup.okhttp.Call call = repoDeleteBranchValidateBeforeCall(owner, repo, branch, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete a specific branch from a repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param branch branch to delete (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoDeleteBranchAsync(String owner, String repo, String branch, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoDeleteBranchValidateBeforeCall(owner, repo, branch, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
+     * Build call for repoDeleteBranchProtection
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoDeleteBranchProtectionCall(String owner, String repo, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branch_protections/{name}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoDeleteBranchProtectionValidateBeforeCall(String owner, String repo, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoDeleteBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoDeleteBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling repoDeleteBranchProtection(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoDeleteBranchProtectionCall(owner, repo, name, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete a specific branch protection for the repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void repoDeleteBranchProtection(String owner, String repo, String name) throws ApiException {
+        repoDeleteBranchProtectionWithHttpInfo(owner, repo, name);
+    }
+
+    /**
+     * Delete a specific branch protection for the repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> repoDeleteBranchProtectionWithHttpInfo(String owner, String repo, String name) throws ApiException {
+        com.squareup.okhttp.Call call = repoDeleteBranchProtectionValidateBeforeCall(owner, repo, name, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete a specific branch protection for the repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoDeleteBranchProtectionAsync(String owner, String repo, String name, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoDeleteBranchProtectionValidateBeforeCall(owner, repo, name, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for repoDeleteCollaborator
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -2540,7 +3268,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2680,7 +3408,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2831,7 +3559,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -2970,7 +3698,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3109,7 +3837,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3199,6 +3927,155 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoDeletePullReview
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoDeletePullReviewCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoDeletePullReviewValidateBeforeCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoDeletePullReview(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoDeletePullReview(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoDeletePullReview(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling repoDeletePullReview(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoDeletePullReviewCall(owner, repo, index, id, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Delete a specific review from a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void repoDeletePullReview(String owner, String repo, Long index, Long id) throws ApiException {
+        repoDeletePullReviewWithHttpInfo(owner, repo, index, id);
+    }
+
+    /**
+     * Delete a specific review from a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> repoDeletePullReviewWithHttpInfo(String owner, String repo, Long index, Long id) throws ApiException {
+        com.squareup.okhttp.Call call = repoDeletePullReviewValidateBeforeCall(owner, repo, index, id, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Delete a specific review from a pull request (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoDeletePullReviewAsync(String owner, String repo, Long index, Long id, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoDeletePullReviewValidateBeforeCall(owner, repo, index, id, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for repoDeleteRelease
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -3248,7 +4125,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3389,7 +4266,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3536,7 +4413,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3626,6 +4503,292 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoDownloadPullDiff
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoDownloadPullDiffCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}.diff"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoDownloadPullDiffValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoDownloadPullDiff(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoDownloadPullDiff(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoDownloadPullDiff(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoDownloadPullDiffCall(owner, repo, index, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a pull request diff
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String repoDownloadPullDiff(String owner, String repo, Long index) throws ApiException {
+        ApiResponse<String> resp = repoDownloadPullDiffWithHttpInfo(owner, repo, index);
+        return resp.getData();
+    }
+
+    /**
+     * Get a pull request diff
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> repoDownloadPullDiffWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = repoDownloadPullDiffValidateBeforeCall(owner, repo, index, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a pull request diff (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoDownloadPullDiffAsync(String owner, String repo, Long index, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoDownloadPullDiffValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoDownloadPullPatch
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoDownloadPullPatchCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}.patch"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoDownloadPullPatchValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoDownloadPullPatch(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoDownloadPullPatch(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoDownloadPullPatch(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoDownloadPullPatchCall(owner, repo, index, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a pull request patch file
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String repoDownloadPullPatch(String owner, String repo, Long index) throws ApiException {
+        ApiResponse<String> resp = repoDownloadPullPatchWithHttpInfo(owner, repo, index);
+        return resp.getData();
+    }
+
+    /**
+     * Get a pull request patch file
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> repoDownloadPullPatchWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = repoDownloadPullPatchValidateBeforeCall(owner, repo, index, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a pull request patch file (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoDownloadPullPatchAsync(String owner, String repo, Long index, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoDownloadPullPatchValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoEdit
      * @param owner owner of the repo to edit (required)
      * @param repo name of the repo to edit (required)
@@ -3674,7 +4837,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3763,6 +4926,153 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoEditBranchProtection
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param body  (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoEditBranchProtectionCall(String owner, String repo, String name, EditBranchProtectionOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branch_protections/{name}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoEditBranchProtectionValidateBeforeCall(String owner, String repo, String name, EditBranchProtectionOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoEditBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoEditBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling repoEditBranchProtection(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoEditBranchProtectionCall(owner, repo, name, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Edit a branch protections for a repository. Only fields that are set will be changed
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param body  (optional)
+     * @return BranchProtection
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BranchProtection repoEditBranchProtection(String owner, String repo, String name, EditBranchProtectionOption body) throws ApiException {
+        ApiResponse<BranchProtection> resp = repoEditBranchProtectionWithHttpInfo(owner, repo, name, body);
+        return resp.getData();
+    }
+
+    /**
+     * Edit a branch protections for a repository. Only fields that are set will be changed
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param body  (optional)
+     * @return ApiResponse&lt;BranchProtection&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BranchProtection> repoEditBranchProtectionWithHttpInfo(String owner, String repo, String name, EditBranchProtectionOption body) throws ApiException {
+        com.squareup.okhttp.Call call = repoEditBranchProtectionValidateBeforeCall(owner, repo, name, body, null, null);
+        Type localVarReturnType = new TypeToken<BranchProtection>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Edit a branch protections for a repository. Only fields that are set will be changed (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param body  (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoEditBranchProtectionAsync(String owner, String repo, String name, EditBranchProtectionOption body, final ApiCallback<BranchProtection> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoEditBranchProtectionValidateBeforeCall(owner, repo, name, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BranchProtection>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoEditGitHook
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -3813,7 +5123,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -3960,7 +5270,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4107,7 +5417,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4136,7 +5446,7 @@ public class RepositoryApi {
     }
 
     /**
-     * Update a pull request
+     * Update a pull request. If using deadline only the date will be taken into account, and time of day ignored.
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -4151,7 +5461,7 @@ public class RepositoryApi {
     }
 
     /**
-     * Update a pull request
+     * Update a pull request. If using deadline only the date will be taken into account, and time of day ignored.
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -4167,7 +5477,7 @@ public class RepositoryApi {
     }
 
     /**
-     * Update a pull request (asynchronously)
+     * Update a pull request. If using deadline only the date will be taken into account, and time of day ignored. (asynchronously)
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -4254,7 +5564,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4403,7 +5713,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PATCH", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4555,7 +5865,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4645,13 +5955,14 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha SHA or branch to start listing commits from (usually &#39;master&#39;) (optional)
-     * @param page page number of requested commits (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoGetAllCommitsCall(String owner, String repo, String sha, Integer page, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoGetAllCommitsCall(String owner, String repo, String sha, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -4665,6 +5976,8 @@ public class RepositoryApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("sha", sha));
         if (page != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -4694,12 +6007,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoGetAllCommitsValidateBeforeCall(String owner, String repo, String sha, Integer page, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoGetAllCommitsValidateBeforeCall(String owner, String repo, String sha, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -4712,7 +6025,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoGetAllCommitsCall(owner, repo, sha, page, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoGetAllCommitsCall(owner, repo, sha, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -4723,12 +6036,13 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha SHA or branch to start listing commits from (usually &#39;master&#39;) (optional)
-     * @param page page number of requested commits (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Commit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Commit> repoGetAllCommits(String owner, String repo, String sha, Integer page) throws ApiException {
-        ApiResponse<List<Commit>> resp = repoGetAllCommitsWithHttpInfo(owner, repo, sha, page);
+    public List<Commit> repoGetAllCommits(String owner, String repo, String sha, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Commit>> resp = repoGetAllCommitsWithHttpInfo(owner, repo, sha, page, limit);
         return resp.getData();
     }
 
@@ -4738,12 +6052,13 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha SHA or branch to start listing commits from (usually &#39;master&#39;) (optional)
-     * @param page page number of requested commits (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Commit&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Commit>> repoGetAllCommitsWithHttpInfo(String owner, String repo, String sha, Integer page) throws ApiException {
-        com.squareup.okhttp.Call call = repoGetAllCommitsValidateBeforeCall(owner, repo, sha, page, null, null);
+    public ApiResponse<List<Commit>> repoGetAllCommitsWithHttpInfo(String owner, String repo, String sha, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetAllCommitsValidateBeforeCall(owner, repo, sha, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Commit>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -4754,12 +6069,13 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha SHA or branch to start listing commits from (usually &#39;master&#39;) (optional)
-     * @param page page number of requested commits (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetAllCommitsAsync(String owner, String repo, String sha, Integer page, final ApiCallback<List<Commit>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetAllCommitsAsync(String owner, String repo, String sha, Integer page, Integer limit, final ApiCallback<List<Commit>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -4780,7 +6096,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoGetAllCommitsValidateBeforeCall(owner, repo, sha, page, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoGetAllCommitsValidateBeforeCall(owner, repo, sha, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Commit>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -4789,7 +6105,7 @@ public class RepositoryApi {
      * Build call for repoGetArchive
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param archive archive to download, consisting of a git reference and archive (required)
+     * @param archive the git reference for download with attached archive format (e.g. master.zip) (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -4835,7 +6151,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -4868,7 +6184,7 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param archive archive to download, consisting of a git reference and archive (required)
+     * @param archive the git reference for download with attached archive format (e.g. master.zip) (required)
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
     public void repoGetArchive(String owner, String repo, String archive) throws ApiException {
@@ -4880,7 +6196,7 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param archive archive to download, consisting of a git reference and archive (required)
+     * @param archive the git reference for download with attached archive format (e.g. master.zip) (required)
      * @return ApiResponse&lt;Void&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -4894,7 +6210,7 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param archive archive to download, consisting of a git reference and archive (required)
+     * @param archive the git reference for download with attached archive format (e.g. master.zip) (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -4974,7 +6290,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5003,7 +6319,7 @@ public class RepositoryApi {
     }
 
     /**
-     * Retrieve a specific branch from a repository
+     * Retrieve a specific branch from a repository, including its effective branch protection
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -5017,7 +6333,7 @@ public class RepositoryApi {
     }
 
     /**
-     * Retrieve a specific branch from a repository
+     * Retrieve a specific branch from a repository, including its effective branch protection
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -5032,7 +6348,7 @@ public class RepositoryApi {
     }
 
     /**
-     * Retrieve a specific branch from a repository (asynchronously)
+     * Retrieve a specific branch from a repository, including its effective branch protection (asynchronously)
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -5064,6 +6380,149 @@ public class RepositoryApi {
 
         com.squareup.okhttp.Call call = repoGetBranchValidateBeforeCall(owner, repo, branch, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<Branch>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoGetBranchProtection
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoGetBranchProtectionCall(String owner, String repo, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branch_protections/{name}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "name" + "\\}", apiClient.escapeString(name.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoGetBranchProtectionValidateBeforeCall(String owner, String repo, String name, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoGetBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoGetBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'name' is set
+        if (name == null) {
+            throw new ApiException("Missing the required parameter 'name' when calling repoGetBranchProtection(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoGetBranchProtectionCall(owner, repo, name, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a specific branch protection for the repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @return BranchProtection
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public BranchProtection repoGetBranchProtection(String owner, String repo, String name) throws ApiException {
+        ApiResponse<BranchProtection> resp = repoGetBranchProtectionWithHttpInfo(owner, repo, name);
+        return resp.getData();
+    }
+
+    /**
+     * Get a specific branch protection for the repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @return ApiResponse&lt;BranchProtection&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<BranchProtection> repoGetBranchProtectionWithHttpInfo(String owner, String repo, String name) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetBranchProtectionValidateBeforeCall(owner, repo, name, null, null);
+        Type localVarReturnType = new TypeToken<BranchProtection>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a specific branch protection for the repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param name name of protected branch (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoGetBranchProtectionAsync(String owner, String repo, String name, final ApiCallback<BranchProtection> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoGetBranchProtectionValidateBeforeCall(owner, repo, name, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<BranchProtection>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -5113,7 +6572,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5205,7 +6664,7 @@ public class RepositoryApi {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/repos/{owner}/{repo}/commits/{ref}/statuses"
+        String localVarPath = "/repos/{owner}/{repo}/commits/{ref}/status"
             .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
             .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
             .replaceAll("\\{" + "ref" + "\\}", apiClient.escapeString(ref.toString()));
@@ -5243,7 +6702,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5278,11 +6737,11 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param ref name of branch/tag/commit (required)
      * @param page page number of results (optional)
-     * @return Status
+     * @return CombinedStatus
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Status repoGetCombinedStatusByRef(String owner, String repo, String ref, Integer page) throws ApiException {
-        ApiResponse<Status> resp = repoGetCombinedStatusByRefWithHttpInfo(owner, repo, ref, page);
+    public CombinedStatus repoGetCombinedStatusByRef(String owner, String repo, String ref, Integer page) throws ApiException {
+        ApiResponse<CombinedStatus> resp = repoGetCombinedStatusByRefWithHttpInfo(owner, repo, ref, page);
         return resp.getData();
     }
 
@@ -5293,12 +6752,12 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param ref name of branch/tag/commit (required)
      * @param page page number of results (optional)
-     * @return ApiResponse&lt;Status&gt;
+     * @return ApiResponse&lt;CombinedStatus&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Status> repoGetCombinedStatusByRefWithHttpInfo(String owner, String repo, String ref, Integer page) throws ApiException {
+    public ApiResponse<CombinedStatus> repoGetCombinedStatusByRefWithHttpInfo(String owner, String repo, String ref, Integer page) throws ApiException {
         com.squareup.okhttp.Call call = repoGetCombinedStatusByRefValidateBeforeCall(owner, repo, ref, page, null, null);
-        Type localVarReturnType = new TypeToken<Status>(){}.getType();
+        Type localVarReturnType = new TypeToken<CombinedStatus>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
@@ -5313,7 +6772,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoGetCombinedStatusByRefAsync(String owner, String repo, String ref, Integer page, final ApiCallback<Status> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoGetCombinedStatusByRefAsync(String owner, String repo, String ref, Integer page, final ApiCallback<CombinedStatus> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -5335,7 +6794,7 @@ public class RepositoryApi {
         }
 
         com.squareup.okhttp.Call call = repoGetCombinedStatusByRefValidateBeforeCall(owner, repo, ref, page, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<Status>(){}.getType();
+        Type localVarReturnType = new TypeToken<CombinedStatus>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -5392,7 +6851,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5539,7 +6998,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5677,7 +7136,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5816,7 +7275,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -5959,7 +7418,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6053,6 +7512,139 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoGetIssueTemplates
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoGetIssueTemplatesCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/issue_templates"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoGetIssueTemplatesValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoGetIssueTemplates(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoGetIssueTemplates(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoGetIssueTemplatesCall(owner, repo, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get available issue templates for a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return List&lt;IssueTemplate&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<IssueTemplate> repoGetIssueTemplates(String owner, String repo) throws ApiException {
+        ApiResponse<List<IssueTemplate>> resp = repoGetIssueTemplatesWithHttpInfo(owner, repo);
+        return resp.getData();
+    }
+
+    /**
+     * Get available issue templates for a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return ApiResponse&lt;List&lt;IssueTemplate&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<IssueTemplate>> repoGetIssueTemplatesWithHttpInfo(String owner, String repo) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetIssueTemplatesValidateBeforeCall(owner, repo, null, null);
+        Type localVarReturnType = new TypeToken<List<IssueTemplate>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get available issue templates for a repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoGetIssueTemplatesAsync(String owner, String repo, final ApiCallback<List<IssueTemplate>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoGetIssueTemplatesValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<IssueTemplate>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoGetKey
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -6102,7 +7694,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6196,6 +7788,139 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoGetLanguages
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoGetLanguagesCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/languages"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoGetLanguagesValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoGetLanguages(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoGetLanguages(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoGetLanguagesCall(owner, repo, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get languages and number of bytes of code written
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return Map&lt;String, Long&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Map<String, Long> repoGetLanguages(String owner, String repo) throws ApiException {
+        ApiResponse<Map<String, Long>> resp = repoGetLanguagesWithHttpInfo(owner, repo);
+        return resp.getData();
+    }
+
+    /**
+     * Get languages and number of bytes of code written
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return ApiResponse&lt;Map&lt;String, Long&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Map<String, Long>> repoGetLanguagesWithHttpInfo(String owner, String repo) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetLanguagesValidateBeforeCall(owner, repo, null, null);
+        Type localVarReturnType = new TypeToken<Map<String, Long>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get languages and number of bytes of code written (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoGetLanguagesAsync(String owner, String repo, final ApiCallback<Map<String, Long>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoGetLanguagesValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Map<String, Long>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoGetPullRequest
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -6245,7 +7970,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6339,6 +8064,312 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoGetPullReview
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoGetPullReviewCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoGetPullReviewValidateBeforeCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoGetPullReview(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoGetPullReview(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoGetPullReview(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling repoGetPullReview(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoGetPullReviewCall(owner, repo, index, id, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a specific review for a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @return PullReview
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PullReview repoGetPullReview(String owner, String repo, Long index, Long id) throws ApiException {
+        ApiResponse<PullReview> resp = repoGetPullReviewWithHttpInfo(owner, repo, index, id);
+        return resp.getData();
+    }
+
+    /**
+     * Get a specific review for a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @return ApiResponse&lt;PullReview&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PullReview> repoGetPullReviewWithHttpInfo(String owner, String repo, Long index, Long id) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetPullReviewValidateBeforeCall(owner, repo, index, id, null, null);
+        Type localVarReturnType = new TypeToken<PullReview>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a specific review for a pull request (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoGetPullReviewAsync(String owner, String repo, Long index, Long id, final ApiCallback<PullReview> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoGetPullReviewValidateBeforeCall(owner, repo, index, id, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PullReview>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoGetPullReviewComments
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoGetPullReviewCommentsCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}/comments"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoGetPullReviewCommentsValidateBeforeCall(String owner, String repo, Long index, Long id, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoGetPullReviewComments(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoGetPullReviewComments(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoGetPullReviewComments(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling repoGetPullReviewComments(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoGetPullReviewCommentsCall(owner, repo, index, id, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a specific review for a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @return List&lt;PullReviewComment&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<PullReviewComment> repoGetPullReviewComments(String owner, String repo, Long index, Long id) throws ApiException {
+        ApiResponse<List<PullReviewComment>> resp = repoGetPullReviewCommentsWithHttpInfo(owner, repo, index, id);
+        return resp.getData();
+    }
+
+    /**
+     * Get a specific review for a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @return ApiResponse&lt;List&lt;PullReviewComment&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<PullReviewComment>> repoGetPullReviewCommentsWithHttpInfo(String owner, String repo, Long index, Long id) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetPullReviewCommentsValidateBeforeCall(owner, repo, index, id, null, null);
+        Type localVarReturnType = new TypeToken<List<PullReviewComment>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a specific review for a pull request (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoGetPullReviewCommentsAsync(String owner, String repo, Long index, Long id, final ApiCallback<List<PullReviewComment>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoGetPullReviewCommentsValidateBeforeCall(owner, repo, index, id, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<PullReviewComment>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoGetRawFile
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -6388,7 +8419,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6527,7 +8558,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6672,7 +8703,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6774,10 +8805,153 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoGetReleaseTag
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param tag tagname of the release to get (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoGetReleaseTagCall(String owner, String repo, String tag, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/releases/tags/{tag}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "tag" + "\\}", apiClient.escapeString(tag.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoGetReleaseTagValidateBeforeCall(String owner, String repo, String tag, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoGetReleaseTag(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoGetReleaseTag(Async)");
+        }
+        
+        // verify the required parameter 'tag' is set
+        if (tag == null) {
+            throw new ApiException("Missing the required parameter 'tag' when calling repoGetReleaseTag(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoGetReleaseTagCall(owner, repo, tag, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a release by tag name
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param tag tagname of the release to get (required)
+     * @return Release
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public Release repoGetReleaseTag(String owner, String repo, String tag) throws ApiException {
+        ApiResponse<Release> resp = repoGetReleaseTagWithHttpInfo(owner, repo, tag);
+        return resp.getData();
+    }
+
+    /**
+     * Get a release by tag name
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param tag tagname of the release to get (required)
+     * @return ApiResponse&lt;Release&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Release> repoGetReleaseTagWithHttpInfo(String owner, String repo, String tag) throws ApiException {
+        com.squareup.okhttp.Call call = repoGetReleaseTagValidateBeforeCall(owner, repo, tag, null, null);
+        Type localVarReturnType = new TypeToken<Release>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a release by tag name (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param tag tagname of the release to get (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoGetReleaseTagAsync(String owner, String repo, String tag, final ApiCallback<Release> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoGetReleaseTagValidateBeforeCall(owner, repo, tag, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Release>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoGetSingleCommit
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param sha the commit hash (required)
+     * @param sha a git ref or commit sha (required)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
@@ -6823,7 +8997,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -6856,7 +9030,7 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param sha the commit hash (required)
+     * @param sha a git ref or commit sha (required)
      * @return Commit
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -6870,7 +9044,7 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param sha the commit hash (required)
+     * @param sha a git ref or commit sha (required)
      * @return ApiResponse&lt;Commit&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
@@ -6885,7 +9059,7 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param sha the commit hash (required)
+     * @param sha a git ref or commit sha (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
@@ -6964,7 +9138,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -7050,6 +9224,139 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoListBranchProtection
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoListBranchProtectionCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/branch_protections"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoListBranchProtectionValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoListBranchProtection(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoListBranchProtection(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoListBranchProtectionCall(owner, repo, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * List branch protections for a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return List&lt;BranchProtection&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<BranchProtection> repoListBranchProtection(String owner, String repo) throws ApiException {
+        ApiResponse<List<BranchProtection>> resp = repoListBranchProtectionWithHttpInfo(owner, repo);
+        return resp.getData();
+    }
+
+    /**
+     * List branch protections for a repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return ApiResponse&lt;List&lt;BranchProtection&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<BranchProtection>> repoListBranchProtectionWithHttpInfo(String owner, String repo) throws ApiException {
+        com.squareup.okhttp.Call call = repoListBranchProtectionValidateBeforeCall(owner, repo, null, null);
+        Type localVarReturnType = new TypeToken<List<BranchProtection>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * List branch protections for a repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoListBranchProtectionAsync(String owner, String repo, final ApiCallback<List<BranchProtection>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoListBranchProtectionValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<BranchProtection>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
      * Build call for repoListBranches
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -7097,7 +9404,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -7186,12 +9493,14 @@ public class RepositoryApi {
      * Build call for repoListCollaborators
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListCollaboratorsCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListCollaboratorsCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -7201,6 +9510,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -7230,12 +9543,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListCollaboratorsValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListCollaboratorsValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -7248,7 +9561,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListCollaboratorsCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListCollaboratorsCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -7258,11 +9571,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> repoListCollaborators(String owner, String repo) throws ApiException {
-        ApiResponse<List<User>> resp = repoListCollaboratorsWithHttpInfo(owner, repo);
+    public List<User> repoListCollaborators(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<User>> resp = repoListCollaboratorsWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -7271,11 +9586,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> repoListCollaboratorsWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListCollaboratorsValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<User>> repoListCollaboratorsWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListCollaboratorsValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -7285,11 +9602,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListCollaboratorsAsync(String owner, String repo, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListCollaboratorsAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -7310,7 +9629,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListCollaboratorsValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListCollaboratorsValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -7363,7 +9682,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -7498,7 +9817,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -7595,12 +9914,14 @@ public class RepositoryApi {
      * Build call for repoListHooks
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListHooksCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListHooksCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -7610,6 +9931,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -7639,12 +9964,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListHooksValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListHooksValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -7657,7 +9982,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListHooksCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListHooksCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -7667,11 +9992,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Hook&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Hook> repoListHooks(String owner, String repo) throws ApiException {
-        ApiResponse<List<Hook>> resp = repoListHooksWithHttpInfo(owner, repo);
+    public List<Hook> repoListHooks(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Hook>> resp = repoListHooksWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -7680,11 +10007,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Hook&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Hook>> repoListHooksWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListHooksValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<Hook>> repoListHooksWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListHooksValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Hook>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -7694,11 +10023,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListHooksAsync(String owner, String repo, final ApiCallback<List<Hook>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListHooksAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<Hook>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -7719,7 +10050,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListHooksValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListHooksValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Hook>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -7730,12 +10061,14 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param keyId the key_id to search for (optional)
      * @param fingerprint fingerprint of the key (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListKeysCall(String owner, String repo, Integer keyId, String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListKeysCall(String owner, String repo, Integer keyId, String fingerprint, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -7749,6 +10082,10 @@ public class RepositoryApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("key_id", keyId));
         if (fingerprint != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("fingerprint", fingerprint));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -7778,12 +10115,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListKeysValidateBeforeCall(String owner, String repo, Integer keyId, String fingerprint, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListKeysValidateBeforeCall(String owner, String repo, Integer keyId, String fingerprint, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -7796,7 +10133,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListKeysCall(owner, repo, keyId, fingerprint, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListKeysCall(owner, repo, keyId, fingerprint, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -7808,11 +10145,13 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param keyId the key_id to search for (optional)
      * @param fingerprint fingerprint of the key (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;DeployKey&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<DeployKey> repoListKeys(String owner, String repo, Integer keyId, String fingerprint) throws ApiException {
-        ApiResponse<List<DeployKey>> resp = repoListKeysWithHttpInfo(owner, repo, keyId, fingerprint);
+    public List<DeployKey> repoListKeys(String owner, String repo, Integer keyId, String fingerprint, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<DeployKey>> resp = repoListKeysWithHttpInfo(owner, repo, keyId, fingerprint, page, limit);
         return resp.getData();
     }
 
@@ -7823,11 +10162,13 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param keyId the key_id to search for (optional)
      * @param fingerprint fingerprint of the key (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;DeployKey&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<DeployKey>> repoListKeysWithHttpInfo(String owner, String repo, Integer keyId, String fingerprint) throws ApiException {
-        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, keyId, fingerprint, null, null);
+    public ApiResponse<List<DeployKey>> repoListKeysWithHttpInfo(String owner, String repo, Integer keyId, String fingerprint, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, keyId, fingerprint, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<DeployKey>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -7839,11 +10180,13 @@ public class RepositoryApi {
      * @param repo name of the repo (required)
      * @param keyId the key_id to search for (optional)
      * @param fingerprint fingerprint of the key (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListKeysAsync(String owner, String repo, Integer keyId, String fingerprint, final ApiCallback<List<DeployKey>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListKeysAsync(String owner, String repo, Integer keyId, String fingerprint, Integer page, Integer limit, final ApiCallback<List<DeployKey>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -7864,7 +10207,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, keyId, fingerprint, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListKeysValidateBeforeCall(owner, repo, keyId, fingerprint, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<DeployKey>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -7873,17 +10216,18 @@ public class RepositoryApi {
      * Build call for repoListPullRequests
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page Page number (optional)
      * @param state State of pull request: open or closed (optional) (optional)
      * @param sort Type of sort (optional)
      * @param milestone ID of the milestone (optional)
      * @param labels Label IDs (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListPullRequestsCall(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListPullRequestsCall(String owner, String repo, String state, String sort, Long milestone, List<Long> labels, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -7893,8 +10237,6 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (page != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (state != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
         if (sort != null)
@@ -7903,6 +10245,10 @@ public class RepositoryApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("milestone", milestone));
         if (labels != null)
         localVarCollectionQueryParams.addAll(apiClient.parameterToPairs("multi", "labels", labels));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -7932,12 +10278,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListPullRequestsValidateBeforeCall(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListPullRequestsValidateBeforeCall(String owner, String repo, String state, String sort, Long milestone, List<Long> labels, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -7950,7 +10296,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListPullRequestsCall(owner, repo, page, state, sort, milestone, labels, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListPullRequestsCall(owner, repo, state, sort, milestone, labels, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -7960,16 +10306,17 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page Page number (optional)
      * @param state State of pull request: open or closed (optional) (optional)
      * @param sort Type of sort (optional)
      * @param milestone ID of the milestone (optional)
      * @param labels Label IDs (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;PullRequest&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<PullRequest> repoListPullRequests(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels) throws ApiException {
-        ApiResponse<List<PullRequest>> resp = repoListPullRequestsWithHttpInfo(owner, repo, page, state, sort, milestone, labels);
+    public List<PullRequest> repoListPullRequests(String owner, String repo, String state, String sort, Long milestone, List<Long> labels, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<PullRequest>> resp = repoListPullRequestsWithHttpInfo(owner, repo, state, sort, milestone, labels, page, limit);
         return resp.getData();
     }
 
@@ -7978,16 +10325,17 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page Page number (optional)
      * @param state State of pull request: open or closed (optional) (optional)
      * @param sort Type of sort (optional)
      * @param milestone ID of the milestone (optional)
      * @param labels Label IDs (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;PullRequest&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<PullRequest>> repoListPullRequestsWithHttpInfo(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels) throws ApiException {
-        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, page, state, sort, milestone, labels, null, null);
+    public ApiResponse<List<PullRequest>> repoListPullRequestsWithHttpInfo(String owner, String repo, String state, String sort, Long milestone, List<Long> labels, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, state, sort, milestone, labels, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<PullRequest>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -7997,16 +10345,17 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page Page number (optional)
      * @param state State of pull request: open or closed (optional) (optional)
      * @param sort Type of sort (optional)
      * @param milestone ID of the milestone (optional)
      * @param labels Label IDs (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListPullRequestsAsync(String owner, String repo, Integer page, String state, String sort, Long milestone, List<Long> labels, final ApiCallback<List<PullRequest>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListPullRequestsAsync(String owner, String repo, String state, String sort, Long milestone, List<Long> labels, Integer page, Integer limit, final ApiCallback<List<PullRequest>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -8027,8 +10376,163 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, page, state, sort, milestone, labels, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListPullRequestsValidateBeforeCall(owner, repo, state, sort, milestone, labels, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<PullRequest>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoListPullReviews
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoListPullReviewsCall(String owner, String repo, Long index, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/reviews"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoListPullReviewsValidateBeforeCall(String owner, String repo, Long index, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoListPullReviews(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoListPullReviews(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoListPullReviews(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoListPullReviewsCall(owner, repo, index, page, limit, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * List all reviews for a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return List&lt;PullReview&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<PullReview> repoListPullReviews(String owner, String repo, Long index, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<PullReview>> resp = repoListPullReviewsWithHttpInfo(owner, repo, index, page, limit);
+        return resp.getData();
+    }
+
+    /**
+     * List all reviews for a pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return ApiResponse&lt;List&lt;PullReview&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<PullReview>> repoListPullReviewsWithHttpInfo(String owner, String repo, Long index, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListPullReviewsValidateBeforeCall(owner, repo, index, page, limit, null, null);
+        Type localVarReturnType = new TypeToken<List<PullReview>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * List all reviews for a pull request (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoListPullReviewsAsync(String owner, String repo, Long index, Integer page, Integer limit, final ApiCallback<List<PullReview>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoListPullReviewsValidateBeforeCall(owner, repo, index, page, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<PullReview>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -8082,7 +10586,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -8179,14 +10683,15 @@ public class RepositoryApi {
      * Build call for repoListReleases
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page page wants to load (optional)
-     * @param perPage items count every page wants to load (optional)
+     * @param perPage page size of results, deprecated - use limit (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListReleasesCall(String owner, String repo, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListReleasesCall(String owner, String repo, Integer perPage, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -8196,10 +10701,12 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (page != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (perPage != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("per_page", perPage));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -8229,12 +10736,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListReleasesValidateBeforeCall(String owner, String repo, Integer page, Integer perPage, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListReleasesValidateBeforeCall(String owner, String repo, Integer perPage, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -8247,7 +10754,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListReleasesCall(owner, repo, page, perPage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListReleasesCall(owner, repo, perPage, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -8257,13 +10764,14 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page page wants to load (optional)
-     * @param perPage items count every page wants to load (optional)
+     * @param perPage page size of results, deprecated - use limit (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Release&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Release> repoListReleases(String owner, String repo, Integer page, Integer perPage) throws ApiException {
-        ApiResponse<List<Release>> resp = repoListReleasesWithHttpInfo(owner, repo, page, perPage);
+    public List<Release> repoListReleases(String owner, String repo, Integer perPage, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Release>> resp = repoListReleasesWithHttpInfo(owner, repo, perPage, page, limit);
         return resp.getData();
     }
 
@@ -8272,13 +10780,14 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page page wants to load (optional)
-     * @param perPage items count every page wants to load (optional)
+     * @param perPage page size of results, deprecated - use limit (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Release&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Release>> repoListReleasesWithHttpInfo(String owner, String repo, Integer page, Integer perPage) throws ApiException {
-        com.squareup.okhttp.Call call = repoListReleasesValidateBeforeCall(owner, repo, page, perPage, null, null);
+    public ApiResponse<List<Release>> repoListReleasesWithHttpInfo(String owner, String repo, Integer perPage, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListReleasesValidateBeforeCall(owner, repo, perPage, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Release>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -8288,13 +10797,14 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
-     * @param page page wants to load (optional)
-     * @param perPage items count every page wants to load (optional)
+     * @param perPage page size of results, deprecated - use limit (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListReleasesAsync(String owner, String repo, Integer page, Integer perPage, final ApiCallback<List<Release>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListReleasesAsync(String owner, String repo, Integer perPage, Integer page, Integer limit, final ApiCallback<List<Release>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -8315,7 +10825,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListReleasesValidateBeforeCall(owner, repo, page, perPage, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListReleasesValidateBeforeCall(owner, repo, perPage, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Release>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -8324,12 +10834,14 @@ public class RepositoryApi {
      * Build call for repoListStargazers
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListStargazersCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListStargazersCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -8339,6 +10851,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -8368,12 +10884,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListStargazersValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListStargazersValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -8386,7 +10902,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListStargazersCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListStargazersCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -8396,11 +10912,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> repoListStargazers(String owner, String repo) throws ApiException {
-        ApiResponse<List<User>> resp = repoListStargazersWithHttpInfo(owner, repo);
+    public List<User> repoListStargazers(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<User>> resp = repoListStargazersWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -8409,11 +10927,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> repoListStargazersWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListStargazersValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<User>> repoListStargazersWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListStargazersValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -8423,11 +10943,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListStargazersAsync(String owner, String repo, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListStargazersAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -8448,7 +10970,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListStargazersValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListStargazersValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -8458,15 +10980,16 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha sha of the commit (required)
-     * @param page page number of results (optional)
      * @param sort type of sort (optional)
      * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListStatusesCall(String owner, String repo, String sha, Integer page, String sort, String state, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListStatusesCall(String owner, String repo, String sha, String sort, String state, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -8477,12 +11000,14 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
-        if (page != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
         if (sort != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("sort", sort));
         if (state != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -8512,12 +11037,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListStatusesValidateBeforeCall(String owner, String repo, String sha, Integer page, String sort, String state, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListStatusesValidateBeforeCall(String owner, String repo, String sha, String sort, String state, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -8535,7 +11060,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListStatusesCall(owner, repo, sha, page, sort, state, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListStatusesCall(owner, repo, sha, sort, state, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -8546,14 +11071,15 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha sha of the commit (required)
-     * @param page page number of results (optional)
      * @param sort type of sort (optional)
      * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;Status&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Status> repoListStatuses(String owner, String repo, String sha, Integer page, String sort, String state) throws ApiException {
-        ApiResponse<List<Status>> resp = repoListStatusesWithHttpInfo(owner, repo, sha, page, sort, state);
+    public List<Status> repoListStatuses(String owner, String repo, String sha, String sort, String state, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Status>> resp = repoListStatusesWithHttpInfo(owner, repo, sha, sort, state, page, limit);
         return resp.getData();
     }
 
@@ -8563,14 +11089,15 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha sha of the commit (required)
-     * @param page page number of results (optional)
      * @param sort type of sort (optional)
      * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;Status&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Status>> repoListStatusesWithHttpInfo(String owner, String repo, String sha, Integer page, String sort, String state) throws ApiException {
-        com.squareup.okhttp.Call call = repoListStatusesValidateBeforeCall(owner, repo, sha, page, sort, state, null, null);
+    public ApiResponse<List<Status>> repoListStatusesWithHttpInfo(String owner, String repo, String sha, String sort, String state, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListStatusesValidateBeforeCall(owner, repo, sha, sort, state, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Status>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -8581,14 +11108,15 @@ public class RepositoryApi {
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
      * @param sha sha of the commit (required)
-     * @param page page number of results (optional)
      * @param sort type of sort (optional)
      * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListStatusesAsync(String owner, String repo, String sha, Integer page, String sort, String state, final ApiCallback<List<Status>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListStatusesAsync(String owner, String repo, String sha, String sort, String state, Integer page, Integer limit, final ApiCallback<List<Status>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -8609,30 +11137,44 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListStatusesValidateBeforeCall(owner, repo, sha, page, sort, state, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListStatusesValidateBeforeCall(owner, repo, sha, sort, state, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Status>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
-     * Build call for repoListSubscribers
+     * Build call for repoListStatusesByRef
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param ref name of branch/tag/commit (required)
+     * @param sort type of sort (optional)
+     * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListSubscribersCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListStatusesByRefCall(String owner, String repo, String ref, String sort, String state, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
-        String localVarPath = "/repos/{owner}/{repo}/subscribers"
+        String localVarPath = "/repos/{owner}/{repo}/commits/{ref}/statuses"
             .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
-            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "ref" + "\\}", apiClient.escapeString(ref.toString()));
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (sort != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("sort", sort));
+        if (state != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("state", state));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -8662,12 +11204,171 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListSubscribersValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListStatusesByRefValidateBeforeCall(String owner, String repo, String ref, String sort, String state, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoListStatusesByRef(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoListStatusesByRef(Async)");
+        }
+        
+        // verify the required parameter 'ref' is set
+        if (ref == null) {
+            throw new ApiException("Missing the required parameter 'ref' when calling repoListStatusesByRef(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoListStatusesByRefCall(owner, repo, ref, sort, state, page, limit, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get a commit&#39;s statuses, by branch/tag/commit reference
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param ref name of branch/tag/commit (required)
+     * @param sort type of sort (optional)
+     * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return List&lt;Status&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<Status> repoListStatusesByRef(String owner, String repo, String ref, String sort, String state, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Status>> resp = repoListStatusesByRefWithHttpInfo(owner, repo, ref, sort, state, page, limit);
+        return resp.getData();
+    }
+
+    /**
+     * Get a commit&#39;s statuses, by branch/tag/commit reference
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param ref name of branch/tag/commit (required)
+     * @param sort type of sort (optional)
+     * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return ApiResponse&lt;List&lt;Status&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<Status>> repoListStatusesByRefWithHttpInfo(String owner, String repo, String ref, String sort, String state, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListStatusesByRefValidateBeforeCall(owner, repo, ref, sort, state, page, limit, null, null);
+        Type localVarReturnType = new TypeToken<List<Status>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get a commit&#39;s statuses, by branch/tag/commit reference (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param ref name of branch/tag/commit (required)
+     * @param sort type of sort (optional)
+     * @param state type of state (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoListStatusesByRefAsync(String owner, String repo, String ref, String sort, String state, Integer page, Integer limit, final ApiCallback<List<Status>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoListStatusesByRefValidateBeforeCall(owner, repo, ref, sort, state, page, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<Status>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoListSubscribers
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoListSubscribersCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/subscribers"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoListSubscribersValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -8680,7 +11381,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListSubscribersCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListSubscribersCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -8690,11 +11391,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;User&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<User> repoListSubscribers(String owner, String repo) throws ApiException {
-        ApiResponse<List<User>> resp = repoListSubscribersWithHttpInfo(owner, repo);
+    public List<User> repoListSubscribers(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<User>> resp = repoListSubscribersWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -8703,11 +11406,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;User&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<User>> repoListSubscribersWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListSubscribersValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<User>> repoListSubscribersWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListSubscribersValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -8717,11 +11422,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListSubscribersAsync(String owner, String repo, final ApiCallback<List<User>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListSubscribersAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<User>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -8742,7 +11449,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListSubscribersValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListSubscribersValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<User>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -8751,12 +11458,14 @@ public class RepositoryApi {
      * Build call for repoListTags
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results, default maximum page size is 50 (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListTagsCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListTagsCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -8766,6 +11475,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -8795,12 +11508,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListTagsValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListTagsValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -8813,7 +11526,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListTagsCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListTagsCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -8823,11 +11536,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results, default maximum page size is 50 (optional)
      * @return List&lt;Tag&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<Tag> repoListTags(String owner, String repo) throws ApiException {
-        ApiResponse<List<Tag>> resp = repoListTagsWithHttpInfo(owner, repo);
+    public List<Tag> repoListTags(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<Tag>> resp = repoListTagsWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -8836,11 +11551,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results, default maximum page size is 50 (optional)
      * @return ApiResponse&lt;List&lt;Tag&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<Tag>> repoListTagsWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListTagsValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<List<Tag>> repoListTagsWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListTagsValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<Tag>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -8850,11 +11567,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results, default maximum page size is 50 (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListTagsAsync(String owner, String repo, final ApiCallback<List<Tag>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListTagsAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<List<Tag>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -8875,7 +11594,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListTagsValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListTagsValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<Tag>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -8884,12 +11603,14 @@ public class RepositoryApi {
      * Build call for repoListTopics
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoListTopicsCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoListTopicsCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -8899,6 +11620,10 @@ public class RepositoryApi {
 
         List<Pair> localVarQueryParams = new ArrayList<Pair>();
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -8928,12 +11653,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoListTopicsValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoListTopicsValidateBeforeCall(String owner, String repo, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
@@ -8946,7 +11671,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = repoListTopicsCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListTopicsCall(owner, repo, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -8956,11 +11681,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return TopicName
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public TopicName repoListTopics(String owner, String repo) throws ApiException {
-        ApiResponse<TopicName> resp = repoListTopicsWithHttpInfo(owner, repo);
+    public TopicName repoListTopics(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        ApiResponse<TopicName> resp = repoListTopicsWithHttpInfo(owner, repo, page, limit);
         return resp.getData();
     }
 
@@ -8969,11 +11696,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;TopicName&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<TopicName> repoListTopicsWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoListTopicsValidateBeforeCall(owner, repo, null, null);
+    public ApiResponse<TopicName> repoListTopicsWithHttpInfo(String owner, String repo, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoListTopicsValidateBeforeCall(owner, repo, page, limit, null, null);
         Type localVarReturnType = new TypeToken<TopicName>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -8983,11 +11712,13 @@ public class RepositoryApi {
      * 
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoListTopicsAsync(String owner, String repo, final ApiCallback<TopicName> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoListTopicsAsync(String owner, String repo, Integer page, Integer limit, final ApiCallback<TopicName> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -9008,7 +11739,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoListTopicsValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoListTopicsValidateBeforeCall(owner, repo, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<TopicName>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -9064,7 +11795,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -9164,7 +11895,7 @@ public class RepositoryApi {
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoMigrateCall(MigrateRepoForm body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoMigrateCall(MigrateRepoOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = body;
 
         // create path and map variables
@@ -9201,12 +11932,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoMigrateValidateBeforeCall(MigrateRepoForm body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoMigrateValidateBeforeCall(MigrateRepoOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
         com.squareup.okhttp.Call call = repoMigrateCall(body, progressListener, progressRequestListener);
@@ -9221,7 +11952,7 @@ public class RepositoryApi {
      * @return Repository
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public Repository repoMigrate(MigrateRepoForm body) throws ApiException {
+    public Repository repoMigrate(MigrateRepoOptions body) throws ApiException {
         ApiResponse<Repository> resp = repoMigrateWithHttpInfo(body);
         return resp.getData();
     }
@@ -9233,7 +11964,7 @@ public class RepositoryApi {
      * @return ApiResponse&lt;Repository&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Repository> repoMigrateWithHttpInfo(MigrateRepoForm body) throws ApiException {
+    public ApiResponse<Repository> repoMigrateWithHttpInfo(MigrateRepoOptions body) throws ApiException {
         com.squareup.okhttp.Call call = repoMigrateValidateBeforeCall(body, null, null);
         Type localVarReturnType = new TypeToken<Repository>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
@@ -9247,7 +11978,7 @@ public class RepositoryApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoMigrateAsync(MigrateRepoForm body, final ApiCallback<Repository> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoMigrateAsync(MigrateRepoOptions body, final ApiCallback<Repository> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -9321,7 +12052,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -9452,7 +12183,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -9547,20 +12278,24 @@ public class RepositoryApi {
      * @param topic Limit search to repositories with keyword as topic (optional)
      * @param includeDesc include search of keyword within repository description (optional)
      * @param uid search only for repos that the user with the given id owns or contributes to (optional)
+     * @param priorityOwnerId repo owner to prioritize in the results (optional)
      * @param starredBy search only for repos that the user with the given id has starred (optional)
      * @param _private include private repositories this user has access to (defaults to true) (optional)
-     * @param page page number of results to return (1-based) (optional)
-     * @param limit page size of results, maximum page size is 50 (optional)
+     * @param isPrivate show only pubic, private or all repositories (defaults to all) (optional)
+     * @param template include template repositories this user has access to (defaults to true) (optional)
+     * @param archived show only archived, non-archived or all repositories (defaults to all) (optional)
      * @param mode type of repository to search for. Supported values are \&quot;fork\&quot;, \&quot;source\&quot;, \&quot;mirror\&quot; and \&quot;collaborative\&quot; (optional)
      * @param exclusive if &#x60;uid&#x60; is given, search only for repos that the user owns (optional)
      * @param sort sort repos by attribute. Supported values are \&quot;alpha\&quot;, \&quot;created\&quot;, \&quot;updated\&quot;, \&quot;size\&quot;, and \&quot;id\&quot;. Default is \&quot;alpha\&quot; (optional)
      * @param order sort order, either \&quot;asc\&quot; (ascending) or \&quot;desc\&quot; (descending). Default is \&quot;asc\&quot;, ignored if \&quot;sort\&quot; is not specified. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoSearchCall(String q, Boolean topic, Boolean includeDesc, Long uid, Long starredBy, Boolean _private, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoSearchCall(String q, Boolean topic, Boolean includeDesc, Long uid, Long priorityOwnerId, Long starredBy, Boolean _private, Boolean isPrivate, Boolean template, Boolean archived, String mode, Boolean exclusive, String sort, String order, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -9576,14 +12311,18 @@ public class RepositoryApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("includeDesc", includeDesc));
         if (uid != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("uid", uid));
+        if (priorityOwnerId != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("priority_owner_id", priorityOwnerId));
         if (starredBy != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("starredBy", starredBy));
         if (_private != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("private", _private));
-        if (page != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
-        if (limit != null)
-        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+        if (isPrivate != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("is_private", isPrivate));
+        if (template != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("template", template));
+        if (archived != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("archived", archived));
         if (mode != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("mode", mode));
         if (exclusive != null)
@@ -9592,6 +12331,10 @@ public class RepositoryApi {
         localVarQueryParams.addAll(apiClient.parameterToPair("sort", sort));
         if (order != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("order", order));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -9621,15 +12364,15 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoSearchValidateBeforeCall(String q, Boolean topic, Boolean includeDesc, Long uid, Long starredBy, Boolean _private, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoSearchValidateBeforeCall(String q, Boolean topic, Boolean includeDesc, Long uid, Long priorityOwnerId, Long starredBy, Boolean _private, Boolean isPrivate, Boolean template, Boolean archived, String mode, Boolean exclusive, String sort, String order, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
 
-        com.squareup.okhttp.Call call = repoSearchCall(q, topic, includeDesc, uid, starredBy, _private, page, limit, mode, exclusive, sort, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoSearchCall(q, topic, includeDesc, uid, priorityOwnerId, starredBy, _private, isPrivate, template, archived, mode, exclusive, sort, order, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -9641,19 +12384,23 @@ public class RepositoryApi {
      * @param topic Limit search to repositories with keyword as topic (optional)
      * @param includeDesc include search of keyword within repository description (optional)
      * @param uid search only for repos that the user with the given id owns or contributes to (optional)
+     * @param priorityOwnerId repo owner to prioritize in the results (optional)
      * @param starredBy search only for repos that the user with the given id has starred (optional)
      * @param _private include private repositories this user has access to (defaults to true) (optional)
-     * @param page page number of results to return (1-based) (optional)
-     * @param limit page size of results, maximum page size is 50 (optional)
+     * @param isPrivate show only pubic, private or all repositories (defaults to all) (optional)
+     * @param template include template repositories this user has access to (defaults to true) (optional)
+     * @param archived show only archived, non-archived or all repositories (defaults to all) (optional)
      * @param mode type of repository to search for. Supported values are \&quot;fork\&quot;, \&quot;source\&quot;, \&quot;mirror\&quot; and \&quot;collaborative\&quot; (optional)
      * @param exclusive if &#x60;uid&#x60; is given, search only for repos that the user owns (optional)
      * @param sort sort repos by attribute. Supported values are \&quot;alpha\&quot;, \&quot;created\&quot;, \&quot;updated\&quot;, \&quot;size\&quot;, and \&quot;id\&quot;. Default is \&quot;alpha\&quot; (optional)
      * @param order sort order, either \&quot;asc\&quot; (ascending) or \&quot;desc\&quot; (descending). Default is \&quot;asc\&quot;, ignored if \&quot;sort\&quot; is not specified. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return SearchResults
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public SearchResults repoSearch(String q, Boolean topic, Boolean includeDesc, Long uid, Long starredBy, Boolean _private, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order) throws ApiException {
-        ApiResponse<SearchResults> resp = repoSearchWithHttpInfo(q, topic, includeDesc, uid, starredBy, _private, page, limit, mode, exclusive, sort, order);
+    public SearchResults repoSearch(String q, Boolean topic, Boolean includeDesc, Long uid, Long priorityOwnerId, Long starredBy, Boolean _private, Boolean isPrivate, Boolean template, Boolean archived, String mode, Boolean exclusive, String sort, String order, Integer page, Integer limit) throws ApiException {
+        ApiResponse<SearchResults> resp = repoSearchWithHttpInfo(q, topic, includeDesc, uid, priorityOwnerId, starredBy, _private, isPrivate, template, archived, mode, exclusive, sort, order, page, limit);
         return resp.getData();
     }
 
@@ -9664,19 +12411,23 @@ public class RepositoryApi {
      * @param topic Limit search to repositories with keyword as topic (optional)
      * @param includeDesc include search of keyword within repository description (optional)
      * @param uid search only for repos that the user with the given id owns or contributes to (optional)
+     * @param priorityOwnerId repo owner to prioritize in the results (optional)
      * @param starredBy search only for repos that the user with the given id has starred (optional)
      * @param _private include private repositories this user has access to (defaults to true) (optional)
-     * @param page page number of results to return (1-based) (optional)
-     * @param limit page size of results, maximum page size is 50 (optional)
+     * @param isPrivate show only pubic, private or all repositories (defaults to all) (optional)
+     * @param template include template repositories this user has access to (defaults to true) (optional)
+     * @param archived show only archived, non-archived or all repositories (defaults to all) (optional)
      * @param mode type of repository to search for. Supported values are \&quot;fork\&quot;, \&quot;source\&quot;, \&quot;mirror\&quot; and \&quot;collaborative\&quot; (optional)
      * @param exclusive if &#x60;uid&#x60; is given, search only for repos that the user owns (optional)
      * @param sort sort repos by attribute. Supported values are \&quot;alpha\&quot;, \&quot;created\&quot;, \&quot;updated\&quot;, \&quot;size\&quot;, and \&quot;id\&quot;. Default is \&quot;alpha\&quot; (optional)
      * @param order sort order, either \&quot;asc\&quot; (ascending) or \&quot;desc\&quot; (descending). Default is \&quot;asc\&quot;, ignored if \&quot;sort\&quot; is not specified. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;SearchResults&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<SearchResults> repoSearchWithHttpInfo(String q, Boolean topic, Boolean includeDesc, Long uid, Long starredBy, Boolean _private, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order) throws ApiException {
-        com.squareup.okhttp.Call call = repoSearchValidateBeforeCall(q, topic, includeDesc, uid, starredBy, _private, page, limit, mode, exclusive, sort, order, null, null);
+    public ApiResponse<SearchResults> repoSearchWithHttpInfo(String q, Boolean topic, Boolean includeDesc, Long uid, Long priorityOwnerId, Long starredBy, Boolean _private, Boolean isPrivate, Boolean template, Boolean archived, String mode, Boolean exclusive, String sort, String order, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoSearchValidateBeforeCall(q, topic, includeDesc, uid, priorityOwnerId, starredBy, _private, isPrivate, template, archived, mode, exclusive, sort, order, page, limit, null, null);
         Type localVarReturnType = new TypeToken<SearchResults>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -9688,19 +12439,23 @@ public class RepositoryApi {
      * @param topic Limit search to repositories with keyword as topic (optional)
      * @param includeDesc include search of keyword within repository description (optional)
      * @param uid search only for repos that the user with the given id owns or contributes to (optional)
+     * @param priorityOwnerId repo owner to prioritize in the results (optional)
      * @param starredBy search only for repos that the user with the given id has starred (optional)
      * @param _private include private repositories this user has access to (defaults to true) (optional)
-     * @param page page number of results to return (1-based) (optional)
-     * @param limit page size of results, maximum page size is 50 (optional)
+     * @param isPrivate show only pubic, private or all repositories (defaults to all) (optional)
+     * @param template include template repositories this user has access to (defaults to true) (optional)
+     * @param archived show only archived, non-archived or all repositories (defaults to all) (optional)
      * @param mode type of repository to search for. Supported values are \&quot;fork\&quot;, \&quot;source\&quot;, \&quot;mirror\&quot; and \&quot;collaborative\&quot; (optional)
      * @param exclusive if &#x60;uid&#x60; is given, search only for repos that the user owns (optional)
      * @param sort sort repos by attribute. Supported values are \&quot;alpha\&quot;, \&quot;created\&quot;, \&quot;updated\&quot;, \&quot;size\&quot;, and \&quot;id\&quot;. Default is \&quot;alpha\&quot; (optional)
      * @param order sort order, either \&quot;asc\&quot; (ascending) or \&quot;desc\&quot; (descending). Default is \&quot;asc\&quot;, ignored if \&quot;sort\&quot; is not specified. (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoSearchAsync(String q, Boolean topic, Boolean includeDesc, Long uid, Long starredBy, Boolean _private, Integer page, Integer limit, String mode, Boolean exclusive, String sort, String order, final ApiCallback<SearchResults> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoSearchAsync(String q, Boolean topic, Boolean includeDesc, Long uid, Long priorityOwnerId, Long starredBy, Boolean _private, Boolean isPrivate, Boolean template, Boolean archived, String mode, Boolean exclusive, String sort, String order, Integer page, Integer limit, final ApiCallback<SearchResults> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -9721,8 +12476,303 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoSearchValidateBeforeCall(q, topic, includeDesc, uid, starredBy, _private, page, limit, mode, exclusive, sort, order, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoSearchValidateBeforeCall(q, topic, includeDesc, uid, priorityOwnerId, starredBy, _private, isPrivate, template, archived, mode, exclusive, sort, order, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<SearchResults>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoSigningKey
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoSigningKeyCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/signing-key.gpg"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "text/plain"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoSigningKeyValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoSigningKey(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoSigningKey(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoSigningKeyCall(owner, repo, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Get signing-key.gpg for given repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return String
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public String repoSigningKey(String owner, String repo) throws ApiException {
+        ApiResponse<String> resp = repoSigningKeyWithHttpInfo(owner, repo);
+        return resp.getData();
+    }
+
+    /**
+     * Get signing-key.gpg for given repository
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @return ApiResponse&lt;String&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<String> repoSigningKeyWithHttpInfo(String owner, String repo) throws ApiException {
+        com.squareup.okhttp.Call call = repoSigningKeyValidateBeforeCall(owner, repo, null, null);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Get signing-key.gpg for given repository (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoSigningKeyAsync(String owner, String repo, final ApiCallback<String> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoSigningKeyValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<String>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoSubmitPullReview
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param body  (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoSubmitPullReviewCall(String owner, String repo, Long index, Long id, SubmitPullReviewOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/reviews/{id}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()))
+            .replaceAll("\\{" + "id" + "\\}", apiClient.escapeString(id.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoSubmitPullReviewValidateBeforeCall(String owner, String repo, Long index, Long id, SubmitPullReviewOptions body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoSubmitPullReview(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoSubmitPullReview(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoSubmitPullReview(Async)");
+        }
+        
+        // verify the required parameter 'id' is set
+        if (id == null) {
+            throw new ApiException("Missing the required parameter 'id' when calling repoSubmitPullReview(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling repoSubmitPullReview(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoSubmitPullReviewCall(owner, repo, index, id, body, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Submit a pending review to an pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param body  (required)
+     * @return PullReview
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public PullReview repoSubmitPullReview(String owner, String repo, Long index, Long id, SubmitPullReviewOptions body) throws ApiException {
+        ApiResponse<PullReview> resp = repoSubmitPullReviewWithHttpInfo(owner, repo, index, id, body);
+        return resp.getData();
+    }
+
+    /**
+     * Submit a pending review to an pull request
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param body  (required)
+     * @return ApiResponse&lt;PullReview&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<PullReview> repoSubmitPullReviewWithHttpInfo(String owner, String repo, Long index, Long id, SubmitPullReviewOptions body) throws ApiException {
+        com.squareup.okhttp.Call call = repoSubmitPullReviewValidateBeforeCall(owner, repo, index, id, body, null, null);
+        Type localVarReturnType = new TypeToken<PullReview>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * Submit a pending review to an pull request (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request (required)
+     * @param id id of the review (required)
+     * @param body  (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoSubmitPullReviewAsync(String owner, String repo, Long index, Long id, SubmitPullReviewOptions body, final ApiCallback<PullReview> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoSubmitPullReviewValidateBeforeCall(owner, repo, index, id, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<PullReview>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -9776,7 +12826,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -9869,16 +12919,180 @@ public class RepositoryApi {
      * Build call for repoTrackedTimes
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
+     * @param user optional filter by user (optional)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call repoTrackedTimesCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call repoTrackedTimesCall(String owner, String repo, String user, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
         String localVarPath = "/repos/{owner}/{repo}/times"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+        if (user != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("user", user));
+        if (since != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("since", since));
+        if (before != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("before", before));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoTrackedTimesValidateBeforeCall(String owner, String repo, String user, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoTrackedTimes(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoTrackedTimes(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoTrackedTimesCall(owner, repo, user, since, before, page, limit, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * List a repo&#39;s tracked times
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user optional filter by user (optional)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return List&lt;TrackedTime&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public List<TrackedTime> repoTrackedTimes(String owner, String repo, String user, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<TrackedTime>> resp = repoTrackedTimesWithHttpInfo(owner, repo, user, since, before, page, limit);
+        return resp.getData();
+    }
+
+    /**
+     * List a repo&#39;s tracked times
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user optional filter by user (optional)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @return ApiResponse&lt;List&lt;TrackedTime&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<List<TrackedTime>> repoTrackedTimesWithHttpInfo(String owner, String repo, String user, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = repoTrackedTimesValidateBeforeCall(owner, repo, user, since, before, page, limit, null, null);
+        Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * List a repo&#39;s tracked times (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user optional filter by user (optional)
+     * @param since Only show times updated after the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param before Only show times updated before the given time. This is a timestamp in RFC 3339 format (optional)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoTrackedTimesAsync(String owner, String repo, String user, OffsetDateTime since, OffsetDateTime before, Integer page, Integer limit, final ApiCallback<List<TrackedTime>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoTrackedTimesValidateBeforeCall(owner, repo, user, since, before, page, limit, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for repoTransfer
+     * @param owner owner of the repo to transfer (required)
+     * @param repo name of the repo to transfer (required)
+     * @param body Transfer Options (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoTransferCall(String owner, String repo, TransferRepoOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = body;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/transfer"
             .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
             .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()));
 
@@ -9913,66 +13127,74 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
-        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call repoTrackedTimesValidateBeforeCall(String owner, String repo, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call repoTransferValidateBeforeCall(String owner, String repo, TransferRepoOption body, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'owner' is set
         if (owner == null) {
-            throw new ApiException("Missing the required parameter 'owner' when calling repoTrackedTimes(Async)");
+            throw new ApiException("Missing the required parameter 'owner' when calling repoTransfer(Async)");
         }
         
         // verify the required parameter 'repo' is set
         if (repo == null) {
-            throw new ApiException("Missing the required parameter 'repo' when calling repoTrackedTimes(Async)");
+            throw new ApiException("Missing the required parameter 'repo' when calling repoTransfer(Async)");
+        }
+        
+        // verify the required parameter 'body' is set
+        if (body == null) {
+            throw new ApiException("Missing the required parameter 'body' when calling repoTransfer(Async)");
         }
         
 
-        com.squareup.okhttp.Call call = repoTrackedTimesCall(owner, repo, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = repoTransferCall(owner, repo, body, progressListener, progressRequestListener);
         return call;
 
     }
 
     /**
-     * List a repo&#39;s tracked times
+     * Transfer a repo ownership
      * 
-     * @param owner owner of the repo (required)
-     * @param repo name of the repo (required)
-     * @return List&lt;TrackedTime&gt;
+     * @param owner owner of the repo to transfer (required)
+     * @param repo name of the repo to transfer (required)
+     * @param body Transfer Options (required)
+     * @return Repository
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<TrackedTime> repoTrackedTimes(String owner, String repo) throws ApiException {
-        ApiResponse<List<TrackedTime>> resp = repoTrackedTimesWithHttpInfo(owner, repo);
+    public Repository repoTransfer(String owner, String repo, TransferRepoOption body) throws ApiException {
+        ApiResponse<Repository> resp = repoTransferWithHttpInfo(owner, repo, body);
         return resp.getData();
     }
 
     /**
-     * List a repo&#39;s tracked times
+     * Transfer a repo ownership
      * 
-     * @param owner owner of the repo (required)
-     * @param repo name of the repo (required)
-     * @return ApiResponse&lt;List&lt;TrackedTime&gt;&gt;
+     * @param owner owner of the repo to transfer (required)
+     * @param repo name of the repo to transfer (required)
+     * @param body Transfer Options (required)
+     * @return ApiResponse&lt;Repository&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<TrackedTime>> repoTrackedTimesWithHttpInfo(String owner, String repo) throws ApiException {
-        com.squareup.okhttp.Call call = repoTrackedTimesValidateBeforeCall(owner, repo, null, null);
-        Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
+    public ApiResponse<Repository> repoTransferWithHttpInfo(String owner, String repo, TransferRepoOption body) throws ApiException {
+        com.squareup.okhttp.Call call = repoTransferValidateBeforeCall(owner, repo, body, null, null);
+        Type localVarReturnType = new TypeToken<Repository>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
 
     /**
-     * List a repo&#39;s tracked times (asynchronously)
+     * Transfer a repo ownership (asynchronously)
      * 
-     * @param owner owner of the repo (required)
-     * @param repo name of the repo (required)
+     * @param owner owner of the repo to transfer (required)
+     * @param repo name of the repo to transfer (required)
+     * @param body Transfer Options (required)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call repoTrackedTimesAsync(String owner, String repo, final ApiCallback<List<TrackedTime>> callback) throws ApiException {
+    public com.squareup.okhttp.Call repoTransferAsync(String owner, String repo, TransferRepoOption body, final ApiCallback<Repository> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -9993,8 +13215,8 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = repoTrackedTimesValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
-        Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
+        com.squareup.okhttp.Call call = repoTransferValidateBeforeCall(owner, repo, body, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<Repository>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
@@ -10049,7 +13271,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -10151,6 +13373,145 @@ public class RepositoryApi {
         return call;
     }
     /**
+     * Build call for repoUpdatePullRequest
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     */
+    public com.squareup.okhttp.Call repoUpdatePullRequestCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/pulls/{index}/update"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "index" + "\\}", apiClient.escapeString(index.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "POST", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call repoUpdatePullRequestValidateBeforeCall(String owner, String repo, Long index, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling repoUpdatePullRequest(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling repoUpdatePullRequest(Async)");
+        }
+        
+        // verify the required parameter 'index' is set
+        if (index == null) {
+            throw new ApiException("Missing the required parameter 'index' when calling repoUpdatePullRequest(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = repoUpdatePullRequestCall(owner, repo, index, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * Merge PR&#39;s baseBranch into headBranch
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public void repoUpdatePullRequest(String owner, String repo, Long index) throws ApiException {
+        repoUpdatePullRequestWithHttpInfo(owner, repo, index);
+    }
+
+    /**
+     * Merge PR&#39;s baseBranch into headBranch
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @return ApiResponse&lt;Void&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     */
+    public ApiResponse<Void> repoUpdatePullRequestWithHttpInfo(String owner, String repo, Long index) throws ApiException {
+        com.squareup.okhttp.Call call = repoUpdatePullRequestValidateBeforeCall(owner, repo, index, null, null);
+        return apiClient.execute(call);
+    }
+
+    /**
+     * Merge PR&#39;s baseBranch into headBranch (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param index index of the pull request to get (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     */
+    public com.squareup.okhttp.Call repoUpdatePullRequestAsync(String owner, String repo, Long index, final ApiCallback<Void> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = repoUpdatePullRequestValidateBeforeCall(owner, repo, index, progressListener, progressRequestListener);
+        apiClient.executeAsync(call, callback);
+        return call;
+    }
+    /**
      * Build call for repoUpdateTopics
      * @param owner owner of the repo (required)
      * @param repo name of the repo (required)
@@ -10199,7 +13560,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -10286,12 +13647,14 @@ public class RepositoryApi {
     /**
      * Build call for topicSearch
      * @param q keywords to search (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param progressListener Progress listener
      * @param progressRequestListener Progress request listener
      * @return Call to execute
      * @throws ApiException If fail to serialize the request body object
      */
-    public com.squareup.okhttp.Call topicSearchCall(String q, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    public com.squareup.okhttp.Call topicSearchCall(String q, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         Object localVarPostBody = null;
 
         // create path and map variables
@@ -10301,6 +13664,10 @@ public class RepositoryApi {
         List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
         if (q != null)
         localVarQueryParams.addAll(apiClient.parameterToPair("q", q));
+        if (page != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("page", page));
+        if (limit != null)
+        localVarQueryParams.addAll(apiClient.parameterToPair("limit", limit));
 
         Map<String, String> localVarHeaderParams = new HashMap<String, String>();
 
@@ -10330,12 +13697,12 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
     @SuppressWarnings("rawtypes")
-    private com.squareup.okhttp.Call topicSearchValidateBeforeCall(String q, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+    private com.squareup.okhttp.Call topicSearchValidateBeforeCall(String q, Integer page, Integer limit, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
         
         // verify the required parameter 'q' is set
         if (q == null) {
@@ -10343,7 +13710,7 @@ public class RepositoryApi {
         }
         
 
-        com.squareup.okhttp.Call call = topicSearchCall(q, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = topicSearchCall(q, page, limit, progressListener, progressRequestListener);
         return call;
 
     }
@@ -10352,11 +13719,13 @@ public class RepositoryApi {
      * search topics via keyword
      * 
      * @param q keywords to search (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return List&lt;TopicResponse&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public List<TopicResponse> topicSearch(String q) throws ApiException {
-        ApiResponse<List<TopicResponse>> resp = topicSearchWithHttpInfo(q);
+    public List<TopicResponse> topicSearch(String q, Integer page, Integer limit) throws ApiException {
+        ApiResponse<List<TopicResponse>> resp = topicSearchWithHttpInfo(q, page, limit);
         return resp.getData();
     }
 
@@ -10364,11 +13733,13 @@ public class RepositoryApi {
      * search topics via keyword
      * 
      * @param q keywords to search (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @return ApiResponse&lt;List&lt;TopicResponse&gt;&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<List<TopicResponse>> topicSearchWithHttpInfo(String q) throws ApiException {
-        com.squareup.okhttp.Call call = topicSearchValidateBeforeCall(q, null, null);
+    public ApiResponse<List<TopicResponse>> topicSearchWithHttpInfo(String q, Integer page, Integer limit) throws ApiException {
+        com.squareup.okhttp.Call call = topicSearchValidateBeforeCall(q, page, limit, null, null);
         Type localVarReturnType = new TypeToken<List<TopicResponse>>(){}.getType();
         return apiClient.execute(call, localVarReturnType);
     }
@@ -10377,11 +13748,13 @@ public class RepositoryApi {
      * search topics via keyword (asynchronously)
      * 
      * @param q keywords to search (required)
+     * @param page page number of results to return (1-based) (optional)
+     * @param limit page size of results (optional)
      * @param callback The callback to be executed when the API call finishes
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call topicSearchAsync(String q, final ApiCallback<List<TopicResponse>> callback) throws ApiException {
+    public com.squareup.okhttp.Call topicSearchAsync(String q, Integer page, Integer limit, final ApiCallback<List<TopicResponse>> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -10402,7 +13775,7 @@ public class RepositoryApi {
             };
         }
 
-        com.squareup.okhttp.Call call = topicSearchValidateBeforeCall(q, progressListener, progressRequestListener);
+        com.squareup.okhttp.Call call = topicSearchValidateBeforeCall(q, page, limit, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<List<TopicResponse>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
@@ -10455,7 +13828,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -10588,7 +13961,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "DELETE", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -10717,7 +14090,7 @@ public class RepositoryApi {
             });
         }
 
-        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "Token" };
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
         return apiClient.buildCall(localVarPath, "PUT", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
     }
 
@@ -10799,6 +14172,158 @@ public class RepositoryApi {
 
         com.squareup.okhttp.Call call = userCurrentPutSubscriptionValidateBeforeCall(owner, repo, progressListener, progressRequestListener);
         Type localVarReturnType = new TypeToken<WatchInfo>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
+        return call;
+    }
+    /**
+     * Build call for userTrackedTimes
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user username of user (required)
+     * @param progressListener Progress listener
+     * @param progressRequestListener Progress request listener
+     * @return Call to execute
+     * @throws ApiException If fail to serialize the request body object
+     * @deprecated
+     */
+    @Deprecated
+    public com.squareup.okhttp.Call userTrackedTimesCall(String owner, String repo, String user, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        Object localVarPostBody = null;
+
+        // create path and map variables
+        String localVarPath = "/repos/{owner}/{repo}/times/{user}"
+            .replaceAll("\\{" + "owner" + "\\}", apiClient.escapeString(owner.toString()))
+            .replaceAll("\\{" + "repo" + "\\}", apiClient.escapeString(repo.toString()))
+            .replaceAll("\\{" + "user" + "\\}", apiClient.escapeString(user.toString()));
+
+        List<Pair> localVarQueryParams = new ArrayList<Pair>();
+        List<Pair> localVarCollectionQueryParams = new ArrayList<Pair>();
+
+        Map<String, String> localVarHeaderParams = new HashMap<String, String>();
+
+        Map<String, Object> localVarFormParams = new HashMap<String, Object>();
+
+        final String[] localVarAccepts = {
+            "application/json"
+        };
+        final String localVarAccept = apiClient.selectHeaderAccept(localVarAccepts);
+        if (localVarAccept != null) localVarHeaderParams.put("Accept", localVarAccept);
+
+        final String[] localVarContentTypes = {
+            "application/json", "text/plain"
+        };
+        final String localVarContentType = apiClient.selectHeaderContentType(localVarContentTypes);
+        localVarHeaderParams.put("Content-Type", localVarContentType);
+
+        if(progressListener != null) {
+            apiClient.getHttpClient().networkInterceptors().add(new com.squareup.okhttp.Interceptor() {
+                @Override
+                public com.squareup.okhttp.Response intercept(com.squareup.okhttp.Interceptor.Chain chain) throws IOException {
+                    com.squareup.okhttp.Response originalResponse = chain.proceed(chain.request());
+                    return originalResponse.newBuilder()
+                    .body(new ProgressResponseBody(originalResponse.body(), progressListener))
+                    .build();
+                }
+            });
+        }
+
+        String[] localVarAuthNames = new String[] { "AccessToken", "AuthorizationHeaderToken", "BasicAuth", "SudoHeader", "SudoParam", "TOTPHeader", "Token" };
+        return apiClient.buildCall(localVarPath, "GET", localVarQueryParams, localVarCollectionQueryParams, localVarPostBody, localVarHeaderParams, localVarFormParams, localVarAuthNames, progressRequestListener);
+    }
+
+    @Deprecated
+    @SuppressWarnings("rawtypes")
+    private com.squareup.okhttp.Call userTrackedTimesValidateBeforeCall(String owner, String repo, String user, final ProgressResponseBody.ProgressListener progressListener, final ProgressRequestBody.ProgressRequestListener progressRequestListener) throws ApiException {
+        
+        // verify the required parameter 'owner' is set
+        if (owner == null) {
+            throw new ApiException("Missing the required parameter 'owner' when calling userTrackedTimes(Async)");
+        }
+        
+        // verify the required parameter 'repo' is set
+        if (repo == null) {
+            throw new ApiException("Missing the required parameter 'repo' when calling userTrackedTimes(Async)");
+        }
+        
+        // verify the required parameter 'user' is set
+        if (user == null) {
+            throw new ApiException("Missing the required parameter 'user' when calling userTrackedTimes(Async)");
+        }
+        
+
+        com.squareup.okhttp.Call call = userTrackedTimesCall(owner, repo, user, progressListener, progressRequestListener);
+        return call;
+
+    }
+
+    /**
+     * List a user&#39;s tracked times in a repo
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user username of user (required)
+     * @return List&lt;TrackedTime&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @deprecated
+     */
+    @Deprecated
+    public List<TrackedTime> userTrackedTimes(String owner, String repo, String user) throws ApiException {
+        ApiResponse<List<TrackedTime>> resp = userTrackedTimesWithHttpInfo(owner, repo, user);
+        return resp.getData();
+    }
+
+    /**
+     * List a user&#39;s tracked times in a repo
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user username of user (required)
+     * @return ApiResponse&lt;List&lt;TrackedTime&gt;&gt;
+     * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
+     * @deprecated
+     */
+    @Deprecated
+    public ApiResponse<List<TrackedTime>> userTrackedTimesWithHttpInfo(String owner, String repo, String user) throws ApiException {
+        com.squareup.okhttp.Call call = userTrackedTimesValidateBeforeCall(owner, repo, user, null, null);
+        Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
+    }
+
+    /**
+     * List a user&#39;s tracked times in a repo (asynchronously)
+     * 
+     * @param owner owner of the repo (required)
+     * @param repo name of the repo (required)
+     * @param user username of user (required)
+     * @param callback The callback to be executed when the API call finishes
+     * @return The request call
+     * @throws ApiException If fail to process the API call, e.g. serializing the request body object
+     * @deprecated
+     */
+    @Deprecated
+    public com.squareup.okhttp.Call userTrackedTimesAsync(String owner, String repo, String user, final ApiCallback<List<TrackedTime>> callback) throws ApiException {
+
+        ProgressResponseBody.ProgressListener progressListener = null;
+        ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
+
+        if (callback != null) {
+            progressListener = new ProgressResponseBody.ProgressListener() {
+                @Override
+                public void update(long bytesRead, long contentLength, boolean done) {
+                    callback.onDownloadProgress(bytesRead, contentLength, done);
+                }
+            };
+
+            progressRequestListener = new ProgressRequestBody.ProgressRequestListener() {
+                @Override
+                public void onRequestProgress(long bytesWritten, long contentLength, boolean done) {
+                    callback.onUploadProgress(bytesWritten, contentLength, done);
+                }
+            };
+        }
+
+        com.squareup.okhttp.Call call = userTrackedTimesValidateBeforeCall(owner, repo, user, progressListener, progressRequestListener);
+        Type localVarReturnType = new TypeToken<List<TrackedTime>>(){}.getType();
         apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }

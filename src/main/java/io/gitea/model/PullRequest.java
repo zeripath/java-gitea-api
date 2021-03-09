@@ -35,7 +35,7 @@ import org.threeten.bp.OffsetDateTime;
  * PullRequest represents a pull request
  */
 @ApiModel(description = "PullRequest represents a pull request")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class PullRequest {
   @SerializedName("assignee")
   private User assignee = null;
@@ -72,6 +72,9 @@ public class PullRequest {
 
   @SerializedName("id")
   private Long id = null;
+
+  @SerializedName("is_locked")
+  private Boolean isLocked = null;
 
   @SerializedName("labels")
   private List<Label> labels = null;
@@ -340,6 +343,24 @@ public class PullRequest {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public PullRequest isLocked(Boolean isLocked) {
+    this.isLocked = isLocked;
+    return this;
+  }
+
+   /**
+   * Get isLocked
+   * @return isLocked
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIsLocked() {
+    return isLocked;
+  }
+
+  public void setIsLocked(Boolean isLocked) {
+    this.isLocked = isLocked;
   }
 
   public PullRequest labels(List<Label> labels) {
@@ -642,6 +663,7 @@ public class PullRequest {
         Objects.equals(this.head, pullRequest.head) &&
         Objects.equals(this.htmlUrl, pullRequest.htmlUrl) &&
         Objects.equals(this.id, pullRequest.id) &&
+        Objects.equals(this.isLocked, pullRequest.isLocked) &&
         Objects.equals(this.labels, pullRequest.labels) &&
         Objects.equals(this.mergeBase, pullRequest.mergeBase) &&
         Objects.equals(this.mergeCommitSha, pullRequest.mergeCommitSha) &&
@@ -661,7 +683,7 @@ public class PullRequest {
 
   @Override
   public int hashCode() {
-    return Objects.hash(assignee, assignees, base, body, closedAt, comments, createdAt, diffUrl, dueDate, head, htmlUrl, id, labels, mergeBase, mergeCommitSha, mergeable, merged, mergedAt, mergedBy, milestone, number, patchUrl, state, title, updatedAt, url, user);
+    return Objects.hash(assignee, assignees, base, body, closedAt, comments, createdAt, diffUrl, dueDate, head, htmlUrl, id, isLocked, labels, mergeBase, mergeCommitSha, mergeable, merged, mergedAt, mergedBy, milestone, number, patchUrl, state, title, updatedAt, url, user);
   }
 
 
@@ -682,6 +704,7 @@ public class PullRequest {
     sb.append("    head: ").append(toIndentedString(head)).append("\n");
     sb.append("    htmlUrl: ").append(toIndentedString(htmlUrl)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    isLocked: ").append(toIndentedString(isLocked)).append("\n");
     sb.append("    labels: ").append(toIndentedString(labels)).append("\n");
     sb.append("    mergeBase: ").append(toIndentedString(mergeBase)).append("\n");
     sb.append("    mergeCommitSha: ").append(toIndentedString(mergeCommitSha)).append("\n");

@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.Issue;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -29,13 +30,16 @@ import org.threeten.bp.OffsetDateTime;
  * TrackedTime worked time for an issue / pr
  */
 @ApiModel(description = "TrackedTime worked time for an issue / pr")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class TrackedTime {
   @SerializedName("created")
   private OffsetDateTime created = null;
 
   @SerializedName("id")
   private Long id = null;
+
+  @SerializedName("issue")
+  private Issue issue = null;
 
   @SerializedName("issue_id")
   private Long issueId = null;
@@ -45,6 +49,9 @@ public class TrackedTime {
 
   @SerializedName("user_id")
   private Long userId = null;
+
+  @SerializedName("user_name")
+  private String userName = null;
 
   public TrackedTime created(OffsetDateTime created) {
     this.created = created;
@@ -82,16 +89,34 @@ public class TrackedTime {
     this.id = id;
   }
 
+  public TrackedTime issue(Issue issue) {
+    this.issue = issue;
+    return this;
+  }
+
+   /**
+   * Get issue
+   * @return issue
+  **/
+  @ApiModelProperty(value = "")
+  public Issue getIssue() {
+    return issue;
+  }
+
+  public void setIssue(Issue issue) {
+    this.issue = issue;
+  }
+
   public TrackedTime issueId(Long issueId) {
     this.issueId = issueId;
     return this;
   }
 
    /**
-   * Get issueId
+   * deprecated (only for backwards compatibility)
    * @return issueId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "deprecated (only for backwards compatibility)")
   public Long getIssueId() {
     return issueId;
   }
@@ -124,16 +149,34 @@ public class TrackedTime {
   }
 
    /**
-   * Get userId
+   * deprecated (only for backwards compatibility)
    * @return userId
   **/
-  @ApiModelProperty(value = "")
+  @ApiModelProperty(value = "deprecated (only for backwards compatibility)")
   public Long getUserId() {
     return userId;
   }
 
   public void setUserId(Long userId) {
     this.userId = userId;
+  }
+
+  public TrackedTime userName(String userName) {
+    this.userName = userName;
+    return this;
+  }
+
+   /**
+   * Get userName
+   * @return userName
+  **/
+  @ApiModelProperty(value = "")
+  public String getUserName() {
+    return userName;
+  }
+
+  public void setUserName(String userName) {
+    this.userName = userName;
   }
 
 
@@ -148,14 +191,16 @@ public class TrackedTime {
     TrackedTime trackedTime = (TrackedTime) o;
     return Objects.equals(this.created, trackedTime.created) &&
         Objects.equals(this.id, trackedTime.id) &&
+        Objects.equals(this.issue, trackedTime.issue) &&
         Objects.equals(this.issueId, trackedTime.issueId) &&
         Objects.equals(this.time, trackedTime.time) &&
-        Objects.equals(this.userId, trackedTime.userId);
+        Objects.equals(this.userId, trackedTime.userId) &&
+        Objects.equals(this.userName, trackedTime.userName);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(created, id, issueId, time, userId);
+    return Objects.hash(created, id, issue, issueId, time, userId, userName);
   }
 
 
@@ -166,9 +211,11 @@ public class TrackedTime {
     
     sb.append("    created: ").append(toIndentedString(created)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    issue: ").append(toIndentedString(issue)).append("\n");
     sb.append("    issueId: ").append(toIndentedString(issueId)).append("\n");
     sb.append("    time: ").append(toIndentedString(time)).append("\n");
     sb.append("    userId: ").append(toIndentedString(userId)).append("\n");
+    sb.append("    userName: ").append(toIndentedString(userName)).append("\n");
     sb.append("}");
     return sb.toString();
   }

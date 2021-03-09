@@ -31,7 +31,7 @@ import java.io.IOException;
  * FileResponse contains information about a repo&#39;s file
  */
 @ApiModel(description = "FileResponse contains information about a repo's file")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class FileResponse {
   @SerializedName("commit")
   private FileCommitResponse commit = null;

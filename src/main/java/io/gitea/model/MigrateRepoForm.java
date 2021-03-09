@@ -25,13 +25,16 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * MigrateRepoForm form for migrating repository
+ * MigrateRepoForm form for migrating repository this is used to interact with web ui
  */
-@ApiModel(description = "MigrateRepoForm form for migrating repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@ApiModel(description = "MigrateRepoForm form for migrating repository this is used to interact with web ui")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class MigrateRepoForm {
   @SerializedName("auth_password")
   private String authPassword = null;
+
+  @SerializedName("auth_token")
+  private String authToken = null;
 
   @SerializedName("auth_username")
   private String authUsername = null;
@@ -66,6 +69,9 @@ public class MigrateRepoForm {
   @SerializedName("repo_name")
   private String repoName = null;
 
+  @SerializedName("service")
+  private Integer service = null;
+
   @SerializedName("uid")
   private Long uid = null;
 
@@ -88,6 +94,24 @@ public class MigrateRepoForm {
 
   public void setAuthPassword(String authPassword) {
     this.authPassword = authPassword;
+  }
+
+  public MigrateRepoForm authToken(String authToken) {
+    this.authToken = authToken;
+    return this;
+  }
+
+   /**
+   * Get authToken
+   * @return authToken
+  **/
+  @ApiModelProperty(value = "")
+  public String getAuthToken() {
+    return authToken;
+  }
+
+  public void setAuthToken(String authToken) {
+    this.authToken = authToken;
   }
 
   public MigrateRepoForm authUsername(String authUsername) {
@@ -288,6 +312,24 @@ public class MigrateRepoForm {
     this.repoName = repoName;
   }
 
+  public MigrateRepoForm service(Integer service) {
+    this.service = service;
+    return this;
+  }
+
+   /**
+   * Get service
+   * @return service
+  **/
+  @ApiModelProperty(value = "")
+  public Integer getService() {
+    return service;
+  }
+
+  public void setService(Integer service) {
+    this.service = service;
+  }
+
   public MigrateRepoForm uid(Long uid) {
     this.uid = uid;
     return this;
@@ -335,6 +377,7 @@ public class MigrateRepoForm {
     }
     MigrateRepoForm migrateRepoForm = (MigrateRepoForm) o;
     return Objects.equals(this.authPassword, migrateRepoForm.authPassword) &&
+        Objects.equals(this.authToken, migrateRepoForm.authToken) &&
         Objects.equals(this.authUsername, migrateRepoForm.authUsername) &&
         Objects.equals(this.cloneAddr, migrateRepoForm.cloneAddr) &&
         Objects.equals(this.description, migrateRepoForm.description) &&
@@ -346,13 +389,14 @@ public class MigrateRepoForm {
         Objects.equals(this.pullRequests, migrateRepoForm.pullRequests) &&
         Objects.equals(this.releases, migrateRepoForm.releases) &&
         Objects.equals(this.repoName, migrateRepoForm.repoName) &&
+        Objects.equals(this.service, migrateRepoForm.service) &&
         Objects.equals(this.uid, migrateRepoForm.uid) &&
         Objects.equals(this.wiki, migrateRepoForm.wiki);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(authPassword, authUsername, cloneAddr, description, issues, labels, milestones, mirror, _private, pullRequests, releases, repoName, uid, wiki);
+    return Objects.hash(authPassword, authToken, authUsername, cloneAddr, description, issues, labels, milestones, mirror, _private, pullRequests, releases, repoName, service, uid, wiki);
   }
 
 
@@ -362,6 +406,7 @@ public class MigrateRepoForm {
     sb.append("class MigrateRepoForm {\n");
     
     sb.append("    authPassword: ").append(toIndentedString(authPassword)).append("\n");
+    sb.append("    authToken: ").append(toIndentedString(authToken)).append("\n");
     sb.append("    authUsername: ").append(toIndentedString(authUsername)).append("\n");
     sb.append("    cloneAddr: ").append(toIndentedString(cloneAddr)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
@@ -373,6 +418,7 @@ public class MigrateRepoForm {
     sb.append("    pullRequests: ").append(toIndentedString(pullRequests)).append("\n");
     sb.append("    releases: ").append(toIndentedString(releases)).append("\n");
     sb.append("    repoName: ").append(toIndentedString(repoName)).append("\n");
+    sb.append("    service: ").append(toIndentedString(service)).append("\n");
     sb.append("    uid: ").append(toIndentedString(uid)).append("\n");
     sb.append("    wiki: ").append(toIndentedString(wiki)).append("\n");
     sb.append("}");

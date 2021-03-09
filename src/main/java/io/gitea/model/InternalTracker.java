@@ -28,7 +28,7 @@ import java.io.IOException;
  * InternalTracker represents settings for internal tracker
  */
 @ApiModel(description = "InternalTracker represents settings for internal tracker")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class InternalTracker {
   @SerializedName("allow_only_contributors_to_track_time")
   private Boolean allowOnlyContributorsToTrackTime = null;

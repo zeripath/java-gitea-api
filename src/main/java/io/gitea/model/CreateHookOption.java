@@ -20,19 +20,18 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.CreateHookOptionConfig;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 import java.util.ArrayList;
-import java.util.HashMap;
 import java.util.List;
-import java.util.Map;
 
 /**
  * CreateHookOption options when create a hook
  */
 @ApiModel(description = "CreateHookOption options when create a hook")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class CreateHookOption {
   @SerializedName("active")
   private Boolean active = false;
@@ -41,7 +40,7 @@ public class CreateHookOption {
   private String branchFilter = null;
 
   @SerializedName("config")
-  private Map<String, String> config = new HashMap<String, String>();
+  private CreateHookOptionConfig config = null;
 
   @SerializedName("events")
   private List<String> events = null;
@@ -51,13 +50,21 @@ public class CreateHookOption {
    */
   @JsonAdapter(TypeEnum.Adapter.class)
   public enum TypeEnum {
+    DINGTALK("dingtalk"),
+    
+    DISCORD("discord"),
+    
     GITEA("gitea"),
     
     GOGS("gogs"),
     
+    MSTEAMS("msteams"),
+    
     SLACK("slack"),
     
-    DISCORD("discord");
+    TELEGRAM("telegram"),
+    
+    FEISHU("feishu");
 
     private String value;
 
@@ -136,13 +143,8 @@ public class CreateHookOption {
     this.branchFilter = branchFilter;
   }
 
-  public CreateHookOption config(Map<String, String> config) {
+  public CreateHookOption config(CreateHookOptionConfig config) {
     this.config = config;
-    return this;
-  }
-
-  public CreateHookOption putConfigItem(String key, String configItem) {
-    this.config.put(key, configItem);
     return this;
   }
 
@@ -151,11 +153,11 @@ public class CreateHookOption {
    * @return config
   **/
   @ApiModelProperty(required = true, value = "")
-  public Map<String, String> getConfig() {
+  public CreateHookOptionConfig getConfig() {
     return config;
   }
 
-  public void setConfig(Map<String, String> config) {
+  public void setConfig(CreateHookOptionConfig config) {
     this.config = config;
   }
 

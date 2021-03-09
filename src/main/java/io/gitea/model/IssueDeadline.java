@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * IssueDeadline represents an issue deadline
  */
 @ApiModel(description = "IssueDeadline represents an issue deadline")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class IssueDeadline {
   @SerializedName("due_date")
   private OffsetDateTime dueDate = null;

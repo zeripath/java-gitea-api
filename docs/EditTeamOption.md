@@ -4,7 +4,9 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**canCreateOrgRepo** | **Boolean** |  |  [optional]
 **description** | **String** |  |  [optional]
+**includesAllRepositories** | **Boolean** |  |  [optional]
 **name** | **String** |  | 
 **permission** | [**PermissionEnum**](#PermissionEnum) |  |  [optional]
 **units** | **List&lt;String&gt;** |  |  [optional]

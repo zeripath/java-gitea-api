@@ -31,7 +31,7 @@ import org.threeten.bp.OffsetDateTime;
  * EditIssueOption options for editing an issue
  */
 @ApiModel(description = "EditIssueOption options for editing an issue")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class EditIssueOption {
   @SerializedName("assignee")
   private String assignee = null;
@@ -53,6 +53,9 @@ public class EditIssueOption {
 
   @SerializedName("title")
   private String title = null;
+
+  @SerializedName("unset_due_date")
+  private Boolean unsetDueDate = null;
 
   public EditIssueOption assignee(String assignee) {
     this.assignee = assignee;
@@ -188,6 +191,24 @@ public class EditIssueOption {
     this.title = title;
   }
 
+  public EditIssueOption unsetDueDate(Boolean unsetDueDate) {
+    this.unsetDueDate = unsetDueDate;
+    return this;
+  }
+
+   /**
+   * Get unsetDueDate
+   * @return unsetDueDate
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isUnsetDueDate() {
+    return unsetDueDate;
+  }
+
+  public void setUnsetDueDate(Boolean unsetDueDate) {
+    this.unsetDueDate = unsetDueDate;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -204,12 +225,13 @@ public class EditIssueOption {
         Objects.equals(this.dueDate, editIssueOption.dueDate) &&
         Objects.equals(this.milestone, editIssueOption.milestone) &&
         Objects.equals(this.state, editIssueOption.state) &&
-        Objects.equals(this.title, editIssueOption.title);
+        Objects.equals(this.title, editIssueOption.title) &&
+        Objects.equals(this.unsetDueDate, editIssueOption.unsetDueDate);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(assignee, assignees, body, dueDate, milestone, state, title);
+    return Objects.hash(assignee, assignees, body, dueDate, milestone, state, title, unsetDueDate);
   }
 
 
@@ -225,6 +247,7 @@ public class EditIssueOption {
     sb.append("    milestone: ").append(toIndentedString(milestone)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    unsetDueDate: ").append(toIndentedString(unsetDueDate)).append("\n");
     sb.append("}");
     return sb.toString();
   }

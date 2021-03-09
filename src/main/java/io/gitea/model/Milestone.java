@@ -29,13 +29,16 @@ import org.threeten.bp.OffsetDateTime;
  * Milestone milestone is a collection of issues on one repository
  */
 @ApiModel(description = "Milestone milestone is a collection of issues on one repository")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class Milestone {
   @SerializedName("closed_at")
   private OffsetDateTime closedAt = null;
 
   @SerializedName("closed_issues")
   private Long closedIssues = null;
+
+  @SerializedName("created_at")
+  private OffsetDateTime createdAt = null;
 
   @SerializedName("description")
   private String description = null;
@@ -54,6 +57,9 @@ public class Milestone {
 
   @SerializedName("title")
   private String title = null;
+
+  @SerializedName("updated_at")
+  private OffsetDateTime updatedAt = null;
 
   public Milestone closedAt(OffsetDateTime closedAt) {
     this.closedAt = closedAt;
@@ -89,6 +95,24 @@ public class Milestone {
 
   public void setClosedIssues(Long closedIssues) {
     this.closedIssues = closedIssues;
+  }
+
+  public Milestone createdAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
+    return this;
+  }
+
+   /**
+   * Get createdAt
+   * @return createdAt
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getCreatedAt() {
+    return createdAt;
+  }
+
+  public void setCreatedAt(OffsetDateTime createdAt) {
+    this.createdAt = createdAt;
   }
 
   public Milestone description(String description) {
@@ -199,6 +223,24 @@ public class Milestone {
     this.title = title;
   }
 
+  public Milestone updatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+    return this;
+  }
+
+   /**
+   * Get updatedAt
+   * @return updatedAt
+  **/
+  @ApiModelProperty(value = "")
+  public OffsetDateTime getUpdatedAt() {
+    return updatedAt;
+  }
+
+  public void setUpdatedAt(OffsetDateTime updatedAt) {
+    this.updatedAt = updatedAt;
+  }
+
 
   @Override
   public boolean equals(java.lang.Object o) {
@@ -211,17 +253,19 @@ public class Milestone {
     Milestone milestone = (Milestone) o;
     return Objects.equals(this.closedAt, milestone.closedAt) &&
         Objects.equals(this.closedIssues, milestone.closedIssues) &&
+        Objects.equals(this.createdAt, milestone.createdAt) &&
         Objects.equals(this.description, milestone.description) &&
         Objects.equals(this.dueOn, milestone.dueOn) &&
         Objects.equals(this.id, milestone.id) &&
         Objects.equals(this.openIssues, milestone.openIssues) &&
         Objects.equals(this.state, milestone.state) &&
-        Objects.equals(this.title, milestone.title);
+        Objects.equals(this.title, milestone.title) &&
+        Objects.equals(this.updatedAt, milestone.updatedAt);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(closedAt, closedIssues, description, dueOn, id, openIssues, state, title);
+    return Objects.hash(closedAt, closedIssues, createdAt, description, dueOn, id, openIssues, state, title, updatedAt);
   }
 
 
@@ -232,12 +276,14 @@ public class Milestone {
     
     sb.append("    closedAt: ").append(toIndentedString(closedAt)).append("\n");
     sb.append("    closedIssues: ").append(toIndentedString(closedIssues)).append("\n");
+    sb.append("    createdAt: ").append(toIndentedString(createdAt)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    dueOn: ").append(toIndentedString(dueOn)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
     sb.append("    openIssues: ").append(toIndentedString(openIssues)).append("\n");
     sb.append("    state: ").append(toIndentedString(state)).append("\n");
     sb.append("    title: ").append(toIndentedString(title)).append("\n");
+    sb.append("    updatedAt: ").append(toIndentedString(updatedAt)).append("\n");
     sb.append("}");
     return sb.toString();
   }

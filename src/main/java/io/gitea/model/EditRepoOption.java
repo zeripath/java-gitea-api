@@ -31,7 +31,7 @@ import java.io.IOException;
  * EditRepoOption options when editing a repository&#39;s properties
  */
 @ApiModel(description = "EditRepoOption options when editing a repository's properties")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class EditRepoOption {
   @SerializedName("allow_merge_commits")
   private Boolean allowMergeCommits = null;
@@ -63,6 +63,9 @@ public class EditRepoOption {
   @SerializedName("has_issues")
   private Boolean hasIssues = null;
 
+  @SerializedName("has_projects")
+  private Boolean hasProjects = null;
+
   @SerializedName("has_pull_requests")
   private Boolean hasPullRequests = null;
 
@@ -80,6 +83,9 @@ public class EditRepoOption {
 
   @SerializedName("private")
   private Boolean _private = null;
+
+  @SerializedName("template")
+  private Boolean template = null;
 
   @SerializedName("website")
   private String website = null;
@@ -264,6 +270,24 @@ public class EditRepoOption {
     this.hasIssues = hasIssues;
   }
 
+  public EditRepoOption hasProjects(Boolean hasProjects) {
+    this.hasProjects = hasProjects;
+    return this;
+  }
+
+   /**
+   * either &#x60;true&#x60; to enable project unit, or &#x60;false&#x60; to disable them.
+   * @return hasProjects
+  **/
+  @ApiModelProperty(value = "either `true` to enable project unit, or `false` to disable them.")
+  public Boolean isHasProjects() {
+    return hasProjects;
+  }
+
+  public void setHasProjects(Boolean hasProjects) {
+    this.hasProjects = hasProjects;
+  }
+
   public EditRepoOption hasPullRequests(Boolean hasPullRequests) {
     this.hasPullRequests = hasPullRequests;
     return this;
@@ -372,6 +396,24 @@ public class EditRepoOption {
     this._private = _private;
   }
 
+  public EditRepoOption template(Boolean template) {
+    this.template = template;
+    return this;
+  }
+
+   /**
+   * either &#x60;true&#x60; to make this repository a template or &#x60;false&#x60; to make it a normal repository
+   * @return template
+  **/
+  @ApiModelProperty(value = "either `true` to make this repository a template or `false` to make it a normal repository")
+  public Boolean isTemplate() {
+    return template;
+  }
+
+  public void setTemplate(Boolean template) {
+    this.template = template;
+  }
+
   public EditRepoOption website(String website) {
     this.website = website;
     return this;
@@ -410,18 +452,20 @@ public class EditRepoOption {
         Objects.equals(this.externalTracker, editRepoOption.externalTracker) &&
         Objects.equals(this.externalWiki, editRepoOption.externalWiki) &&
         Objects.equals(this.hasIssues, editRepoOption.hasIssues) &&
+        Objects.equals(this.hasProjects, editRepoOption.hasProjects) &&
         Objects.equals(this.hasPullRequests, editRepoOption.hasPullRequests) &&
         Objects.equals(this.hasWiki, editRepoOption.hasWiki) &&
         Objects.equals(this.ignoreWhitespaceConflicts, editRepoOption.ignoreWhitespaceConflicts) &&
         Objects.equals(this.internalTracker, editRepoOption.internalTracker) &&
         Objects.equals(this.name, editRepoOption.name) &&
         Objects.equals(this._private, editRepoOption._private) &&
+        Objects.equals(this.template, editRepoOption.template) &&
         Objects.equals(this.website, editRepoOption.website);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(allowMergeCommits, allowRebase, allowRebaseExplicit, allowSquashMerge, archived, defaultBranch, description, externalTracker, externalWiki, hasIssues, hasPullRequests, hasWiki, ignoreWhitespaceConflicts, internalTracker, name, _private, website);
+    return Objects.hash(allowMergeCommits, allowRebase, allowRebaseExplicit, allowSquashMerge, archived, defaultBranch, description, externalTracker, externalWiki, hasIssues, hasProjects, hasPullRequests, hasWiki, ignoreWhitespaceConflicts, internalTracker, name, _private, template, website);
   }
 
 
@@ -440,12 +484,14 @@ public class EditRepoOption {
     sb.append("    externalTracker: ").append(toIndentedString(externalTracker)).append("\n");
     sb.append("    externalWiki: ").append(toIndentedString(externalWiki)).append("\n");
     sb.append("    hasIssues: ").append(toIndentedString(hasIssues)).append("\n");
+    sb.append("    hasProjects: ").append(toIndentedString(hasProjects)).append("\n");
     sb.append("    hasPullRequests: ").append(toIndentedString(hasPullRequests)).append("\n");
     sb.append("    hasWiki: ").append(toIndentedString(hasWiki)).append("\n");
     sb.append("    ignoreWhitespaceConflicts: ").append(toIndentedString(ignoreWhitespaceConflicts)).append("\n");
     sb.append("    internalTracker: ").append(toIndentedString(internalTracker)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    _private: ").append(toIndentedString(_private)).append("\n");
+    sb.append("    template: ").append(toIndentedString(template)).append("\n");
     sb.append("    website: ").append(toIndentedString(website)).append("\n");
     sb.append("}");
     return sb.toString();

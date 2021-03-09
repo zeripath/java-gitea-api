@@ -31,13 +31,19 @@ import java.util.List;
  * Team represents a team in an organization
  */
 @ApiModel(description = "Team represents a team in an organization")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class Team {
+  @SerializedName("can_create_org_repo")
+  private Boolean canCreateOrgRepo = null;
+
   @SerializedName("description")
   private String description = null;
 
   @SerializedName("id")
   private Long id = null;
+
+  @SerializedName("includes_all_repositories")
+  private Boolean includesAllRepositories = null;
 
   @SerializedName("name")
   private String name = null;
@@ -104,6 +110,24 @@ public class Team {
   @SerializedName("units")
   private List<String> units = null;
 
+  public Team canCreateOrgRepo(Boolean canCreateOrgRepo) {
+    this.canCreateOrgRepo = canCreateOrgRepo;
+    return this;
+  }
+
+   /**
+   * Get canCreateOrgRepo
+   * @return canCreateOrgRepo
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isCanCreateOrgRepo() {
+    return canCreateOrgRepo;
+  }
+
+  public void setCanCreateOrgRepo(Boolean canCreateOrgRepo) {
+    this.canCreateOrgRepo = canCreateOrgRepo;
+  }
+
   public Team description(String description) {
     this.description = description;
     return this;
@@ -138,6 +162,24 @@ public class Team {
 
   public void setId(Long id) {
     this.id = id;
+  }
+
+  public Team includesAllRepositories(Boolean includesAllRepositories) {
+    this.includesAllRepositories = includesAllRepositories;
+    return this;
+  }
+
+   /**
+   * Get includesAllRepositories
+   * @return includesAllRepositories
+  **/
+  @ApiModelProperty(value = "")
+  public Boolean isIncludesAllRepositories() {
+    return includesAllRepositories;
+  }
+
+  public void setIncludesAllRepositories(Boolean includesAllRepositories) {
+    this.includesAllRepositories = includesAllRepositories;
   }
 
   public Team name(String name) {
@@ -230,8 +272,10 @@ public class Team {
       return false;
     }
     Team team = (Team) o;
-    return Objects.equals(this.description, team.description) &&
+    return Objects.equals(this.canCreateOrgRepo, team.canCreateOrgRepo) &&
+        Objects.equals(this.description, team.description) &&
         Objects.equals(this.id, team.id) &&
+        Objects.equals(this.includesAllRepositories, team.includesAllRepositories) &&
         Objects.equals(this.name, team.name) &&
         Objects.equals(this.organization, team.organization) &&
         Objects.equals(this.permission, team.permission) &&
@@ -240,7 +284,7 @@ public class Team {
 
   @Override
   public int hashCode() {
-    return Objects.hash(description, id, name, organization, permission, units);
+    return Objects.hash(canCreateOrgRepo, description, id, includesAllRepositories, name, organization, permission, units);
   }
 
 
@@ -249,8 +293,10 @@ public class Team {
     StringBuilder sb = new StringBuilder();
     sb.append("class Team {\n");
     
+    sb.append("    canCreateOrgRepo: ").append(toIndentedString(canCreateOrgRepo)).append("\n");
     sb.append("    description: ").append(toIndentedString(description)).append("\n");
     sb.append("    id: ").append(toIndentedString(id)).append("\n");
+    sb.append("    includesAllRepositories: ").append(toIndentedString(includesAllRepositories)).append("\n");
     sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("    organization: ").append(toIndentedString(organization)).append("\n");
     sb.append("    permission: ").append(toIndentedString(permission)).append("\n");

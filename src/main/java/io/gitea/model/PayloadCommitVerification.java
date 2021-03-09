@@ -20,6 +20,7 @@ import com.google.gson.annotations.JsonAdapter;
 import com.google.gson.annotations.SerializedName;
 import com.google.gson.stream.JsonReader;
 import com.google.gson.stream.JsonWriter;
+import io.gitea.model.PayloadUser;
 import io.swagger.annotations.ApiModel;
 import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
@@ -28,7 +29,7 @@ import java.io.IOException;
  * PayloadCommitVerification represents the GPG verification of a commit
  */
 @ApiModel(description = "PayloadCommitVerification represents the GPG verification of a commit")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class PayloadCommitVerification {
   @SerializedName("payload")
   private String payload = null;
@@ -38,6 +39,9 @@ public class PayloadCommitVerification {
 
   @SerializedName("signature")
   private String signature = null;
+
+  @SerializedName("signer")
+  private PayloadUser signer = null;
 
   @SerializedName("verified")
   private Boolean verified = null;
@@ -96,6 +100,24 @@ public class PayloadCommitVerification {
     this.signature = signature;
   }
 
+  public PayloadCommitVerification signer(PayloadUser signer) {
+    this.signer = signer;
+    return this;
+  }
+
+   /**
+   * Get signer
+   * @return signer
+  **/
+  @ApiModelProperty(value = "")
+  public PayloadUser getSigner() {
+    return signer;
+  }
+
+  public void setSigner(PayloadUser signer) {
+    this.signer = signer;
+  }
+
   public PayloadCommitVerification verified(Boolean verified) {
     this.verified = verified;
     return this;
@@ -127,12 +149,13 @@ public class PayloadCommitVerification {
     return Objects.equals(this.payload, payloadCommitVerification.payload) &&
         Objects.equals(this.reason, payloadCommitVerification.reason) &&
         Objects.equals(this.signature, payloadCommitVerification.signature) &&
+        Objects.equals(this.signer, payloadCommitVerification.signer) &&
         Objects.equals(this.verified, payloadCommitVerification.verified);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(payload, reason, signature, verified);
+    return Objects.hash(payload, reason, signature, signer, verified);
   }
 
 
@@ -144,6 +167,7 @@ public class PayloadCommitVerification {
     sb.append("    payload: ").append(toIndentedString(payload)).append("\n");
     sb.append("    reason: ").append(toIndentedString(reason)).append("\n");
     sb.append("    signature: ").append(toIndentedString(signature)).append("\n");
+    sb.append("    signer: ").append(toIndentedString(signer)).append("\n");
     sb.append("    verified: ").append(toIndentedString(verified)).append("\n");
     sb.append("}");
     return sb.toString();

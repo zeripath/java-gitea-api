@@ -28,7 +28,7 @@ import java.io.IOException;
  * FileLinksResponse contains the links for a repo&#39;s file
  */
 @ApiModel(description = "FileLinksResponse contains the links for a repo's file")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class FileLinksResponse {
   @SerializedName("git")
   private String git = null;

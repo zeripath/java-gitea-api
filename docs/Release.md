@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **body** | **String** |  |  [optional]
 **createdAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **draft** | **Boolean** |  |  [optional]
+**htmlUrl** | **String** |  |  [optional]
 **id** | **Long** |  |  [optional]
 **name** | **String** |  |  [optional]
 **prerelease** | **Boolean** |  |  [optional]

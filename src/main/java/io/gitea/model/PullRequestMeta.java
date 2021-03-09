@@ -29,7 +29,7 @@ import org.threeten.bp.OffsetDateTime;
  * PullRequestMeta PR info if an issue is a PR
  */
 @ApiModel(description = "PullRequestMeta PR info if an issue is a PR")
-@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2019-10-15T10:08:30.717+03:00")
+@javax.annotation.Generated(value = "io.swagger.codegen.languages.JavaClientCodegen", date = "2021-03-09T09:42:23.110Z")
 public class PullRequestMeta {
   @SerializedName("merged")
   private Boolean merged = null;
