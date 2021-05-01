@@ -19,7 +19,7 @@
       "name": "MIT",
       "url": "http://opensource.org/licenses/MIT"
     },
-    "version": "1.14.0&#43;dev-803-gf1da46622"
+    "version": "1.14.0"
   },
   "basePath": "/api/v1",
   "paths": {
