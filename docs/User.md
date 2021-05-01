@@ -12,8 +12,10 @@ Name | Type | Description | Notes
 **isAdmin** | **Boolean** | Is the user an administrator |  [optional]
 **language** | **String** | User locale |  [optional]
 **lastLogin** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
+**location** | **String** | the user&#39;s location |  [optional]
 **login** | **String** | the user&#39;s username |  [optional]
 **restricted** | **Boolean** | Is user restricted |  [optional]
+**website** | **String** | the user&#39;s website |  [optional]
 
 
 

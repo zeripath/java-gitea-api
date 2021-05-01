@@ -11,6 +11,8 @@ Name | Type | Description | Notes
 **description** | **String** |  |  [optional]
 **issues** | **Boolean** |  |  [optional]
 **labels** | **Boolean** |  |  [optional]
+**lfs** | **Boolean** |  |  [optional]
+**lfsEndpoint** | **String** |  |  [optional]
 **milestones** | **Boolean** |  |  [optional]
 **mirror** | **Boolean** |  |  [optional]
 **mirrorInterval** | **String** |  |  [optional]

@@ -13,6 +13,7 @@ Name | Type | Description | Notes
 **cloneUrl** | **String** |  |  [optional]
 **createdAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **defaultBranch** | **String** |  |  [optional]
+**defaultMergeStyle** | **String** |  |  [optional]
 **description** | **String** |  |  [optional]
 **empty** | **Boolean** |  |  [optional]
 **externalTracker** | [**ExternalTracker**](ExternalTracker.md) |  |  [optional]

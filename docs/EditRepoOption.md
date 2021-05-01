@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **archived** | **Boolean** | set to &#x60;true&#x60; to archive this repository. |  [optional]
 **autodetectManualMerge** | **Boolean** | either &#x60;true&#x60; to enable AutodetectManualMerge, or &#x60;false&#x60; to prevent it. &#x60;has_pull_requests&#x60; must be &#x60;true&#x60;, Note: In some special cases, misjudgments can occur. |  [optional]
 **defaultBranch** | **String** | sets the default branch for this repository. |  [optional]
+**defaultMergeStyle** | **String** | set to a merge style to be used by this repository: \&quot;merge\&quot;, \&quot;rebase\&quot;, \&quot;rebase-merge\&quot;, or \&quot;squash\&quot;. &#x60;has_pull_requests&#x60; must be &#x60;true&#x60;. |  [optional]
 **description** | **String** | a short description of the repository. |  [optional]
 **externalTracker** | [**ExternalTracker**](ExternalTracker.md) |  |  [optional]
 **externalWiki** | [**ExternalWiki**](ExternalWiki.md) |  |  [optional]

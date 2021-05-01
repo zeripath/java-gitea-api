@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **position** | **Integer** |  |  [optional]
 **pullRequestReviewId** | **Long** |  |  [optional]
 **pullRequestUrl** | **String** |  |  [optional]
+**resolver** | [**User**](User.md) |  |  [optional]
 **updatedAt** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **user** | [**User**](User.md) |  |  [optional]
 
