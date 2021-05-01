@@ -16298,20 +16298,8 @@
   "responses": {
     "AccessToken": {
       "description": "AccessToken represents an API access token.",
-      "headers": {
-        "id": {
-          "type": "integer",
-          "format": "int64"
-        },
-        "name": {
-          "type": "string"
-        },
-        "sha1": {
-          "type": "string"
-        },
-        "token_last_eight": {
-          "type": "string"
-        }
+      "schema": {
+        "$ref": "#/definitions/AccessToken"
       }
     },
     "AccessTokenList": {

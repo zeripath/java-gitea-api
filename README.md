@@ -1,4 +1,4 @@
-# swagger-java-client
+# java-gitea-api
 
 Gitea API.
 - API version: 1.14.0&amp;#43;dev-803-gf1da46622
@@ -37,9 +37,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>io.swagger</groupId>
-  <artifactId>swagger-java-client</artifactId>
-  <version>1.0.0</version>
+  <groupId>io.gitea</groupId>
+  <artifactId>java-gitea-api</artifactId>
+  <version>1.14.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```

@@ -627,10 +627,12 @@ public class UserApi {
      * 
      * @param username username of user (required)
      * @param accessToken  (optional)
+     * @return AccessToken
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public void userCreateToken(String username, AccessToken accessToken) throws ApiException {
-        userCreateTokenWithHttpInfo(username, accessToken);
+    public AccessToken userCreateToken(String username, AccessToken accessToken) throws ApiException {
+        ApiResponse<AccessToken> resp = userCreateTokenWithHttpInfo(username, accessToken);
+        return resp.getData();
     }
 
     /**
@@ -638,12 +640,13 @@ public class UserApi {
      * 
      * @param username username of user (required)
      * @param accessToken  (optional)
-     * @return ApiResponse&lt;Void&gt;
+     * @return ApiResponse&lt;AccessToken&gt;
      * @throws ApiException If fail to call the API, e.g. server error or cannot deserialize the response body
      */
-    public ApiResponse<Void> userCreateTokenWithHttpInfo(String username, AccessToken accessToken) throws ApiException {
+    public ApiResponse<AccessToken> userCreateTokenWithHttpInfo(String username, AccessToken accessToken) throws ApiException {
         com.squareup.okhttp.Call call = userCreateTokenValidateBeforeCall(username, accessToken, null, null);
-        return apiClient.execute(call);
+        Type localVarReturnType = new TypeToken<AccessToken>(){}.getType();
+        return apiClient.execute(call, localVarReturnType);
     }
 
     /**
@@ -655,7 +658,7 @@ public class UserApi {
      * @return The request call
      * @throws ApiException If fail to process the API call, e.g. serializing the request body object
      */
-    public com.squareup.okhttp.Call userCreateTokenAsync(String username, AccessToken accessToken, final ApiCallback<Void> callback) throws ApiException {
+    public com.squareup.okhttp.Call userCreateTokenAsync(String username, AccessToken accessToken, final ApiCallback<AccessToken> callback) throws ApiException {
 
         ProgressResponseBody.ProgressListener progressListener = null;
         ProgressRequestBody.ProgressRequestListener progressRequestListener = null;
@@ -677,7 +680,8 @@ public class UserApi {
         }
 
         com.squareup.okhttp.Call call = userCreateTokenValidateBeforeCall(username, accessToken, progressListener, progressRequestListener);
-        apiClient.executeAsync(call, callback);
+        Type localVarReturnType = new TypeToken<AccessToken>(){}.getType();
+        apiClient.executeAsync(call, localVarReturnType, callback);
         return call;
     }
     /**
