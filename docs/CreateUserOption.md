@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **sendNotify** | **Boolean** |  |  [optional]
 **sourceId** | **Long** |  |  [optional]
 **username** | **String** |  | 
+**visibility** | **String** |  |  [optional]
 
 
 

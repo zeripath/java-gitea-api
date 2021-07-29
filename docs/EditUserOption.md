@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **allowCreateOrganization** | **Boolean** |  |  [optional]
 **allowGitHook** | **Boolean** |  |  [optional]
 **allowImportLocal** | **Boolean** |  |  [optional]
+**description** | **String** |  |  [optional]
 **email** | **String** |  |  [optional]
 **fullName** | **String** |  |  [optional]
 **location** | **String** |  |  [optional]
@@ -19,6 +20,7 @@ Name | Type | Description | Notes
 **prohibitLogin** | **Boolean** |  |  [optional]
 **restricted** | **Boolean** |  |  [optional]
 **sourceId** | **Long** |  | 
+**visibility** | **String** |  |  [optional]
 **website** | **String** |  |  [optional]
 
 

@@ -8,6 +8,7 @@ Name | Type | Description | Notes
 **mergeCommitID** | **String** |  |  [optional]
 **mergeMessageField** | **String** |  |  [optional]
 **mergeTitleField** | **String** |  |  [optional]
+**deleteBranchAfterMerge** | **Boolean** |  |  [optional]
 **forceMerge** | **Boolean** |  |  [optional]
 
 

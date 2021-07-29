@@ -15,7 +15,7 @@ Method | HTTP request | Description
 
 <a name="notifyGetList"></a>
 # **notifyGetList**
-> List&lt;NotificationThread&gt; notifyGetList(all, statusTypes, since, before, page, limit)
+> List&lt;NotificationThread&gt; notifyGetList(all, statusTypes, subjectType, since, before, page, limit)
 
 List users&#39;s notification threads
 
@@ -72,14 +72,15 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 NotificationApi apiInstance = new NotificationApi();
-String all = "all_example"; // String | If true, show notifications marked as read. Default value is false
+Boolean all = true; // Boolean | If true, show notifications marked as read. Default value is false
 List<String> statusTypes = Arrays.asList("statusTypes_example"); // List<String> | Show notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread & pinned.
+List<String> subjectType = Arrays.asList("subjectType_example"); // List<String> | filter notifications by subject type
 OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated after the given time. This is a timestamp in RFC 3339 format
 OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated before the given time. This is a timestamp in RFC 3339 format
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
 try {
-    List<NotificationThread> result = apiInstance.notifyGetList(all, statusTypes, since, before, page, limit);
+    List<NotificationThread> result = apiInstance.notifyGetList(all, statusTypes, subjectType, since, before, page, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling NotificationApi#notifyGetList");
@@ -91,8 +92,9 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **all** | **String**| If true, show notifications marked as read. Default value is false | [optional]
+ **all** | **Boolean**| If true, show notifications marked as read. Default value is false | [optional]
  **statusTypes** | [**List&lt;String&gt;**](String.md)| Show notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread &amp; pinned. | [optional]
+ **subjectType** | [**List&lt;String&gt;**](String.md)| filter notifications by subject type | [optional] [enum: issue, pull, commit, repository]
  **since** | **OffsetDateTime**| Only show notifications updated after the given time. This is a timestamp in RFC 3339 format | [optional]
  **before** | **OffsetDateTime**| Only show notifications updated before the given time. This is a timestamp in RFC 3339 format | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]
@@ -113,7 +115,7 @@ Name | Type | Description  | Notes
 
 <a name="notifyGetRepoList"></a>
 # **notifyGetRepoList**
-> List&lt;NotificationThread&gt; notifyGetRepoList(owner, repo, all, statusTypes, since, before, page, limit)
+> List&lt;NotificationThread&gt; notifyGetRepoList(owner, repo, all, statusTypes, subjectType, since, before, page, limit)
 
 List users&#39;s notification threads on a specific repo
 
@@ -172,14 +174,15 @@ Token.setApiKey("YOUR API KEY");
 NotificationApi apiInstance = new NotificationApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-String all = "all_example"; // String | If true, show notifications marked as read. Default value is false
+Boolean all = true; // Boolean | If true, show notifications marked as read. Default value is false
 List<String> statusTypes = Arrays.asList("statusTypes_example"); // List<String> | Show notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread & pinned
+List<String> subjectType = Arrays.asList("subjectType_example"); // List<String> | filter notifications by subject type
 OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated after the given time. This is a timestamp in RFC 3339 format
 OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated before the given time. This is a timestamp in RFC 3339 format
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
 try {
-    List<NotificationThread> result = apiInstance.notifyGetRepoList(owner, repo, all, statusTypes, since, before, page, limit);
+    List<NotificationThread> result = apiInstance.notifyGetRepoList(owner, repo, all, statusTypes, subjectType, since, before, page, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling NotificationApi#notifyGetRepoList");
@@ -193,8 +196,9 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **all** | **String**| If true, show notifications marked as read. Default value is false | [optional]
+ **all** | **Boolean**| If true, show notifications marked as read. Default value is false | [optional]
  **statusTypes** | [**List&lt;String&gt;**](String.md)| Show notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread &amp; pinned | [optional]
+ **subjectType** | [**List&lt;String&gt;**](String.md)| filter notifications by subject type | [optional] [enum: issue, pull, commit, repository]
  **since** | **OffsetDateTime**| Only show notifications updated after the given time. This is a timestamp in RFC 3339 format | [optional]
  **before** | **OffsetDateTime**| Only show notifications updated before the given time. This is a timestamp in RFC 3339 format | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]

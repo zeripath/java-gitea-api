@@ -16,6 +16,7 @@ Name | Type | Description | Notes
 **primaryKeyId** | **String** |  |  [optional]
 **publicKey** | **String** |  |  [optional]
 **subkeys** | [**List&lt;GPGKey&gt;**](GPGKey.md) |  |  [optional]
+**verified** | **Boolean** |  |  [optional]
 
 
 

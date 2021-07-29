@@ -3223,7 +3223,7 @@ Name | Type | Description  | Notes
 
 <a name="issueListIssues"></a>
 # **issueListIssues**
-> List&lt;Issue&gt; issueListIssues(owner, repo, state, labels, q, type, milestones, page, limit)
+> List&lt;Issue&gt; issueListIssues(owner, repo, state, labels, q, type, milestones, since, before, createdBy, assignedBy, mentionedBy, page, limit)
 
 List a repository&#39;s issues
 
@@ -3287,10 +3287,15 @@ String labels = "labels_example"; // String | comma separated list of labels. Fe
 String q = "q_example"; // String | search string
 String type = "type_example"; // String | filter by type (issues / pulls) if set
 String milestones = "milestones_example"; // String | comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded
+OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated after the given time. This is a timestamp in RFC 3339 format
+OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated before the given time. This is a timestamp in RFC 3339 format
+String createdBy = "createdBy_example"; // String | filter (issues / pulls) created to
+String assignedBy = "assignedBy_example"; // String | filter (issues / pulls) assigned to
+String mentionedBy = "mentionedBy_example"; // String | filter (issues / pulls) mentioning to
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
 try {
-    List<Issue> result = apiInstance.issueListIssues(owner, repo, state, labels, q, type, milestones, page, limit);
+    List<Issue> result = apiInstance.issueListIssues(owner, repo, state, labels, q, type, milestones, since, before, createdBy, assignedBy, mentionedBy, page, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling IssueApi#issueListIssues");
@@ -3309,6 +3314,11 @@ Name | Type | Description  | Notes
  **q** | **String**| search string | [optional]
  **type** | **String**| filter by type (issues / pulls) if set | [optional] [enum: issues, pulls]
  **milestones** | **String**| comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded | [optional]
+ **since** | **OffsetDateTime**| Only show notifications updated after the given time. This is a timestamp in RFC 3339 format | [optional]
+ **before** | **OffsetDateTime**| Only show notifications updated before the given time. This is a timestamp in RFC 3339 format | [optional]
+ **createdBy** | **String**| filter (issues / pulls) created to | [optional]
+ **assignedBy** | **String**| filter (issues / pulls) assigned to | [optional]
+ **mentionedBy** | **String**| filter (issues / pulls) mentioning to | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]
  **limit** | **Integer**| page size of results | [optional]
 
@@ -3887,7 +3897,7 @@ null (empty response body)
 
 <a name="issueSearchIssues"></a>
 # **issueSearchIssues**
-> List&lt;Issue&gt; issueSearchIssues(state, labels, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, page, limit)
+> List&lt;Issue&gt; issueSearchIssues(state, labels, milestones, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, page, limit)
 
 Search for issues across the repositories that the user has access to
 
@@ -3946,6 +3956,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String state = "state_example"; // String | whether issue is open or closed
 String labels = "labels_example"; // String | comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded
+String milestones = "milestones_example"; // String | comma separated list of milestone names. Fetch only issues that have any of this milestones. Non existent are discarded
 String q = "q_example"; // String | search string
 Long priorityRepoId = 789L; // Long | repository to prioritize in the results
 String type = "type_example"; // String | filter by type (issues / pulls) if set
@@ -3958,7 +3969,7 @@ Boolean reviewRequested = true; // Boolean | filter pulls requesting your review
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
 try {
-    List<Issue> result = apiInstance.issueSearchIssues(state, labels, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, page, limit);
+    List<Issue> result = apiInstance.issueSearchIssues(state, labels, milestones, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, page, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling IssueApi#issueSearchIssues");
@@ -3972,6 +3983,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **state** | **String**| whether issue is open or closed | [optional]
  **labels** | **String**| comma separated list of labels. Fetch only issues that have any of this labels. Non existent labels are discarded | [optional]
+ **milestones** | **String**| comma separated list of milestone names. Fetch only issues that have any of this milestones. Non existent are discarded | [optional]
  **q** | **String**| search string | [optional]
  **priorityRepoId** | **Long**| repository to prioritize in the results | [optional]
  **type** | **String**| filter by type (issues / pulls) if set | [optional]
