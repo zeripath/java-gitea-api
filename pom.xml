@@ -4,14 +4,14 @@
     <artifactId>java-gitea-api</artifactId>
     <packaging>jar</packaging>
     <name>java-gitea-api</name>
-    <version>1.15.0-rc2</version>
+    <version>1.15.0-SNAPSHOT</version>
     <url>https://github.com/zeripath/java-gitea-api</url>
     <description>Swagger Java Client for Gitea</description>
     <scm>
         <connection>scm:git:git@github.com:zeripath/java-gitea-api.git</connection>
         <developerConnection>scm:git:git@github.com:zeripath/java-gitea-api.git</developerConnection>
         <url>https://github.com/zeripath/java-gitea-api</url>
-        <tag>java-gitea-api-1.15.0-rc2</tag>
+        <tag>HEAD</tag>
     </scm>
 
     <licenses>
