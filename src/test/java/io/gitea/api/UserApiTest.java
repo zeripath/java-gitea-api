@@ -15,6 +15,7 @@ package io.gitea.api;
 
 import io.gitea.ApiException;
 import io.gitea.model.AccessToken;
+import io.gitea.model.AccessTokenName;
 import io.gitea.model.CreateEmailOption;
 import io.gitea.model.CreateGPGKeyOption;
 import io.gitea.model.CreateKeyOption;
@@ -126,7 +127,7 @@ public class UserApiTest {
     @Test
     public void userCreateTokenTest() throws ApiException {
         String username = null;
-        AccessToken accessToken = null;
+        AccessTokenName accessToken = null;
         api.userCreateToken(username, accessToken);
 
         // TODO: test validations

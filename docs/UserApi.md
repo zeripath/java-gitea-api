@@ -407,7 +407,7 @@ Name | Type | Description  | Notes
 
 <a name="userCreateToken"></a>
 # **userCreateToken**
-> AccessToken userCreateToken(username, accessToken)
+> AccessToken userCreateToken(username, accessTokenName)
 
 Create an access token
 
@@ -465,9 +465,9 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
-AccessToken accessToken = new AccessToken(); // AccessToken | 
+AccessTokenName accessTokenName = new AccessTokenName(); // AccessTokenName | 
 try {
-    AccessToken result = apiInstance.userCreateToken(username, accessToken);
+    AccessToken result = apiInstance.userCreateToken(username, accessTokenName);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCreateToken");
@@ -480,7 +480,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
- **accessToken** | [**AccessToken**](AccessToken.md)|  | [optional]
+ **accessTokenName** | [**AccessTokenName**](AccessTokenName.md)|  | [optional]
 
 ### Return type
 

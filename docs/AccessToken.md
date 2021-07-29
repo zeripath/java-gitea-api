@@ -4,7 +4,10 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**name** | **String** |  | 
+**id** | **Long** |  |  [optional]
+**name** | **String** |  |  [optional]
+**sha1** | **String** |  |  [optional]
+**tokenLastEight** | **String** |  |  [optional]
 
 
 
