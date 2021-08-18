@@ -24,7 +24,7 @@ Method | HTTP request | Description
 [**userCurrentListFollowing**](UserApi.md#userCurrentListFollowing) | **GET** /user/following | List the users that the authenticated user is following
 [**userCurrentListGPGKeys**](UserApi.md#userCurrentListGPGKeys) | **GET** /user/gpg_keys | List the authenticated user&#39;s GPG keys
 [**userCurrentListKeys**](UserApi.md#userCurrentListKeys) | **GET** /user/keys | List the authenticated user&#39;s public keys
-[**userCurrentListRepos**](UserApi.md#userCurrentListRepos) | **GET** /user/repos | List the repos that the authenticated user owns or has access to
+[**userCurrentListRepos**](UserApi.md#userCurrentListRepos) | **GET** /user/repos | List the repos that the authenticated user owns
 [**userCurrentListStarred**](UserApi.md#userCurrentListStarred) | **GET** /user/starred | The repos that the authenticated user has starred
 [**userCurrentListSubscriptions**](UserApi.md#userCurrentListSubscriptions) | **GET** /user/subscriptions | List repositories watched by the authenticated user
 [**userCurrentPostGPGKey**](UserApi.md#userCurrentPostGPGKey) | **POST** /user/gpg_keys | Create a GPG key
@@ -667,7 +667,7 @@ Name | Type | Description  | Notes
 
 <a name="userCreateToken"></a>
 # **userCreateToken**
-> AccessToken userCreateToken(username, accessTokenName)
+> AccessToken userCreateToken(username, userCreateToken)
 
 Create an access token
 
@@ -725,9 +725,9 @@ Token.setApiKey("YOUR API KEY");
 
 UserApi apiInstance = new UserApi();
 String username = "username_example"; // String | username of user
-AccessTokenName accessTokenName = new AccessTokenName(); // AccessTokenName | 
+CreateAccessTokenOption userCreateToken = new CreateAccessTokenOption(); // CreateAccessTokenOption | 
 try {
-    AccessToken result = apiInstance.userCreateToken(username, accessTokenName);
+    AccessToken result = apiInstance.userCreateToken(username, userCreateToken);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCreateToken");
@@ -740,7 +740,7 @@ try {
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **username** | **String**| username of user |
- **accessTokenName** | [**AccessTokenName**](AccessTokenName.md)|  | [optional]
+ **userCreateToken** | [**CreateAccessTokenOption**](CreateAccessTokenOption.md)|  | [optional]
 
 ### Return type
 
@@ -1823,7 +1823,7 @@ Name | Type | Description  | Notes
 # **userCurrentListRepos**
 > List&lt;Repository&gt; userCurrentListRepos(page, limit)
 
-List the repos that the authenticated user owns or has access to
+List the repos that the authenticated user owns
 
 ### Example
 ```java

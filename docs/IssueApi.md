@@ -3897,7 +3897,7 @@ null (empty response body)
 
 <a name="issueSearchIssues"></a>
 # **issueSearchIssues**
-> List&lt;Issue&gt; issueSearchIssues(state, labels, milestones, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, page, limit)
+> List&lt;Issue&gt; issueSearchIssues(state, labels, milestones, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, owner, team, page, limit)
 
 Search for issues across the repositories that the user has access to
 
@@ -3966,10 +3966,12 @@ Boolean assigned = true; // Boolean | filter (issues / pulls) assigned to you, d
 Boolean created = true; // Boolean | filter (issues / pulls) created by you, default is false
 Boolean mentioned = true; // Boolean | filter (issues / pulls) mentioning you, default is false
 Boolean reviewRequested = true; // Boolean | filter pulls requesting your review, default is false
+String owner = "owner_example"; // String | filter by owner
+String team = "team_example"; // String | filter by team (requires organization owner parameter to be provided)
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
 try {
-    List<Issue> result = apiInstance.issueSearchIssues(state, labels, milestones, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, page, limit);
+    List<Issue> result = apiInstance.issueSearchIssues(state, labels, milestones, q, priorityRepoId, type, since, before, assigned, created, mentioned, reviewRequested, owner, team, page, limit);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling IssueApi#issueSearchIssues");
@@ -3993,6 +3995,8 @@ Name | Type | Description  | Notes
  **created** | **Boolean**| filter (issues / pulls) created by you, default is false | [optional]
  **mentioned** | **Boolean**| filter (issues / pulls) mentioning you, default is false | [optional]
  **reviewRequested** | **Boolean**| filter pulls requesting your review, default is false | [optional]
+ **owner** | **String**| filter by owner | [optional]
+ **team** | **String**| filter by team (requires organization owner parameter to be provided) | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]
  **limit** | **Integer**| page size of results | [optional]
 

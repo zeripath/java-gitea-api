@@ -1,7 +1,7 @@
 # java-gitea-api
 
 Gitea API.
-- API version: 1.14.0&amp;#43;dev-803-gf1da46622
+- API version: 1.16.0-SNAPSHOT
 
 This documentation describes the Gitea API.
 
@@ -37,9 +37,9 @@ Add this dependency to your project's POM:
 
 ```xml
 <dependency>
-  <groupId>io.gitea</groupId>
+  <groupId>com.github.zeripath</groupId>
   <artifactId>java-gitea-api</artifactId>
-  <version>1.14.0-SNAPSHOT</version>
+  <version>1.16.0-SNAPSHOT</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "io.swagger:swagger-java-client:1.0.0"
+compile "com.github.zeripath:java-gitea-api:1.16.0-SNAPSHOT"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/swagger-java-client-1.0.0.jar`
+* `target/java-gitea-api-1.16.0-SNAPSHOT.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
@@ -83,7 +83,8 @@ public class AdminApiExample {
 
     public static void main(String[] args) {
         ApiClient defaultClient = Configuration.getDefaultApiClient();
-        
+        defaultClient.setBasePath("https://your-gitea-url/");
+
         // Configure API key authorization: AccessToken
         ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
         AccessToken.setApiKey("YOUR API KEY");
@@ -258,13 +259,14 @@ Class | Method | HTTP request | Description
 *OrganizationApi* | [**teamSearch**](docs/OrganizationApi.md#teamSearch) | **GET** /orgs/{org}/teams/search | Search for teams within an organization
 *RepositoryApi* | [**createCurrentUserRepo**](docs/RepositoryApi.md#createCurrentUserRepo) | **POST** /user/repos | Create a repository
 *RepositoryApi* | [**createFork**](docs/RepositoryApi.md#createFork) | **POST** /repos/{owner}/{repo}/forks | Fork a repository
+*RepositoryApi* | [**generateRepo**](docs/RepositoryApi.md#generateRepo) | **POST** /repos/{template_owner}/{template_repo}/generate | Create a repository using a template
+*RepositoryApi* | [**getAnnotatedTag**](docs/RepositoryApi.md#getAnnotatedTag) | **GET** /repos/{owner}/{repo}/git/tags/{sha} | Gets the tag object of an annotated tag (not lightweight tags)
 *RepositoryApi* | [**getBlob**](docs/RepositoryApi.md#getBlob) | **GET** /repos/{owner}/{repo}/git/blobs/{sha} | Gets the blob of a repository.
-*RepositoryApi* | [**getTag**](docs/RepositoryApi.md#getTag) | **GET** /repos/{owner}/{repo}/git/tags/{sha} | Gets the tag object of an annotated tag (not lightweight tags)
 *RepositoryApi* | [**getTree**](docs/RepositoryApi.md#getTree) | **GET** /repos/{owner}/{repo}/git/trees/{sha} | Gets the tree of a repository.
 *RepositoryApi* | [**listForks**](docs/RepositoryApi.md#listForks) | **GET** /repos/{owner}/{repo}/forks | List a repository&#39;s forks
 *RepositoryApi* | [**repoAddCollaborator**](docs/RepositoryApi.md#repoAddCollaborator) | **PUT** /repos/{owner}/{repo}/collaborators/{collaborator} | Add a collaborator to a repository
 *RepositoryApi* | [**repoAddTeam**](docs/RepositoryApi.md#repoAddTeam) | **PUT** /repos/{owner}/{repo}/teams/{team} | Add a team to a repository
-*RepositoryApi* | [**repoAddTopc**](docs/RepositoryApi.md#repoAddTopc) | **PUT** /repos/{owner}/{repo}/topics/{topic} | Add a topic to a repository
+*RepositoryApi* | [**repoAddTopic**](docs/RepositoryApi.md#repoAddTopic) | **PUT** /repos/{owner}/{repo}/topics/{topic} | Add a topic to a repository
 *RepositoryApi* | [**repoCheckCollaborator**](docs/RepositoryApi.md#repoCheckCollaborator) | **GET** /repos/{owner}/{repo}/collaborators/{collaborator} | Check if a user is a collaborator of a repository
 *RepositoryApi* | [**repoCheckTeam**](docs/RepositoryApi.md#repoCheckTeam) | **GET** /repos/{owner}/{repo}/teams/{team} | Check if a team is assigned to a repository
 *RepositoryApi* | [**repoCreateBranch**](docs/RepositoryApi.md#repoCreateBranch) | **POST** /repos/{owner}/{repo}/branches | Create a branch
@@ -278,6 +280,7 @@ Class | Method | HTTP request | Description
 *RepositoryApi* | [**repoCreateRelease**](docs/RepositoryApi.md#repoCreateRelease) | **POST** /repos/{owner}/{repo}/releases | Create a release
 *RepositoryApi* | [**repoCreateReleaseAttachment**](docs/RepositoryApi.md#repoCreateReleaseAttachment) | **POST** /repos/{owner}/{repo}/releases/{id}/assets | Create a release attachment
 *RepositoryApi* | [**repoCreateStatus**](docs/RepositoryApi.md#repoCreateStatus) | **POST** /repos/{owner}/{repo}/statuses/{sha} | Create a commit status
+*RepositoryApi* | [**repoCreateTag**](docs/RepositoryApi.md#repoCreateTag) | **POST** /repos/{owner}/{repo}/tags | Create a new git tag in a repository
 *RepositoryApi* | [**repoDelete**](docs/RepositoryApi.md#repoDelete) | **DELETE** /repos/{owner}/{repo} | Delete a repository
 *RepositoryApi* | [**repoDeleteBranch**](docs/RepositoryApi.md#repoDeleteBranch) | **DELETE** /repos/{owner}/{repo}/branches/{branch} | Delete a specific branch from a repository
 *RepositoryApi* | [**repoDeleteBranchProtection**](docs/RepositoryApi.md#repoDeleteBranchProtection) | **DELETE** /repos/{owner}/{repo}/branch_protections/{name} | Delete a specific branch protection for the repository
@@ -307,6 +310,7 @@ Class | Method | HTTP request | Description
 *RepositoryApi* | [**repoGet**](docs/RepositoryApi.md#repoGet) | **GET** /repos/{owner}/{repo} | Get a repository
 *RepositoryApi* | [**repoGetAllCommits**](docs/RepositoryApi.md#repoGetAllCommits) | **GET** /repos/{owner}/{repo}/commits | Get a list of all commits from a repository
 *RepositoryApi* | [**repoGetArchive**](docs/RepositoryApi.md#repoGetArchive) | **GET** /repos/{owner}/{repo}/archive/{archive} | Get an archive of a repository
+*RepositoryApi* | [**repoGetAssignees**](docs/RepositoryApi.md#repoGetAssignees) | **GET** /repos/{owner}/{repo}/assignees | Return all users that have write access and can be assigned to issues
 *RepositoryApi* | [**repoGetBranch**](docs/RepositoryApi.md#repoGetBranch) | **GET** /repos/{owner}/{repo}/branches/{branch} | Retrieve a specific branch from a repository, including its effective branch protection
 *RepositoryApi* | [**repoGetBranchProtection**](docs/RepositoryApi.md#repoGetBranchProtection) | **GET** /repos/{owner}/{repo}/branch_protections/{name} | Get a specific branch protection for the repository
 *RepositoryApi* | [**repoGetByID**](docs/RepositoryApi.md#repoGetByID) | **GET** /repositories/{id} | Get a repository by id
@@ -319,14 +323,18 @@ Class | Method | HTTP request | Description
 *RepositoryApi* | [**repoGetIssueTemplates**](docs/RepositoryApi.md#repoGetIssueTemplates) | **GET** /repos/{owner}/{repo}/issue_templates | Get available issue templates for a repository
 *RepositoryApi* | [**repoGetKey**](docs/RepositoryApi.md#repoGetKey) | **GET** /repos/{owner}/{repo}/keys/{id} | Get a repository&#39;s key by id
 *RepositoryApi* | [**repoGetLanguages**](docs/RepositoryApi.md#repoGetLanguages) | **GET** /repos/{owner}/{repo}/languages | Get languages and number of bytes of code written
+*RepositoryApi* | [**repoGetNote**](docs/RepositoryApi.md#repoGetNote) | **GET** /repos/{owner}/{repo}/git/notes/{sha} | Get a note corresponding to a single commit from a repository
 *RepositoryApi* | [**repoGetPullRequest**](docs/RepositoryApi.md#repoGetPullRequest) | **GET** /repos/{owner}/{repo}/pulls/{index} | Get a pull request
+*RepositoryApi* | [**repoGetPullRequestCommits**](docs/RepositoryApi.md#repoGetPullRequestCommits) | **GET** /repos/{owner}/{repo}/pulls/{index}/commits | Get commits for a pull request
 *RepositoryApi* | [**repoGetPullReview**](docs/RepositoryApi.md#repoGetPullReview) | **GET** /repos/{owner}/{repo}/pulls/{index}/reviews/{id} | Get a specific review for a pull request
 *RepositoryApi* | [**repoGetPullReviewComments**](docs/RepositoryApi.md#repoGetPullReviewComments) | **GET** /repos/{owner}/{repo}/pulls/{index}/reviews/{id}/comments | Get a specific review for a pull request
 *RepositoryApi* | [**repoGetRawFile**](docs/RepositoryApi.md#repoGetRawFile) | **GET** /repos/{owner}/{repo}/raw/{filepath} | Get a file from a repository
 *RepositoryApi* | [**repoGetRelease**](docs/RepositoryApi.md#repoGetRelease) | **GET** /repos/{owner}/{repo}/releases/{id} | Get a release
 *RepositoryApi* | [**repoGetReleaseAttachment**](docs/RepositoryApi.md#repoGetReleaseAttachment) | **GET** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Get a release attachment
 *RepositoryApi* | [**repoGetReleaseByTag**](docs/RepositoryApi.md#repoGetReleaseByTag) | **GET** /repos/{owner}/{repo}/releases/tags/{tag} | Get a release by tag name
+*RepositoryApi* | [**repoGetReviewers**](docs/RepositoryApi.md#repoGetReviewers) | **GET** /repos/{owner}/{repo}/reviewers | Return all users that can be requested to review in this repo
 *RepositoryApi* | [**repoGetSingleCommit**](docs/RepositoryApi.md#repoGetSingleCommit) | **GET** /repos/{owner}/{repo}/git/commits/{sha} | Get a single commit from a repository
+*RepositoryApi* | [**repoGetTag**](docs/RepositoryApi.md#repoGetTag) | **GET** /repos/{owner}/{repo}/tags/{tag} | Get the tag of a repository by tag name
 *RepositoryApi* | [**repoListAllGitRefs**](docs/RepositoryApi.md#repoListAllGitRefs) | **GET** /repos/{owner}/{repo}/git/refs | Get specified ref or filtered repository&#39;s refs
 *RepositoryApi* | [**repoListBranchProtection**](docs/RepositoryApi.md#repoListBranchProtection) | **GET** /repos/{owner}/{repo}/branch_protections | List branch protections for a repository
 *RepositoryApi* | [**repoListBranches**](docs/RepositoryApi.md#repoListBranches) | **GET** /repos/{owner}/{repo}/branches | List a repository&#39;s branches
@@ -370,6 +378,9 @@ Class | Method | HTTP request | Description
 *SettingsApi* | [**getGeneralRepositorySettings**](docs/SettingsApi.md#getGeneralRepositorySettings) | **GET** /settings/repository | Get instance&#39;s global settings for repositories
 *SettingsApi* | [**getGeneralUISettings**](docs/SettingsApi.md#getGeneralUISettings) | **GET** /settings/ui | Get instance&#39;s global settings for ui
 *UserApi* | [**createCurrentUserRepo**](docs/UserApi.md#createCurrentUserRepo) | **POST** /user/repos | Create a repository
+*UserApi* | [**getUserSettings**](docs/UserApi.md#getUserSettings) | **GET** /user/settings | Get user settings
+*UserApi* | [**getVerificationToken**](docs/UserApi.md#getVerificationToken) | **GET** /user/gpg_key_token | Get a Token to verify
+*UserApi* | [**updateUserSettings**](docs/UserApi.md#updateUserSettings) | **PATCH** /user/settings | Update user settings
 *UserApi* | [**userAddEmail**](docs/UserApi.md#userAddEmail) | **POST** /user/emails | Add email addresses
 *UserApi* | [**userCheckFollowing**](docs/UserApi.md#userCheckFollowing) | **GET** /users/{follower}/following/{followee} | Check if one user is following another user
 *UserApi* | [**userCreateOAuth2Application**](docs/UserApi.md#userCreateOAuth2Application) | **POST** /user/applications/oauth2 | creates a new OAuth2 application
@@ -386,7 +397,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userCurrentListFollowing**](docs/UserApi.md#userCurrentListFollowing) | **GET** /user/following | List the users that the authenticated user is following
 *UserApi* | [**userCurrentListGPGKeys**](docs/UserApi.md#userCurrentListGPGKeys) | **GET** /user/gpg_keys | List the authenticated user&#39;s GPG keys
 *UserApi* | [**userCurrentListKeys**](docs/UserApi.md#userCurrentListKeys) | **GET** /user/keys | List the authenticated user&#39;s public keys
-*UserApi* | [**userCurrentListRepos**](docs/UserApi.md#userCurrentListRepos) | **GET** /user/repos | List the repos that the authenticated user owns or has access to
+*UserApi* | [**userCurrentListRepos**](docs/UserApi.md#userCurrentListRepos) | **GET** /user/repos | List the repos that the authenticated user owns
 *UserApi* | [**userCurrentListStarred**](docs/UserApi.md#userCurrentListStarred) | **GET** /user/starred | The repos that the authenticated user has starred
 *UserApi* | [**userCurrentListSubscriptions**](docs/UserApi.md#userCurrentListSubscriptions) | **GET** /user/subscriptions | List repositories watched by the authenticated user
 *UserApi* | [**userCurrentPostGPGKey**](docs/UserApi.md#userCurrentPostGPGKey) | **POST** /user/gpg_keys | Create a GPG key
@@ -415,6 +426,7 @@ Class | Method | HTTP request | Description
 *UserApi* | [**userListTeams**](docs/UserApi.md#userListTeams) | **GET** /user/teams | List all the teams a user belongs to
 *UserApi* | [**userSearch**](docs/UserApi.md#userSearch) | **GET** /users/search | Search for users
 *UserApi* | [**userUpdateOAuth2Application**](docs/UserApi.md#userUpdateOAuth2Application) | **PATCH** /user/applications/oauth2/{id} | update an OAuth2 Application, this includes regenerating the client secret
+*UserApi* | [**userVerifyGPGKey**](docs/UserApi.md#userVerifyGPGKey) | **POST** /user/gpg_key_verify | Verify a GPG key
 
 
 ## Documentation for Models
@@ -437,6 +449,7 @@ Class | Method | HTTP request | Description
  - [CommitStatus](docs/CommitStatus.md)
  - [CommitUser](docs/CommitUser.md)
  - [ContentsResponse](docs/ContentsResponse.md)
+ - [CreateAccessTokenOption](docs/CreateAccessTokenOption.md)
  - [CreateBranchProtectionOption](docs/CreateBranchProtectionOption.md)
  - [CreateBranchRepoOption](docs/CreateBranchRepoOption.md)
  - [CreateEmailOption](docs/CreateEmailOption.md)
@@ -458,6 +471,7 @@ Class | Method | HTTP request | Description
  - [CreateReleaseOption](docs/CreateReleaseOption.md)
  - [CreateRepoOption](docs/CreateRepoOption.md)
  - [CreateStatusOption](docs/CreateStatusOption.md)
+ - [CreateTagOption](docs/CreateTagOption.md)
  - [CreateTeamOption](docs/CreateTeamOption.md)
  - [CreateUserOption](docs/CreateUserOption.md)
  - [Cron](docs/Cron.md)
@@ -494,6 +508,7 @@ Class | Method | HTTP request | Description
  - [GeneralAttachmentSettings](docs/GeneralAttachmentSettings.md)
  - [GeneralRepoSettings](docs/GeneralRepoSettings.md)
  - [GeneralUISettings](docs/GeneralUISettings.md)
+ - [GenerateRepoOption](docs/GenerateRepoOption.md)
  - [GitBlobResponse](docs/GitBlobResponse.md)
  - [GitEntry](docs/GitEntry.md)
  - [GitHook](docs/GitHook.md)
@@ -514,6 +529,7 @@ Class | Method | HTTP request | Description
  - [MigrateRepoForm](docs/MigrateRepoForm.md)
  - [MigrateRepoOptions](docs/MigrateRepoOptions.md)
  - [Milestone](docs/Milestone.md)
+ - [Note](docs/Note.md)
  - [NotificationCount](docs/NotificationCount.md)
  - [NotificationSubject](docs/NotificationSubject.md)
  - [NotificationThread](docs/NotificationThread.md)
@@ -550,6 +566,8 @@ Class | Method | HTTP request | Description
  - [UpdateFileOptions](docs/UpdateFileOptions.md)
  - [User](docs/User.md)
  - [UserHeatmapData](docs/UserHeatmapData.md)
+ - [UserSettings](docs/UserSettings.md)
+ - [UserSettingsOptions](docs/UserSettingsOptions.md)
  - [WatchInfo](docs/WatchInfo.md)
 
 

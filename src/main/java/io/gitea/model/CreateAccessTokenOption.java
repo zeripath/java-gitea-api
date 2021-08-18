@@ -25,30 +25,30 @@ import io.swagger.annotations.ApiModelProperty;
 import java.io.IOException;
 
 /**
- * EditReactionOption contain the reaction type
+ * CreateAccessTokenOption options when create access token
  */
-@ApiModel(description = "EditReactionOption contain the reaction type")
+@ApiModel(description = "CreateAccessTokenOption options when create access token")
 
-public class EditReactionOption {
-  @SerializedName("content")
-  private String content = null;
+public class CreateAccessTokenOption {
+  @SerializedName("name")
+  private String name = null;
 
-  public EditReactionOption content(String content) {
-    this.content = content;
+  public CreateAccessTokenOption name(String name) {
+    this.name = name;
     return this;
   }
 
    /**
-   * Get content
-   * @return content
+   * Get name
+   * @return name
   **/
   @ApiModelProperty(value = "")
-  public String getContent() {
-    return content;
+  public String getName() {
+    return name;
   }
 
-  public void setContent(String content) {
-    this.content = content;
+  public void setName(String name) {
+    this.name = name;
   }
 
 
@@ -60,22 +60,22 @@ public class EditReactionOption {
     if (o == null || getClass() != o.getClass()) {
       return false;
     }
-    EditReactionOption editReactionOption = (EditReactionOption) o;
-    return Objects.equals(this.content, editReactionOption.content);
+    CreateAccessTokenOption createAccessTokenOption = (CreateAccessTokenOption) o;
+    return Objects.equals(this.name, createAccessTokenOption.name);
   }
 
   @Override
   public int hashCode() {
-    return Objects.hash(content);
+    return Objects.hash(name);
   }
 
 
   @Override
   public String toString() {
     StringBuilder sb = new StringBuilder();
-    sb.append("class EditReactionOption {\n");
+    sb.append("class CreateAccessTokenOption {\n");
     
-    sb.append("    content: ").append(toIndentedString(content)).append("\n");
+    sb.append("    name: ").append(toIndentedString(name)).append("\n");
     sb.append("}");
     return sb.toString();
   }

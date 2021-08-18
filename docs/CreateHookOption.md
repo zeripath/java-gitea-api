@@ -23,6 +23,7 @@ MSTEAMS | &quot;msteams&quot;
 SLACK | &quot;slack&quot;
 TELEGRAM | &quot;telegram&quot;
 FEISHU | &quot;feishu&quot;
+WECHATWORK | &quot;wechatwork&quot;
 
 
 

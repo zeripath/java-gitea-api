@@ -19,7 +19,7 @@
       "name": "MIT",
       "url": "http://opensource.org/licenses/MIT"
     },
-    "version": "1.15.0-rc2"
+    "version": "1.16.0-SNAPSHOT"
   },
   "basePath": "/api/v1",
   "paths": {
@@ -1940,6 +1940,18 @@
             "in": "query"
           },
           {
+            "type": "string",
+            "description": "filter by owner",
+            "name": "owner",
+            "in": "query"
+          },
+          {
+            "type": "string",
+            "description": "filter by team (requires organization owner parameter to be provided)",
+            "name": "team",
+            "in": "query"
+          },
+          {
             "type": "integer",
             "description": "page number of results to return (1-based)",
             "name": "page",
@@ -3559,6 +3571,52 @@
         "responses": {
           "200": {
             "$ref": "#/responses/Commit"
+          },
+          "404": {
+            "$ref": "#/responses/notFound"
+          },
+          "422": {
+            "$ref": "#/responses/validationError"
+          }
+        }
+      }
+    },
+    "/repos/{owner}/{repo}/git/notes/{sha}": {
+      "get": {
+        "produces": [
+          "application/json"
+        ],
+        "tags": [
+          "repository"
+        ],
+        "summary": "Get a note corresponding to a single commit from a repository",
+        "operationId": "repoGetNote",
+        "parameters": [
+          {
+            "type": "string",
+            "description": "owner of the repo",
+            "name": "owner",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "name of the repo",
+            "name": "repo",
+            "in": "path",
+            "required": true
+          },
+          {
+            "type": "string",
+            "description": "a git ref or commit sha",
+            "name": "sha",
+            "in": "path",
+            "required": true
+          }
+        ],
+        "responses": {
+          "200": {
+            "$ref": "#/responses/Note"
           },
           "404": {
             "$ref": "#/responses/notFound"
@@ -9651,7 +9709,7 @@
           "repository"
         ],
         "summary": "Add a topic to a repository",
-        "operationId": "repoAddTopíc",
+        "operationId": "repoAddTopic",
         "parameters": [
           {
             "type": "string",
@@ -11052,7 +11110,7 @@
         "tags": [
           "user"
         ],
-        "summary": "List the repos that the authenticated user owns or has access to",
+        "summary": "List the repos that the authenticated user owns",
         "operationId": "userCurrentListRepos",
         "parameters": [
           {
@@ -11917,18 +11975,10 @@
             "required": true
           },
           {
-            "name": "accessTokenName",
+            "name": "userCreateToken",
             "in": "body",
             "schema": {
-              "type": "object",
-              "required": [
-                "name"
-              ],
-              "properties": {
-                "name": {
-                  "type": "string"
-                }
-              }
+              "$ref": "#/definitions/CreateAccessTokenOption"
             }
           }
         ],
@@ -12654,6 +12704,17 @@
       },
       "x-go-package": "code.gitea.io/gitea/modules/structs"
     },
+    "CreateAccessTokenOption": {
+      "description": "CreateAccessTokenOption options when create access token",
+      "type": "object",
+      "properties": {
+        "name": {
+          "type": "string",
+          "x-go-name": "Name"
+        }
+      },
+      "x-go-package": "code.gitea.io/gitea/modules/structs"
+    },
     "CreateBranchProtectionOption": {
       "description": "CreateBranchProtectionOption options for creating a branch protection",
       "type": "object",
@@ -12917,7 +12978,8 @@
             "msteams",
             "slack",
             "telegram",
-            "feishu"
+            "feishu",
+            "wechatwork"
           ],
           "x-go-name": "Type"
         }
@@ -15449,6 +15511,20 @@
       },
       "x-go-package": "code.gitea.io/gitea/modules/structs"
     },
+    "Note": {
+      "description": "Note contains information related to a git note",
+      "type": "object",
+      "properties": {
+        "commit": {
+          "$ref": "#/definitions/Commit"
+        },
+        "message": {
+          "type": "string",
+          "x-go-name": "Message"
+        }
+      },
+      "x-go-package": "code.gitea.io/gitea/modules/structs"
+    },
     "NotificationCount": {
       "description": "NotificationCount number of unread notifications",
       "type": "object",
@@ -17406,6 +17482,12 @@
         "items": {
           "$ref": "#/definitions/Milestone"
         }
+      }
+    },
+    "Note": {
+      "description": "Note",
+      "schema": {
+        "$ref": "#/definitions/Note"
       }
     },
     "NotificationCount": {
