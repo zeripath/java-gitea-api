@@ -54,9 +54,13 @@
                     <generateModels>true</generateModels>
                     <generateModelTests>true</generateModelTests>
                     <generateModelDocumentation>true</generateModelDocumentation>
-                    <generateSupportingFiles>false</generateSupportingFiles>
+                    <generateSupportingFiles>true</generateSupportingFiles>
+                    <supportingFilesToGenerate>README.md</supportingFilesToGenerate>
                     <configOptions>
                         <hideGenerationTimestamp>true</hideGenerationTimestamp>
+                        <artifactId>java-gitea-api</artifactId>
+                        <groupId>com.github.zeripath</groupId>
+                        <artifactVersion>${project.version}</artifactVersion>
                     </configOptions>
                 </configuration>
             </plugin>
