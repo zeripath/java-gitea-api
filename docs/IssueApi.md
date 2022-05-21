@@ -31,6 +31,7 @@ Method | HTTP request | Description
 [**issueGetComment**](IssueApi.md#issueGetComment) | **GET** /repos/{owner}/{repo}/issues/comments/{id} | Get a comment
 [**issueGetCommentReactions**](IssueApi.md#issueGetCommentReactions) | **GET** /repos/{owner}/{repo}/issues/comments/{id}/reactions | Get a list of reactions from a comment of an issue
 [**issueGetComments**](IssueApi.md#issueGetComments) | **GET** /repos/{owner}/{repo}/issues/{index}/comments | List all comments on an issue
+[**issueGetCommentsAndTimeline**](IssueApi.md#issueGetCommentsAndTimeline) | **GET** /repos/{owner}/{repo}/issues/{index}/timeline | List all comments and events on an issue
 [**issueGetIssue**](IssueApi.md#issueGetIssue) | **GET** /repos/{owner}/{repo}/issues/{index} | Get an issue
 [**issueGetIssueReactions**](IssueApi.md#issueGetIssueReactions) | **GET** /repos/{owner}/{repo}/issues/{index}/reactions | Get a list reactions of an issue
 [**issueGetLabel**](IssueApi.md#issueGetLabel) | **GET** /repos/{owner}/{repo}/labels/{id} | Get a single label
@@ -2561,6 +2562,106 @@ Name | Type | Description  | Notes
  - **Content-Type**: application/json, text/plain
  - **Accept**: application/json
 
+<a name="issueGetCommentsAndTimeline"></a>
+# **issueGetCommentsAndTimeline**
+> List&lt;TimelineComment&gt; issueGetCommentsAndTimeline(owner, repo, index, since, page, limit, before)
+
+List all comments and events on an issue
+
+### Example
+```java
+// Import classes:
+//import io.gitea.ApiClient;
+//import io.gitea.ApiException;
+//import io.gitea.Configuration;
+//import io.gitea.auth.*;
+//import io.gitea.api.IssueApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: AccessToken
+ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
+AccessToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AccessToken.setApiKeyPrefix("Token");
+
+// Configure API key authorization: AuthorizationHeaderToken
+ApiKeyAuth AuthorizationHeaderToken = (ApiKeyAuth) defaultClient.getAuthentication("AuthorizationHeaderToken");
+AuthorizationHeaderToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AuthorizationHeaderToken.setApiKeyPrefix("Token");
+
+// Configure HTTP basic authorization: BasicAuth
+HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+BasicAuth.setUsername("YOUR USERNAME");
+BasicAuth.setPassword("YOUR PASSWORD");
+
+// Configure API key authorization: SudoHeader
+ApiKeyAuth SudoHeader = (ApiKeyAuth) defaultClient.getAuthentication("SudoHeader");
+SudoHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: SudoParam
+ApiKeyAuth SudoParam = (ApiKeyAuth) defaultClient.getAuthentication("SudoParam");
+SudoParam.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoParam.setApiKeyPrefix("Token");
+
+// Configure API key authorization: TOTPHeader
+ApiKeyAuth TOTPHeader = (ApiKeyAuth) defaultClient.getAuthentication("TOTPHeader");
+TOTPHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//TOTPHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: Token
+ApiKeyAuth Token = (ApiKeyAuth) defaultClient.getAuthentication("Token");
+Token.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Token.setApiKeyPrefix("Token");
+
+IssueApi apiInstance = new IssueApi();
+String owner = "owner_example"; // String | owner of the repo
+String repo = "repo_example"; // String | name of the repo
+Long index = 789L; // Long | index of the issue
+OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | if provided, only comments updated since the specified time are returned.
+Integer page = 56; // Integer | page number of results to return (1-based)
+Integer limit = 56; // Integer | page size of results
+OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | if provided, only comments updated before the provided time are returned.
+try {
+    List<TimelineComment> result = apiInstance.issueGetCommentsAndTimeline(owner, repo, index, since, page, limit, before);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling IssueApi#issueGetCommentsAndTimeline");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **owner** | **String**| owner of the repo |
+ **repo** | **String**| name of the repo |
+ **index** | **Long**| index of the issue |
+ **since** | **OffsetDateTime**| if provided, only comments updated since the specified time are returned. | [optional]
+ **page** | **Integer**| page number of results to return (1-based) | [optional]
+ **limit** | **Integer**| page size of results | [optional]
+ **before** | **OffsetDateTime**| if provided, only comments updated before the provided time are returned. | [optional]
+
+### Return type
+
+[**List&lt;TimelineComment&gt;**](TimelineComment.md)
+
+### Authorization
+
+[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/plain
+ - **Accept**: application/json
+
 <a name="issueGetIssue"></a>
 # **issueGetIssue**
 > Issue issueGetIssue(owner, repo, index)
@@ -3287,11 +3388,11 @@ String labels = "labels_example"; // String | comma separated list of labels. Fe
 String q = "q_example"; // String | search string
 String type = "type_example"; // String | filter by type (issues / pulls) if set
 String milestones = "milestones_example"; // String | comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded
-OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated after the given time. This is a timestamp in RFC 3339 format
-OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only show notifications updated before the given time. This is a timestamp in RFC 3339 format
-String createdBy = "createdBy_example"; // String | filter (issues / pulls) created to
-String assignedBy = "assignedBy_example"; // String | filter (issues / pulls) assigned to
-String mentionedBy = "mentionedBy_example"; // String | filter (issues / pulls) mentioning to
+OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only show items updated after the given time. This is a timestamp in RFC 3339 format
+OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only show items updated before the given time. This is a timestamp in RFC 3339 format
+String createdBy = "createdBy_example"; // String | Only show items which were created by the the given user
+String assignedBy = "assignedBy_example"; // String | Only show items for which the given user is assigned
+String mentionedBy = "mentionedBy_example"; // String | Only show items in which the given user was mentioned
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
 try {
@@ -3314,11 +3415,11 @@ Name | Type | Description  | Notes
  **q** | **String**| search string | [optional]
  **type** | **String**| filter by type (issues / pulls) if set | [optional] [enum: issues, pulls]
  **milestones** | **String**| comma separated list of milestone names or ids. It uses names and fall back to ids. Fetch only issues that have any of this milestones. Non existent milestones are discarded | [optional]
- **since** | **OffsetDateTime**| Only show notifications updated after the given time. This is a timestamp in RFC 3339 format | [optional]
- **before** | **OffsetDateTime**| Only show notifications updated before the given time. This is a timestamp in RFC 3339 format | [optional]
- **createdBy** | **String**| filter (issues / pulls) created to | [optional]
- **assignedBy** | **String**| filter (issues / pulls) assigned to | [optional]
- **mentionedBy** | **String**| filter (issues / pulls) mentioning to | [optional]
+ **since** | **OffsetDateTime**| Only show items updated after the given time. This is a timestamp in RFC 3339 format | [optional]
+ **before** | **OffsetDateTime**| Only show items updated before the given time. This is a timestamp in RFC 3339 format | [optional]
+ **createdBy** | **String**| Only show items which were created by the the given user | [optional]
+ **assignedBy** | **String**| Only show items for which the given user is assigned | [optional]
+ **mentionedBy** | **String**| Only show items in which the given user was mentioned | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]
  **limit** | **Integer**| page size of results | [optional]
 

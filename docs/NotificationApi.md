@@ -391,7 +391,7 @@ This endpoint does not need any parameter.
 
 <a name="notifyReadList"></a>
 # **notifyReadList**
-> notifyReadList(lastReadAt, all, statusTypes, toStatus)
+> List&lt;NotificationThread&gt; notifyReadList(lastReadAt, all, statusTypes, toStatus)
 
 Mark notification threads as read, pinned or unread
 
@@ -453,7 +453,8 @@ String all = "all_example"; // String | If true, mark all notifications on this 
 List<String> statusTypes = Arrays.asList("statusTypes_example"); // List<String> | Mark notifications with the provided status types. Options are: unread, read and/or pinned. Defaults to unread.
 String toStatus = "toStatus_example"; // String | Status to mark notifications as, Defaults to read.
 try {
-    apiInstance.notifyReadList(lastReadAt, all, statusTypes, toStatus);
+    List<NotificationThread> result = apiInstance.notifyReadList(lastReadAt, all, statusTypes, toStatus);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling NotificationApi#notifyReadList");
     e.printStackTrace();
@@ -471,7 +472,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**List&lt;NotificationThread&gt;**](NotificationThread.md)
 
 ### Authorization
 
@@ -484,7 +485,7 @@ null (empty response body)
 
 <a name="notifyReadRepoList"></a>
 # **notifyReadRepoList**
-> notifyReadRepoList(owner, repo, all, statusTypes, toStatus, lastReadAt)
+> List&lt;NotificationThread&gt; notifyReadRepoList(owner, repo, all, statusTypes, toStatus, lastReadAt)
 
 Mark notification threads as read, pinned or unread on a specific repo
 
@@ -548,7 +549,8 @@ List<String> statusTypes = Arrays.asList("statusTypes_example"); // List<String>
 String toStatus = "toStatus_example"; // String | Status to mark notifications as. Defaults to read.
 OffsetDateTime lastReadAt = OffsetDateTime.now(); // OffsetDateTime | Describes the last point that notifications were checked. Anything updated since this time will not be updated.
 try {
-    apiInstance.notifyReadRepoList(owner, repo, all, statusTypes, toStatus, lastReadAt);
+    List<NotificationThread> result = apiInstance.notifyReadRepoList(owner, repo, all, statusTypes, toStatus, lastReadAt);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling NotificationApi#notifyReadRepoList");
     e.printStackTrace();
@@ -568,7 +570,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**List&lt;NotificationThread&gt;**](NotificationThread.md)
 
 ### Authorization
 
@@ -581,7 +583,7 @@ null (empty response body)
 
 <a name="notifyReadThread"></a>
 # **notifyReadThread**
-> notifyReadThread(id, toStatus)
+> NotificationThread notifyReadThread(id, toStatus)
 
 Mark notification thread as read by ID
 
@@ -641,7 +643,8 @@ NotificationApi apiInstance = new NotificationApi();
 String id = "id_example"; // String | id of notification thread
 String toStatus = "read"; // String | Status to mark notifications as
 try {
-    apiInstance.notifyReadThread(id, toStatus);
+    NotificationThread result = apiInstance.notifyReadThread(id, toStatus);
+    System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling NotificationApi#notifyReadThread");
     e.printStackTrace();
@@ -657,7 +660,7 @@ Name | Type | Description  | Notes
 
 ### Return type
 
-null (empty response body)
+[**NotificationThread**](NotificationThread.md)
 
 ### Authorization
 

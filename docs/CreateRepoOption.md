@@ -4,7 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
-**autoInit** | **Boolean** | Whether the repository should be auto-intialized? |  [optional]
+**autoInit** | **Boolean** | Whether the repository should be auto-initialized? |  [optional]
 **defaultBranch** | **String** | DefaultBranch of the repository (used when initializes and in template) |  [optional]
 **description** | **String** | Description of the repository to create |  [optional]
 **gitignores** | **String** | Gitignores to use |  [optional]

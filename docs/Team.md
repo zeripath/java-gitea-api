@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **organization** | [**Organization**](Organization.md) |  |  [optional]
 **permission** | [**PermissionEnum**](#PermissionEnum) |  |  [optional]
 **units** | **List&lt;String&gt;** |  |  [optional]
+**unitsMap** | **Map&lt;String, String&gt;** |  |  [optional]
 
 
 <a name="PermissionEnum"></a>

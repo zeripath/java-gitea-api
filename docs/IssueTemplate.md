@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **fileName** | **String** |  |  [optional]
 **labels** | **List&lt;String&gt;** |  |  [optional]
 **name** | **String** |  |  [optional]
+**ref** | **String** |  |  [optional]
 **title** | **String** |  |  [optional]
 
 

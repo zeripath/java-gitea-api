@@ -25,6 +25,7 @@ Name | Type | Description | Notes
 **requireSignedCommits** | **Boolean** |  |  [optional]
 **requiredApprovals** | **Long** |  |  [optional]
 **statusCheckContexts** | **List&lt;String&gt;** |  |  [optional]
+**unprotectedFilePatterns** | **String** |  |  [optional]
 
 
 

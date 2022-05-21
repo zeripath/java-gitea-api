@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **mergeTitleField** | **String** |  |  [optional]
 **deleteBranchAfterMerge** | **Boolean** |  |  [optional]
 **forceMerge** | **Boolean** |  |  [optional]
+**headCommitId** | **String** |  |  [optional]
 
 
 <a name="DoEnum"></a>
