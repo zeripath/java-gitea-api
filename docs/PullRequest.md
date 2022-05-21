@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**allowMaintainerEdit** | **Boolean** |  |  [optional]
 **assignee** | [**User**](User.md) |  |  [optional]
 **assignees** | [**List&lt;User&gt;**](User.md) |  |  [optional]
 **base** | [**PRBranchInfo**](PRBranchInfo.md) |  |  [optional]

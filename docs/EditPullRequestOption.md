@@ -4,6 +4,7 @@
 ## Properties
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
+**allowMaintainerEdit** | **Boolean** |  |  [optional]
 **assignee** | **String** |  |  [optional]
 **assignees** | **List&lt;String&gt;** |  |  [optional]
 **base** | **String** |  |  [optional]

@@ -5,6 +5,7 @@
 Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **avatar** | **Boolean** | include avatar of the template repo |  [optional]
+**defaultBranch** | **String** | Default branch of the new repository |  [optional]
 **description** | **String** | Description of the repository to create |  [optional]
 **gitContent** | **Boolean** | include git content of default branch in template repo |  [optional]
 **gitHooks** | **Boolean** | include git hooks in template repo |  [optional]

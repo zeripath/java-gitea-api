@@ -9,6 +9,7 @@ Name | Type | Description | Notes
 **message** | **String** |  |  [optional]
 **tree** | [**CommitMeta**](CommitMeta.md) |  |  [optional]
 **url** | **String** |  |  [optional]
+**verification** | [**PayloadCommitVerification**](PayloadCommitVerification.md) |  |  [optional]
 
 
 

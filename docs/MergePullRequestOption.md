@@ -11,6 +11,7 @@ Name | Type | Description | Notes
 **deleteBranchAfterMerge** | **Boolean** |  |  [optional]
 **forceMerge** | **Boolean** |  |  [optional]
 **headCommitId** | **String** |  |  [optional]
+**mergeWhenChecksSucceed** | **Boolean** |  |  [optional]
 
 
 <a name="DoEnum"></a>

@@ -9,7 +9,7 @@ Method | HTTP request | Description
 [**getVerificationToken**](UserApi.md#getVerificationToken) | **GET** /user/gpg_key_token | Get a Token to verify
 [**updateUserSettings**](UserApi.md#updateUserSettings) | **PATCH** /user/settings | Update user settings
 [**userAddEmail**](UserApi.md#userAddEmail) | **POST** /user/emails | Add email addresses
-[**userCheckFollowing**](UserApi.md#userCheckFollowing) | **GET** /users/{follower}/following/{followee} | Check if one user is following another user
+[**userCheckFollowing**](UserApi.md#userCheckFollowing) | **GET** /users/{username}/following/{target} | Check if one user is following another user
 [**userCreateOAuth2Application**](UserApi.md#userCreateOAuth2Application) | **POST** /user/applications/oauth2 | creates a new OAuth2 application
 [**userCreateToken**](UserApi.md#userCreateToken) | **POST** /users/{username}/tokens | Create an access token
 [**userCurrentCheckFollowing**](UserApi.md#userCurrentCheckFollowing) | **GET** /user/following/{username} | Check whether a user is followed by the authenticated user
@@ -490,7 +490,7 @@ Name | Type | Description  | Notes
 
 <a name="userCheckFollowing"></a>
 # **userCheckFollowing**
-> userCheckFollowing(follower, followee)
+> userCheckFollowing(username, target)
 
 Check if one user is following another user
 
@@ -547,10 +547,10 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
-String follower = "follower_example"; // String | username of following user
-String followee = "followee_example"; // String | username of followed user
+String username = "username_example"; // String | username of following user
+String target = "target_example"; // String | username of followed user
 try {
-    apiInstance.userCheckFollowing(follower, followee);
+    apiInstance.userCheckFollowing(username, target);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCheckFollowing");
     e.printStackTrace();
@@ -561,8 +561,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
- **follower** | **String**| username of following user |
- **followee** | **String**| username of followed user |
+ **username** | **String**| username of following user |
+ **target** | **String**| username of followed user |
 
 ### Return type
 

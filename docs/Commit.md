@@ -12,6 +12,7 @@ Name | Type | Description | Notes
 **htmlUrl** | **String** |  |  [optional]
 **parents** | [**List&lt;CommitMeta&gt;**](CommitMeta.md) |  |  [optional]
 **sha** | **String** |  |  [optional]
+**stats** | [**CommitStats**](CommitStats.md) |  |  [optional]
 **url** | **String** |  |  [optional]
 
 

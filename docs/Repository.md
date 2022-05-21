@@ -30,6 +30,8 @@ Name | Type | Description | Notes
 **ignoreWhitespaceConflicts** | **Boolean** |  |  [optional]
 **internal** | **Boolean** |  |  [optional]
 **internalTracker** | [**InternalTracker**](InternalTracker.md) |  |  [optional]
+**language** | **String** |  |  [optional]
+**languagesUrl** | **String** |  |  [optional]
 **mirror** | **Boolean** |  |  [optional]
 **mirrorInterval** | **String** |  |  [optional]
 **mirrorUpdated** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]

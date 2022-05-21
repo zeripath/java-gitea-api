@@ -16,6 +16,8 @@ Method | HTTP request | Description
 [**repoAddCollaborator**](RepositoryApi.md#repoAddCollaborator) | **PUT** /repos/{owner}/{repo}/collaborators/{collaborator} | Add a collaborator to a repository
 [**repoAddTeam**](RepositoryApi.md#repoAddTeam) | **PUT** /repos/{owner}/{repo}/teams/{team} | Add a team to a repository
 [**repoAddTopic**](RepositoryApi.md#repoAddTopic) | **PUT** /repos/{owner}/{repo}/topics/{topic} | Add a topic to a repository
+[**repoApplyDiffPatch**](RepositoryApi.md#repoApplyDiffPatch) | **POST** /repos/{owner}/{repo}/diffpatch | Apply diff patch to repository
+[**repoCancelScheduledAutoMerge**](RepositoryApi.md#repoCancelScheduledAutoMerge) | **DELETE** /repos/{owner}/{repo}/pulls/{index}/merge | Cancel the scheduled auto merge for the given pull request
 [**repoCheckCollaborator**](RepositoryApi.md#repoCheckCollaborator) | **GET** /repos/{owner}/{repo}/collaborators/{collaborator} | Check if a user is a collaborator of a repository
 [**repoCheckTeam**](RepositoryApi.md#repoCheckTeam) | **GET** /repos/{owner}/{repo}/teams/{team} | Check if a team is assigned to a repository
 [**repoCreateBranch**](RepositoryApi.md#repoCreateBranch) | **POST** /repos/{owner}/{repo}/branches | Create a branch
@@ -84,6 +86,7 @@ Method | HTTP request | Description
 [**repoGetRelease**](RepositoryApi.md#repoGetRelease) | **GET** /repos/{owner}/{repo}/releases/{id} | Get a release
 [**repoGetReleaseAttachment**](RepositoryApi.md#repoGetReleaseAttachment) | **GET** /repos/{owner}/{repo}/releases/{id}/assets/{attachment_id} | Get a release attachment
 [**repoGetReleaseByTag**](RepositoryApi.md#repoGetReleaseByTag) | **GET** /repos/{owner}/{repo}/releases/tags/{tag} | Get a release by tag name
+[**repoGetRepoPermissions**](RepositoryApi.md#repoGetRepoPermissions) | **GET** /repos/{owner}/{repo}/collaborators/{collaborator}/permission | Get repository permissions for a user
 [**repoGetReviewers**](RepositoryApi.md#repoGetReviewers) | **GET** /repos/{owner}/{repo}/reviewers | Return all users that can be requested to review in this repo
 [**repoGetSingleCommit**](RepositoryApi.md#repoGetSingleCommit) | **GET** /repos/{owner}/{repo}/git/commits/{sha} | Get a single commit from a repository
 [**repoGetTag**](RepositoryApi.md#repoGetTag) | **GET** /repos/{owner}/{repo}/tags/{tag} | Get the tag of a repository by tag name
@@ -1219,6 +1222,189 @@ Name | Type | Description  | Notes
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
  **topic** | **String**| name of the topic to add |
+
+### Return type
+
+null (empty response body)
+
+### Authorization
+
+[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/plain
+ - **Accept**: application/json
+
+<a name="repoApplyDiffPatch"></a>
+# **repoApplyDiffPatch**
+> FileResponse repoApplyDiffPatch(owner, repo, body)
+
+Apply diff patch to repository
+
+### Example
+```java
+// Import classes:
+//import io.gitea.ApiClient;
+//import io.gitea.ApiException;
+//import io.gitea.Configuration;
+//import io.gitea.auth.*;
+//import io.gitea.api.RepositoryApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: AccessToken
+ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
+AccessToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AccessToken.setApiKeyPrefix("Token");
+
+// Configure API key authorization: AuthorizationHeaderToken
+ApiKeyAuth AuthorizationHeaderToken = (ApiKeyAuth) defaultClient.getAuthentication("AuthorizationHeaderToken");
+AuthorizationHeaderToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AuthorizationHeaderToken.setApiKeyPrefix("Token");
+
+// Configure HTTP basic authorization: BasicAuth
+HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+BasicAuth.setUsername("YOUR USERNAME");
+BasicAuth.setPassword("YOUR PASSWORD");
+
+// Configure API key authorization: SudoHeader
+ApiKeyAuth SudoHeader = (ApiKeyAuth) defaultClient.getAuthentication("SudoHeader");
+SudoHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: SudoParam
+ApiKeyAuth SudoParam = (ApiKeyAuth) defaultClient.getAuthentication("SudoParam");
+SudoParam.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoParam.setApiKeyPrefix("Token");
+
+// Configure API key authorization: TOTPHeader
+ApiKeyAuth TOTPHeader = (ApiKeyAuth) defaultClient.getAuthentication("TOTPHeader");
+TOTPHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//TOTPHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: Token
+ApiKeyAuth Token = (ApiKeyAuth) defaultClient.getAuthentication("Token");
+Token.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Token.setApiKeyPrefix("Token");
+
+RepositoryApi apiInstance = new RepositoryApi();
+String owner = "owner_example"; // String | owner of the repo
+String repo = "repo_example"; // String | name of the repo
+UpdateFileOptions body = new UpdateFileOptions(); // UpdateFileOptions | 
+try {
+    FileResponse result = apiInstance.repoApplyDiffPatch(owner, repo, body);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RepositoryApi#repoApplyDiffPatch");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **owner** | **String**| owner of the repo |
+ **repo** | **String**| name of the repo |
+ **body** | [**UpdateFileOptions**](UpdateFileOptions.md)|  |
+
+### Return type
+
+[**FileResponse**](FileResponse.md)
+
+### Authorization
+
+[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json
+ - **Accept**: application/json
+
+<a name="repoCancelScheduledAutoMerge"></a>
+# **repoCancelScheduledAutoMerge**
+> repoCancelScheduledAutoMerge(owner, repo, index)
+
+Cancel the scheduled auto merge for the given pull request
+
+### Example
+```java
+// Import classes:
+//import io.gitea.ApiClient;
+//import io.gitea.ApiException;
+//import io.gitea.Configuration;
+//import io.gitea.auth.*;
+//import io.gitea.api.RepositoryApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: AccessToken
+ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
+AccessToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AccessToken.setApiKeyPrefix("Token");
+
+// Configure API key authorization: AuthorizationHeaderToken
+ApiKeyAuth AuthorizationHeaderToken = (ApiKeyAuth) defaultClient.getAuthentication("AuthorizationHeaderToken");
+AuthorizationHeaderToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AuthorizationHeaderToken.setApiKeyPrefix("Token");
+
+// Configure HTTP basic authorization: BasicAuth
+HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+BasicAuth.setUsername("YOUR USERNAME");
+BasicAuth.setPassword("YOUR PASSWORD");
+
+// Configure API key authorization: SudoHeader
+ApiKeyAuth SudoHeader = (ApiKeyAuth) defaultClient.getAuthentication("SudoHeader");
+SudoHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: SudoParam
+ApiKeyAuth SudoParam = (ApiKeyAuth) defaultClient.getAuthentication("SudoParam");
+SudoParam.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoParam.setApiKeyPrefix("Token");
+
+// Configure API key authorization: TOTPHeader
+ApiKeyAuth TOTPHeader = (ApiKeyAuth) defaultClient.getAuthentication("TOTPHeader");
+TOTPHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//TOTPHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: Token
+ApiKeyAuth Token = (ApiKeyAuth) defaultClient.getAuthentication("Token");
+Token.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Token.setApiKeyPrefix("Token");
+
+RepositoryApi apiInstance = new RepositoryApi();
+String owner = "owner_example"; // String | owner of the repo
+String repo = "repo_example"; // String | name of the repo
+Long index = 789L; // Long | index of the pull request to merge
+try {
+    apiInstance.repoCancelScheduledAutoMerge(owner, repo, index);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RepositoryApi#repoCancelScheduledAutoMerge");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **owner** | **String**| owner of the repo |
+ **repo** | **String**| name of the repo |
+ **index** | **Long**| index of the pull request to merge |
 
 ### Return type
 
@@ -6141,7 +6327,7 @@ Name | Type | Description  | Notes
 
 <a name="repoGetEditorConfig"></a>
 # **repoGetEditorConfig**
-> repoGetEditorConfig(owner, repo, filepath)
+> repoGetEditorConfig(owner, repo, filepath, ref)
 
 Get the EditorConfig definitions of a file in a repository
 
@@ -6201,8 +6387,9 @@ RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 String filepath = "filepath_example"; // String | filepath of file to get
+String ref = "ref_example"; // String | The name of the commit/branch/tag. Default the repository’s default branch (usually master)
 try {
-    apiInstance.repoGetEditorConfig(owner, repo, filepath);
+    apiInstance.repoGetEditorConfig(owner, repo, filepath, ref);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoGetEditorConfig");
     e.printStackTrace();
@@ -6216,6 +6403,7 @@ Name | Type | Description  | Notes
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
  **filepath** | **String**| filepath of file to get |
+ **ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | [optional]
 
 ### Return type
 
@@ -7515,6 +7703,98 @@ Name | Type | Description  | Notes
 ### Return type
 
 [**Release**](Release.md)
+
+### Authorization
+
+[AccessToken](../README.md#AccessToken), [AuthorizationHeaderToken](../README.md#AuthorizationHeaderToken), [BasicAuth](../README.md#BasicAuth), [SudoHeader](../README.md#SudoHeader), [SudoParam](../README.md#SudoParam), [TOTPHeader](../README.md#TOTPHeader), [Token](../README.md#Token)
+
+### HTTP request headers
+
+ - **Content-Type**: application/json, text/plain
+ - **Accept**: application/json
+
+<a name="repoGetRepoPermissions"></a>
+# **repoGetRepoPermissions**
+> RepoCollaboratorPermission repoGetRepoPermissions(owner, repo, collaborator)
+
+Get repository permissions for a user
+
+### Example
+```java
+// Import classes:
+//import io.gitea.ApiClient;
+//import io.gitea.ApiException;
+//import io.gitea.Configuration;
+//import io.gitea.auth.*;
+//import io.gitea.api.RepositoryApi;
+
+ApiClient defaultClient = Configuration.getDefaultApiClient();
+
+// Configure API key authorization: AccessToken
+ApiKeyAuth AccessToken = (ApiKeyAuth) defaultClient.getAuthentication("AccessToken");
+AccessToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AccessToken.setApiKeyPrefix("Token");
+
+// Configure API key authorization: AuthorizationHeaderToken
+ApiKeyAuth AuthorizationHeaderToken = (ApiKeyAuth) defaultClient.getAuthentication("AuthorizationHeaderToken");
+AuthorizationHeaderToken.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//AuthorizationHeaderToken.setApiKeyPrefix("Token");
+
+// Configure HTTP basic authorization: BasicAuth
+HttpBasicAuth BasicAuth = (HttpBasicAuth) defaultClient.getAuthentication("BasicAuth");
+BasicAuth.setUsername("YOUR USERNAME");
+BasicAuth.setPassword("YOUR PASSWORD");
+
+// Configure API key authorization: SudoHeader
+ApiKeyAuth SudoHeader = (ApiKeyAuth) defaultClient.getAuthentication("SudoHeader");
+SudoHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: SudoParam
+ApiKeyAuth SudoParam = (ApiKeyAuth) defaultClient.getAuthentication("SudoParam");
+SudoParam.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//SudoParam.setApiKeyPrefix("Token");
+
+// Configure API key authorization: TOTPHeader
+ApiKeyAuth TOTPHeader = (ApiKeyAuth) defaultClient.getAuthentication("TOTPHeader");
+TOTPHeader.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//TOTPHeader.setApiKeyPrefix("Token");
+
+// Configure API key authorization: Token
+ApiKeyAuth Token = (ApiKeyAuth) defaultClient.getAuthentication("Token");
+Token.setApiKey("YOUR API KEY");
+// Uncomment the following line to set a prefix for the API key, e.g. "Token" (defaults to null)
+//Token.setApiKeyPrefix("Token");
+
+RepositoryApi apiInstance = new RepositoryApi();
+String owner = "owner_example"; // String | owner of the repo
+String repo = "repo_example"; // String | name of the repo
+String collaborator = "collaborator_example"; // String | username of the collaborator
+try {
+    RepoCollaboratorPermission result = apiInstance.repoGetRepoPermissions(owner, repo, collaborator);
+    System.out.println(result);
+} catch (ApiException e) {
+    System.err.println("Exception when calling RepositoryApi#repoGetRepoPermissions");
+    e.printStackTrace();
+}
+```
+
+### Parameters
+
+Name | Type | Description  | Notes
+------------- | ------------- | ------------- | -------------
+ **owner** | **String**| owner of the repo |
+ **repo** | **String**| name of the repo |
+ **collaborator** | **String**| username of the collaborator |
+
+### Return type
+
+[**RepoCollaboratorPermission**](RepoCollaboratorPermission.md)
 
 ### Authorization
 
@@ -10546,7 +10826,7 @@ Name | Type | Description  | Notes
 
 <a name="repoTestHook"></a>
 # **repoTestHook**
-> repoTestHook(owner, repo, id)
+> repoTestHook(owner, repo, id, ref)
 
 Test a push webhook
 
@@ -10606,8 +10886,9 @@ RepositoryApi apiInstance = new RepositoryApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
 Long id = 789L; // Long | id of the hook to test
+String ref = "ref_example"; // String | The name of the commit/branch/tag. Default the repository’s default branch (usually master)
 try {
-    apiInstance.repoTestHook(owner, repo, id);
+    apiInstance.repoTestHook(owner, repo, id, ref);
 } catch (ApiException e) {
     System.err.println("Exception when calling RepositoryApi#repoTestHook");
     e.printStackTrace();
@@ -10621,6 +10902,7 @@ Name | Type | Description  | Notes
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
  **id** | **Long**| id of the hook to test |
+ **ref** | **String**| The name of the commit/branch/tag. Default the repository’s default branch (usually master) | [optional]
 
 ### Return type
 
