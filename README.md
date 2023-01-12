@@ -1,7 +1,7 @@
 # java-gitea-api
 
 Gitea API.
-- API version: 1.16.0-SNAPSHOT
+- API version: 1.18.0
 
 This documentation describes the Gitea API.
 
@@ -39,7 +39,7 @@ Add this dependency to your project's POM:
 <dependency>
   <groupId>com.github.zeripath</groupId>
   <artifactId>java-gitea-api</artifactId>
-  <version>1.16.0-SNAPSHOT</version>
+  <version>1.18.0</version>
   <scope>compile</scope>
 </dependency>
 ```
@@ -49,7 +49,7 @@ Add this dependency to your project's POM:
 Add this dependency to your project's build file:
 
 ```groovy
-compile "com.github.zeripath:java-gitea-api:1.16.0-SNAPSHOT"
+compile "com.github.zeripath:java-gitea-api:1.18.0"
 ```
 
 ### Others
@@ -62,7 +62,7 @@ mvn clean package
 
 Then manually install the following JARs:
 
-* `target/java-gitea-api-1.16.0-SNAPSHOT.jar`
+* `target/java-gitea-api-1.18.0.jar`
 * `target/lib/*.jar`
 
 ## Getting Started
