@@ -9,8 +9,9 @@ Name | Type | Description | Notes
 **fullName** | **String** |  |  [optional]
 **id** | **Long** |  |  [optional]
 **location** | **String** |  |  [optional]
+**name** | **String** |  |  [optional]
 **repoAdminChangeTeamAccess** | **Boolean** |  |  [optional]
-**username** | **String** |  |  [optional]
+**username** | **String** | deprecated |  [optional]
 **visibility** | **String** |  |  [optional]
 **website** | **String** |  |  [optional]
 

@@ -6,6 +6,7 @@ Name | Type | Description | Notes
 ------------ | ------------- | ------------- | -------------
 **clientId** | **String** |  |  [optional]
 **clientSecret** | **String** |  |  [optional]
+**confidentialClient** | **Boolean** |  |  [optional]
 **created** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **id** | **Long** |  |  [optional]
 **name** | **String** |  |  [optional]

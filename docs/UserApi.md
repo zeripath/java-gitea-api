@@ -2443,7 +2443,7 @@ null (empty response body)
 
 <a name="userCurrentTrackedTimes"></a>
 # **userCurrentTrackedTimes**
-> List&lt;TrackedTime&gt; userCurrentTrackedTimes(since, before)
+> List&lt;TrackedTime&gt; userCurrentTrackedTimes(page, limit, since, before)
 
 List the current user&#39;s tracked times
 
@@ -2500,10 +2500,12 @@ Token.setApiKey("YOUR API KEY");
 //Token.setApiKeyPrefix("Token");
 
 UserApi apiInstance = new UserApi();
+Integer page = 56; // Integer | page number of results to return (1-based)
+Integer limit = 56; // Integer | page size of results
 OffsetDateTime since = OffsetDateTime.now(); // OffsetDateTime | Only show times updated after the given time. This is a timestamp in RFC 3339 format
 OffsetDateTime before = OffsetDateTime.now(); // OffsetDateTime | Only show times updated before the given time. This is a timestamp in RFC 3339 format
 try {
-    List<TrackedTime> result = apiInstance.userCurrentTrackedTimes(since, before);
+    List<TrackedTime> result = apiInstance.userCurrentTrackedTimes(page, limit, since, before);
     System.out.println(result);
 } catch (ApiException e) {
     System.err.println("Exception when calling UserApi#userCurrentTrackedTimes");
@@ -2515,6 +2517,8 @@ try {
 
 Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
+ **page** | **Integer**| page number of results to return (1-based) | [optional]
+ **limit** | **Integer**| page size of results | [optional]
  **since** | **OffsetDateTime**| Only show times updated after the given time. This is a timestamp in RFC 3339 format | [optional]
  **before** | **OffsetDateTime**| Only show times updated before the given time. This is a timestamp in RFC 3339 format | [optional]
 

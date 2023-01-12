@@ -3279,7 +3279,7 @@ Token.setApiKey("YOUR API KEY");
 IssueApi apiInstance = new IssueApi();
 String owner = "owner_example"; // String | owner of the repo
 String repo = "repo_example"; // String | name of the repo
-String state = "state_example"; // String | Milestone state, Recognised values are open, closed and all. Defaults to \"open\"
+String state = "state_example"; // String | Milestone state, Recognized values are open, closed and all. Defaults to \"open\"
 String name = "name_example"; // String | filter by milestone name
 Integer page = 56; // Integer | page number of results to return (1-based)
 Integer limit = 56; // Integer | page size of results
@@ -3298,7 +3298,7 @@ Name | Type | Description  | Notes
 ------------- | ------------- | ------------- | -------------
  **owner** | **String**| owner of the repo |
  **repo** | **String**| name of the repo |
- **state** | **String**| Milestone state, Recognised values are open, closed and all. Defaults to \&quot;open\&quot; | [optional]
+ **state** | **String**| Milestone state, Recognized values are open, closed and all. Defaults to \&quot;open\&quot; | [optional]
  **name** | **String**| filter by milestone name | [optional]
  **page** | **Integer**| page number of results to return (1-based) | [optional]
  **limit** | **Integer**| page size of results | [optional]

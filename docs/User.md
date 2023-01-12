@@ -18,6 +18,7 @@ Name | Type | Description | Notes
 **lastLogin** | [**OffsetDateTime**](OffsetDateTime.md) |  |  [optional]
 **location** | **String** | the user&#39;s location |  [optional]
 **login** | **String** | the user&#39;s username |  [optional]
+**loginName** | **String** | the user&#39;s authentication sign-in name. |  [optional]
 **prohibitLogin** | **Boolean** | Is user login prohibited |  [optional]
 **restricted** | **Boolean** | Is user restricted |  [optional]
 **starredReposCount** | **Long** |  |  [optional]

@@ -10,6 +10,7 @@ Name | Type | Description | Notes
 **encoding** | **String** | &#x60;encoding&#x60; is populated when &#x60;type&#x60; is &#x60;file&#x60;, otherwise null |  [optional]
 **gitUrl** | **String** |  |  [optional]
 **htmlUrl** | **String** |  |  [optional]
+**lastCommitSha** | **String** |  |  [optional]
 **name** | **String** |  |  [optional]
 **path** | **String** |  |  [optional]
 **sha** | **String** |  |  [optional]

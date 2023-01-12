@@ -371,7 +371,7 @@ Name | Type | Description  | Notes
  **owner** | **String**| owner of the packages |
  **page** | **Integer**| page number of results to return (1-based) | [optional]
  **limit** | **Integer**| page size of results | [optional]
- **type** | **String**| package type filter | [optional] [enum: composer, conan, container, generic, helm, maven, npm, nuget, pypi, rubygems]
+ **type** | **String**| package type filter | [optional] [enum: composer, conan, container, generic, helm, maven, npm, nuget, pub, pypi, rubygems, vagrant]
  **q** | **String**| name filter | [optional]
 
 ### Return type
